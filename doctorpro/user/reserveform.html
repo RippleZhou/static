@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<style type="text/css">
+    .partner-content{
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        padding: 0;
+        display: none;
+    }
+    .inner-box{
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+    .inner-box:after{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.5;
+        z-index: 1;
+    }
+    .form{
+        position: absolute;
+        width: 300px;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        height: 350px;
+        background: #fff;
+        z-index: 2;
+        text-align: center;
+    }
+    .form-title{
+        position: relative;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+        color: #4b4b4b;
+        font-size: 16px;
+    }
+    .form-title *{
+        line-height: 45px;
+    }
+    .close-btn{
+        color: #999;
+        position: absolute;
+        top: 0;
+        right: 15px;
+        font-size: 15px;
+    }
+
+    .form  li{
+        line-height: 50px;
+    }
+    .form  input,
+    .form  select{
+        border:1px solid #b5b5b5;
+        height: 30px;
+        line-height: 30px;
+        width: 70%;
+        padding: 0 5px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        font-size: 13px;
+        color: #666;
+    }
+    .form li:first-of-type{
+        margin-top: 10px;
+    }
+    .form  li span{
+        display: inline-block;
+        font-size: 14px;
+    }
+    .form  #partner_form_submit{
+        margin-top: 20px;
+        color: #fff;
+        background: #46c6fe;
+        border: 0;
+        font-size: 17px;
+        line-height: normal;
+        width: 100px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+    }
+    .form  li{
+        position: relative;
+    }
+</style>
+<div class="inner-box">
+    <div class="form">
+        <div class="form-title">
+            <p>资料填写</p>
+            <span class="close-btn">关闭</span>
+        </div>
+        <!--<form  method="post" id="doctorForm">-->
+        <li>
+            <span class="must">姓名:</span>
+            <input type="text" name="realname" id="realname" value="" />
+        </li>
+        <li>
+            <span class="must">手机:</span>
+            <input type="text" name="mobile" id="mobile" value="" />
+        </li>
+        <li>
+            <span class="must">项目:</span>
+            <input type="text" name="dept" id="dept" disabled="disabled" value="" />
+        </li>
+        <li>
+            <span class="must">微信:</span>
+            <input type="text" name="weicat" id="weicat" value="" />
+        </li>
+
+        <input id="partner_form_submit" type="button" value="提交"/>
+        <!--</form>-->
+    </div>
+</div>

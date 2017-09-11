@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+    <title>知识库</title>
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <style>
+        * {
+            box-sizing:content-box
+        }
+        .touchFeedback,.touchFeedback.allDes *,.touchFeedback.allDes *:before,.touchFeedback.allDes *:after,.touchFeedback .traDes,.touchFeedback .traDes.allDes *,.touchFeedback .traDes.allDes *:before,.touchFeedback .traDes.allDes *:after {
+            transition:all 222ms
+        }
+        .touchFeedback.tc,.touchFeedback.tc.allDes *,.touchFeedback.tc.allDes *:before,.touchFeedback.tc.allDes *:after,.touchFeedback.tc .traDes,.touchFeedback.tc .traDes.allDes *,.touchFeedback.tc .traDes.allDes *:before,.touchFeedback.tc .traDes.allDes *:after {
+            transition:none
+        }
+        html,body {
+            height:100%;
+            overflow:hidden
+        }
+        body {
+            background:#ffffff
+        }
+        .wrapper {
+            position:relative
+        }
+        header {
+            height:40px;
+            background:#fff;
+            line-height:40px;
+            font-size:14px;
+            overflow:hidden;
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            z-index:99;
+            padding-right:40px
+        }
+        header span {
+            float:left;
+            width:80px;
+            position:relative;
+            text-align:center;
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow:ellipsis
+        }
+        header span.tc {
+            color:#46c6fe
+        }
+        .swiper-slide {
+            float:left;
+            -webkit-transition:color 333ms;
+            transition:color 333ms
+        }
+        .swiper-slide.active-nav {
+            color:#46c6fe
+        }
+        .swiper-slide:after {
+            content:'';
+            display:block;
+            position:absolute;
+            bottom:0;
+            left:0;
+            right:0;
+            height:1px;
+            background:#fff;
+            -webkit-transition:background 333ms;
+            transition:background 333ms
+        }
+        .swiper-slide.active-nav:after {
+            background:#46c6fe
+        }
+        h5 {
+            position:absolute;
+            top:0;
+            left:0;
+            height:39px;
+            line-height:39px;
+            border-bottom:1px solid #efeff4;
+            right:0;
+            color:#ccc;
+            font-size:14px;
+            padding-left:15px;
+            padding-right:40px;
+            background:#fff;
+            overflow:hidden;
+            z-index:-999;
+            opacity:0;
+            -webkit-transition:opacity 333ms;
+            transition:opacity 333ms
+        }
+        .kind h5 {
+            z-index:100;
+            opacity:1
+        }
+        h5 div {
+            position:relative;
+            -webkit-transform:translateX(100%);
+            transform:translateX(100%);
+            -webkit-transition:all 333ms;
+            transition:all 333ms
+        }
+        h5 span {
+            position:absolute;
+            top:50%;
+            margin-top:-10px;
+            right:5px;
+            border:1px solid #f33;
+            height:18px;
+            line-height:18px;
+            text-align:center;
+            width:48px;
+            border-radius:3px;
+            color:#f33;
+            font-size:10px
+        }
+        .kind h5 div {
+            -webkit-transform:translateX(0);
+            transform:translateX(0)
+        }
+        i {
+            width:40px;
+            height:39px;
+            position:absolute;
+            top:0;
+            right:0;
+            background:#fff;
+            z-index:200;
+        }
+        i:after {
+            content:'';
+            display:block;
+            height:9px;
+            width:9px;
+            border-top:2px solid #b2b3b3;
+            border-left:2px solid #b2b3b3;
+            position:absolute;
+            top:50%;
+            margin-top:-5px;
+            left:50%;
+            margin-left:-5px;
+            -webkit-transform:rotate(-135deg);
+            transform:rotate(-135deg);
+            -webkit-transform-origin:33% 33%;
+            transform-origin:33% 33%
+        }
+        i.tc:after {
+            border-color:#999
+        }
+        .kind i:after {
+            -webkit-transform:rotate(45deg);
+            transform:rotate(45deg);
+            -webkit-transition:all 333ms;
+            transition:all 333ms
+        }
+        .swiper-content {
+            height:100%;
+            overflow:hidden;
+            background: #ffffff;
+        }
+        li {
+            overflow-y:auto;
+            -webkit-overflow-scrolling:touch
+        }
+        /*li div {
+            padding:45px 11px;
+            overflow:hidden
+        }*/
+        /*li a {
+            float:left;
+            height:40px;
+            line-height:40px;
+            background:#fff;
+            border-radius:3px;
+            padding:0 15px;
+            color:#fff;
+            font-size:14px;
+            margin:5px 3px
+        }*/
+        li a {
+            display: inline-block;
+            width: 93%;
+            border-bottom: 1px solid #d6d7dc;
+            padding:11px 3.5% 11px;
+            margin-bottom: -3px;
+        }
+        /*li a:last-of-type {
+            border:0px;
+        }*/
+        a:active {
+            opacity:.5
+        }
+        .categorylist-articles {
+            padding: 45px 0 2px;
+        }
+        .article-info {
+            width: 80%;
+            float: left;
+        }
+        .article-title {
+            font-size: 16px;
+            color:#46c6fe;
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+        .article-abstract {
+            font-size: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            max-height: 50px;
+        }
+        .article-img {
+            width: 50px;
+            height: 50px;
+            float: right;
+            margin-right: 5px;
+        }
+        .article-img img {
+            width: 50px;
+            height: 50px;
+        }
+        .click-more {
+            color: #999999;
+            height: 38px;
+            text-align: center;
+            line-height: 38px;
+        }
+        section {
+            position:absolute;
+            top:0;
+            left:0;
+            bottom:0;
+            right:0;
+            font-size:14px;
+            background:rgba(255,255,255,.95);
+            padding:40px 0;
+            z-index:-99;
+            opacity:0
+        }
+        .kind section {
+            z-index:99;
+            opacity:1;
+            -webkit-transition:opacity 333ms;
+            transition:opacity 333ms
+        }
+        section nav {
+            padding:10px;
+            overflow:hidden;
+            -webkit-transform:translateY(-100%);
+            transform:translateY(-100%);
+            -webkit-transition:all 333ms;
+            transition:all 333ms
+        }
+        .kind section nav {
+            -webkit-transform:translateY(0);
+            transform:translateY(0)
+        }
+        section div {
+            float:left;
+            width:33.33%;
+            position:relative
+        }
+        section.edit div:before,section.edit div:after {
+            content:'';
+            display:block;
+            height:1px;
+            width:8px;
+            background:#fff;
+            position:absolute;
+            top:6px;
+            right:2px;
+            z-index:99
+        }
+        section.edit div:before {
+            -webkit-transform:rotate(45deg);
+            transform:rotate(45deg)
+        }
+        section.edit div:after {
+            -webkit-transform:rotate(-45deg);
+            transform:rotate(-45deg)
+        }
+        section p {
+            border:1px solid #efeff4;
+            height:38px;
+            line-height:38px;
+            text-align:center;
+            color:#666;
+            border-radius:3px;
+            margin:5px;
+            position:relative;
+            z-index:9
+        }
+        section.edit p:after {
+            content:'';
+            display:block;
+            height:12px;
+            width:12px;
+            border-radius:50%;
+            background:#ccc;
+            position:absolute;
+            top:-6px;
+            right:-6px
+        }
+        section .on p {
+            background:#efeff4
+        }
+        section h6 {
+            padding-left:15px;
+            height:30px;
+            line-height:30px;
+            background:#efeff4;
+            font-size:14px;
+            color:#ccc;
+            margin-top:5px
+        }
+        section.edit h6 {
+            display:none
+        }
+        section.edit h6+nav {
+            display:none
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <header>
+        <div class="swiper-wrapper category-list-title"></div>
+    </header>
+    <h5><div>切换栏目<span>删除排序</span></div></h5>
+    <i></i>
+    <div class="swiper-content">
+        <ul class="swiper-wrapper"></ul>
+        <section>
+            <nav></nav>
+            <h6>添加更多栏目</h6>
+            <nav></nav>
+        </section>
+    </div>
+</div>
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="http://www.ibabycenter.com/wwwfront/js/third/Tcc.min.js"></script>
+<script src="http://www.ibabycenter.com/wwwfront/js/third/Swiper-master/dist/idangerous.swiper.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="http://sdk.talkingdata.com/app/h5/v1?appid=119BF1969DBACF577B6D2DBA8D489F71&vn=爱丁备孕v4.3&vc=4.3"></script>
+<script>
+    $('.wrapper')[0].style.width=$('body').width()+'px'
+    $('.wrapper')[0].style.height=$('body').height()+'px'
+    queryObj={}
+    if(location.search){
+        try{
+            queryObj=JSON.parse('{"'+decodeURI(location.search.substring(1)).replace(/"/g,'\\"').replace(/&/g,'","').replace(/=/g,'":"')+'"}')
+        }
+        catch (e){
+
+        }
+    }
+    Utils.ajax.get('/IbabyWebService/TipsBlog/CategoryList').then(function(category){
+        html=''
+        for(i=0;i<category.length;i++){
+            html+='<li class="swiper-slide"><div class="categorylist-articles" categoryid="'+category[i].id+'"></div></li>'
+        }
+        $('ul').html(html)
+        html=''
+        for(i=0;i<category.length;i++){
+            html+='<div><p>'+category[i].title+'</p></div>'
+        }
+        $('nav').eq(0).html(html)
+        function articleList(i){
+            Utils.ajax.get('/IbabyWebService/TipsBlog/ArticleList/pager?categoryid='+category[i].id, {'offset':0, 'limit':10}).then(function(articles){
+                html=''
+                for(j=0;j<articles.list.length;j++){
+                    // html+='<a class="article-link" href="'+articles.list[j].url+'&categoryid='+articles.list[j].categoryid+'&id='+articles.list[j].id+(User.getUser()?('&userid='+User.getUser().patientid):'')+'">'+'<div class="article-title">'+articles.list[j].title+'</div>'+'<div class="article-info"><div class="article-abstract">'+articles.list[j].articleabstract+'</div><div class="article-img"><img src="'+articles.list[j].icon+'"></div></div>'+'</a>'
+                    html+='<a class="article-link" href="'+articles.list[j].url+'&categoryid='+articles.list[j].categoryid+'&id='+articles.list[j].id+(User.getUser()?('&userid='+User.getUser().patientid):'')+'">'+'<div class="article-info"><div class="article-title">'+articles.list[j].title+'</div><div class="article-abstract">'+articles.list[j].articleabstract+'</div></div><div class="article-img"><img src="'+articles.list[j].icon+'" ></div>'+'</a>'
+                }
+                if (articles.list.length >= 10) {
+                    html = html + '<div class="click-more">点击加载更多...</div>';
+                }
+                $('div',contentItems[i]).html(html)
+            })
+        }
+        html=''
+        for(i=0;i<category.length;i++){
+            html+='<span class="swiper-slide">'+category[i].title+'</span>'
+            articleList(i)
+        }
+        $('header div').html(html)
+        $('header span').each(function(i){
+            $(this).on('tap',function(){
+                contentSwiper.swipeTo(customCategory[category[i].id].slideIndex)
+            })
+        }).on('touchstart',function(){$(this).addClass('tc')}).on('touchmove touchend',function(){$(this).removeClass('tc')})
+        navItems=document.querySelectorAll('header span')
+        contentItems=document.querySelectorAll('li')
+        categoryItems=document.querySelectorAll('nav div')
+        $('header span').eq(0).addClass('active-nav')
+        $('nav div').eq(0).addClass('on')
+        contentSwiper = $('.swiper-content').swiper({
+            onSlideChangeStart: function(){
+                updateNavPosition();
+                var categoryname = $('.category-list-title>span')[contentSwiper.activeIndex].html();
+                TDAPP.onEvent("user_knowledge_category", categoryname);
+            }
+        })
+        navSwiper = $('header').swiper({
+            visibilityFullFit: true,
+            slidesPerView:'auto'
+        })
+        function updateNavPosition(){
+            $('header .active-nav').removeClass('active-nav')
+            var activeNav = $('header .swiper-slide').eq(contentSwiper.activeIndex).addClass('active-nav')
+            if (!activeNav.hasClass('swiper-slide-visible')) {
+                if (activeNav.index()>navSwiper.activeIndex) {
+                    var thumbsPerNav = Math.floor(navSwiper.width/activeNav.width())-1
+                    navSwiper.swipeTo(activeNav.index()-thumbsPerNav)
+                }
+                else {
+                    navSwiper.swipeTo(activeNav.index())
+                }
+            }
+            $('section div.on').removeClass('on')
+            $('section div').eq(contentSwiper.activeIndex).addClass('on')
+        }
+        $('i').on('click',function(){
+            $('.wrapper').toggleClass('kind')
+            if($('section').hasClass('edit')){
+                $('section').removeClass('edit')
+                $('h5 span').text('删除排序')
+            }
+        }).on('touchstart',function(){$(this).addClass('tc')}).on('touchmove touchend',function(){$(this).removeClass('tc')})
+        $('h5 span').on('click',function(){
+            if($('section').hasClass('edit')){
+                $(this).text('删除排序')
+            }
+            else{
+                $(this).text('完成')
+            }
+            $('section').toggleClass('edit')
+        })
+        $('section div').each(function(i){
+            $(this).on('click',function(){
+                if(customCategory[category[i].id].fav){
+                    if($('section').hasClass('edit')){
+                        $('section nav').eq(1).append(this)
+                        $(navItems[i]).removeClass('active-nav').remove()
+                        $(contentItems[i]).remove()
+                        customCategory[category[i].id].fav=false
+                        slideSequence.splice(customCategory[category[i].id].slideIndex,1)
+                        localStorage.slideSequence=JSON.stringify(slideSequence)
+                        for(j=0;j<slideSequence.length;j++){
+                            customCategory[slideSequence[j]].slideIndex=j
+                        }
+                        if($('div',$('section nav').eq(1)).length){
+                            $('h6')[0].style.display=''
+                        }
+                        if(contentSwiper.activeIndex>slideSequence.length-1){
+                            navSwiper.setWrapperTranslate(0)
+                            contentSwiper.swipeTo(slideSequence.length-1)
+                        }
+                        navSwiper.reInit()
+                        contentSwiper.reInit()
+                        contentSwiper.swipeTo(contentSwiper.activeIndex)
+                        $('header .swiper-slide').eq(contentSwiper.activeIndex).addClass('active-nav')
+                    }
+                    else{
+                        contentSwiper.swipeTo(customCategory[category[i].id].slideIndex)
+                        $('.wrapper').removeClass('kind')
+                    }
+                }
+                else{
+                    $('section nav').eq(0).append(this)
+                    customCategory[category[i].id].fav=true
+                    customCategory[category[i].id].slideIndex=slideSequence.length
+                    slideSequence.push(category[i].id)
+                    localStorage.slideSequence=JSON.stringify(slideSequence)
+                    $('header div').append(navItems[i])
+                    $(navItems[i]).off('tap').on('tap',function(){
+                        contentSwiper.swipeTo(customCategory[category[i].id].slideIndex)
+                    })
+                    $('ul').append(contentItems[i])
+                    if(contentSwiper.activeIndex>slideSequence.length-1){
+                        navSwiper.setWrapperTranslate(0)
+                        contentSwiper.swipeTo(slideSequence.length-1)
+                    }
+                    navSwiper.reInit()
+                    contentSwiper.reInit()
+                    $('header .swiper-slide').eq(contentSwiper.activeIndex).addClass('active-nav')
+                    if(!$('div',$('section nav').eq(1)).length){
+                        $('h6').hide()
+                    }
+                }
+            })
+        }).on('touchstart',function(){$(this).addClass('tc')}).on('touchmove touchend',function(){$(this).removeClass('tc')})
+        if(localStorage.slideSequence){
+            slideSequence=JSON.parse(localStorage.slideSequence)
+        }
+        else{
+            slideSequence=[]
+            for(i=0;i<category.length;i++){
+                slideSequence.push(category[i].id)
+            }
+        }
+        customCategory={}
+        for(i=0;i<category.length;i++){
+            customCategory[category[i].id]={slideIndex:i,fav:false}
+        }
+        for(i=0;i<slideSequence.length;i++){
+            $('header div').append(navItems[customCategory[slideSequence[i]].slideIndex])
+            $('ul').append(contentItems[customCategory[slideSequence[i]].slideIndex])
+            $('section nav').eq(0).append(categoryItems[customCategory[slideSequence[i]].slideIndex])
+        }
+        for(i=0;i<slideSequence.length;i++){
+            customCategory[slideSequence[i]].fav=true
+            customCategory[slideSequence[i]].slideIndex=i
+        }
+        for(i=0;i<category.length;i++){
+            if(!customCategory[category[i].id].fav){
+                $(navItems[i]).remove()
+                $(contentItems[i]).remove()
+                $('section nav').eq(1).append($(categoryItems[i]))
+            }
+        }
+        if(!$('div',$('section nav').eq(1)).length){
+            $('h6').hide()
+        }
+        navSwiper.reInit()
+        contentSwiper.reInit()
+        navSwiper.setWrapperTranslate(99)
+        navSwiper.swipeTo(0)
+        contentSwiper.setWrapperTranslate(0)
+        $('header .swiper-slide.active-nav').removeClass('active-nav')
+        $('header .swiper-slide').eq(contentSwiper.activeIndex).addClass('active-nav')
+    })
+    $('body').on('click','.click-more', function() {
+        $(this).remove();
+        var categoryid = $('.swiper-content>ul>li:eq('+contentSwiper.activeIndex+')').find('.categorylist-articles').attr('categoryid');
+        var offset = $('.swiper-content>ul>li:eq('+contentSwiper.activeIndex+')>div>a').length;
+        Utils.ajax.get('/IbabyWebService/TipsBlog/ArticleList/pager?categoryid='+categoryid, {"offset":offset, "limit":10}).then(function(articles){
+            html=''
+            for(j=0;j<articles.list.length;j++){
+                html+='<a class="article-link" href="'+articles.list[j].url+'&categoryid='+articles.list[j].categoryid+'&id='+articles.list[j].id+(User.getUser()?('&userid='+User.getUser().patientid):'')+'">'+'<div class="article-info"><div class="article-title">'+articles.list[j].title+'</div><div class="article-abstract">'+articles.list[j].articleabstract+'</div></div><div class="article-img"><img src="'+articles.list[j].icon+'" ></div>'+'</a>'
+            }
+            if (articles.list.length >= 10) {
+                html = html + '<div class="click-more">点击加载更多...</div>'
+            }
+            $('.swiper-content>ul>li:eq('+contentSwiper.activeIndex+')>.categorylist-articles').append(html);
+        })
+    })
+
+    $('body').on('click', '.article-link', function() {
+        var articlename = $(this).find('.article-title').html();
+        TDAPP.onEvent("user_knowledge_article", articlename);
+    })
+</script>
+</body>
+</html>

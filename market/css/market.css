@@ -1,0 +1,297 @@
+body {
+    background: #eee;
+    color: #333;
+}
+
+header {
+    padding: 5px 15px 0;
+    height: 45px;
+    line-height: 40px;
+    background: #333;
+    color: #ddd;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+header a {
+    float: right;
+}
+
+header img {
+    margin-top: 5px;
+    margin-right: 5px;
+    height: 30px;
+    width: 30px;
+    float: left;
+}
+
+#banner {
+    min-height: 150px;
+}
+
+#infor,
+#link {
+    position: relative;
+    padding: 15px;
+    background: #fff;
+    line-height: 25px;
+    font-size: 15px;
+}
+
+#num {
+    position: absolute;
+    right: 15px;
+    top: 40px;
+    color: #999;
+    font-size: 14px;
+}
+
+#price {
+    font-size: 14px;
+    color: #f00;
+}
+
+#link {
+    padding: 0;
+    font-size: 14px;
+}
+
+#link dd {
+    width: 50%;
+    line-height: 40px;
+    text-align: center;
+    float: left;
+    border-top: 1px solid #eee;
+}
+
+#link-advice p {
+    padding: 0;
+    line-height: 20px;
+    color: #fff;
+}
+
+#link-advice {
+    position: fixed;
+    width: 75px;
+    height: 75px;
+    border-radius: 40px;
+    right: 20px;
+    padding: 10px 12px;
+    background: #11b5ee;
+    bottom: 100px;
+    z-index: 1;
+    opacity: 0.9;
+    box-shadow: 0 2px 20px 0 #aaa;
+}
+
+#link-advice img {
+    width: 20px;
+}
+
+#link dd#ask {
+    border-left: 1px solid #eee;
+}
+
+#link dd.active {
+    background: #11b5ee;
+    border-color:  #11b5ee;
+    color: #fff;
+}
+
+#comment,#comment-a {
+    margin-top: 15px;
+    background: #fff;
+    font-size: 12px;
+}
+
+#comment {
+    padding: 0 15px;
+    display: none;
+}
+
+
+#comment-a {
+    padding: 15px;
+    display: block;
+}
+#comment-a.nourl {
+    font-size: 14px;
+    color: #999;
+    line-height: 22px;
+}
+
+#comment #title {
+    line-height: 40px;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
+}
+
+#comment ul {
+    position: relative;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+#comment ul:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+#comment ul:last-of-type {
+    border-bottom: 0;
+}
+
+.comments img {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.comments p:nth-of-type(1),
+.comments p:nth-of-type(2) {
+    line-height: 20px;
+    padding-left: 55px;
+}
+
+.comments p:nth-of-type(1) {
+    padding-top: 15px;
+}
+
+.comments p:nth-of-type(2) {
+    padding-bottom: 15px;
+    color: #999;
+}
+
+.comments p:nth-of-type(3) {
+    line-height: 24px;
+    font-size: 13px;
+}
+
+#null {
+    width: 100%;
+    height: 70px;
+}
+
+#buy {
+    position: fixed;
+    height: 70px;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    font-size: 14px;
+    background: #fff;
+    border-top: 1px solid #eee;
+}
+
+#buy a {
+    line-height: 40px;
+    display: block;
+    color: #fff;
+    background: #11b5ee;
+}
+
+#fullForm {
+    position: fixed;
+    background: #000;
+    opacity: 0.3;
+    z-index: 1;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#form {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 2;
+    padding: 0 15px;
+    display: none;
+}
+
+#form li:first-of-type {
+    border-top: 0;
+    padding: 20px 0;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+#form li:first-of-type font {
+    color: #f00;
+}
+
+#form li:first-of-type #close {
+    width: 20px;
+    top: 20px;
+    right: 0;
+    position: absolute;
+}
+
+#form #icon {
+    height: 40px;
+    width: 60px;
+    margin-right: 15px;
+    float: left;
+}
+
+#form li {
+    position: relative;
+    border-top: 1px solid #eee;
+}
+
+#form li input:focus {
+    color: #15b2ee;
+}
+
+#form li input {
+    padding-left: 80px;
+    padding-right: 15px;
+    font-size: 15px;
+    color: #666;
+    margin: 11px 0;
+    width: 100%;
+}
+
+#form li span {
+    position: absolute;
+    font-size: 15px;
+    left: 0;
+    top: 11px;
+}
+
+#form li span:before {
+    content: '*';
+    margin-right: 10px;
+    color: #f00;
+}
+
+#form li:last-of-type #submit:before {
+    display: none;
+}
+
+#form li:last-of-type span {
+    width: 100%;
+    position: relative;
+    display: block;
+    font-size: 14px;
+    line-height: 40px;
+    top: 0;
+    text-align: center;
+    margin: 10px 0;
+    color: #fff;
+    background: #11b5ee;
+}
+
+#ordername {
+    color: #000 !important;
+}

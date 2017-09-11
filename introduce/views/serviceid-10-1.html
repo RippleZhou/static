@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>服务原理</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/market/css/market.css?0.31">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #4A9FD4;
+        }
+
+        img#main {
+            vertical-align: bottom;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        div#gobuy {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            border-top: 1px solid #eee;
+        }
+
+        div#gobuy a {
+            width: 100%;
+            display: block;
+            line-height: 40px;
+            color: white;
+            font-size: 14px;
+            background: #11b5ee;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: transparent;
+            text-decoration: none;
+            -webkit-user-drag: none;
+        }
+        #link-advice{
+            box-shadow: 0 2px 20px 0 #138ad0!important;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+
+</div>
+<script type="text/html" id="template">
+    <img id="main" src="./img/serviceid-10-{{index}}.jpg" alt="">
+    <div id="link-advice" class="flex flex-vertical flex-center" onclick="javascript:location.href = '/static/market/views/advice.html'">
+        <img src="/static/market/img/talk.png" alt="">
+        <p>营养评估</p>
+    </div>
+</script>
+<div id="gobuy"><a href="/static/market/views/services.html?serviceid=10">立即报名</a></div>
+<script src="/static/common/lib/template.js"></script>
+<script>
+    (function () {
+        var index = location.search.split('?')[1];
+        var data = {};
+        data.index = index
+        var html = template('template',data);
+        document.getElementById('container').innerHTML = html;
+    })()
+</script>
+</body>
+</html>

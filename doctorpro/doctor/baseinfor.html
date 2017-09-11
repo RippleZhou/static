@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!--检测登陆状态,请勿改变位置-->
+    <script src="/static/doctorpro/js/state.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱丁医生</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/doctorpro/css/doctor.css">
+    <style>
+        section {
+            margin-bottom: 20px;
+            background: #fff;
+        }
+
+        label input {
+            width: 100%;
+            line-height: 40px;
+            font-size: 14px;
+            padding: 0 15px;
+            text-align: right;
+            color: #666;
+        }
+
+        label {
+            position: relative;
+        }
+
+        label img {
+            position: absolute;
+            width: 40px;
+            z-index: 1;
+            right: 40px;
+        }
+
+        label span {
+            position: absolute;
+            top: -3px;
+            left: 15px;
+            font-size: 15px;
+        }
+
+        section #line {
+            margin-left: 15px;
+            background: #ddd;
+            height: 1px;
+        }
+
+        form > div {
+            margin: 40px 15px 10px 15px;
+            text-align: center;
+            background: #15b2ee;
+            line-height: 40px;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .headpic span {
+            top: 0;
+        }
+
+        label img.more {
+            width: 14px;
+            right: 15px;
+            top: 0;
+        }
+
+        section *:not(#line){
+            background: #fff;
+        }
+
+        input:disabled {
+            color: #666;
+        }
+        section #line:last-of-type{
+            display: none;
+        }
+        #resume{
+            padding-left: 90px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+<form id="formContainer">
+    <script id="form" type="text/html">
+    <section>
+        {{each list as val index}}
+        <a href="javascript:void(0)">
+            <label>
+                <span>{{val.key}}</span>
+                <input disabled="disabled" type="text" value="{{val.value}}">
+            </label>
+        </a>
+        <div id="line"></div>
+        {{/each}}
+    </section>
+    <section>
+        <a href="javascript:void(0)">
+            <label>
+                <span>个人简介</span>
+                <input id="resume" disabled="disabled" type="text" value="没有简介">
+            </label>
+        </a>
+    </section>
+    </script>
+</form>
+
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/doctorpro/js/doctor.js"></script>
+<script type="text/javascript">
+    var data = {list:[{
+        key: '姓名', value: baseInfor.realname
+    }, {
+        key: '职称', value: baseInfor.title
+    },{
+        key:'医院名称',value:baseInfor.hospital
+    },{
+        key:'科室名称',value:baseInfor.dept
+    },{
+        key:'医院名称',value:baseInfor.hospital
+    }]}
+    var html = template('form',data);
+    document.getElementById('formContainer').innerHTML = html;
+    $('#resume').val(baseInfor.resume);
+</script>
+</body>
+</html>

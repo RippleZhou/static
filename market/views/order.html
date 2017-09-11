@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的购买</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <style>
+        body {
+            background: #eee;
+        }
+
+        ul:last-of-type {
+            margin-bottom: 0;
+        }
+
+        ul {
+            background: #fff;
+            padding: 10px 15px 0;
+            line-height: 23px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        ul > p:nth-of-type(1) {
+            margin-bottom: 10px;
+        }
+
+        ul div .r {
+            background: #15b2ee;
+            color: #fff;
+            padding: 0 15px;
+            border-radius: 4px;
+            margin: 55px 0 15px 15px;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .relative .price {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .relative .num {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        .relative .title {
+            position: absolute;
+            margin: auto;
+            margin-left: 15px;
+            top: 25px;
+            right: 0;
+            height: 20px;
+        }
+
+        ul img {
+            height: 78px;
+            min-width: 100px;
+            float: left;
+        }
+
+        .clear:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .color1 {
+            color: #999;
+        }
+
+        .l {
+            float: left;
+        }
+
+        .r {
+            float: right;
+        }
+
+        #form {
+            position: fixed;
+            background: #fff;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            display: none;
+            z-index: 1;
+            box-shadow: 0 -1px 20px 10px #eee;
+        }
+
+        #close {
+            width: 25px;
+            float: right;
+        }
+
+        textarea {
+            width: 100%;
+            margin-top: 15px;
+            resize: none;
+            padding: 10px 15px;
+            border-color: #999;
+            color: #666;
+            line-height: 20px;
+            font-size: 14px;
+        }
+
+        textarea:focus {
+            border-color: #15b2ee;
+        }
+
+        #submit {
+            text-align: center;
+            background: #11b5ee;
+            color: #fff;
+            line-height: 35px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .nototle {
+            color: #999;
+            font-size: 13px;
+            text-align: center;
+            display: none;
+            line-height: 40px;
+        }
+
+    </style>
+</head>
+<body>
+<p class="nototle">当前没有订单~</p>
+<div id="form">
+    <img src="/static/pcos/img/close.svg" id="close" onclick="form()"><br>
+    <textarea name="" id="text" cols="30" rows="8" placeholder="写下在您在爱丁的感受来给其他小伙伴作参考吧~"></textarea>
+    <p id="submit" onclick="submit()">提交评论</p>
+</div>
+
+
+<script type="text/html" id="orderdata">
+    {{each list as val index}}
+    {{if val.stat == '1'}}
+    <ul class="clear">
+        <p class="clear"><span class="l">订单号:{{val.orderid}}</span><span class="r color1">{{val.createtime}}</span></p>
+        <div class="clear relative">
+            <img src="{{val.coverpic}}" alt="">
+            <span class="title">{{val.servicename}}</span>
+            <span class="price">￥{{val.price}}</span>
+            <span class="r" onclick="pay('{{val.servicename}}','{{val.price}}','{{val.orderid}}','{{val.coverpic}}','{{val.serviceid}}')">支付</span>
+            <a href="javascript:void (0)">
+                <span class="r" style="background: none;color: #999;padding: 0;margin-left: 0;">未付款</span>
+            </a>
+        </div>
+    </ul>
+    {{else}}
+    <ul class="clear">
+        <p class="clear"><span class="l">订单号:{{val.orderid}}</span><span class="r color1">{{val.createtime}}</span></p>
+        <div class="clear relative">
+            <img src="{{val.coverpic}}" alt="">
+            <span class="title">{{val.servicename}}</span>
+            <span class="price">￥{{val.price}}</span>
+            <span class="r" onclick="form('{{val.serviceid}}')">评价</span>
+            {{if val.serviceid == 10}}
+            <a href="/static/common/pay/success.html?serviceid=10"><span class="r">入营</span></a>
+            {{else}}
+            <a href="advice.html"><span class="r">咨询</span></a>
+            {{/if}}
+        </div>
+    </ul>
+    {{/if}}
+    {{/each}}
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/common/js/popup.check.js"></script>
+<script src="/static/market/js/myorder.js"></script>
+</body>
+</html>

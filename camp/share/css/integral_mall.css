@@ -1,0 +1,66 @@
+.root {
+    padding: 0 0.15rem;
+}
+.title {
+    font-size: 0.15rem;
+    margin: 0.30rem 0 0.15rem;
+    font-style: italic;
+}
+.infor img {
+    width: 0.60rem;
+    height: 0.60rem;
+    margin-right: 0.20rem;
+    border-radius: 0.30rem;
+    overflow: hidden;
+}
+.infor .name {
+    padding:  0.05rem 0;
+    line-height: 0.25rem;
+}
+.infor .name>p:first-of-type {
+    font-size: 0.15rem;
+}
+.infor .name>p:last-of-type {
+    font-size: 0.13rem;
+    color: #999;
+}
+.infor .num {
+    padding: 0 0.10rem;
+}
+.root .list {
+    margin: 0.20rem  -0.15rem;
+    border-top: 0.01px solid #eee;
+}
+.flex-basis-33 {
+    flex-basis: 33.3333%;
+}
+.goods {
+    height: 33.3333vw;
+    border-bottom: 1px solid #f5f5f5;
+    border-right: 1px solid #f5f5f5;
+    font-size: 0.12rem;
+    color: #f00;
+}
+.list>.goods:nth-of-type(3n) {
+    border-right: 0;
+}
+.goods>img {
+    height: 0.40rem;
+    width: 0.40rem;
+    background: #f5f5f5;
+    overflow: hidden;
+}
+.goods .name {
+    line-height: 0.24rem;
+    color: #444;
+    font-size: 0.11rem;
+}
+font {
+    color: #f00;
+    font-size: 0.10rem
+}
+.icon-js {
+    width: 0.16rem;
+    height: 0.12rem;
+    margin-right: 0.05rem;
+}

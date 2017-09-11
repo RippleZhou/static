@@ -1,0 +1,379 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="../css/amazeui.min.css" />
+    <link rel="stylesheet" href="../css/admin.css">
+    <style type="text/css">
+        :root {
+            font-size: 16px;
+        }
+
+        @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) {
+            :root {
+                font-size: 18.75px;
+            }
+        }
+
+        @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) {
+            :root {
+                font-size: 20.7px;
+            }
+        }
+
+        @media screen and (min-width: 414px) {
+            :root {
+                font-size: 20.7px;
+            }
+        }
+        body,html {
+            background: #f3f4f6;
+            padding-top: 0.5rem;
+        }
+        ul,li{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        .report {
+            background: #ffffff;
+            width:90%;
+            margin: 0.5rem auto;
+            border-radius: 4px;
+        }
+        .corner {
+            position: absolute;
+            top:0;
+            right:0;
+            width:1.5rem;
+            height:1.5rem;
+        }
+        .report-title {
+            height:3rem;
+            color:#333333;
+            font-size: 1rem;
+            line-height: 3rem;
+            padding-left: 0.5rem;
+        }
+        .report-part-title {
+            padding-left: 0.5rem;
+            height:2rem;
+            border-bottom:1px solid #cfcfcf;
+            font-size: 1rem;
+            line-height: 2rem;
+        }
+        .report-part-title img{
+            width:1rem;
+            height:1rem;
+            margin-right: 0.5rem;
+            vertical-align: -2px;
+        }
+        .report-content {
+            color:#666666;
+            font-size: 0.8rem;
+            padding: 0.5rem;
+        }
+        .report-content-title {
+            color:#37a3eb;
+            font-weight: bold;
+        }
+        .report-content span {
+            display: inline;
+            min-width: 3rem;
+            font-size: 0.8rem;
+            border-bottom: 1px solid #666666;
+            text-align: center;
+            padding:0 0.5rem; 
+            table-layout: fixed;
+            word-break: break-all;
+        }
+        .report-content ul li {
+            margin-bottom: 0.5rem;
+        }
+        .report-content ul li div {
+            table-layout: fixed;
+            word-break: break-all;
+            display: inline;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="all">
+    <!-- <div class="report report-parta">
+        <div class="report-title">某某某的营养建议报告</div>
+        <div class="report-part-title" style="color:#42a9e7; border-top:1px solid #cfcfcf;"><img src="../nutrition-class/img/1.png"><span>基本概况</span></div>
+        <div class="report-content">
+            您的BMI（体重身高指数，计算公式：体重kg/身高m2）为<span>测试</span>，属于<span>测试测试</span>（消瘦、正常、超重、肥胖），您的基础疾病有<span>测试测试测试测试</span>，在饮食习惯上，<span>测试测试</span>，体育锻炼<span>测试测试测试测试测试测试测试测试测试测试测试测试测试</span>。
+        </div>
+    </div>
+    <div class="report report-parta">
+        <div class="report-part-title" style="color:#ff6666"><img src="../nutrition-class/img/2.png"><span>给您的饮食建议</span></div>
+        <div class="report-content">
+            <ul>
+                <li>
+                    <div>关于膳食总能量的摄入：</div>
+                    <div>测试测试测试测试测试测试测试</div>
+                </li>
+                <li>
+                    <div>主食的摄入：</div>
+                </li>
+                <li>
+                    <div>可以选择的主食：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>不建议选择的主食：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>蔬菜的摄入：</div>
+                </li>
+                <li>
+                    <div>食用不需要限量的蔬菜：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>可适量多食的蔬菜：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>淀粉含量高，需要适当限制的蔬菜：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>蛋奶的摄入：</div>
+                </li>
+                <li>
+                    <div>牛奶的选择：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>蛋类的选择：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>肉类的摄入：</div>
+                </li>
+                <li>
+                    <div>畜肉类：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>禽肉类：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>鱼虾贝类：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>水果的摄入：</div>
+                </li>
+                <li>
+                    <div>可适量选择的水果：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>需限量选择的水果：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>零食和饮料：</div>
+                </li>
+                <li>
+                    <div>推荐的加餐食物：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>推荐的饮料：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>烹饪方式：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>每餐摄入热量比：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>体育锻炼：</div>
+                    <div></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="report report-parta">
+        <div class="report-part-title" style="color:#8c97cb"><img src="../nutrition-class/img/3.png"><span>备孕需要重点关注的营养素</span></div>
+        <div class="report-content">
+            <ul>
+                <li>
+                    <div>叶酸：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>铁：</div>
+                </li>
+                <li>
+                    <div>锌：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>钙：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>碘：</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div>维生素A：</div>
+                    <div>在此我们并不推荐额外补充维生素A制剂，天然食物来源的维生素A要安全很多。</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="report report-parta">
+        <div class="report-part-title" style="color:#42a9e7;"><img src="../nutrition-class/img/4.png"><span>关于您疾病的饮食建议</span></div>
+        <div class="report-content">
+        </div>
+    </div> -->
+</div>
+
+</body>
+<script type="text/html" id="report">
+    <div class="report" style="position:relative;">
+        <img class="corner" src="../nutrition-class/img/corner.png">
+        <div class="report-title"><span><%=name%></span>的营养建议报告</div>
+        <div class="report-part-title" style="color:#42a9e7; border-top:1px solid #cfcfcf;"><img src="../nutrition-class/img/1.png"><span>基本概况</span></div>
+        <div class="report-content">
+            您的BMI（体重身高指数，计算公式：体重kg/身高m2）为<span><%=content.bmi%></span>，您的基础疾病有<span><%=content.disesa%></span>，在饮食习惯上，<span><%=content.foodhabits%></span>。
+        </div>
+    </div>
+    <div class="report">
+        <div class="report-part-title" style="color:#ff6666"><img src="../nutrition-class/img/2.png"><span>给您的饮食建议</span></div>
+        <div class="report-content">
+            <ul>
+                <li>
+                    <div class="report-content-title">关于膳食总能量的摄入：</div>
+                    <div><%=content.totalenergy%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">主食的摄入：</div>
+                    <div><%=content.mainfood%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">蔬菜的摄入：</div>
+                    <div><%=content.vegetable%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">蛋奶的摄入：</div>
+                    <div><%=content.milk%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">肉类的摄入：</div>
+                    <div><%=content.meat%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">水果的摄入：</div>
+                    <div><%=content.fruits%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">零食和饮料：</div>
+                    <div><%=content.snack%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">烹饪方式：</div>
+                    <div><%=content.cooking%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">每餐摄入热量比：</div>
+                    <div><%=content.energyrate%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">体育锻炼：</div>
+                    <div><%=content.workouts%></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="report">
+        <div class="report-part-title" style="color:#8c97cb"><img src="../nutrition-class/img/3.png"><span>备孕需要重点关注的营养素</span></div>
+        <div class="report-content">
+            <ul>
+                <li>
+                    <div class="report-content-title">叶酸：</div>
+                    <div><%=content.nutrition.folacin%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">铁：</div>
+                    <div><%=content.nutrition.iron%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">锌：</div>
+                    <div><%=content.nutrition.zinc%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">钙：</div>
+                    <div><%=content.nutrition.calcium%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">碘：</div>
+                    <div><%=content.nutrition.iodine%></div>
+                </li>
+                <li>
+                    <div class="report-content-title">维生素A：</div>
+                    <div><%=content.nutrition.vitamina%></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <div class="report">
+        <div class="report-part-title" style="color:#8fc31f;"><img src="../nutrition-class/img/4.png"><span>关于您疾病的饮食建议</span></div>
+        <div class="report-content"><%=content.advice%></div>
+    </div> -->
+</script>
+<script type="text/html" id="nodata">
+    <div style="width:100%; font-size: 1.2rem; margin: 8rem 0; text-align: center;">您的营养建议报告暂未准备好</div>
+</script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/template-native.js"></script>
+<script src="../js/template-helper.js"></script>
+<script type="text/javascript">
+$(function() {
+    $.ajax({
+        type: "GET",
+        url: "/IbabyWebService/VIP/Class/GetDietaryAdvice",
+        contentType: "application/x-www-form-urlencoded",
+        data: {"phone": $.getUrlParam('phone')},
+        dataType: "json",
+        success: function(data) {
+            if(data.status == 0 && data.content) {
+                var obj = jQuery.parseJSON(data.content.content);
+                data.content.content = obj;
+                console.log(obj);
+                var html = template('report',data.content);
+                $('.all').html(html);
+                $('#patientname').html($.getUrlParam('name'));
+            }else if(data.status == 0 && !data.content) {
+                var html = template('nodata',data.content);
+                $('.all').html(html);
+            }
+        },
+        error: function(data) {
+        },
+    });
+});
+</script>
+</html>

@@ -1,0 +1,157 @@
+{
+    "status": 0,
+    "content": {
+        "A": {
+            "cat": "助孕起点",
+            "desc": "从这里开始，为您明确方向",
+            "services": [{
+                "name": "个性化备孕指导",
+                "desc": "全面评估个体指标，打造专属备孕方案",
+                "pcode": "A01"
+            }, {
+                "name": "试管婴儿咨询",
+                "desc": "难孕因素分析，对接专业机构",
+                "pcode": "A02"
+            }, {
+                "name": "二胎备孕咨询",
+                "desc": "安心准备新生命的再次出发",
+                "pcode": "A03"
+            }]
+        },
+        "B": {
+            "cat": "专病诊疗",
+            "desc": "只为单一病种，提供最佳治疗效果",
+            "services": [{
+                "name": "多囊卵巢综合征全面诊疗计划",
+                "pcode": "B01"
+            }, {
+                "name": "试管婴儿怀孕计划",
+                "pcode": "B02"
+            }, {
+                "name": "子宫内膜异位症诊疗计划",
+                "pcode": "B03"
+            }, {
+                "name": "复发性流产的综合诊疗",
+                "pcode": "B04"
+            }, {
+                "name": "卵巢低反应专场",
+                "pcode": "B05"
+            }, {
+                "name": "反复种植失败的胚胎实验室分析",
+                "pcode": "B06"
+            }]
+        },
+        "C": {
+            "cat": "单项检查",
+            "desc": "让医疗检查变得贴心舒适",
+            "services": [{
+                "name": "二胎备孕体检",
+                "pcode": "C05",
+                "channels": ["KDYZ"]
+            }, {
+                "name": "夫妻孕前基础体检套餐",
+                "pcode": "C01",
+                "channels": ["KDYZ"]
+            }, {
+                "name": "超声下子宫输卵管检查",
+                "pcode": "C02",
+                "channels": ["KDYZ"]
+            }, {
+                "name": "B超排卵监测",
+                "pcode": "C03",
+                "channels": ["KDYZ"]
+            }, {
+                "name": "卵巢储备功能评估套餐",
+                "pcode": "C04",
+                "channels": ["KDYZ"]
+            }, {
+                "name": "夜门诊肌肉注射",
+                "pcode": "C06"
+            }, {
+                "name": "AMH(抗苗勒氏管激素）",
+                "pcode": "C07"
+            }, {
+                "name": "性激素六项",
+                "pcode": "C08"
+            }, {
+                "name": "外周血染色体核型分析",
+                "pcode": "C09"
+            }, {
+                "name": "IVF术前体检套餐",
+                "pcode": "C10"
+            }, {
+                "name": "中医孕前调理",
+                "pcode": "C11",
+                "channels": ["KDYZ"]
+            }, {
+                "name": "不孕不育免疫检测套餐",
+                "pcode": "C12",
+                "channels": ["KDYZ"]
+            }, {
+                "name": "叶酸代谢基因检测",
+                "pcode": "C13",
+                "channels": ["KDYZ"]
+            }, {
+                "name": "男性生育力评估",
+                "pcode": "C14",
+                "channels": ["KDYZ"]
+            }, {
+                "name": "染色体疾病检测套餐",
+                "pcode": "C15",
+                "channels": ["KDYZ"]
+            }, {
+                "name": "妇科体检套餐",
+                "pcode": "C16"
+            }, {
+                "name": "反复性流产免疫检测",
+                "pcode": "C17"
+            },{
+                "name": "子宫内膜容受性评估",
+                "pcode": "C18"
+            }
+            ]
+        },
+        "D": {
+            "cat": "试管婴儿",
+            "desc": "为您量身打造高端试管婴儿全程式医疗服务",
+            "services": [{
+                "name": "试管直通车",
+                "desc": "对接高端中心，专属专家全程服务。",
+                "pcode": "D01",
+                "cover": "./img/services/D01.png"
+            }, {
+                "name": "美国试管婴儿计划",
+                "desc": "私人订制，惊喜连连。",
+                "pcode": "D02",
+                "cover": "./img/services/D02.png",
+                "overseas": true
+            }, {
+                "name": "日本试管婴儿计划",
+                "desc": "高龄备孕，私密服务",
+                "pcode": "D03",
+                "cover": "./img/services/D03.png",
+                "overseas": true
+            }, {
+                "name": "泰国试管婴儿计划",
+                "desc": "专业打造 ，自由规划",
+                "pcode": "D04",
+                "cover": "./img/services/D04.png",
+                "overseas": true
+            }]
+        },
+        "E": {
+            "cat": "中医助孕",
+            "desc": "",
+            "services": [{
+                "name": "中药调理",
+                "pcode": "E01"
+            }, {
+                "name": "中医艾灸",
+                "pcode": "E02"
+            }, {
+                "name": "中医穴位注射",
+                "pcode": "E03"
+            }]
+        }
+    }
+}

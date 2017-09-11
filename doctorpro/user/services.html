@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/doctorpro/css/user.css">
+</head>
+<style type="text/css">
+    body {
+        margin-bottom: 40px;
+        font-size: 16px;
+    }
+
+    * {
+        margin: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+</style>
+<body>
+<div id="mainpic" class="pos-re"></div>
+<div id="content" class="border-top baseContainer"></div>
+<div class="border-top contact-bar">
+    <p>欢迎垂询，进一步沟通合作细节</p>
+    <a href="tel://13816579807">
+        <p class="pos-re tel-logo">
+            <img src="../img/tel-logo.png" alt="tel-logo"/>
+            <span class="tel-l">咨询电话：</span>
+            <span>138-1657-9807</span>
+        </p>
+    </a>
+
+</div>
+<div class="partner-content"></div>
+<p class="partner">我要预定</p>
+
+<script id="pagetop" type="text/html">
+    <img src="{{pic}}" alt="宣传图片"/>
+    <p class="bg-font pos-re project-title">{{name}}</p>
+    <p class="title-bg" style="background: rgb(206,182,203);background: {{color}};"></p>
+</script>
+
+<script id="vals" type="text/html">
+    <div class="title"><span>项目价格</span></div>
+    <p class="font">{{price}}元</p>
+    <div class="title"><span>项目介绍</span></div>
+    <p class="font">{{description}}</p>
+    <div class="title" style="margin-top: 13px"><span>项目内容</span></div>
+    <ul>
+        <li class="font">{{content}}</li>
+    </ul>
+</script>
+
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?0.0001"></script>
+<script src="/static/common/js/framework.js"></script>
+<script>
+    var queryParams = Utils.queryParams;
+    if (!queryParams.openid) {
+        window.User.weichatAuth();
+    } else {
+        var openid = queryParams.openid;
+        var serviceid = '4';
+        var dataUrl = '/IbabyWebService/DServiceCooper/ServiceDetail?id='+serviceid;
+        Utils.ajax.get(dataUrl).then(function (rel) {
+            var data = rel;
+            //数据嵌入页面
+            var html = template('vals', data);
+            var img = template('pagetop', data);
+
+            document.getElementById('content').innerHTML = html;
+            document.getElementById('mainpic').innerHTML = img;
+            var imgsrc = data.pic;
+            var name = data.name;
+            $("img[alt='宣传图片']").attr("src", imgsrc);
+            document.title = name;
+        })
+    }
+</script>
+<script type="text/javascript">
+    $(".partner-content").load("reserveform.html");
+    $(document).ready(function () {
+        $(".partner").click(function () {
+            $(".partner-content").fadeIn(800);
+            var params = Utils.session.get('userInfo');
+            if (params) {
+                document.getElementById('realname').value = params.name;
+                document.getElementById('mobile').value = params.mobile;
+                document.getElementById('weicat').value = params.wechatname;
+            }
+            document.getElementById('dept').value = document.title;
+            $(this).hide();
+        })
+        $(".partner-content").delegate(".close-btn", "click", function () {
+            $(".partner-content").fadeOut(800);
+            $(".partner").show();
+        })
+        $(".partner-content").delegate("select", "change", function () {
+            var selectvalue = $(this).val();
+            if (selectvalue == "其他") {
+                $(this).next("input").show();
+            } else {
+                $(this).next("input").hide();
+            }
+        })
+    })
+</script>
+<script type="text/javascript">
+        $(".partner-content").delegate("#partner_form_submit", 'click', function () {
+            name = $('#realname').val();
+            mobile = $('#mobile').val();
+            project = $("#dept").val();
+            wechatname = $("#weicat").val();
+            if (name == '') {
+                alert("请填写真实姓名");
+                return false;
+            }
+            if (!(/^1[3|4|5|7|8]\d{9}$/.test(mobile))) {
+                alert("手机号码有误，请重填");
+                return false;
+            }
+            if (project == '') {
+                alert('项目丢失');
+                return false;
+            }
+            if (wechatname == '') {
+                alert('请输入微信号');
+                return false;
+            }
+            if (openid == '') {
+                alert('openid丢失!');
+                return false;
+            }
+            var params = {
+                openid: openid,
+                name: name,
+                mobile: mobile,
+                wechatname: wechatname,
+                serviceid: serviceid
+            };
+            Utils.session.set('userInfo', params);
+            var postUrl = '/IbabyWebService/DServiceCooper/SubmitOrder';
+            Utils.ajax.post(postUrl, params).then(function () {
+                alert('感谢您的提交，我们的工作人员会尽快与你联系');
+                location.href = "services.html";
+            });
+        })
+</script>
+</body>
+</html>

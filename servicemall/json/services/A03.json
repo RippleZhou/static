@@ -1,0 +1,29 @@
+{
+    "status": 0,
+    "content": {
+        "pcode": "A03",
+        "name": "二胎备孕咨询",
+        "hospital": "爱丁妇科门诊部",
+        "address": "上海市静安区华山路2号高和大厦1003室",
+        "cover": "../../img/services/A03.png",
+        "ways": [
+            {
+                "scode": "phone",
+                "title": "电话咨询",
+                "price": 100,
+                "discount": 0,
+                "unit": "元/次",
+                "description": "您的身体状况是否适合再生育二宝？让爱丁来为您制订个体化的备孕方案，全面解析二胎备孕中的难点！"
+            },
+            {
+                "scode": "clinic",
+                "title": "实体门诊咨询",
+                "price": 300,
+                "discount": 0,
+                "unit": "元/次",
+                "description": "爱丁医生现场为您全面分析评估二胎备孕现状，制订个体化备孕方案，解析备孕难点。预约就送卵巢功能超声评估，还有排卵试纸和斯利安复合维生素赠送！"
+            }
+        ]
+    }
+}
+

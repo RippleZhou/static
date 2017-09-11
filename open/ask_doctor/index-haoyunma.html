@@ -1,0 +1,414 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>爱丁备孕咨询</title>
+    <meta charset="UTF-8">
+
+    <meta name="keywords" content="爱丁网，上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查" />
+    <meta name="description" content="爱丁网是专业为准妈妈提供上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查等怀孕服务的知识网站，其中还包括相关资讯频道，提供专业、舒适、贴心的全程辅导与帮助，直到您愉悦地实现优质怀孕。" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+
+    <style>
+        body {
+            background-color: #efeff4;
+        }
+
+        .tab-switchs-position {
+            background-color: #3cd3db;
+        }
+
+        .tab-switchs-header > li.active button {
+            color: #3cd3db;
+        }
+
+        .btn-primary,
+        .btn-primary.disabled,
+        .btn-primary[disabled] {
+            background: #3cd3db;
+        }
+
+        .tab-switchs-header li {
+            width: 50%;
+        }
+
+        .has-new-message {
+            position: relative;
+        }
+
+        .has-new-message:after {
+            border-radius: 50%;
+            background-color: #f66;
+            content: '';
+            height: 8px;
+            position: absolute;
+            top: 0;
+            width: 8px;
+        }
+
+        .about-us {
+            color: #666;
+            float: right;
+            font-size: 12px;
+        }
+
+        .about-us img {
+            border-radius: 3px;
+            display: inline-block;
+            margin-right: 3px;
+            vertical-align: -35%;
+            width: 20px;
+        }
+
+        .form .row p {
+            font-size: 16px;
+        }
+
+        .form .row p span {
+            font-size: 14px;
+        }
+
+        .form .row textarea {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .form .row-select {
+            padding-bottom: 15px;
+            padding-top: 15px;
+        }
+
+        .form .row-select .select {
+            padding-left: 15px;
+            padding-right: 15px;
+            position: relative;
+        }
+
+        .form .select .label {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form .select .value {
+            font-size: 16px;
+            color: #3cd3db;
+        }
+
+        .form .row-select select {
+            background-color: transparent;
+            display: block;
+            height: 48px;
+            left: 0;
+            opacity: 0;
+            margin-top: -24px;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .questions {
+            padding-bottom: 10px;
+        }
+
+        .questions-no-data {
+            color: #999;
+            font-size: 16px;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .questions .row-closed p {
+            color: #999;
+        }
+
+        .questions .row p {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .questions .row .time {
+            color: #ccc;
+            display: block;
+            font-size: 14px;
+        }
+
+        .questions .row .time i {
+            font-size: 20px;
+            margin-right: 3px;
+            vertical-align: -25%;
+        }
+
+        .questions .row .status {
+            background-color: #ccc;
+            border-radius: 10px;
+            color: #fff;
+            display: inline-block;
+            float: right;
+            font-size: 14px;
+            height: 20px;
+            line-height: 20px;
+            padding: 0 5px;
+        }
+
+        .questions .row .status + .status {
+            margin-right: 5px;
+        }
+
+        .questions .row .status-on {
+            background-color: #9ee1ff;
+        }
+
+        .questions .row .status-new {
+            background-color: #f66;
+        }
+
+        .questions .row .status-wait {
+            background-color: #f90;
+        }
+
+    </style>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="tab-switchs">
+        <ul class="tab-switchs-header">
+            <li>
+                <button>今日义诊<span id="number-clinic">(0/0)</span></button>
+            </li>
+            <li>
+                <button>我的提问<span id="number-question">(0)</span><span id="flag-message"></span></button>
+            </li>
+        </ul>
+
+        <div class="tab-switchs-content">
+            <div>
+                <form id="newForm" class="form">
+                    <div class="row row-input">
+                        <a class="about-us" href="../../common/about-us.html">
+                            <img src="../../common/img/logo-smaller.png" alt="">了解爱丁医生&gt;
+                        </a>
+                        <p>TO:爱丁医生</p>
+                    </div>
+
+                    <div class="row row-input">
+                        <p>问题描述<span>（检查／用药和希望获得的帮助）</span></p>
+                        <textarea id="content" rows="9" placeholder="请您详细描述您的备孕问题，爱丁医生会给您提供最专业的解答。拍照上传检查报告、用药资料会让医生更快的了解您的问题。"></textarea>
+                    </div>
+
+                    <div class="row row-photos">
+                    </div>
+
+                    <div class="row row-gap row-select flex">
+                        <div id="age-select" class="select flex-1 flex flex-space-between">
+                            <span class="label">年龄:</span>
+                            <span class="value">未选择</span>
+                        </div>
+                        <div id="duration-select" class="select flex-1 flex flex-space-between">
+                            <span class="label">备孕时长:</span>
+                            <span class="value">未选择</span>
+                        </div>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary" value="提交给医生">
+                </form>
+            </div>
+
+            <div>
+                <div id="questions" class="questions"></div>
+            </div>
+        </div>
+    </div>
+
+    <script id="tpl-select-age" type="text/html">
+        <select id="age">
+            <option value>未选择</option>
+            {{each range as d}}
+            <option value="{{d}}">{{d}}岁</option>
+            {{/each}}
+        </select>
+    </script>
+
+    <script id="tpl-select-duration" type="text/html">
+        <select id="duration">
+            <option value>未选择</option>
+            {{each range as d}}
+            <option value="{{d}}">{{d}}个月</option>
+            {{/each}}
+        </select>
+    </script>
+
+    <script id="tpl-questions" type="text/html">
+        {{if $init && !data.length}}
+            <p class="questions-no-data">这里还没有问题~</p>
+        {{/if}}
+        {{each data as d}}
+         <a class="row row-link {{d.closed && 'row-closed'}} clickable" href="/static/ask_doctor/chat.html?questionid={{d.id}}">
+            <p>{{d.content}}</p>
+            {{if d.closed}}
+                {{if !d.ratestars}}
+                    <span class="status status-wait">待评价</span>
+                {{else}}
+                    <span class="status status-end">已评价</span>
+                {{/if}}
+                <span class="status status-end">已结束</span>
+            {{else}}
+                {{if d.ratestars}}
+                    <span class="status status-end">已评价</span>
+                {{/if}}
+                <span class="status status-on">进行中</span>
+            {{/if}}
+            {{if d.newmessage}}
+            <span class="status status-new">New</span>
+            {{/if}}
+            <span class="time"><i class="iconfont-question-time"></i>{{d.createtime}}</span>
+        </a>
+        {{/each}}
+    </script>
+
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="/static/common/lib/template.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+
+    <script src="./js/services.js"></script>
+
+    <script>
+        $(function () {
+            var questions = $('#questions').list({
+                template: 'tpl-questions',
+                getPromise: function (params) {
+                    return Services.getQuestions(params);
+                },
+            });
+
+            $('.tab-switchs').tabSwitchs({
+                afterInit: function () {
+                    getSummary().then(function () {
+                        var user = User.getUser();
+
+                        if (user.age && user.pregnancyDuration) {
+                            $('#age').val(user.age).trigger('change');
+                            $('#duration').val(user.pregnancyDuration).trigger('change');
+                        }
+                    });
+
+                    if (this.currIndex === 1) {
+                        questions.refresh();
+                    }
+                },
+                onChange: function (index) {
+                    if (index === 1 && !questions.data) {
+                        questions.refresh();
+                    }
+                }
+            });
+
+            $('#newForm').on('submit', function () {
+                var content = $('#content').val();
+                var age = $('#age').val();
+                var duration = $('#duration').val();
+
+                if (!content) {
+                    aid.tip.show('请输入问题描述！');
+                    return false;
+                }
+
+                if (!age) {
+                    aid.tip.show('请输入年龄！');
+                    return false;
+                }
+
+                if (!duration) {
+                    aid.tip.show('请输入备孕时长！');
+                    return false;
+                }
+
+                var params = {
+                    content: content,
+                    age: age,
+                    duration: duration,
+                    photo: '',
+                    channel: 'haoyunma'
+                };
+
+                Services.createQuestion(params).then(function (result) {
+                    $('#content').val('');
+
+                    aid.tip.show('提交成功！', function () {
+                        location.href = '/static/ask_doctor/chat.html?questionid=' + result.questionid;
+                    });
+                });
+
+                return false;
+            });
+
+            $('#content').inputWithCounter({
+                maxLength: 200,
+                local: true,
+            });
+
+            $('.select').each(function () {
+                var $this = $(this);
+
+                $this.on('change', 'select', function () {
+                    $this.find('.value').text($(this).find('option:selected').text());
+                });
+            });
+
+            $('#age-select').append(template('tpl-select-age', {range: getNumberRange(18, 50)}));
+            $('#duration-select').append(template('tpl-select-duration', {range: getNumberRange(1, 24)}));
+
+            function getSummary() {
+                return Services.getSummary().then(function (result) {
+                    $('#number-clinic').text('(' + result.dayconsumecount + '/' + result.daytotalcount + ')');
+                    $('#number-question').text('(' + result.patienttotalcount + ')');
+
+                    if (result.newmessage) {
+                        $('#flag-message').addClass('has-new-message');
+                    }
+                    else {
+                        $('#flag-message').remove();
+                    }
+
+                    if (result.dayconsumecount == result.daytotalcount) {
+                        aid.alert.show('今日义诊人数已满，请明日尽早！');
+
+                        // $('#newForm input:submit').attr('disabled', true);
+                        $('#newForm input:submit').on('click', function (e) {
+                            e.preventDefault();
+                            aid.alert.show('今日义诊人数已满，请明日尽早！');
+                        });
+                    }
+                });
+            }
+
+            function getNumberRange(min, max) {
+                var arr = [];
+
+                for (var i = min; i <= max; i++) {
+                    arr.push(i);
+                }
+
+                return arr;
+            }
+        });
+    </script>
+</body>
+
+</html>

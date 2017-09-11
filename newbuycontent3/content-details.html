@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <link rel="stylesheet" href="css/contentdetails.css">
+
+</head>
+
+<body>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-101665192-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+<div id="form-info">
+</div>
+<div class="bottomnav">
+    <i class="iclass"></i>
+    <div flex="main:left box:mean" class="bottomflex">
+        <div class="adiv" flex="dir:top main:center cross:center">
+            <i><img src="img/homepage.png" alt=""></i>
+            <span>首页</span>
+        </div>
+        <a href="buycar.html" class="adiv" flex="dir:top main:center cross:center">
+            <i><img src="img/carnav.png" alt="" style="width:25px;height:25px;"></i>
+            <span>购物车</span>
+        </a>
+        <div class="gocar">
+            <div  id="gotocar">加入购物车</div>
+        </div>
+        <div class="gobuy">
+            <a href="javascript:toggle.form()" id="gotobuy">立即购买</a>
+        </div>
+    </div>
+</div>
+
+
+<ul id="form">
+    <li class="clearfix" id="forminfo">
+
+    </li>
+    <li flex="dir:left  main:justify cross:center " class="litwo">
+        <div style="font-size: 16px;">购买数量:</div>
+        <div class="buynumber">
+            <i class="reduce">-</i>
+            <i class="picre">1</i>
+            <i class="add">+</i>
+        </div>
+    </li>
+    <li>
+        <span>姓名</span>
+        <input type="text" id="name" placeholder="请输入姓名" autofocus="autofocus">
+    </li>
+    <li>
+        <span>手机号</span>
+        <input type="number" id="phone" placeholder="请输入手机号" maxlength="11">
+    </li>
+    <li>
+        <span>微信号</span>
+        <input type="text" id="wxphone" placeholder="请输入微信号">
+    </li>
+    <li>
+        <span id="submit" onclick="toorder()">付款</span>
+    </li>
+</ul>
+
+<script type="text/html" id="form_info">
+    <img src="{{pic}}" id="icon">
+    <p><i id="ordername">{{name}}</i><br> <i id="orderprice" style="color: #f00;">￥ <i class="totalprice" style="color: #f00;">{{price}}</i></i></p>
+    <img src="/static/pcos/img/close.svg" id="close" onclick="toggle.form()">
+</script>
+
+<script type="text/html" id="contentform">
+    <div class="box">
+        <div class="imgbox">
+            <img  id="bannerimg" src="{{pic}}" alt="">
+        </div>
+        <dvi class="commodity">
+            <p>{{name}}</p>
+            <span>¥ <i id="priceid">{{price}}</i></span>
+        </dvi>
+        <div class="Commodity-details">
+            <p>商品详情</p>
+            <div id="comment-a">
+                <img src="{{descurl}}">
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/newwechat.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="js/popup.check.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/newbuycontent3/js/common.js"></script>
+
+<script src="js/contentdetails.js"></script>
+
+</body>
+</html>

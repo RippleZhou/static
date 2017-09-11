@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱丁课程</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <link rel="stylesheet" href="/static/onlineclassnew/css/newclass.css">
+</head>
+<body>
+    <div class="box">
+        <div class="imgboxcontent">
+            <img src="img/class.jpg" alt="" style="width:100%;">
+        </div>
+        <div>
+            <audio class="aiding-audio" id="audio" controls="" preload="auto" src="http://7xqenb.com1.z0.glb.clouddn.com/duonang02.mp3"> </audio>
+        </div>
+        <div class="lineclass">备孕1小时系列课程</div>
+        <ul>
+            <li flex="main:left box:first">
+                <div>
+                    <img src="img/class.jpg" alt="" class="lineclass-img">
+                </div>
+                <div flex="main:left box:last" class="lineclass-box">
+                    <div flex="dir:top" class="lineclass-right">
+                        <p class="lineclass-top-p">1小时备孕课程 ——认知篇</p>
+                        <p class="lineclass-bottom-p" flex="main:left cross:center">
+                            <span><img src="img/Sound.png" style="width:25px;height:25px;" alt=""></span>
+                            <span>芳诚</span>
+                            <span><img src="img/clock.png" alt="" style="width:30px;height:30px;"></span>
+                            <span>04:15</span>
+                        </p>
+                    </div>
+                    <div onclick="lockopen()"><img src="img/lock.png" alt="" class="lock-img"></div>
+                </div>
+
+            </li>
+            <li flex="main:left box:first">
+                <div>
+                    <img src="img/class.jpg" alt="" class="lineclass-img">
+                </div>
+                <div flex="main:left box:last" class="lineclass-box">
+                    <div flex="dir:top" class="lineclass-right">
+                        <p class="lineclass-top-p">1小时备孕课程 ——医学篇</p>
+                        <p class="lineclass-bottom-p" flex="main:left cross:center">
+                            <span><img src="img/Sound.png" style="width:25px;height:25px;" alt=""></span>
+                            <span>芳诚</span>
+                            <span><img src="img/clock.png" alt="" style="width:30px;height:30px;"></span>
+                            <span>04:15</span>
+                        </p>
+                    </div>
+                    <div onclick="lockopen()"><img src="img/lock.png" alt="" class="lock-img"></div>
+                </div>
+
+            </li>
+            <li flex="main:left box:first">
+                <div>
+                    <img src="img/class.jpg" alt="" class="lineclass-img">
+                </div>
+                <div flex="main:left box:last" class="lineclass-box">
+                    <div flex="dir:top" class="lineclass-right">
+                        <p class="lineclass-top-p">1小时备孕课程 ——调理篇</p>
+                        <p class="lineclass-bottom-p" flex="main:left cross:center">
+                            <span><img src="img/Sound.png" style="width:25px;height:25px;" alt=""></span>
+                            <span>芳诚</span>
+                            <span><img src="img/clock.png" alt="" style="width:30px;height:30px;"></span>
+                            <span>04:15</span>
+                        </p>
+                    </div>
+                    <div onclick="lockopen()"><img src="img/lock.png" alt="" class="lock-img"></div>
+                </div>
+
+            </li>
+            <li></li>
+        </ul>
+
+        <div class="flexbottom">
+            <div flex="main:left  box:last">
+                <div class="commentflex" onclick="fromcontent()" flex="main:left cross:center">
+                    <img src="img/open.png" alt="" style="width:30px;height:30px;margin:0px 10px 0px 15px;">
+                    <span style="color: #999">发表评论/弹幕</span>
+                </div>
+                <div flex="dir:top" class="sharebutton">
+                    <img src="img/share.png" alt="" style="width:30px;">
+                    <span style="color: #ccc;">分享</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="contentbottom">
+            <div>
+                <p class="contenttitle">课程评论</p>
+                <span class="closecontent" onclick="fromcontent()">关闭</span>
+            </div>
+            <textarea id="reviewww"   placeholder="请输入您的评论" onkeyup="size(this);" maxlength="20"></textarea>
+            <span class="sunspan"><i id="sumuser">0</i>/20</span>
+            <div flex="dir:right">
+                <div class="sendcomment">发表评论</div>
+            </div>
+        </div>
+
+    </div>
+
+<div class="Bomb">
+    <div class="Bomb-1">
+        <p>解锁课程</p>
+        <span class="close">关闭</span>
+    </div>
+    <div flex="main:left cross:center" class="Bomb-2">
+        <input type="text" placeholder="请输入听课邀请码">
+        <div class="lockaudio">解锁音频</div>
+    </div>
+    <div flex="main:left cross:center" class="Bomb-3">
+        <p>没有听课邀请码？向客服索要邀请码听课</p>
+        <div class="findkf">找客服</div>
+    </div>
+</div>
+    <script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+    <script src="/static/common/lib/template.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/newwechat.js"></script>
+    <script src="/static/onlineclassnew/js/newclass.js"></script>
+</body>
+</html>

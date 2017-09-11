@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>饮食方案数据提交</title>
+    <link rel="stylesheet" href="../../common/css/framework.css">
+    <style>
+        body{
+            background-color: #f4f4f4;
+        }
+        img{
+            width:100%;
+            height:150px;
+        }
+        .module{
+            padding:0 20px;
+        }
+        .module h3{
+            width:100%;
+            height:50px;
+            font:700 20px/50px Microsoft YaHei;
+        }
+        .explain{
+            width:100%;
+            /*height:45px;*/
+            margin-bottom:15px;
+            font:500 16px/20px Microsoft YaHei;
+        }
+        .formcontent{
+            border-top:1px solid #ccc;
+            border-bottom:1px solid #ccc;
+            padding:10px 15px 20px 15px;
+        }
+        .formcontent div:nth-child(1) span,.formcontent div:nth-child(2) span,.formcontent div:nth-child(3) span{
+            display:inline-block;
+            font:700 16px/18px Microsoft YaHei;
+        }
+        .formcontent div:nth-child(1) i,.formcontent div:nth-child(2) i,.formcontent div:nth-child(3) i{
+            width:20px;
+            height:18px;
+            text-align: center;
+            color:red;
+            display:inline-block;
+            font:700 16px/18px Microsoft YaHei;
+        }
+        .formcontent div:nth-child(1) input,.formcontent div:nth-child(2) input,.formcontent div:nth-child(3) input{
+            width:100%;
+            height:40px;
+            border:1px solid #ccc;
+            margin:10px 0;
+            padding-left:10px;
+            font-size:16px;
+        }
+        .subimtend{
+            padding:0px 20px 50px 20px;
+        }
+        .subimtend .show2{
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            color: red;
+        }
+        .subimtend .show3{
+            visibility:hidden;
+        }
+        .subimtend button{
+            width:100%;
+            height:40px;
+            background-color: #888;
+            font-size:20px;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div>
+        <img src="../img/banner.jpg" alt="">
+        <div class="module">
+            <h3>饮食方案数据提交</h3>
+            <div class="explain">
+                请确认提交的数据准确有效，营养师会根据提交的数据指定适合你的饮食方案
+            </div>
+        </div>
+    </div>
+        <div class="formcontent">
+                <div>
+                    <span>姓名</span><i>*</i><br/>
+                    <input id="nameuser" type="text">
+                </div>
+                <div>
+                    <span>BMI</span><i>*</i><br/>
+                    <input  id='BMI' type="text">
+                </div>
+                <div>
+                    <span>体脂率</span><i>*</i><br/>
+                    <input id="Fat" type="text">
+                </div>
+        </div>
+        <div class="subimtend">
+            <div class="show2 show3">提示</div>
+            <button id="inputsubmit">提交</button>
+        </div>
+</div>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+
+<script>
+    (function(){
+        var submit = function(){
+            var name = $('#nameuser').val(),
+                bmi = $('#BMI').val(),
+                fat = $('#Fat').val();
+            var reg = /^[\u4e00-\u9fa5]{1,}$/;
+            var names=reg.test(name);
+            console.log(names);
+            if (!name) {
+                $('.show2').removeClass('show3');
+                $('.show2').html('姓名不能为空')
+            }else if(!names || name.length<2){
+                $('.show2').removeClass('show3');
+                $('.show2').html('请输入正确的姓名!')
+            }else if (!bmi) {
+                $('.show2').removeClass("show3");
+                $('.show2').html('BMI不能为空')
+            }else if(!fat) {
+                $('.show2').removeClass("show3");
+                $('.show2').html('体脂率不能为空')
+            }else{
+                var params = {
+                    userName: name,
+                    bmi: bmi,
+                    bfr:fat
+                }
+                Utils.ajax.postJSON('/aiding-web/api/diet/food',params).then(function (res) {
+                    location.href = "diet-success.html"
+                })
+            }
+        }
+
+        $('#inputsubmit').click(submit)
+    })()
+</script>
+
+</body>
+</html>

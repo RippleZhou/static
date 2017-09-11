@@ -1,0 +1,16 @@
+{
+    "pcode": "C14",
+    "name": "男性生育力评估",
+    "cover": "../img/services/C14.jpg",
+    "suppliers": [
+        {
+            "hospital": "上海爱丁妇科门诊部",
+            "address": "上海市静安区华山路2号高和大厦1003",
+            "price": 840,
+            "discount": 0,
+            "unit": "元/次"
+        }
+    ],
+    "introduction": "诊断男性不育，评价附属腺功能和睾丸内分泌功能的指标（精液常规+淋球菌+支原体+衣原体）",
+    "contents": "留取精液"
+}

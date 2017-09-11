@@ -1,0 +1,19 @@
+{
+    "status": 0,
+    "content": {
+        "pcode": "C13",
+        "name": "叶酸代谢基因检测",
+        "cover": "../../img/services/C13.jpg",
+        "suppliers": [
+            {
+                "hospital": "上海爱丁妇科门诊部",
+                "address": "上海市静安区华山路2号高和大厦1003",
+                "price": 600,
+                "discount": 0,
+                "unit": "元/次"
+            }
+        ],
+        "introduction": "预防新生儿出生缺陷，合理补充叶酸，减少神经管缺陷、唇腭裂、先天性心脏病的发生，孕育健康生命",
+        "contents": "静脉抽血 或 口腔黏膜 检测"
+    }
+}

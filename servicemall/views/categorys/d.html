@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>试管婴儿</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no"/>
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+
+    <style>
+        body {
+            background: #efeff4;
+        }
+
+        .content {
+            padding-bottom: 78px;
+        }
+
+        .homepage {
+            background-color: #fff;
+            border: 1px solid #46c6fe;
+            border-radius: 50%;
+            left: 10px;
+            padding: 5px;
+            position: absolute;
+            top: 10px;
+            z-index: 2;
+        }
+
+        .homepage i {
+            color: #46c6fe;
+            font-size: 30px;
+        }
+
+        header {
+            background: #eee no-repeat center;
+            background-size: cover;
+            padding-top: 62.5%;
+            position: relative;
+        }
+
+        .service-container{
+            margin: 0px 0 20px 0px;
+            background-color: #ffffff;
+        }
+        .service-title {
+            display: inline-table;
+            margin:10px;
+            padding:5px;
+            border-radius: 3px;
+            font-size: 16px;
+            background-color: #ff6666;
+            color: #ffffff;
+        }
+
+        .service-desc{
+            margin:0 10px 10px 10px;
+            padding-bottom: 10px;
+        }
+
+        p {
+            color: #666666;
+            font-size: 16px;
+            line-height: 20px;
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+<div class="body"></div>
+
+<script id="tpl-category" type="text/html">
+    <div class="content">
+        {{if isRecommended}}
+        <a class="homepage" href="../../">
+            <i class="iconfont-nav-homepage"></i>
+        </a>
+        {{/if}}
+        <header style="background-image: url('{{cover}}')"></header>
+        {{each services as s t}}
+        <div class="service-container">
+            <div class="service-title">{{t}}</div>
+            <div class="service-desc">
+                {{each s as p}}
+                <p>{{p}}</p>
+                {{/each}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <footer class="footer">
+        <a id="book" class="btn btn-primary clickable"
+           href="../../views/book.html?categorytype={{categorytype}}&id={{id}}{{channel ? '&channel=' + channel : ''}}">预约</a>
+    </footer>
+</script>
+
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+
+<script src="../../js/services.js"></script>
+
+<script>
+    Services.getService().then(function (result) {
+        document.title = result.servicename;
+        result.services=JSON.parse(result.services);
+
+        result.isRecommended = Services.isRecommended();
+        template.config('escape',false);
+        $('.body').append(template('tpl-category', result));
+        share();
+        var footerDis = Utils.storage.get('identity');
+        if (  footerDis == 'doctor' ) {
+            $("footer.footer").remove();
+        };
+    });
+    function  share() {
+        var sdesc;
+        try {
+            sdesc = document.querySelector('.service-desc').innerText;
+        } catch (err) {
+        }
+        var shareparams = {
+            title:document.title||null,
+            desc: sdesc
+        }
+        wechat.share(shareparams);
+    }
+</script>
+</body>
+
+</html>

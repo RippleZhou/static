@@ -1,0 +1,92 @@
+{
+	"list": [{
+		"name": "新的线上管理营",
+		"child": [{
+			"name": "医生页面",
+			"url": "/static/newbuy/index.html"
+		},{
+			"name": "患者报名购买",
+			"url": "/static/market/views/services.html?serviceid=10"
+		}]
+	},{
+		"child": [{
+			"name": "产品列表",
+			"url": "/static/market/views/servicelist.html"
+		}],
+		"name": "商城"
+	},{
+		"child": [{
+			"name": "训练营列表",
+			"url": "/static/camp/mission/camplist.html"
+		},{
+			"name": "个人任务列表",
+			"url": "/static/camp/mission/mission.html"
+		},{
+			"child": [{
+				"url": "/static/camp/mission/flash_read_list.html",
+				"name": "任务列表"
+			}],
+			"name": "时效任务"
+		},{
+			"child": [{
+				"url": "/static/camp/share/integral_mall.html",
+				"name": "积分商城"
+			},{
+				"url": "/static/camp/share/integral_list.html",
+				"name": "积分排行"
+			},{
+				"url": "/static/camp/share/share.html",
+				"name": "个人推广中心"
+			}],
+			"name": "用户推广"
+		},{
+			"url": "/static/open/ask_doctor/init-ghy.html",
+			"name": "宫寒营咨询"
+		}],
+		"name": "线上营"
+	},{
+		"name": "登陆注销",
+		"url": "/static/common/clearstorage.html"
+	},{
+		"child": [{
+			"child": [{
+				"name": "不需要登陆",
+				"url": "/static/evaluate/E/E011/index.html?none=1"
+			},{
+				"name": "需要登陆",
+				"url": "/static/evaluate/E/E011/index.html"
+			}],
+			"name": "宫寒自测表"
+		}],
+		"name": "测试问卷"
+	},{
+		"child": [{
+			"name": "个人中心",
+			"url": "/static/doctorpro/doctor/index.html"
+		}],
+		"name": "医生推广返利"
+	},{
+		"url": "/static/servicemall/index.html",
+		"name": "服务大厅"
+	},{
+		"url": "/static/newevaluate/list.html",
+		"name": "新评测丨列表"
+	},{
+		"child":[{
+			"name":"爱丁",
+			"url":"http://ibaby-plan.org/static/open/game/g-aiding.html"
+		},{
+			"name":"等好运",
+			"url":"http://ibaby-plan.org/static/open/game/g-denghaoyun.html"
+		},{
+			"name":"第六感",
+			"url":"http://ibaby-plan.org/static/open/game/g-diliugan.html"
+		}],
+		"name":"砍价丨游戏"
+	},{
+		"name":"线下二维码用户信息",
+		"url":"/static/tool/userlist.html"
+	}],
+	"status": 0,
+	"title": "爱丁丨链接"
+}

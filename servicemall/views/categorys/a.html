@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>助孕起点</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+
+    <style>
+        body {
+            background: #efeff4;
+        }
+
+        .content {
+            padding-bottom: 78px;
+        }
+
+        .homepage {
+            background-color: #fff;
+            border: 1px solid #46c6fe;
+            border-radius: 50%;
+            left: 10px;
+            padding: 5px;
+            position: absolute;
+            top: 10px;
+            z-index: 2;
+        }
+
+        .homepage i {
+            color: #46c6fe;
+            font-size: 30px;
+        }
+
+        header {
+            background: #eee no-repeat center;
+            background-size: cover;
+            padding-top: 62.5%;
+            position: relative;
+        }
+
+        header p {
+            background-color: rgba(70, 198, 254, .8);
+            border-radius: 20px;
+            color: #fff;
+            bottom: 10px;
+            font-size: 16px;
+            left: 50%;
+            height: 40px;
+            line-height: 40px;
+            margin-left: -82px;
+            position: absolute;
+            text-align: center;
+            width: 165px;
+        }
+
+        section {
+            background: #fff;
+            margin-bottom: 9px;
+            padding: 15px 15px 20px;
+        }
+
+        section h6 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 3px;
+        }
+
+        section i[class^="iconfont-"] {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid #46c6fe;
+            margin: 0 auto 8px;
+            color: #46c6fe;
+            line-height: 58px;
+            text-align: center;
+            display: block;
+            font-size: 36px;
+        }
+
+        .wow {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 14px;
+            color: #f90;
+        }
+
+        section p {
+            font-size: 14px;
+            line-height: 19px;
+        }
+
+        section p.close {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            max-height: 57px;
+        }
+
+        .city span {
+            color: #47c5ff;
+            font-size: 16px;
+        }
+
+        .detail-btn {
+            width: 100px;
+            height: 40px;
+            box-sizing: border-box;
+            border-radius: 3px;
+            border: 1px solid #333;
+            display: none;
+            line-height: 38px;
+            text-align: center;
+            margin: 15px auto 0;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .detail-btn:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 18px;
+            left: 7px;
+            border-top: 3px solid #333;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+        }
+
+        .detail-btn.open:after {
+            border-top: 0;
+            border-bottom: 3px solid #333;
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+<div class="body"></div>
+
+<script id="tpl-category" type="text/html">
+    <div class="content">
+        {{if isRecommended}}
+        <a class="homepage" href="../../">
+            <i class="iconfont-nav-homepage"></i>
+        </a>
+        {{/if}}
+        <header style="background-image: url('{{cover}}')">
+            <p>{{servicename}}</p>
+        </header>
+
+        {{each ways as w}}
+        <section>
+            <i class="iconfont-service-type-{{w.scode}}"></i>
+            <h6>{{w.title}}</h6>
+            <div class="wow">{{((w.price ? w.discount ? '原价：' + w.price : w.price : '') + (w.discount ? '    限时优惠：' + w.discount : '')).replace(/ /g, '&nbsp;')}}</div>                <div>
+            <p>
+               {{each w.description.split('\n') as val}}
+                {{val}} <br>
+               {{/each}}
+            </p>
+            <div class="detail-btn clickable">查看详情</div>
+        </div>
+        </section>
+        {{/each}}
+    </div>
+
+    <footer class="footer">
+        <a id="book" class="btn btn-primary clickable" href="../../views/book.html?categorytype={{categorytype}}&id={{id}}{{channel ? '&channel=' + channel : ''}}">预约</a>
+    </footer>
+</script>
+
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+
+<script src="../../js/services.js"></script>
+
+
+<script>
+    wechat.share();
+
+    Services.getService().then(function (result) {
+        document.title = result.servicename;
+        result.isRecommended = Services.isRecommended();
+        result.ways = JSON.parse(result.ways);
+        $('.body').append(template('tpl-category', result));
+        share();
+        $('.detail-btn').each(function () {
+            var $this = $(this);
+            var $prev = $this.prev();
+
+            var openHeight = $prev.height();
+            $prev.addClass('close');
+
+            $this.on('click', function() {
+                var $this = $(this);
+
+                $this.toggleClass('open').prev().toggleClass('close');
+
+                if ($this.hasClass('open')) {
+                    $this.text('收起详情');
+                }
+                else {
+                    $this.text('查看详情');
+                }
+            });
+
+            setTimeout(function () {
+                if ($prev.height() < openHeight - 10) {
+                    $this.css('display', 'block');
+                }
+                else {
+                    $prev.removeClass('close');
+                }
+            }, 0);
+        });
+        var footerDis = Utils.storage.get('identity');
+        if (  footerDis == 'doctor' ) {
+            $("footer.footer").remove();
+        };
+    });
+    function  share() {
+        var sdesc;
+        try {
+            sdesc = document.querySelector('section>div>p').innerText;
+        } catch (err) {
+        }
+        var shareparams = {
+            title:document.title||null,
+            desc: sdesc
+        }
+        wechat.share(shareparams);
+    }
+</script>
+
+
+</body>
+
+</html>

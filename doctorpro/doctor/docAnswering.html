@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>医生答疑小程序</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        img {
+            width: 100%;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+<img src="../img/docAnswering.jpg" alt="">
+
+<script>
+    var address=location.href.split('?')[0];
+    if(location.href==address){
+        location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx877eb3f76ccb2bd7&redirect_uri=http%3a%2f%2fibaby-plan.org%2faiding-web%2fapi%2fweLogin%2fdocWx&response_type=code&scope=snsapi_userinfo&state="
+            +location.href.split('?')[0]
+    }
+
+</script>
+</body>
+</html>

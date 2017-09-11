@@ -1,0 +1,34 @@
+.banner {
+    margin: -0.15rem;
+    width: 100vw;
+}
+#desc {
+    padding: 0.15rem;
+    border-bottom: 1px solid #ddd;
+}
+#desc>p:first-of-type {
+    margin: 0.30rem 0 0.10rem;
+    line-height: 0.20rem;
+    font-size: 0.13rem;
+    color: #666;
+}
+#desc>p:nth-of-type(2) {
+    text-align: right;
+    font-size: 0.12rem;
+    color: #f00;
+}
+#exchange-step {
+    padding: 0.15rem;
+}
+#exchange-step .title {
+    margin-bottom: 0.1rem;
+    font-size: 0.14rem;
+}
+#exchange-step img {
+    width: 100%;
+}
+.icon-js {
+    width: 0.16rem;
+    height: 0.12rem;
+    margin-right: 0.05rem;
+}

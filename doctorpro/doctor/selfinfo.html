@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--检测登陆状态,请勿改变位置-->
+    <script src="/static/doctorpro/js/state.js"></script>
+
+    <meta charset="UTF-8">
+    <title>爱丁医生</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/doctorpro/css/doctor.css">
+</head>
+<body>
+<div id="pageContainer">
+</div>
+
+<dl class="footerL" src="/static/doctorpro/doctor/index.html">
+    <dt>
+        <svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g class="transform-group">
+                <g transform="scale(0.1953125, 0.1953125)">
+                    <path d="M522.24 108.544c-225.28 0-409.6 184.32-409.6 409.6s184.32 409.6 409.6 409.6c225.28 0 409.6-184.32 409.6-409.6S747.52 108.544 522.24 108.544zM688.128 491.52l0 38.912-139.264 0 0 61.44 141.312 0 0 38.912-141.312 0 0 131.072-51.2 0 0-131.072-139.264 0L358.4 593.92l139.264 0 0-61.44-139.264 0L358.4 491.52 471.04 491.52l-133.12-221.184 57.344 0 126.976 217.088 124.928-217.088 57.344 0L573.44 491.52 688.128 491.52z"></path>
+                </g>
+            </g>
+        </svg>
+    </dt>
+    <dd>收入</dd>
+</dl>
+<dl class="footerR active" src="/static/doctorpro/doctor/selfinfo.html">
+    <dt>
+        <svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g class="transform-group">
+                <g transform="scale(0.1953125, 0.1953125)">
+                    <path d="M679.855 374.005c0-91.806-75.038-166.224-167.605-166.224s-167.605 74.418-167.605 166.224c0 91.796 75.038 166.214 167.605 166.214S679.855 465.801 679.855 374.005zM512.152 0C229.921 0 0.25 229.691 0.25 512c0 282.25 229.671 512 511.902 512 282.368 0 512.098-229.691 512.098-512C1024.25 229.75 794.52 0 512.152 0zM786.013 856.015l-36.569 0c0.985-8.704 1.575-17.526 1.575-26.486 0-130.757-106.91-236.82-238.769-236.82-131.879 0-238.789 105.984-238.789 236.82 0 8.96 0.611 17.782 1.595 26.486l-36.569 0c-0.847-8.724-1.359-17.546-1.359-26.466 0-131.742 94.11-241.625 219.254-267.244-84.795-24.084-146.885-101.356-146.885-193.182 0-111.104 90.801-201.137 202.791-201.137 111.97 0 202.732 90.033 202.732 201.137 0 91.806-62.07 169.098-146.845 193.182 125.125 25.62 219.195 135.502 219.195 267.264C787.371 838.489 786.859 847.291 786.013 856.015z"></path>
+                </g>
+            </g>
+        </svg>
+    </dt>
+    <dd>我的</dd>
+</dl>
+<style>
+    .baseContainer{
+        padding-right: 0;
+        background: #fff;
+    }
+</style>
+
+<div class="welcomeBanner">你好,<span id="realname"></span>医生!</div>
+<div class="baseContainer infoList">
+    <a href="baseinfor.html">
+        <p class="cl-both"><span>基本信息</span><img src="/static/doctorpro/img/more.svg"></p>
+    </a>
+    <a href="account.html">
+        <p class="cl-both"><span>提现账号</span><img src="/static/doctorpro/img/more.svg"></p>
+    </a>
+    <a href="qrcode.html">
+        <p class="cl-both"><span>我的二维码</span><img src="/static/doctorpro/img/more.svg"></p>
+    </a>
+    <a onclick="passwordrest()">
+        <p class="cl-both"><span>修改密码</span><img src="/static/doctorpro/img/more.svg"></p>
+    </a>
+    <a onclick="loginout()">
+        <p class="cl-both"><span>退出登录</span><img src="/static/doctorpro/img/more.svg"></p>
+    </a>
+</div>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/doctorpro/js/doctor.js"></script>
+<script type="text/javascript">
+    var realname = baseInfor.realname[0];
+    $("#realname").html(realname);
+    $("dl").click(function () {
+        if (!$(this).hasClass('active')) {
+            $(this).addClass('active').siblings('dl').removeClass('active');
+        }
+        var loadPage = $(this).attr('src');
+        location.href = loadPage;
+    })
+    function  passwordrest() {
+        location.href = 'passwordreset.html';
+    }
+    function loginout() {
+        var baseInfor = window.localStorage.setItem('baseInfor','');
+        location.href = 'login.html';
+    }
+</script>

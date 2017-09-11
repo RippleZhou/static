@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" class="vw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>排行榜</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css?v0.002">
+    <link rel="stylesheet" href="/static/camp/share/css/integral_list.css">
+</head>
+<body class="white">
+<p class="title">爱丁优生助孕健康传播大使积分排行</p>
+<div class="myinfo flex">
+</div>
+<div id="chart" class="flex flex-vertical">
+</div>
+<script type="text/html" id="self">
+    <img src="{{icon||'img/people.png'}}" alt="">
+    <div class="flex-1 flex flex-vertical flex-space-between">
+        <a href="integral_mall.html"><button>积分兑换</button></a>
+        <p>{{realname}}</p>
+        <p id="scorenth"><span></span><span></span></p>
+    </div>
+</script>
+<script type="text/html" id="score">
+    <font>{{content|0}} </font>分&nbsp;&nbsp;&nbsp;&nbsp;
+</script>
+<script type="text/html" id="rank">
+    {{if myrank}}
+    排名：第<font> {{myrank}} </font>名</p>
+    {{else}}
+    尚未入榜
+    {{/if}}
+</script>
+<script type="text/html" id="list">
+    {{each rank as val index}}
+    <p class="flex">
+        <img src="{{val.headimgurl||'img/people.png'}}" alt="">
+        <span class="name">{{val.realName||'没有名称'}}</span>
+        <span class="num">第 {{index+1}} 名</span>
+        <span class="width">{{val.score||0}} 分</span>
+    </p>
+    {{/each}}
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/js/commen.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/camp/share/js/integral_list.js"></script>
+</body>
+</html>

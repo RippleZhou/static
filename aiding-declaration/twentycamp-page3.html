@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <title>爱丁宣言</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/font.css">
+</head>
+<style type="text/css">
+    html,
+    body {
+        height: 100%;
+        background: #f38189;
+        margin: 0px;
+    }
+
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    input {
+        border: 0px;
+        outline: 0px;
+    }
+
+    .top {
+        width: 80%;
+        margin: 0 auto;
+        height: 8rem;
+        text-align: center;
+    }
+
+    .top i {
+        font-size: 15rem;
+        color: #941c38;
+        position: relative;
+        top: -2rem;
+    }
+
+    .middle {
+        width: 80%;
+        margin: 2rem auto 4rem;
+        overflow: auto;
+        padding-bottom: 4rem;
+    }
+
+    .baoma {
+        width: 100%;
+        height: 18rem;
+        background: url(img/baoma.png);
+        background-size: 100% 100%;
+    }
+
+    .baoma-input-top {
+        padding: 4rem 0 0 1rem;
+    }
+
+    .baoma-input-top span {
+        font-size: 0.9rem;
+        color: #941c38;
+    }
+
+    .baoma-firstinput {
+        display: inline-block;
+        width: 4rem;
+        height: 1.5rem;
+        border-bottom: solid 2px #941c38;
+    }
+
+    .baoma-firstinput input {
+        width: 4rem;
+        height: 1.1rem;
+        color: #941c38;
+        font-size: 0.9rem;
+    }
+
+    .baoma-input-bottom {
+        padding: 0.5rem 0 0 1rem;
+        color: #941c38;
+    }
+
+    .baoma-input-bottom-part {
+        margin: 0 0 1rem 0;
+    }
+
+    .baoma-input-bottom-line {
+        display: inline-block;
+        width: 85%;
+        height: 1.3rem;
+        border-bottom: solid 2px #941c38;
+    }
+
+    .baoma-input-bottom-line input {
+        color: #941c38;
+        width: 100%;
+        height: 1rem;
+        padding: 0px;
+    }
+
+
+    .signature {
+        width: 100%;
+        height: 11rem;
+        margin: 2rem auto 0;
+        padding: 1rem 0 0 0;
+        background: url(img/pencil.png);
+        background-size: 100% 100%;
+        position: relative;
+    }
+
+    .signature-bg {
+        width: 5rem;
+        height: 8rem;
+        background: url(img/qianming.png);
+        background-size: 100% 100%;
+        margin: 0 0 0 1rem;
+    }
+
+    .baoma-signature {
+        width: 6rem;
+        height: 1.5rem;
+        border-bottom: 1px solid #941c38;
+        position: absolute;
+        top: 1.2rem;
+        left: 30%;
+        padding-bottom: 0.3rem;
+    }
+
+    .baoma-signature input {
+        width: 6rem;
+        height: 1.3rem;
+        font-size: 1.2rem;
+        color: #941c38;
+        padding: 0px;
+    }
+
+    .signature-date {
+        font-size: 1rem;
+        color: #941C38;
+        margin-top: 1rem;
+        height: 2rem;
+        width: 100%;
+    }
+
+    .signature-date span {
+        float: right;
+    }
+
+    .bottom {
+        width: 100%;
+        height: 3rem;
+        color: #941c38;
+        line-height: 3rem;
+        text-align: center;
+        position: fixed;
+        bottom: 0px;
+        background: #fdd9a2;
+    }
+</style>
+</head>
+
+<body data-role='none' style="margin:0;">
+<div class="top">
+    <i class="icon-my-planbook"></i>
+</div>
+<div class="middle">
+    <div class="baoma">
+        <div class="baoma-input-top">
+            <span>我要成为一个</span>
+            <div class="baoma-firstinput">
+                <input type="text" placeholder="例如勇敢" id="baoma-firstinput" />
+            </div>
+            <span>的妈妈！</span>
+        </div>
+        <div class="baoma-input-bottom">
+            <div class="baoma-input-bottom-part" style="font-size: 0.8rem;margin-bottom: 0.5rem;">
+                <span>我为自己制定的行动计划是：</span>
+            </div>
+            <div class="baoma-input-bottom-part">
+                <span>1.</span>
+                <span class="baoma-input-bottom-line">
+                        <input type="text" placeholder="至少填写一条（例如坚持每天运动）" id="baoma-secondinput" />
+                    </span>
+            </div>
+            <div class="baoma-input-bottom-part">
+                <span>2.</span>
+                <span class="baoma-input-bottom-line">
+                        <input style="text" id="baoma-thirdinput" />
+                    </span>
+            </div>
+            <div class="baoma-input-bottom-part">
+                <span>3.</span>
+                <span class="baoma-input-bottom-line">
+                        <input type="text" id="baoma-fourthinput" />
+                    </span>
+            </div>
+            <div class="baoma-input-bottom-part" style="margin-right: 2rem;">
+                    <span class="baoma-input-bottom-line" style="width:6rem;float: right;">
+                        <input type="text" id="baoma-signature" style="width:6rem;font-size: 1rem;" />
+                    </span>
+                <span style="float: right;">宝妈签名：</span>
+            </div>
+        </div>
+    </div>
+    <div class="signature-date">
+        <span id="signature-date"></span>
+        <span>宣言日期：</span>
+        <span style="clear:both;"></span>
+    </div>
+</div>
+<div class="bottom" id="submit-declaration">
+    提交备孕宣言
+</div>
+</body>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.json-2.4.js"></script>
+<script src="js/Date.Format.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var signature_date = new Date().Format("yyyy-MM-dd");
+        $('#signature-date').html(signature_date);
+
+        $('#submit-declaration').click(function() {
+            var baoma_text = $('#baoma-secondinput').val() + $('#baoma-thirdinput').val() + $('#baoma-fourthinput').val();
+
+            if ($('#baoma-firstinput').val() && $('#baoma-signature').val()  && baoma_text ) {
+                $.ajax({
+                    type: "POST",
+                    url: ajax_url + "/Patient/AddPregnantdeclaration",
+                    contentType: "application/x-www-form-urlencoded",
+                    data: {
+                        "patientid": $.getUrlParam('patientid'),
+                        "content": $.toJSON({
+                            "date": signature_date,
+                            "characterMam": $('#baoma-firstinput').val(),
+                            "nameMam": $('#baoma-signature').val(),
+                            "actionListMam": [$('#baoma-secondinput').val(), $('#baoma-thirdinput').val(), $('#baoma-fourthinput').val()]
+                        })
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.status == 0) {
+                            location.href = "twentycamp-page4.html";
+                        }
+                    },
+                });
+            } else {
+                alert('宝妈描述及签名不能为空');
+            }
+        })
+    })
+</script>
+
+</html>

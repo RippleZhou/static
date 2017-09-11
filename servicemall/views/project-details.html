@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?8a991784494f8bcb6422b9578607cfd2";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+		<link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+	</head>
+	<style type="text/css">
+			body,p { margin: 0;color: #4b4b4b;}
+			body{ margin-bottom: 50px;}
+			body>div{ padding: 0 15px;font-size: 16px;}
+			*:after{ content: "";display: block;clear: both;}
+			* {
+				margin: 0;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			
+			#mainpic{ padding: 0;}
+			
+			img[alt='宣传图片'] { 
+				width: 100%;
+				/*height: 50vw;*/
+			}
+			
+			.pos-re { position: relative;}
+			
+			.bg-font{
+				font-size: 18px;
+				line-height: 40px;
+				color: #fff;
+				padding-left: 15px;
+				margin-top: -40px;
+				z-index: 2;
+			}
+			
+			.title-bg{
+				position: absolute;
+				width: 100%;
+				height: 40px;
+				bottom: 0;
+				opacity: 0.6;
+				z-index: 1;
+			}
+			.partner{    
+				line-height: 58px;
+			    font-size: 19px;
+			    color: #fff;
+			    text-align: center;
+			    position: fixed;
+			    background: #46c6fe;
+			    bottom: 0;
+			    width: 100%;
+			    z-index: 101;
+			}
+			#content{ padding-bottom: 20px;}
+			#content li:before{ content: "●";margin-right: 0.5em;color: #000;line-height: 150%;}
+			.border-top{ border-top:15px solid #efefef}
+			#content .title{ color: #fff;text-align: center;margin: 20px 0;position: relative;height: 35px;}
+			#content .title span{ background: #46c6fe;display: block;line-height: 25px;position: absolute;margin: auto;left: 0;right: 0;top: 0;bottom: 0;height: 25px;width: 75px;border-radius: 8px;}
+			.contact-bar{ text-align: center;padding: 20px 15px;}
+			.tel-logo{ margin: 8px 0 32px;height: 35px;}
+			.tel-logo span{ display: inline-block;}
+			img[alt='tel-logo']{     
+				position: relative;
+			    top: 12px;
+			    margin-right: 14px;
+			    display: inline;
+			    width: 35px;
+			}
+	</style>
+	<body>
+		<div id="mainpic" class="pos-re"></div>
+		<div id="content" class="border-top"></div>
+		<div class="border-top contact-bar">
+			<p>欢迎垂询，进一步沟通合作细节</p>
+			<a href="tel://13816579807"><p class="pos-re tel-logo"><img src="../img/tel-logo.png" alt="tel-logo"/><span class="tel-l">咨询电话：</span><span>138-1657-9807</span></p></a>
+			
+		</div>
+		<div class="partner-content"></div>
+		<p class="partner">我有兴趣加入</p>
+		
+		<script id="pagetop" type="text/html">
+			<img src="" alt="宣传图片" />
+			<p class=" bg-font pos-re project-title">{{name}}</p>
+			<p class="title-bg" style="background: rgb(206,182,203);background: {{color}};"></p>
+		</script>
+		
+		<script id="vals" type="text/html">
+			
+			<div class="title"><span>项目介绍</span></div>
+			<p>{{description}}</p>
+			<div class="title"><span>项目亮点</span></div>
+				{{each focus as val}}
+					<ul>
+						<li>{{val}}</li>
+					</ul>
+				{{/each}}	
+			<div class="title"><span>项目价值</span></div>
+				{{each progress as step}}
+					<ul>
+						<li>{{step}}</li>
+					</ul>
+				{{/each}}	
+		</script>
+		
+		<script src="../../record-data/js/jquery-1.8.3.min.js"></script>
+	    <script src="/static/common/lib/template.js"></script>
+	    <script src="/static/common/js/wechat.js"></script>
+	    <script src="/static/common/js/utils.service.js"></script>
+	    <script src="/static/common/js/user.service.js"></script>
+	    <script src="/static/common/js/framework.js"></script>
+		<script>
+			var href = window.location.href;
+			id = href.split("?")[1];
+			var last_url = "/IbabyWebService/ServiceCooper/ServiceDetail?"+id;
+			Utils.ajax.get(last_url).then(function(res){
+				data = res;
+				//json字符串，数组转换
+				data.focus=JSON.parse(data.focus);
+				data.progress=JSON.parse(data.progress);
+				//数据嵌入页面
+				var html = template('vals',data);
+				var img = template('pagetop',data);
+				
+				document.getElementById('content').innerHTML = html;
+				document.getElementById('mainpic').innerHTML = img;
+				var imgsrc = data.pic;
+				var name = data.name;
+				$("img[alt='宣传图片']").attr("src",imgsrc);
+				document.title = name;
+				/*var imgsrc = Utils.session.get("img");
+				$("img[alt='宣传图片']").attr("src",imgsrc);*/
+			})
+		</script>
+		<script type="text/javascript">
+			$(".partner-content").load("partner-form.html");
+			$(document).ready(function(){
+				$(".partner").click(function(){
+					$(".partner-content").fadeIn(800);
+					$(this).hide();
+				})
+				$(".partner-content").delegate(".close-btn","click",function(){
+					$(".partner-content").fadeOut(800);
+					$(".partner").show();
+				})
+				$(".partner-content").delegate("select","change",function(){
+					var selectvalue = $(this).val();
+					if (selectvalue=="其他") {
+						$(this).next("input").show();
+					} else{
+						$(this).next("input").hide();
+					} 
+				})
+			})
+		</script>
+		<script type="text/javascript">
+			$(".partner-content").delegate("#partner_form_submit",'click',function(){
+				realname = $('#realname').val();
+				mobile = $('#mobile').val();
+				hospital = $("#hospital").val();
+				servicefrom = $("#servicefrom").val();
+				dept = $("#dept").val();
+				group = $("#group").val();
+				servicefrom = $(".project-title").html();
+				if(!(/^1[3|4|5|7|8]\d{9}$/.test(mobile))){
+					alert("手机号码有误，请重填"); 
+					return false;
+				}
+				if (realname == '') {
+					alert("请填写真实姓名");
+					return false;
+				}
+				if(mobile==''){
+					alert("请输入正确的手机号码");
+					return false;
+				}
+				if (hospital=='') {
+					alert('请输入医院名称');
+					return false;
+				}
+				if(servicefrom==''){
+					alert('项目名称丢失');
+					return false;
+				}
+				if (dept=='') {
+					alert("请输入科室名称");
+					return false;
+				}
+				if (group =='') {
+					alert('请输入职位名称');
+					return false;
+				}
+				var params={realname:realname,mobile:mobile,hospital:hospital,servicefrom:servicefrom,dept:dept,group:group};
+				
+				Utils.ajax.post("/IbabyWebService/ServiceCooper/Intent",params).then(function(res){
+					location.href="form-submit.html"
+//					$(".partner-content").hide();
+//					$(".partner").show();
+//					alert('感谢您的提交，我们的工作人员会尽快与你联系');
+				})
+				
+			})
+		</script>
+	</body>
+</html>

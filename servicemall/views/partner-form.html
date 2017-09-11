@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<style type="text/css">
+	.partner-content{
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		z-index: 2;
+		top: 0;
+		left: 0;
+		padding: 0;
+		display: none;
+	}
+	.inner-box{
+		position: relative;
+		height: 100%;
+		width: 100%;
+	}
+	.inner-box:after{
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: #000;
+		opacity: 0.5;
+		z-index: 1;
+	}
+	.form{
+		position: absolute;
+		width: 80%;
+		margin: auto;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		border-radius: 10px;
+		-webkit-border-radius: 10px;
+		height: 400px;
+		background: #fff;
+		z-index: 2;
+	}
+	.form-title{
+		position: relative;
+		border-bottom: 1px solid #eee;
+		line-height: 46px;
+	    text-align: center;
+	    color: #4b4b4b;
+	    font-size: 19px;
+	}
+	.close-btn{
+		color: #999;
+	    position: absolute;
+	    top: 0;
+	    right: 15px;
+	    font-size: 15px;
+	}
+	.form  {
+		padding: 20px 0 ;
+		text-align: center;
+	}
+	.form  li{
+		line-height: 50px;
+	}
+	.form  input,
+	.form  select{
+		border:1px solid #b5b5b5;
+		height: 30px;
+		line-height: 30px;
+		width: 60%;
+		padding: 0 5px;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		font-size: 13px;
+		color: #666;
+	}
+	.form  li span{
+		display: inline-block;
+	}
+	.form  li span:before{
+		content: "*";
+		color: #f00;
+	}
+	.form  #partner_form_submit{
+		margin-top: 20px;
+		color: #fff;
+		background: #46c6fe;
+		border: 0;
+		font-size: 17px;
+		line-height: normal;
+		width: 100px;
+		border-radius: 15px;
+		-webkit-border-radius: 15px;
+	}
+	.form  li{
+		position: relative;
+	}
+	.form  .zg-sj{
+		width: 24px;
+	    height: 28px;
+	    position: absolute;
+	    top: 12px;
+	    right: 6px;
+	    padding-left: 6px;
+	    background: #fff;
+	    border-left: 1px solid #b2b2b2;
+	}
+	.select-content{
+		display: inline-block;
+	    width: 60%;
+	    position: relative;
+	}
+	.select-content select{
+		background: transparent;
+		width: 100%!important;
+		-webkit-appearance: none; 
+		appearance: none;
+	}
+	.select-content{
+		background: url(../img/triangle.svg)no-repeat center right;
+		background-size:auto 30px;
+	}
+	.select-content:before{
+		content: "";
+	    position: absolute;
+	    background: #b2b2b2;
+	    width: 1px;
+	    height: 30px;
+	    margin: auto;
+	    top: 0;
+	    bottom: 0;
+	    right: 30px;
+	}
+	input[name='selected-input']{
+		position: absolute;
+	    left: 0px;
+	    top: 10px;
+	    width: 80%!important;
+	    border-right: 0!important;
+	    border-top-right-radius: 0!important;
+	    border-bottom-right-radius: 0!important;
+	    -webkit-appearance: none;
+	    appearance: none;
+	    display: none;
+	}
+</style>
+<div class="inner-box">
+	<div class="form">
+		<div class="form-title">
+			<p>填写信息</p>
+			<span class="close-btn">关闭</span>
+		</div>
+		<!--<form  method="post" id="doctorForm">-->
+			<li>
+				<span class="must">姓名：</span>
+				<input type="text" name="realname" id="realname" value="" />
+			</li>
+			<li>
+				<span class="must">手机：</span>
+				<input type="text" name="mobile" id="mobile" value="" />
+			</li>
+			<li>
+				<span class="must">医院：</span>
+				<input type="text" name="hospital" id="hospital" value="" />
+			</li>
+			<!--<li style="position: absolute;opacity: 0;">
+				<span class="must">项目：</span>
+				<input type="text" name="servicefrom" id="serviceform" value="测试" />
+			</li>-->
+			<li>
+				<span class="must">科室：</span>
+				<div class="select-content">
+					<select name="dept" id="dept1" onchange="document.getElementById('dept').value=this.value==-1?'':this.value">
+						<option value="生殖中心">生殖中心</option>
+						<option value="妇产科">妇产科</option>
+						<option value="男科">男科</option>
+						<option value="不孕科">不孕科</option>
+						<option value="中医科">中医科</option>
+						<option value="超声科">超声科</option>
+						<option value="胚胎实验室">胚胎实验室</option>
+						<option value="放射科">放射科(照影)</option>
+						<option value="其他">其他</option>
+					</select>
+					<input name="selected-input" id="dept"  placeholder="请在此输入"/>
+				</div>	
+			</li>
+			<li>
+				<span class="group">客服：</span>
+				<div class="select-content">
+					<select id="group">
+						<option value="其他">其他</option>
+						<option value="爱丁客服爱爱">爱丁客服贝贝</option>
+						<option value="爱丁客服娜娜">爱丁客服娜娜</option>
+						<option value="爱丁客服小杨">爱丁客服小杨</option>
+					</select>
+				</div>	
+			</li>
+			<input id="partner_form_submit" type="button" value="提交"/>
+		<!--</form>-->
+		<script type="text/javascript">
+			$(function(){
+				document.getElementById('dept').value=document.getElementById('dept1').value;
+			})
+		</script>
+	</div>
+</div>

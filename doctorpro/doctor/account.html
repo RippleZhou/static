@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--检测登陆状态,请勿改变位置-->
+    <script src="/static/doctorpro/js/state.js"></script>
+
+    <meta charset="UTF-8">
+    <title>爱丁医生</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/doctorpro/css/doctor.css">
+    <style>
+        #accounts ul {
+            position: relative;
+            height: 100px;
+            padding: 13px 15px;
+            border-bottom: 1px solid #999;
+            background: #fff;
+        }
+
+        #accounts ul li {
+            height: 30px;
+            line-height: 30px;
+            border-radius: 5px;
+            padding: 0 5px;
+            float: right;
+            margin: 22px 10px;
+            margin-right: 0;
+        }
+
+        #accounts ul li:first-of-type {
+            height: 74px;
+            float: left;
+            margin: 0;
+            line-height: 24px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .bank {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .default {
+            color: #15b2ee;
+            border: 1px solid #15b2ee;
+        }
+
+        .default.true {
+            color: #fff;
+            background: #15b2ee;
+        }
+
+        .delete {
+            color: #f00;
+            border: 1px solid #f00;
+        }
+
+        #add {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #15b2ee;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            font-size: 18px;
+        }
+
+        .default {
+            position: absolute;
+            right: 85px;
+        }
+        .nomore{
+            position: fixed;
+            z-index: -1;
+            width: 100%;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="accounts">
+</div>
+<div class="nomore">您还没有账户,快去添加吧</div>
+<a href="addaccount.html">
+    <div id="add">添加账户</div>
+</a>
+
+<script id="list" type="text/html">
+    {{each rel as val index}}
+    {{if val.defaultaccount == '1'}}
+    <ul>
+        <li>
+            <span class="bank" id="{{val.accountid}}">{{val.bank}}</span><br>
+            <span class="name">{{val.realname}}</span><br>
+            <span class="account">{{val.account}}</span>
+        </li>
+        <li class="delete">删除账户</li>
+        <li class="default true">默认提现账户</li>
+    </ul>
+    {{else}}
+    <ul>
+        <li>
+            <span class="bank" id="{{val.accountid}}">{{val.bank}}</span><br>
+            <span class="name">{{val.realname}}</span><br>
+            <span class="account">{{val.account}}</span>
+        </li>
+        <li class="delete">删除账户</li>
+        <li class="default">默认提现账户</li>
+    </ul>
+    {{/if}}
+    {{/each}}
+</script>
+
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/doctorpro/js/doctor.js"></script>
+<script type="text/javascript">
+    var baseInfor = Utils.storage.get('baseInfor');
+    var getUrl = '/IbabyWebService/3/Doctor/WithdrawAccountList?doctorid=' + baseInfor.docid;
+    Utils.ajax.get(getUrl).then(function (rel) {
+        var data = {};
+        data.rel = rel;
+        var html = template('list', data);
+        document.getElementById('accounts').innerHTML = html;
+        if (rel.length == 0) {
+            $('.nomore').css('display','block');
+        }
+        if (rel.length == 1) {
+            $('.default').addClass('true');
+            var params = {
+                doctorid: baseInfor.docid,
+                accountid: rel[0].accountid
+            }
+            var setdefaultUrl = '/IbabyWebService/3/Doctor/SetDefaultWithdrawAccount';
+            Utils.ajax.post(setdefaultUrl, params);
+        }
+    })
+    $('#accounts').delegate('.default', 'click', function () {
+        if (!$(this).hasClass('true')) {
+            var doctorid = baseInfor.docid;
+            var accountid = $(this).parents('ul').find('.bank').attr('id');
+            var params = {
+                doctorid: doctorid,
+                accountid: accountid
+            }
+            var setdefaultUrl = '/IbabyWebService/3/Doctor/SetDefaultWithdrawAccount';
+            Utils.ajax.post(setdefaultUrl, params).then(function (rel) {
+                diyalert('设置默认账号成功!');
+                location.reload();
+            })
+        } else {
+            diyalert('当前账号已经是默认账号!',1000);
+        }
+    })
+    $('#accounts').delegate('.delete', 'click', function () {
+        var doctorid = baseInfor.docid;
+        var accountid = $(this).parents('ul').find('.bank').attr('id');
+        var params = {
+            doctorid: doctorid,
+            accountid: accountid
+        }
+        var setdefaultUrl = '/IbabyWebService/3/Doctor/DeleteWithdrawAccount';
+        Utils.ajax.post(setdefaultUrl, params).then(function (rel) {
+            diyalert('账号已经删除!');
+            location.reload();
+        })
+    })
+    window.onload = function () {
+        $('.nomore').css('display','block');
+    }
+</script>
+
+</body>
+</html>

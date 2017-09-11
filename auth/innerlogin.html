@@ -1,0 +1,175 @@
+<style>
+    #inner-login {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #inner-login .base {
+        position: absolute;
+        background: #000;
+        opacity: 0.6;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .row-input input {
+        font-size: 12px;
+    }
+
+    #inner-login input[type=submit] {
+        border-radius: 2px;
+        font-size: 12px;
+        line-height: 35px;
+        width: 100%;
+        background: #479CD3;
+        margin: 15px 0 20px;
+    }
+
+    #inner-login .btn-send-sms-code {
+        border-radius: 3px;
+        font-size: 12px;
+        height: 25px;
+        line-height: 25px;
+        margin-top: -13px;
+        padding: 0 8px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        background: #479CD3;
+    }
+
+    #inner-login .btn-send-sms-code[disabled] {
+        width: 100px;
+    }
+
+    #inner-login .form-link {
+        color: #ccc;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    #inner-login .form-link a {
+        color: #46c6fe;
+    }
+
+    #inner-login #banner.has{
+        position: relative;
+        width: 100%;
+        color: #666;
+        text-align: center;
+        margin: 30px 0 10px;
+        line-height: 30px;
+        font-size: 14px;
+    }
+
+    #send-box {
+        display: none;
+    }
+
+    #inner-login .relative.login {
+        background: #fff;
+        border-radius: 3px;
+        width: 260px;
+        margin: auto;
+        display: flex;
+        display: -webkit-flex;
+        flex-direction: column;
+        justify-content: space-around;
+        overflow: hidden;
+    }
+
+    #inner-login .form > .row {
+        border-bottom: 1px solid #ddd;
+    }
+
+    #inner-login .row:not(.activated) + .row:not(.row-gap):not(.activated):before {
+        background-color: transparent;
+    }
+
+    #inner-login .row-input {
+        padding: 15px;
+    }
+
+    #imgcode img {
+        width: 100px;
+        cursor: pointer;
+    }
+
+    #loginbtn {
+        display: none;
+    }
+
+    #imgcode {
+        display: block;
+    }
+
+    #imgcode button {
+        border-radius: 30px;
+        font-size: 12px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 8px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        background: #f90;
+        color: #fff;
+    }
+
+</style>
+<div id="inner-login" class="flex flex-vertical flex-center">
+    <div class="relative login">
+        <div id="banner">
+        </div>
+        <form class="form" id="loginForm">
+            <div class="row row-input">
+                <input id="mobile" type="tel" placeholder="输入手机号" maxlength="11" min="11000000000" max="19999999999"
+                       autocomplete="off"/>
+            </div>
+
+            <div class="row row-input" id="send-box">
+                <input id="code" type="text" placeholder="验证码" maxlength="6" autocomplete="off"/>
+                <button id="sendSmsCode" type="button" class="btn btn-warning btn-send-sms-code clickable">发送验证码
+                </button>
+            </div>
+            <div id="imgcode" class="row row-input">
+                <img src="/IbabyWebService/3/captcha" alt="" onclick="reimage()" id="reloadimage">
+                <input  id="captchacode" type="text" placeholder="请输入图形验证码" maxlength="6" autocomplete="off"/>
+                <button  id="checkcode" type="button"   class="checkcode">发送验证码</button>
+            </div>
+            <input type="submit" id="loginbtn"  class="btn btn-primary clickable" value="一键登录">
+
+        </form>
+
+        <form id="registerForm" class="form hide">
+            <div class="row row-input">
+                <input id="username" type="text" placeholder="请输入您的个性昵称" maxlength="16"/>
+            </div>
+
+            <input type="submit" class="btn btn-primary clickable" value="确认">
+        </form>
+    </div>
+    <div class="base">
+
+    </div>
+
+</div>
+
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?0.0001"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/auth/js/services.js?v1.03"></script>
+<script src="/static/doctorpro/js/doctor.js"></script>
+<script src="/static/auth/js/innerlogin.js?v=1.04"></script>

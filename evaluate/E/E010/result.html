@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱丁医生</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/evaluate/css/result.css">
+
+</head>
+<body>
+<div id="content"></div>
+
+<script type="text/html" id="result">
+    <div class="part" id="part1">
+        <div id="circle">
+            <canvas id="myChart" width="210" height="210" style="position: absolute;top: -5px;right: -5px;"></canvas>
+            <span>健康综合分</span>
+            <h1>{{averageScore||0}}<span>分</span></h1>
+        </div>
+        <!--  入营前后功能还没有
+        <p id="change"><span>入营测评 <br> 88分</span> <span>提升分数 <br> 3分</span></p>
+        <p class="text">入营测评88分，提升了3分，21天的坚持让我们更加科学的认知自己提升自己，未来我们再接再厉。</p>
+        -->
+        <button><img src="img/down.svg" alt=""></button>
+    </div>
+    <div class="part" id="part2">
+        <p class="title">健康分解析</p>
+        <div id="data">
+            <span>生活 <br>{{lifeScore||0}}分</span>
+            <span>心理 <br>{{psyScore||0}}分</span>
+            <span>运动 <br>{{sportScore||0}}分</span>
+        </div>
+    </div>
+    <div class="part" id="part3">
+        <p class="title">健康初评</p>
+        <p class="text">
+            {{each comment as val}}
+            {{val}}<br>
+            {{/each}}
+        </p>
+    </div>
+    <div class="part" id="part4">
+        <p class="title">个性备孕指导</p>
+        <p class="text">
+            爱丁特邀亚健康专家、营养师、健身教练正在为您制作中哦，请您耐心等待。个性化备孕指导完成后备孕顾问会在群众通知您领取。
+        </p>
+        <!--
+        <p class="text">
+            个性化备孕指导书给出，请点击领取：<br>
+            <a href="/static/aiding-declaration/twentycamp-page1.html">领取</a>
+        </p>
+        -->
+    </div>
+</script>
+
+
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/evaluate/js/chart.min.js"></script>
+<script>
+    var params = {
+        patientid: User.getUser().patientid,
+        code: 'E010'
+    }
+    Utils.ajax.get('/IbabyWebService/3/Evalute/GetEvaluteResult/'+params.patientid+'/'+params.code).then(function (result){
+        var html = template('result', result);
+        $('#content').html(html);
+        $("#content").delegate("#part1 button", "click", function () {
+            $('#content .part:not(#part1)').fadeToggle();
+            $('#part1 button img').toggleClass('close');
+        })
+
+        try {
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var data1 = [
+                {
+                    value: result.averageScore,
+                    color: "#fff"
+                },
+                {
+                    value: 100 - result.averageScore,
+                    color: "transparent"
+                }
+            ]
+            new Chart(ctx).Doughnut(data1, {
+                scaleShowLabels: false,
+                segmentStrokeWidth: 0,
+                scaleFontColor: "#767C8D",
+                segmentStrokeColor: "transparent",
+                percentageInnerCutout: 97.5,
+                animationEasing: "linear",
+                animationSteps: 60
+            });
+        } catch (err) {
+
+        }
+    })
+</script>
+</body>
+</html>

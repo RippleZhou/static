@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>订单确认</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/pay/css/main.css?1">
+</head>
+<body>
+<ul>
+
+</ul>
+<script type="text/html" id="list">
+    <li><span class="title">{{servicename}}</span></li>
+    <div>
+        {{ if imgsrc}}
+        <img src="{{imgsrc}}" alt="" id="banner">
+        {{/if}}
+        {{if serviceid==4}}
+        <a href="/static/market/views/advice.html">在线咨询</a>
+        {{/if}}
+    </div>
+
+    <li>
+        <span>姓名:</span>
+        <span>{{name}}</span>
+    </li>
+    <li>
+        <span>手机号:</span>
+        <span>{{mobile}}</span>
+    </li>
+    <li>
+        <span>微信号:</span>
+        <span>{{wxphone}}</span>
+    </li>
+    <li><span></span><span>价格：<font style="color: #f00">{{totalfee}}</font></span></li>
+    <li class="fixedbottom"> <span id="submit" onclick="pay()">确认订单</span><span>合计：<font style="color: #f00">{{totalfee}}</font></span></li>
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/common/js/popup.check.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/servicemall/js/services.js"></script>
+<script src="/static/common/pay/js/order.js"></script>
+</body>
+</html>

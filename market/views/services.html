@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/market/css/market.css?0.31">
+</head>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script>
+    var serviceid = Utils.getQueryParams().serviceid;
+        if(serviceid==6){
+            location.href="/static/error-html/error.html"
+        }
+</script>
+<body>
+<div id="link-advice" class="flex flex-vertical flex-center" onclick="javascript:location.href = 'advice.html'">
+    <img src="/static/market/img/talk.png" alt="">
+    <p>营养评估</p>
+</div>
+<header>
+    <span>爱丁备孕助孕</span>
+    <a href="javascript:myorderlist()" id="myorder">我的购买</a>
+</header>
+<div id="banner">
+    <img id="bannerimg" src="" alt="" style="width: 100%">
+</div>
+
+<div id="infor">
+</div>
+
+<dl id="link" class="clearfix">
+    <a href="javascript:void(0)">
+        <dd class="active">商品详情</dd>
+    </a>
+    <a href="javascript:void(0)">
+        <dd id="ask" class="first">评论（0）</dd>
+    </a>
+</dl>
+
+<div id="comment">
+</div>
+
+<div id="comment-a">
+    <img src="#" alt="" style="width:100%;">
+</div>
+<div id="null"></div>
+<div id="buy">
+    <a href="javascript:toggle.form()" id="gotobuy">立即购买</a>
+</div>
+
+<div id="fullForm"></div>
+
+<!--
+<li id="zx" style="position: fixed;top: 50px;right: 20px;z-index: 100">注销</li>
+-->
+
+<ul id="form">
+    <li class="clearfix" id="forminfo">
+    </li>
+    <li>
+        <span>姓名</span>
+        <input type="text" id="name">
+    </li>
+    <li>
+        <span>手机号</span>
+        <input type="text" id="phone">
+    </li>
+    <li>
+        <span>微信号</span>
+        <input type="text" id="wxphone">
+    </li>
+    <li>
+        <span id="submit" onclick="toorder()">付款</span>
+    </li>
+</ul>
+<script type="text/html" id="form_info">
+    <img src="{{pic}}" id="icon">
+    <p><font id="ordername">{{name}}</font><br> <font id="orderprice">￥{{price}}</font></p>
+    <img src="/static/pcos/img/close.svg" id="close" onclick="toggle.form()">
+</script>
+<script type="text/html" id="infodata">
+    <p>{{name}}</p>
+    <p id="price">￥ {{price}}</p>
+    <span id="num">销量:{{selledamount}}</span>
+</script>
+<script type="text/html" id="pldata">
+    {{each list as val}}
+    <ul>
+        <li class="comments">
+            <img src="{{val.headimgurl}}" alt="">
+            <p>{{val.wechatname}}</p>
+            <p>{{val.createtime}}</p>
+            <p>{{val.content}}</p>
+        </li>
+    </ul>
+    {{/each}}
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/common/js/popup.check.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/market/js/services.js?v0.45"></script>
+</body>
+</html>

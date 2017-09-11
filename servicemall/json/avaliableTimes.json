@@ -1,0 +1,59 @@
+{
+    "status": 0,
+    "errmsg": "成功",
+    "content": {
+        "pcode": "XXX",
+        "waystatus": [{
+            "waycode": "phone",
+            "availabledatetime": [{
+                "date": "2015-10-26",
+                "clock": [{
+                    "period": "9:30-10:00",
+                    "available": false
+                }, {
+                    "period": "10:00-10:30",
+                    "available": true
+                }]
+            }, {
+                "date": "2015-10-27",
+                "clock": [{
+                    "period": "10:30-11:00",
+                    "available": true
+                }, {
+                    "period": "11:30-12:00",
+                    "available": true
+                }]
+            }, {
+                "date": "2015-10-28",
+                "clock": [{
+                    "period": "10:00-10:30",
+                    "available": true
+                }, {
+                    "period": "11:30-12:00",
+                    "available": true
+                }]
+            }]
+        }, {
+            "waycode": "clinic",
+            "availabledatetime": [{
+                "date": "2015-10-26",
+                "clock": [{
+                    "period": "9:00-9:30",
+                    "available": true
+                }, {
+                    "period": "9:30-10:00",
+                    "available": true
+                }]
+            }, {
+                "date": "2015-10-27",
+                "clock": [{
+                    "period": "9:00-9:30",
+                    "available": true
+                }, {
+                    "period": "10:30-11:00",
+                    "available": true
+                }]
+            }]
+        }]
+    }
+}

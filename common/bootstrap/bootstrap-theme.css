@@ -1,0 +1,10 @@
+/*用来覆盖bootstrap里的属性用的*/
+h1,h2,h3,h4,h5 {
+    font-weight: 100;
+}
+a {
+    color: inherit;
+}
+a:hover {
+    color: #428bca;
+}

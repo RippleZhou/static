@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+</head>
+
+<body>
+    <script>
+        var params = getQueryParams();
+        if (params.openid) {
+            localStorage.wx_user_info_openid=params.openid;
+            localStorage.wx_user_info_nickname=params.nickname;
+            localStorage.wx_user_info_province=params.province;
+            localStorage.wx_user_info_city=params.city;
+            location.href='/static/evaluate/E/E008/';
+        } else {
+            window.User.weichatAuth();
+        }
+
+        function getQueryParams() {
+            var params = {};
+            var queryString = window.location.search.replace(/^\?/, '').split('&');
+            var param;
+            queryString.forEach(function (d, i) {
+                if (d) {
+                    param = d.split('=');
+
+                    try {
+                        params[param[0]] = decodeURIComponent(param[1]);
+                    }
+                    catch (ex) {
+                        params[param[0]] = param[1];
+                    }
+                }
+            });
+
+            return params;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+	<title>爱丁备孕测评</title>
+	<link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+	<link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+	<style>
+		body{background:#efeff4}
+		h5{color:#999;font-size:14px;padding:15px 0 7px 15px}
+		section div img{width:100%}
+		section div a{position:absolute;font-size:14px}
+		section div a div{color:#ccc;font-size:12px}
+		section div a div:after{content:'立即评测>>'}
+		section div a.done div:after{content:'查看结果>>';color:#46c6fe}
+		section{background:#fff}
+		section>a{position:relative;padding-left:95px;display:block;margin-bottom:-1px}
+		section a img{position:absolute;top:20px;left:15px;width:70px}
+		section a article{height:110px;position:relative}
+		section a:not(:last-child) article{height:111px}
+		section a:not(:last-child) article:after{content:'';display:block;position:absolute;bottom:0;left:0;right:0;height:1px;background:#efeff4}
+		section a.clickable div{color:#ccc}
+		section h6{font-size:16px;padding-top:15px}
+		section p{color:#ccc;margin:5px 0 10px;line-height:1.3;padding-right:15px}
+		section span{font-size:14px;color:#46c6fe;position:absolute;top:79px;right:15px}
+		section span:after{content:'立即评测>>'}
+		section .done span:after{content:'查看结果>>'}
+	</style>
+</head>
+
+<body>
+<h5>爱丁备孕i-MLP综合测评</h5>
+<section>
+	<div style="width:320px;margin:0 auto;position:relative">
+		<img src="img/header.png">
+		<a style="top:22px;left:31px">生育力综合测评<div></div></a>
+		<a style="top:25px;left:195px">备孕认知心理测评<div></div></a>
+		<a style="top:81px;left:231px">备孕生活测评<div></div></a>
+		<i style="position:absolute;height:55px;width:55px;top:123px;left:77px"></i>
+		<i style="position:absolute;height:55px;width:55px;top:61px;left:120px"></i>
+		<i style="position:absolute;height:55px;width:55px;top:133px;left:166px"></i>
+	</div>
+</section>
+<h5>更多测评</h5>
+<section style="margin-bottom:77px">
+	<a class="clickable">
+		<img src="img/1.jpg"/>
+		<article>
+			<h6>中医体质测评</h6>
+			<p>通过体质测评可以清楚的认知自己的体质情况，并得出在备孕中相关指导。</p>
+			<div></div>
+		</article>
+		<span></span>
+	</a>
+	<a class="clickable">
+		<img src="img/2.jpg"/>
+		<article>
+			<h6>二胎备孕测评</h6>
+			<p>二胎政策开后了，你知道你现在时候生二胎吗？完成测评后得出。</p>
+			<div></div>
+		</article>
+		<span></span>
+	</a>
+</section>
+<ul class="nav-tabs">
+	<li class="active">
+		<a href="/static/evaluate/">
+			<i class="iconfont-nav-test"></i>
+			<p>爱丁测评</p>
+		</a>
+	</li>
+	<li>
+		<a href="/static/ask_doctor/my_questions.html">
+			<i class="iconfont-nav-ask-doctor"></i>
+			<p>问医生</p>
+		</a>
+	</li>
+	<li>
+		<a href="/static/servicemall/">
+			<i class="iconfont-nav-services"></i>
+			<p>服务大厅</p>
+		</a>
+	</li>
+	<li>
+		<a href="/static/user/user-center.html">
+			<i class="iconfont-nav-user"></i>
+			<p>我的爱丁</p>
+		</a>
+	</li>
+</ul>
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	(function(){
+		wechat.share({desc:'爱丁备孕MLP（医学、生活、心理）测评，全面专业的测评 ，专业成就好孕',title:document.title})
+		queryObj={}
+		if(location.search){
+			queryObj=JSON.parse('{"'+decodeURI(location.search.substring(1)).replace(/"/g,'\\"').replace(/&/g,'","').replace(/=/g,'":"')+'"}')
+		}
+		if (User.getUser()) {
+			url='/IbabyWebService/3/Evalute/GetEvaluteList?patientid='+User.getUser().patientid
+		}
+		else{
+			url='/IbabyWebService/3/Evalute/GetEvaluteList'
+		}
+		Utils.ajax.get(url).then(function(res){
+			for(i=0;i<res.length;i++){
+				switch (res[i].externalcode){
+					case 'E001':
+						if(res[i].done){
+							$('a').eq(0)[0].href='/static/evaluate/E/E001/'+(queryObj.inapp?'?inapp=1':'')+'#result';
+							$('a').eq(0)[0].classList.toggle('done')
+							$('i').eq(0)[0].onclick=function(){location.href='/static/evaluate/E/E001/'+(queryObj.inapp?'?inapp=1':'')+'#result'}
+						}
+						else{
+							$('a').eq(0)[0].href='/static/evaluate/E/E001/'+(queryObj.inapp?'?inapp=1':'');
+							$('i').eq(0)[0].onclick=function(){location.href='/static/evaluate/E/E001/'+(queryObj.inapp?'?inapp=1':'')}
+						}
+						break;
+					case 'E002':
+						if(res[i].done){
+							$('a').eq(2)[0].href='/static/evaluate/E/E002/'+(queryObj.inapp?'?inapp=1':'')+'#result';
+							$('a').eq(2)[0].classList.toggle('done')
+							$('i').eq(2)[0].onclick=function(){location.href='/static/evaluate/E/E002/'+(queryObj.inapp?'?inapp=1':'')+'#result'}
+						}
+						else{
+							$('a').eq(2)[0].href='/static/evaluate/E/E002/'+(queryObj.inapp?'?inapp=1':'');
+							$('i').eq(2)[0].onclick=function(){location.href='/static/evaluate/E/E002/'+(queryObj.inapp?'?inapp=1':'')}
+						}
+						break;
+					case 'E003':
+						if(res[i].done){
+							$('a').eq(4)[0].href='/static/evaluate/E/E003/'+(queryObj.inapp?'?inapp=1':'')+'#result';
+							$('a').eq(4)[0].classList.toggle('done')
+						}
+						else{
+							$('a').eq(4)[0].href='/static/evaluate/E/E003/'+(queryObj.inapp?'?inapp=1':'');
+						}
+						$('section a article div').eq(1).text(res[i].amount+'人参加')
+						break;
+					case 'E004':
+						if(res[i].done){
+							$('a').eq(3)[0].href='/static/evaluate/E/E004/'+(queryObj.inapp?'?inapp=1':'')+'#result';
+							$('a').eq(3)[0].classList.toggle('done')
+						}
+						else{
+							$('a').eq(3)[0].href='/static/evaluate/E/E004/'+(queryObj.inapp?'?inapp=1':'');
+						}
+						$('section a article div').eq(0).text(res[i].amount+'人参加')
+						break;
+					case 'E005':
+						if(res[i].done){
+							$('a').eq(1)[0].href='/static/evaluate/E/E005/'+(queryObj.inapp?'?inapp=1':'')+'#result';
+							$('a').eq(1)[0].classList.toggle('done')
+							$('i').eq(1)[0].onclick=function(){location.href='/static/evaluate/E/E005/'+(queryObj.inapp?'?inapp=1':'')+'#result'}
+						}
+						else{
+							$('a').eq(1)[0].href='/static/evaluate/E/E005/'+(queryObj.inapp?'?inapp=1':'');
+							$('i').eq(1)[0].onclick=function(){location.href='/static/evaluate/E/E005/'+(queryObj.inapp?'?inapp=1':'')}
+						}
+						break;
+				}
+			}
+		})
+	})()
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+</html>

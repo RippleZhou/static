@@ -1,0 +1,611 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>远程咨询</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="./css/unify.css">
+
+    <style>
+        :root {
+            font-size: 16px;
+        }
+
+        @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) {
+            :root {
+                font-size: 18.75px;
+            }
+        }
+
+        @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) {
+            :root {
+                font-size: 20.7px;
+            }
+        }
+
+        @media screen and (min-width: 414px) {
+            :root {
+                font-size: 20.7px;
+            }
+        }
+        body {
+            background: #efeff4;
+            padding-bottom: 78px;
+        }
+
+        .ways {
+            background: #fff;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .ways-mark {
+            background-color: #46c6fe;
+            bottom: 0;
+            display: block;
+            height: 2px;
+            left: 0;
+            position: absolute;
+            -webkit-transition: left .3s;
+               -moz-transition: left .3s;
+                -ms-transition: left .3s;
+                    transition: left .3s;
+            width: 100%;
+        }
+
+        .way {
+            display: block;
+            padding: 10px;
+            position: relative;
+            text-align: center;
+            width: 25%;
+        }
+
+        .way + .way:before {
+            background-color: #d6d7dc;
+            content: '';
+            height: 25px;
+            left: 0;
+            margin-top: -13px;
+            top: 50%;
+            position: absolute;
+            width: 1px;
+        }
+
+        .way h6 {
+            color: #333;
+            font-size: 18px;
+            line-height: 24px;
+        }
+
+        .way p {
+            color: #333;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        .row i {
+            color: #d6d6d6;
+            font-size: 23px;
+        }
+
+        .row input {
+            color: #666;
+        }
+
+        .select {
+            text-align: center;
+        }
+
+        .select span {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .select span.placeholder {
+            color: #46c6fe;
+        }
+
+        .select select {
+            background-color: transparent;
+            display: block;
+            height: 48px;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+               -moz-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);
+            width: 100%;
+            z-index: 1;
+        }
+
+        .select + .select:before {
+            background-color: #ccc;
+            content: '';
+            height: 30px;
+            left: 0;
+            margin-top: -15px;
+            position: absolute;
+            top: 50%;
+            width: 1px;
+        }
+
+        .aiding-consulting-introduction {
+            width:100%;
+            background: #ffffff;
+            border-bottom: 1px solid #efeff4;
+            padding:0.5rem 0 1rem;
+        }
+        .aiding-consulting-introduction i {
+            width:2.4rem;
+            height:2.4rem;
+            float: left;
+            margin: 0.5rem 0.3rem 0.3rem 0.3rem;
+            border-radius: 50%;
+            font-size: 1.6rem;
+            color: #ffffff;
+            line-height: 2.4rem;
+        }
+        .aiding-consulting {
+            float: right;
+            width:85%;
+        }
+        .aiding-consulting-top {
+            width: 100%;
+            padding: 0.5rem 0;
+        }
+        .aiding-consulting-top-title {
+            font-size: 1.1rem;
+            color: #333333;
+            display: inline-block;
+            float: left;
+        }
+        .aiding-consulting-top-price {
+            color: #ffffff;
+            display: inline-block;
+            float: right;
+            background: #ff6666;
+            width:auto;
+            height: 1.2rem;
+            font-size: 1rem;
+            line-height: 1.2rem;
+            border-radius: 2px;
+            padding:0 4px;
+            margin-top: 0.05rem;
+            margin-right: 0.5rem;
+        }
+        .aiding-consulting-content {
+            font-size: 0.9rem;
+            color: #666666;
+            padding-right: 0.5rem;
+        }
+        .aiding-consulting-process {
+            width: 100%;
+            background: #ffffff;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
+        .aiding-consulting-process ul {
+            width: 100%;
+            list-style: none;
+        }
+        .aiding-consulting-process ul li {
+            width:33.3%;
+            float: left;
+            margin:0px;
+            text-align: center;
+        }
+        .aiding-consulting-step {
+            width:3.5rem;
+            height:3.5rem;
+            margin: 0 auto;
+            line-height: 2.8rem;
+            text-align: center;
+            color:#ffffff;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+        .step1 {
+            background: #66cccc;
+            border:5px solid #e0f5f5;
+        }
+        .step2 {
+            background: #ff9900;
+            border:5px solid #ffebcc;
+        }
+        .step3 {
+            background: #46c6fe;
+            border:5px solid #daf4ff;
+        }
+        .aiding-consulting-step-title {
+            font-size: 1rem;
+            color: #666666;
+            width: 80%;
+            margin: 1rem auto 0;
+            text-align: center;
+        }
+        .my-consulting {
+            height: 2.5rem;
+            width: 100%;
+            color: #46c6fe;
+            background: #ffffff;
+            font-size: 1rem;
+            text-align: center;
+            padding:0.5rem 0 0 0;
+            margin-bottom: 0.5rem;
+        }
+        .my-consulting i {
+            width:1.5rem;
+            height:1.5rem;
+            background: #46c6fe;
+            border-radius: 50%;
+            font-size: 1rem;
+            color: #ffffff;
+            line-height: 1.5rem;
+            margin-right: 0.3rem;
+            vertical-align: text-top;
+        }
+        .footer-button {
+            width:100%;
+            height:3rem;
+            font-size: 1.2rem;
+            color:#ffffff;
+            background: #46c6fe;
+            line-height: 3rem;
+            text-align: center;
+            position: fixed;
+            bottom: 0px;
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="aiding-consulting-introduction">
+        <!-- <div class="aiding-avator"></div>
+        <div class="aiding-consulting">
+            <div class="aiding-consulting-top">
+                <span class="aiding-consulting-top-title">爱丁个体化备孕指导</span>
+                <span class="aiding-consulting-top-price">50元/次</span>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="aiding-consulting-content">
+                测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+            </div>
+        </div>
+        <div style="clear:both;"></div> -->
+    </div>
+    <div class="aiding-consulting-process">
+        <ul>
+            <li>
+                <div class="aiding-consulting-step step1">1</div>
+                <div class="aiding-consulting-step-title">选择时间</div>
+            </li>
+            <li>
+                <div class="aiding-consulting-step step2">2</div>
+                <div class="aiding-consulting-step-title">支付订单</div>
+            </li>
+            <li>
+                <div class="aiding-consulting-step step3">3</div>
+                <div class="aiding-consulting-step-title">爱丁医生与您联系</div>
+            </li>
+        </ul>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div class="row row-icon row-input flex">
+        <i class="icon iconfont-order-telephone"></i>
+        <input id="phone" type="tel" class="flex-1" placeholder="请输入您的手机号码" name="phone" maxlength="11" max="99999999999" autocomplete="off" />
+    </div>
+    <div class="row row-icon row-input flex">
+        <i class="icon iconfont-order-user"></i>
+        <input id="name" type="text" class="flex-1" placeholder="请输入您的真实姓名" name="name" maxlength="11" />
+    </div>
+    <div class="row row-icon row-input flex row-datetime">
+        <i class="icon iconfont-order-time"></i>
+        <div class="flex-1 select btn">
+            <span class="placeholder">选择日期</span>
+            <select id="date" name="date" placeholder="选择日期"></select>
+        </div>
+        <div class="flex-1 select btn">
+            <span class="placeholder">选择时段</span>
+            <select id="time" name="time" placeholder="选择时段"></select>
+        </div>
+    </div>
+
+    <footer class="footer-button">
+        <div id="book-confirm" class="btn btn-primary clickable" style="width:100%;">立即支付</div>
+    </footer>
+
+    <script id="my-consulting" type="text/html">
+        <div class="my-consulting clickable" id="my-consulting">
+            <i class="icon iconfont-order-telephone"></i>我的远程咨询({{list.length}})>>
+        </div>
+    </script>
+
+    <script id="aiding-consulting-introduction" type="text/html">
+        <i class="iconfont-program-{{pcode}} {{pcode}}"></i>
+        <div class="aiding-consulting">
+            <div class="aiding-consulting-top">
+                <span class="aiding-consulting-top-title">{{name}}</span>
+                <span class="aiding-consulting-top-price">{{ways[0].price}}{{ways[0].unit}}</span>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="aiding-consulting-content">{{ways[0].description}}</div>
+        </div>
+        <div style="clear:both;"></div>
+    </script>
+
+    <script id="tpl-ways" type="text/html">
+        {{if ways}}
+        <div class="ways flex" style="display:none;">
+            {{each ways as w}}
+            <a class="way flex-1-25 clickable" data-name="w.name" data-price="w.discount || w.price" data-address="{{w.city && w.address ? w.city + w.address : ''}}">
+                <h6>{{w.title}}</h6>
+                <span>{{(w.discount || w.price || '') + w.unit}}</span>
+            </a>
+            {{/each}}
+            <div class="ways-mark"></div>
+        </div>
+        {{/if}}
+    </script>
+
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="/static/common/lib/template.js"></script>
+    <script src="/static/common/js/wechat.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+
+    <script src="./js/services.js"></script>
+
+    <script>
+        wechat.share();
+
+        $(function () {
+            var user = Services.getChannelUser() || User.getUser();
+
+            var queryParams = Utils.getQueryParams();
+            var serviceName;
+
+            $('#phone').val(user.mobilenum);
+            // $('#name').val(user.realname);
+
+            Services.getOrders().then(function (result) {
+                if (result.list.length > 0) {
+                    var myConsulting = template('my-consulting', result);
+                    $('body').prepend(myConsulting);
+                    $('#my-consulting').on('click', function() {
+                        location.href = "my-consulting.html";
+                    })
+                }
+            })
+
+            var promise = Services.getService().then(function (result) {
+                var aidConsultingIntroduction = template('aiding-consulting-introduction', result);
+                $('.aiding-consulting-introduction').html(aidConsultingIntroduction);
+
+                serviceName = result.name;
+                document.title += '-' + serviceName;
+                $('body').prepend(template('tpl-ways', result));
+
+                if (result.ways) {
+                    var $ways = $('.ways');
+
+                    $ways.find('.way').each(function (i) {
+                        $(this).data('way', result.ways[i]).on('click', function () {
+                            selectWay(i);
+                        });
+                    });
+
+                    $ways.find('.ways-mark').css('width', 100 / result.ways.length + '%');
+                }
+
+                return result.ways;
+            });
+
+            $.when(promise, Services.getServiceAvaliableTimes()).then(function (ways, avaliableTimes) {
+                if (!ways || !avaliableTimes) {
+                    return;
+                }
+
+                var wayTimes = {};
+
+                $.each(ways, function (i, w) {
+                    wayTimes[w.scode] = w;
+                });
+
+                $.each(avaliableTimes.waystatus, function (i, d) {
+                    if (wayTimes[d.waycode]) {
+                        wayTimes[d.waycode].times = d.availabledatetime;
+                    }
+                });
+
+                selectWay(0);
+            });
+
+            $('select').on('change', function () {
+                var $this = $(this);
+                var $prev = $this.prev();
+
+                if ($this.val()) {
+                    $prev.removeClass('placeholder').text($this.find('option:selected').text());
+                }
+                else {
+                    $prev.addClass('placeholder').text($this.attr('placeholder'));
+                }
+            });
+
+            $('#date').on('change', function () {
+                var times = [''].concat($(this).find('option:selected').data('times'));
+                var $time = $('#time');
+
+                $time.html($.map(times, function (d) {
+                    if (d) {
+                        return '<option value="' + d.period + '"' + (d.available ? '' : ' disabled') + '>' + d.period + (d.available ? '' : ' (已被预约)') + '</option>';
+                    }
+
+                    return '<option value="">' + $time.attr('placeholder') + '</option>';
+                })).val('').trigger('change');
+            });
+
+            $('#time').on('click', function (evt) {
+                if (!$('#date').val()) {
+                    aid.tip.show('请先选择日期！');
+                    evt.preventDefault();
+                }
+            });
+
+            $('#book-confirm').on('click', function() {
+                var $this = $(this);
+                var $phone = $('#phone');
+                var $name = $('#name');
+                var $date = $('#date');
+                var $time = $('#time');
+
+                var wayObject = $('.ways .way.active').data('way') || {};
+                var isDatetimeVisible = $date.parents('.row').is(':visible');
+
+                if (!$phone.val()) {
+                    aid.tip.show('请输入手机号码');
+                    return;
+                }
+                if ($phone.val().length != 11 || $phone.val().charAt(0) != '1') {
+                    aid.tip.show('手机号码格式不正确');
+                    return;
+                }
+                if (!$name.val()) {
+                    aid.tip.show('请输入真实姓名');
+                    return
+                }
+                if (isDatetimeVisible && (!$date.val() || !$time.val())) {
+                    aid.tip.show('请选择预约时间');
+                    return;
+                }
+
+                var params = {
+                    pcode: queryParams.pcode,
+                    pname: serviceName,
+                    sway: wayObject.scode,
+                    price: wayObject.price,
+                    name: $name.val(),
+                    phone: $phone.val(),
+                    time: isDatetimeVisible ? $date.val() + ' ' + $time.val() : null,
+                };
+
+                Services.book(params).then(function (result) {
+                    var orderno = result.orderno;
+
+                    var postpayload = JSON.stringify({
+                        order:{
+                            orderno:orderno,
+                            title:serviceName,
+                            amount:wayObject.price,
+                            description:serviceName,
+                            paymethod:"alipay",
+                            returnurl:"http://ibaby-plan.org:8180/open/remote_consulting/my-consulting.html?patientid=" + user.id,
+                        },
+                        params:{
+                            show_url:'http://ibaby-plan.org:8180/servicemall/views/categorys/' + queryParams.pcode.charAt(0)+'.html?pcode=' + queryParams.pcode
+                        }
+                    })
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://ibaby-plan.org:8180/IbabyWebService/Pay/PrePay",
+                        contentType: "application/json",
+                        data: postpayload,
+                        dataType: "html",
+                        success: function(data) {
+                            $('body').prepend(data);
+                        },
+                    });
+                });
+            });
+
+            function selectWay(index) {
+                var $ways = $('.ways');
+                var $way = $('.ways').find('.way').removeClass('active');
+
+                var $address = $('#address');
+                var $date = $('#date');
+                var $time = $('#time');
+
+                var wayObject = $way.eq(index).addClass('active').data('way') || {};
+
+                $ways.find('.ways-mark').css('left', 100 * index / $way.length + '%');
+
+                
+
+                $date.val('').html('').prev().addClass('placeholder').text($date.attr('placeholder'));
+                $time.val('').html('').prev().addClass('placeholder').text($time.attr('placeholder'));
+
+                if (wayObject.times) {
+                    var times = [{clock: []}].concat(wayObject.times);
+                    $date.html($.map(times, function (d) {
+                        if (d.date) {
+                            var dates = d.date.split('-');
+                            return '<option value="' + d.date + '">' + new Date(dates[0], dates[1] - 1, dates[2]).format('MM月DD日 周E') + '</option>';
+                        }
+
+                        return '<option value="">' + $date.attr('placeholder') + '</option>';
+                    }));
+
+                    $date.find('option').each(function (i) {
+                        $(this).data('times', times[i].clock);
+                    });
+                }
+            }
+
+        });
+
+        Date.prototype.format = function (format) {
+            format = format || 'YYYY-MM-DD HH:mm:ss';
+
+            var date = this;
+
+            var o = {
+                'M+': date.getMonth() + 1,
+                'D+': date.getDate(),
+                'H+': date.getHours(),
+                'h+': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12,
+                'm+': date.getMinutes(),
+                's+': date.getSeconds(),
+                'q+': Math.floor((date.getMonth() + 3) / 3),
+                'S': date.getMilliseconds(),
+                'E+': '日一二三四五六七'.split('')[date.getDay()]
+            };
+
+            if(/(Y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+            }
+
+            for(var k in o) {
+                if(new RegExp("("+ k +")").test(format)) {
+                    format = format.replace(RegExp.$1,  RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length));
+                }
+            }
+
+            return format;
+        };
+    </script>
+
+</body>
+
+</html>

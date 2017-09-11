@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" class="vw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>积分商城</title>
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css?v0.002">
+    <link rel="stylesheet" href="/static/camp/share/css/integral_mall.css">
+</head>
+<body>
+    <div class="root flex flex-vertical">
+        <div class="title">爱丁优生助孕健康传播大使积分兑换</div>
+        <div class="infor flex">
+
+        </div>
+        <div class="list flex-1 flex flex-wrap">
+            <div class="flex-basis-33 flex flex-vertical flex-center goods">
+                <img src="" alt="">
+                <p class="name">产品名称</p>
+                <p><img src="img/icon-jf.png" alt=""><font>兑换所需积分</font></p>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="infor">
+        <img src="{{icon||'img/people.png'}}" alt="">
+        <div class="flex flex-vertical flex-space-between name flex-1">
+            <p>{{realname}}</p>
+            <p>健康传播大使</p>
+        </div>
+    </script>
+    <script type="text/html" id="pnum">
+        <span class="flex flex-vertical flex-center num">
+            {{content|0}} 分
+        </span>
+    </script>
+    <script type="text/html" id="goods">
+        {{each goods as g index}}
+        <a href="goods.html?id={{index}}" class="flex-basis-33 ">
+        <div class="flex flex-vertical flex-center goods">
+            <img src="{{g.img}}" alt="">
+            <p class="name">{{g.name}}</p>
+            <p class="flex">
+                <img src="img/icon-jf.png" alt="" class="icon-js">
+                <font>{{g.price}}</font>
+            </p>
+        </div>
+        </a>
+        {{/each}}
+    </script>
+    <script src="/static/common/lib/template.js"></script>
+    <script src="/static/common/js/commen.js"></script>
+    <script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+    <script src="/static/common/js/wechat.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/camp/share/js/integral_mall.js"></script>
+</body>
+</html>

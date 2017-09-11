@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="由于订阅号，不能在二维码上添加参数，所以使用此页面进行用户流量统计">
+    <title>爱丁医生</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <style>
+        p {
+            text-align: center;
+            margin: 50px 0 0;
+            font-size: 16px;
+            color: #686868;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<p>关注爱丁优生助孕</p>
+<div flex="main:center">
+    <img src="./img/WechatIMG883.jpeg" alt="">
+</div>
+<p>领取养卵课程知识</p>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/common/js/newwechat.js"></script>
+<script>
+    //    爱丁页面统计
+    (function () {
+        var Utils = window.Utils;
+        var newWechat = window.NewWechat;
+        var params = Utils.queryParams;
+        var ua = window.navigator.userAgent.toLowerCase()
+        if (ua.match(/MicroMessenger/i) != 'micromessenger') {
+            document.body.innerHTML = '请在微信中打开此页面，谢谢配合！';
+        } else  {
+            var urlParams = Utils.storage.get('urlParam');
+            newWechat.author();
+            if (params.openid && urlParams == null) {
+                Utils.ajax.postJSON('/aiding-web/api/testLogin/count',{ nickName: params.nickname,imgUrl:params.headimgurl}).then(function (res) {
+                    console.log(res)
+                })
+            }
+        }
+    })()
+</script>
+</body>
+</html>

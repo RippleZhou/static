@@ -1,0 +1,58 @@
+{
+    "pcode": "B01",
+    "name": "多囊卵巢综合征全面诊疗计划",
+    "cover": "../img/services/B01.jpg",
+    "ways": [
+        {
+            "scode": "phone",
+            "title": "电话咨询",
+            "price": 100,
+            "discount": 0,
+            "unit": "元/10分钟"
+        },
+        {
+            "scode": "youxian",
+            "title": "优先门诊",
+            "price": 300,
+            "discount": 0,
+            "unit": "元/次"
+        },
+        {
+            "scode": "peizhen",
+            "title": "专业陪诊",
+            "price": 1000,
+            "discount": 0,
+            "unit": "元/次"
+        }
+    ],
+    "flows": [
+        {
+            "step": "诊前",
+            "description": "爱丁提供电话预评估，助您了解自己，与医生沟通更顺畅。"
+        },
+        {
+            "step": "诊中",
+            "description": "三甲高级职称以上资深医生为您制订诊疗方案。"
+        },
+        {
+            "step": "诊后",
+            "description": "爱丁为您分析医嘱，讲解报告单，落实治疗流程。"
+        },
+        {
+            "step": "跟踪",
+            "description": "爱丁全程提供饮食、运动、心理等全方位指导，为好孕加速。"
+        }
+    ],
+    "doctors": [
+        {
+            "id": "niuzhihong",
+            "avatar": "../img/doctors/niuzhihong-avatar.jpg",
+            "name": "牛志宏",
+            "title": "副主任医师",
+            "hospital": "上海瑞金医院",
+            "address": "上海市瑞金二路197号上海瑞金医院总院门诊大楼17楼 生殖医学中心",
+            "type": "合作专家"
+        }
+    ],
+    "introduction": "多囊卵巢综合征诊疗计划由该领域的权威医生为患者亲自评估治疗，同时爱丁助孕管家还会从知识、饮食、运动和行为干预等方面都对患者进行指导和跟踪解答。"
+}

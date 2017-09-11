@@ -1,0 +1,25 @@
+{
+    "pcode": "A01",
+    "name": "个性化备孕指导",
+    "hospital": "爱丁妇科门诊部",
+    "address": "上海市静安区华山路2号高和大厦1003室",
+    "cover": "../img/services/A01.jpg",
+    "ways": [
+        {
+            "scode": "phone",
+            "title": "电话咨询",
+            "price": 100,
+            "discount": 0,
+            "unit": "元/次",
+            "description": "通过电话咨询，为患者提供全方面的孕前指导，指导患者科学备孕。"
+        },
+        {
+            "scode": "clinic",
+            "title": "实体门诊咨询",
+            "price": 300,
+            "discount": 0,
+            "unit": "元/次",
+            "description": "在爱丁门诊为患者提供全方面的孕前指导，指导患者科学备孕。"
+        }
+    ]
+}

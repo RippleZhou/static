@@ -1,0 +1,16 @@
+{
+    "pcode": "C12",
+    "name": "不孕不育抗体检测",
+    "cover": "../img/services/C12.jpg",
+    "suppliers": [
+        {
+            "hospital": "上海爱丁妇科门诊部",
+            "address": "上海市静安区华山路2号高和大厦1003",
+            "price": 945,
+            "discount": 0,
+            "unit": "元/次"
+        }
+    ],
+    "introduction": "免疫性不孕不育的辅助诊断。（抗子宫内膜抗体、抗心磷脂抗体、抗精子抗体、抗核抗体、封闭抗体）",
+    "contents": "咨询+静脉抽血"
+}

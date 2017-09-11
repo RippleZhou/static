@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱丁医生</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/doctorpro/css/doctor.css">
+
+    <style>
+        img[alt='banner'] {
+            width: 100%;
+            height: 50vw;
+        }
+
+        section {
+            margin-bottom: 20px;
+            background: #fff;
+        }
+
+        label input {
+            width: 100%;
+            line-height: 40px;
+            font-size: 14px;
+            padding: 0 40px;
+        }
+
+        label {
+            position: relative;
+        }
+
+        label img {
+            position: absolute;
+            width: 20px;
+            z-index: 1;
+            margin: 10px 12px;
+        }
+
+        label span {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            color: #15b2ee;
+        }
+
+        section #line {
+            margin-left: 15px;
+            background: #ddd;
+            height: 1px;
+        }
+
+        form > div {
+            margin: 40px 15px 10px 15px;
+            text-align: center;
+            background: #15b2ee;
+            line-height: 40px;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        form > div.newUser {
+            margin-top: 0;
+            background: rgba(226, 166, 18, 0.86);
+        }
+    </style>
+
+</head>
+<body>
+<form>
+    <section>
+        <label>
+            <img src="/static/doctorpro/img/user.svg" alt="">
+            <input type="text" placeholder="请输入您的姓名" id="realname" name="realname"/>
+        </label>
+        <div id="line"></div>
+        <label>
+            <img src="/static/doctorpro/img/tel.svg" alt="">
+            <input type="text" placeholder="请填写手机号码" id="mobile" name="mobile"/>
+        </label>
+        <div id="line"></div>
+        <label>
+            <img src="/static/doctorpro/img/hospital.svg" alt="">
+            <input type="text" placeholder="请填写医院名称" id="hospital" name="hospital"/>
+        </label>
+    </section>
+    <section>
+        <label>
+            <img src="/static/doctorpro/img/dept.svg" alt="">
+            <input type="text" placeholder="请输入您的科室" id="dept" name="dept"/>
+        </label>
+        <div id="line"></div>
+        <label>
+            <img src="/static/doctorpro/img/title.svg" alt="">
+            <input type="text" placeholder="请输入您的职位/职称" id="title" name="title"/>
+        </label>
+    </section>
+    <div class="submit">提交</div>
+</form>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/doctorpro/js/doctor.js"></script>
+<script type="text/javascript">
+    $(".submit").click(function () {
+        realname = $('#realname').val();
+        mobile = $('#mobile').val();
+        hospital = $("#hospital").val();
+        dept = $("#dept").val();
+        title = $("#title").val();
+        if (realname == '') {
+            diyalert('请填写真实姓名',1000);
+            return false;
+        }
+        if (!(/^1[3|4|5|7|8]\d{9}$/.test(mobile))) {
+            diyalert('手机号码有误,请重新输入',1000);
+            return false;
+        }
+        if (hospital == '') {
+            diyalert('请填您所任职的医院',1000);
+            return false;
+        }
+        if (dept == '') {
+            diyalert('请输入您所在的科室名称',1000);
+            return false;
+        }
+        if (title == '') {
+            diyalert('请输入您所在的职位',1000);
+            return false;
+        }
+        var params = {
+            realname: realname,
+            mobile: mobile,
+            hospital: hospital,
+            dept: dept,
+            title: title
+        };
+        Utils.session.set('userInfo', params);
+        var postUrl = '/IbabyWebService/3/Doctor/CheckIn';
+        Utils.ajax.post(postUrl, params).then(function () {
+            diyalert('注册成功,默认密码111111!');
+            setTimeout(function () {
+                location.href = 'login.html';
+            },1000)
+        })
+    })
+
+</script>
+
+</body>
+</html>

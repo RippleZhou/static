@@ -1,0 +1,477 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>选择服务形式</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+
+    <style>
+        body {
+            background: #efeff4;
+            padding-bottom: 78px;
+        }
+
+        .ways {
+            background: #fff;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .ways-mark {
+            background-color: #46c6fe;
+            bottom: 0;
+            display: block;
+            height: 2px;
+            left: 0;
+            position: absolute;
+            -webkit-transition: left .3s;
+            -moz-transition: left .3s;
+            -ms-transition: left .3s;
+            transition: left .3s;
+            width: 100%;
+        }
+
+        .way {
+            display: block;
+            padding: 10px;
+            position: relative;
+            text-align: center;
+            width: 25%;
+        }
+
+        .way + .way:before {
+            background-color: #d6d7dc;
+            content: '';
+            height: 25px;
+            left: 0;
+            margin-top: -13px;
+            top: 50%;
+            position: absolute;
+            width: 1px;
+        }
+
+        .way h6 {
+            color: #333;
+            font-size: 18px;
+            line-height: 24px;
+        }
+
+        .way p {
+            color: #333;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        .row i {
+            color: #d6d6d6;
+            font-size: 23px;
+        }
+
+        .row input {
+            color: #666;
+        }
+
+        .select {
+            text-align: center;
+        }
+
+        .select span {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .select span.placeholder {
+            color: #46c6fe;
+        }
+
+        .select select {
+            background-color: transparent;
+            display: block;
+            height: 48px;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            width: 100%;
+            z-index: 1;
+        }
+
+        .select + .select:before {
+            background-color: #ccc;
+            content: '';
+            height: 30px;
+            left: 0;
+            margin-top: -15px;
+            position: absolute;
+            top: 50%;
+            width: 1px;
+        }
+
+        .chooseaddress {
+            padding-right: 20px;
+            position: relative;
+        }
+
+        .chooseaddress:after {
+            content: 'V';
+            position: absolute;
+            right: 0;
+            color: #46c6fe;
+            height: 21px;
+            font-size: 15px;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+
+<div class="row row-icon row-input flex">
+    <i class="icon iconfont-order-telephone"></i>
+    <input id="phone" type="tel" class="flex-1" placeholder="请输入您的手机号码" name="phone" maxlength="11" max="99999999999" autocomplete="off" />
+</div>
+<div class="row row-icon row-input flex">
+    <i class="icon iconfont-order-user"></i>
+    <input id="name" type="text" class="flex-1" placeholder="请输入您的真实姓名" name="name" maxlength="11" />
+</div>
+<div class="row row-icon row-input flex hide select">
+    <i class="icon iconfont-order-address"></i>
+    <span class="chooseaddress">上海市静安区华山路2号高和大厦1003</span>
+    <select id="address" name="address" placeholder="请选择服务地址">
+        <option value="300元/次">上海市静安区华山路2号高和大厦1003</option>
+        <option value="300元/次">深圳福田区深南大道6009号NEO大厦C栋19FG</option>
+        <option value="300元/次">杭州市江干区景昙路9号西子国际T3B 901室</option>
+    </select>
+</div>
+<div class="row row-icon row-input flex hide row-datetime">
+    <i class="icon iconfont-order-time"></i>
+    <div class="flex-1 select btn">
+        <span class="placeholder">选择日期</span>
+        <select id="date" name="date" placeholder="选择日期"></select>
+    </div>
+    <div class="flex-1 select btn">
+        <span class="placeholder">选择时段</span>
+        <select id="time" name="time" placeholder="选择时段"></select>
+    </div>
+</div>
+
+<footer class="footer">
+    <button id="book-confirm" class="btn btn-primary clickable">确定预约</button>
+</footer>
+
+<script id="tpl-ways" type="text/html">
+    {{if ways}}
+    <div class="ways flex">
+        {{each ways as w}}
+        <a class="way flex-1-25 clickable" data-name="w.name" data-price="w.discount || w.price" data-address="{{w.city && w.address ? w.city + w.address : ''}}">
+            <h6>{{w.title}}</h6>
+            <span>{{(w.discount || w.price || '') }}</span>
+        </a>
+        {{/each}}
+        <div class="ways-mark"></div>
+    </div>
+    {{/if}}
+</script>
+
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js?v=1"></script>
+<script src="/static/common/js/user.service.js?v=1"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/servicemall/js/services.js"></script>
+<script src="/static/servicemall/views/js/book.js"></script>
+<!--
+<script>
+    wechat.share();
+
+    $(function () {
+        var user = Services.getChannelUser() || User.getUser();
+
+        if (!user) {
+            User.redirectToLoginPage('/static/servicemall/');
+            return;
+        }
+
+        var queryParams = Utils.getQueryParams();
+        var serviceName;
+
+        $('#phone').val(user.mobilenum);
+        // $('#name').val(user.realname);
+
+        var promise = Services.getService().then(function (result) {
+            //result.doctors = JSON.parse(result.doctors);
+            result.flows = JSON.parse(result.flows);
+            result.ways = JSON.parse(result.ways);
+            result.isRecommended = Services.isRecommended();
+            result.suppliers = JSON.parse(result.suppliers);
+            switch (result.categorytype) {
+                case 'A':
+                    $('.row-datetime').removeClass('hide');
+                    //临时添加
+                    result.address = ["上海市静安区华山路2号高和大厦1003","1"];
+                    $.each(result.ways, function (index, way) {
+                        if (way.scode != 'phone') {
+                            way.pays = [{price: way.price, address: result.address}];
+                        }
+                    });
+
+                    break;
+                case 'B':
+                    $('.row-datetime').removeClass('hide');
+
+                    var doctor;
+
+                    //for (var i = 0, n = result.doctors.length; i < n; i++) {
+                    //doctor = result.doctors[i];
+                    doctor = result.doctors;
+
+                    if (doctor.id == queryParams.doctor || !queryParams.doctor) {
+                        $.each(result.ways, function (index, way) {
+                            if (way.scode != 'phone') {
+                                way.pays = [{price: way.price, address: doctor.address}];
+                            }
+                        });
+                        break;
+                    }
+                    //}
+
+                    break;
+                case 'C':
+                case 'E':
+                    $('.row-datetime').removeClass('hide');
+
+                    var pays = $.map(result.suppliers || [], function (s, i) {
+                        var price = s.discount || s.price;
+                        return {price: price, unit: price > 0 ? s.unit : '线下支付', address: s.address};
+                    });
+
+                    result.ways = [{
+                        scode: 'clinic',
+                        title: '实体门诊',
+                        price: pays[0] ? pays[0].price : '',
+                        unit: pays[0] ? pays[0].unit : '',
+                        pays: pays
+                    }];
+                    break;
+            }
+
+            serviceName = result.servicename;
+            document.title += '-' + serviceName;
+            $('body').prepend(template('tpl-ways', result));
+
+            if (result.ways) {
+                var $ways = $('.ways');
+
+                $ways.find('.way').each(function (i) {
+                    $(this).data('way', result.ways[i]).on('click', function () {
+                        selectWay(i);
+                    });
+                });
+
+                $ways.find('.ways-mark').css('width', 100 / result.ways.length + '%');
+            }
+
+            return result.ways;
+        });
+
+        $.when(promise, Services.getServiceAvaliableTimes()).then(function (ways, avaliableTimes) {
+            if (!ways || !avaliableTimes) {
+                return;
+            }
+
+            var wayTimes = {};
+
+            $.each(ways, function (i, w) {
+                wayTimes[w.scode] = w;
+            });
+
+            $.each(avaliableTimes.waystatus, function (i, d) {
+                if (wayTimes[d.waycode]) {
+                    wayTimes[d.waycode].times = d.availabledatetime;
+                }
+            });
+
+            selectWay(0);
+        });
+
+        $('select').on('change', function () {
+            var $this = $(this);
+            var $prev = $this.prev();
+
+            if ($this.val()) {
+                $prev.removeClass('placeholder').text($this.find('option:selected').text());
+            }
+            else {
+                $prev.addClass('placeholder').text($this.attr('placeholder'));
+            }
+        });
+
+        $('#date').on('change', function () {
+            var times = [''].concat($(this).find('option:selected').data('times'));
+            var $time = $('#time');
+
+            $time.html($.map(times, function (d) {
+                if (d) {
+                    return '<option value="' + d.period + '"' + (d.available ? '' : ' disabled') + '>' + d.period + (d.available ? '' : ' (已被预约)') + '</option>';
+                }
+
+                return '<option value="">' + $time.attr('placeholder') + '</option>';
+            })).val('').trigger('change');
+        });
+
+        $('#time').on('click', function (evt) {
+            if (!$('#date').val()) {
+                aid.tip.show('请先选择日期！');
+                evt.preventDefault();
+            }
+        });
+
+        $('#book-confirm').on('click', function() {
+            var $this = $(this);
+            var $phone = $('#phone');
+            var $name = $('#name');
+            var $address = $('#address');
+            var $date = $('#date');
+            var $time = $('#time');
+
+            var wayObject = $('.ways .way.active').data('way') || {};
+            var isAddressVisible = $address.parents('.row').is(':visible');
+            var isDatetimeVisible = $date.parents('.row').is(':visible');
+
+            if (!$phone.val()) {
+                aid.tip.show('请输入手机号码');
+                return;
+            }
+            if ($phone.val().length != 11 || $phone.val().charAt(0) != '1') {
+                aid.tip.show('手机号码格式不正确');
+                return;
+            }
+            if (!$name.val()) {
+                aid.tip.show('请输入真实姓名');
+                return
+            }
+            if (isAddressVisible && !$address.val()) {
+                aid.tip.show('请选择服务地址');
+                return;
+            }
+            if (isDatetimeVisible && (!$date.val() || !$time.val())) {
+                aid.tip.show('请选择预约时间');
+                return;
+            }
+
+            var params = {
+                serviceid:queryParams.id,
+                categorytype: queryParams.categorytype,
+                pname: serviceName,
+                sway: wayObject.scode,
+                price: wayObject.price,
+                name: $name.val(),
+                phone: $phone.val(),
+                addr: isAddressVisible ? $address.find('option:selected').text() : null,
+                time: isDatetimeVisible ? $date.val() + ' ' + $time.val() : null,
+            };
+
+            Services.book(params).then(function (result) {
+                if (result.isFromChannel) {
+                    aid.alert.show('预约成功！');
+                }
+                else if (result.isInApp) {
+                    aid.alert.show('预约成功！为保证服务质量，爱丁医生稍后将与您联系，向您解释服务细节。');
+                }
+                else if (result.orderstatus == 2) {
+                    location.href = '/static/common/pay/order.html?servicename='+serviceName+'&orderid='+result.orderid+'_servicemall'+'&totalfee='+wayObject.price+'&stat='+result.stat;
+                }
+                else {
+                    aid.alert.show('预约成功！为保证服务质量，爱丁医生稍后将与您联系，向您解释服务细节。', function () {
+                        location.href = '../';
+                    });
+                }
+            });
+        });
+
+        function selectWay(index) {
+            var $ways = $('.ways');
+            var $way = $('.ways').find('.way').removeClass('active');
+
+            var $address = $('#address');
+            var $date = $('#date');
+            var $time = $('#time');
+
+            var wayObject = $way.eq(index).addClass('active').data('way') || {};
+
+            $ways.find('.ways-mark').css('left', 100 * index / $way.length + '%');
+
+            if (wayObject.pays) {
+                /*
+                 $address.html($.map(wayObject.pays, function (d) {
+                 return '<option value="' + d.price + '">' + d.address + '</option>';
+                 }));
+
+                 if (wayObject.pays.length == 1) {
+                 $address.prev().removeClass('placeholder').text(wayObject.pays[0].address);
+                 $address.val(wayObject.pays[0].price);
+                 }
+                 else {
+                 $address.prev().addClass('placeholder').text($address.attr('placeholder'));
+                 $address.val('');
+                 }
+                 */
+
+                $address.parents('.row').removeClass('hide');
+            }
+            else {
+                /*
+                 $address.prev().addClass('placeholder').text($address.attr('placeholder'));
+                 $address.html('').val('');
+                 $address.parents('.row').addClass('hide');
+                 */
+            }
+
+            $date.val('').html('').prev().addClass('placeholder').text($date.attr('placeholder'));
+            $time.val('').html('').prev().addClass('placeholder').text($time.attr('placeholder'));
+
+            if (wayObject.times) {
+                var times = [{clock: []}].concat(wayObject.times);
+                $date.html($.map(times, function (d) {
+                    if (d.date) {
+                        var dates = d.date.split('-');
+                        return '<option value="' + d.date + '">' + new Date(dates[0], dates[1] - 1, dates[2]).format('MM月DD日 周E') + '</option>';
+                    }
+
+                    return '<option value="">' + $date.attr('placeholder') + '</option>';
+                }));
+
+                $date.find('option').each(function (i) {
+                    $(this).data('times', times[i].clock);
+                });
+            }
+        }
+
+    });
+</script>
+-->
+
+</body>
+
+</html>

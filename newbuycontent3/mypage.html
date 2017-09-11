@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <style>
+        body{
+            background-color: #f4f4f4;
+            font-family: Microsoft YaHei;
+        }
+        .infousername{
+            height:200px;
+        }
+        .infousername .headpic{
+            width:90px;
+            height:90px;
+            border-radius:85px;
+            background:url(img/user.png) no-repeat center;
+        }
+        .infousername .headpic img{
+            width:90px;
+            height:90px;
+            border: 1px solid #ccc;
+            border-radius:85px;
+        }
+        .uername{
+            margin-top:30px;
+             font-size: 20px;
+        }
+        .myselforder{
+            line-height: 60px;
+            border-bottom:1px solid #f4f4f4;
+            padding:0px 30px 0px 20px;
+            position: relative;
+            background-color: #fff;
+            font-size:16px;
+        }
+        .myselforder i{
+            display: inline-block;
+            line-height: 60px;
+            position: absolute;
+            top:17px;
+            right:3px;
+        }
+        .myselforder i img{
+            width:25px;
+            height:22px;
+        }
+        .bottomflex{
+            width:100%;
+            height:60px;
+            position:fixed;
+            bottom: 0;
+            background-color: #fff;
+            border-top: 1px solid #eee;
+        }
+        .bottomflex i img{
+            display: inline-block;
+            width:23px;
+            /*height:23px;*/
+        }
+        .active{
+            color: #1296db;
+        }
+        .bottomnav{
+            width:100%;
+            height:60px;
+            position:fixed;
+            bottom: 0;
+        }
+        .bottomnav .iclass{
+            width: 16px;
+            height: 16px;
+            border-radius: 10px;
+            background-color: red;
+            color: #fff;
+            text-align: center;
+            display: block;
+            position: absolute;
+            left: 51%;
+            top: 6px;
+            z-index: 1;
+            /*border: 1px solid #fff;*/
+        }
+    </style>
+</head>
+<body>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-101665192-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+    <div>
+        <div id="info">
+            <!--<div class="infousername" flex="dir:top cross:center main:center">-->
+                <!--<div class="headpic"></div>-->
+                <!--<p class="uername">某某人</p>-->
+            <!--</div>-->
+        </div>
+
+        <a href="myorder.html">
+            <div flex="main:justify cross:center" class="myselforder">
+                <div>我的订单</div>
+                <div>全部订单 <i><img src="img/righttop.png" alt=""></i></div>
+            </div>
+        </a>
+        <a href="customer.html">
+            <div flex="main:justify cross:center" class="myselforder">
+            <div>我的客服</div>
+            <div> <i><img src="img/righttop.png" alt=""></i></div>
+           </div>
+        </a>
+    </div>
+<div class="bottomnav">
+    <i class="iclass"></i>
+    <div flex="main:left box:mean" class="bottomflex">
+            <div class="adiv"  flex="dir:top main:center cross:center">
+            <i><img src="img/homepage.png" alt=""></i>
+            <span style="padding-top: 5px;">首页</span>
+            </div>
+        <a href="buycar.html" class="myself" flex="dir:top main:center cross:center">
+            <i><img src="img/carnav.png" alt=""></i>
+            <span style="padding-top: 5px;padding-left:5px;">购物车</span>
+        </a>
+        <div  class="myself" flex="dir:top main:center cross:center">
+            <i><img src="img/mycolor.png" alt=""></i>
+            <span style="padding-top: 5px;" class="active">我的</span>
+        </div>
+    </div>
+</div>
+
+    <script type="text/html" id="infousername">
+        <div class="infousername" flex="dir:top cross:center main:center">
+            <div class="headpic"><img src="{{headimgurl}}" alt=""></div>
+            <p class="uername">{{nickname}}</p>
+        </div>
+    </script>
+
+    <script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+    <script src="/static/common/lib/template.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/newwechat.js"></script>
+    <script src="/static/newbuycontent/js/common.js"></script>
+    <script src="js/mypageinfo.js"></script>
+
+
+</body>
+</html>

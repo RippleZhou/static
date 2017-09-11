@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+    <title>爱丁医生</title>
+    <script type="text/javascript">
+        var DLurls={
+            android_doctor:'http://fir.im/aidingexpert',
+            iPhone_doctor:'http://m.ibabycenter.com/help/ios.html',
+            android_patient:1,
+            iPhone_patient:1
+        }
+        debugger;
+        var browser={
+            platform:function(){
+                var u = navigator.userAgent,app = navigator.appVersion
+                return {
+                    //android:u.indexOf('Android')>-1 || u.indexOf('linux')>-1,
+                    android:u.indexOf('iPhone')==-1,
+                    iPhone:u.indexOf('iPhone')>-1
+                };
+            }(),
+        }
+        var appType={
+            doctor:location.href.indexOf("patient")==-1,
+            patient:location.href.indexOf('patient')>-1
+        }
+        var url = DLurls.android_doctor;
+        if(browser.platform.iPhone && appType.doctor){
+            url = DLurls.iPhone_doctor;
+        }else if(browser.platform.android && appType.doctor){
+            url = DLurls.android_doctor;
+        }
+        location.href=url;
+    </script>
+</head>
+</html>

@@ -1,0 +1,16 @@
+{
+    "pcode": "C10",
+    "name": "IVF术前体检全套",
+    "cover": "../img/services/C10.jpg",
+    "suppliers": [
+        {
+            "hospital": "上海爱丁妇科门诊部",
+            "address": "上海市静安区华山路2号高和大厦1003",
+            "price": 0,
+            "discount": 0,
+            "unit": "根据实际情况选择检查项后线下支付"
+        }
+    ],
+    "introduction": "无需排队，一站式服务，只需提前预约，10个工作日即可完成试管婴儿术前所有检查报告。",
+    "contents": "IVF术前体检全套"
+}

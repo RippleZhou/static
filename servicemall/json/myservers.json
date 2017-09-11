@@ -1,0 +1,98 @@
+{
+    "status": 0,
+    "errmsg": "成功",
+    "content": {
+        "userid": 206189,
+        "list": [{
+            "sprogram": "A01",
+            "appointmenttime": "2015-10-23 9:30-10:00",
+            "saddress": "",
+            "status": "2",
+            "doctor": null,
+            "orderid": "280",
+            "sname": "个性化备孕指导",
+            "category": "A"
+        }, {
+            "sprogram": "A01",
+            "appointmenttime": "2015-10-23 9:30-10:00",
+            "saddress": "",
+            "status": "2",
+            "doctor": null,
+            "orderid": "281",
+            "sname": "个性化备孕指导",
+            "category": "A"
+        }, {
+            "sprogram": "A01",
+            "appointmenttime": "2015-10-28 19:00-20:00",
+            "saddress": "",
+            "status": "2",
+            "doctor": null,
+            "orderid": "282",
+            "sname": "个性化备孕指导",
+            "category": "A"
+        }, {
+            "sprogram": "A01",
+            "appointmenttime": "2015-10-27 19:00-20:00",
+            "saddress": "",
+            "status": "2",
+            "doctor": null,
+            "orderid": "283",
+            "sname": "个性化备孕指导",
+            "category": "A"
+        }, {
+            "sprogram": "A01",
+            "appointmenttime": "2015-10-28 19:00-20:00",
+            "saddress": "",
+            "status": "2",
+            "doctor": null,
+            "orderid": "284",
+            "sname": "个性化备孕指导",
+            "category": "A"
+        }, {
+            "sprogram": "A01",
+            "appointmenttime": "2015-10-23 10:00-10:30",
+            "saddress": "",
+            "status": "2",
+            "doctor": null,
+            "orderid": "285",
+            "sname": "个性化备孕指导",
+            "category": "A"
+        }, {
+            "sprogram": "C01",
+            "appointmenttime": "2015-10-27 19:00-20:00",
+            "saddress": "上海市静安区华山路2号高和大厦1003",
+            "status": "2",
+            "doctor": null,
+            "orderid": "302",
+            "sname": "夫妻孕前体检",
+            "category": "C"
+        }, {
+            "sprogram": "D01",
+            "appointmenttime": "null null",
+            "saddress": "",
+            "status": "4",
+            "doctor": null,
+            "orderid": "303",
+            "sname": "试管直通车",
+            "category": "D"
+        }, {
+            "sprogram": "C02",
+            "appointmenttime": "2015-10-28 9:30-10:00",
+            "saddress": "上海市静安区华山路2号高和大厦1003",
+            "status": "2",
+            "doctor": null,
+            "orderid": "304",
+            "sname": "超声下子宫输卵管检查",
+            "category": "C"
+        }, {
+            "sprogram": "D02",
+            "appointmenttime": "null null",
+            "saddress": "",
+            "status": "4",
+            "doctor": null,
+            "orderid": "305",
+            "sname": "美国试管婴儿计划",
+            "category": "D"
+        }]
+    }
+}

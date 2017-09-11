@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>宫寒自测表</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/evaluate/css/main.css">
+    <style>
+        #submit #btn {
+            background: #FF9EBF;
+        }
+        body {
+            background: #FF9EBF;
+        }
+    </style>
+</head>
+<body>
+<div id="nofinish">请把问卷选完，再操作</div>
+<div id="content">
+    <p id="introduce">
+    </p>
+    <h1 class="title">
+        是不是"宫寒"，一测便知！
+    </h1>
+    <div id="questions">
+    </div>
+    <div id="submit">
+        <div onclick="check()" id="btn">提交</div>
+    </div>
+</div>
+<script type="text/html" id="qhtml">
+    {{each evaluteQuestions as val index}}
+    <p class="question type{{val.type}}">
+        {{val.orders}}、{{val.content}}
+    </p>
+    {{if val.singleselection == 0}}
+    <div class="answers type{{val.type}}">
+        {{each val.options as ans}}
+        <label>
+            <p><span class="radio" optionid="{{ans.id}}" questionid="{{val.id}}"></span>{{ans.content}}</p>
+        </label>
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="answers type{{val.type}}">
+        {{each val.options as ans}}
+        <label>
+            <p><span class="radio more" optionid="{{ans.id}}" questionid="{{val.id}}"></span>{{ans.content}}</p>
+        </label>
+        {{/each}}
+    </div>
+    {{/if}}
+    {{/each}}
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.0111"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/evaluate/js/selected.js"></script>
+<script src="/static/evaluate/E/E011/js/index.js"></script>
+
+</body>
+</html>

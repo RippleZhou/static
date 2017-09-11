@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者近况图表</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <style>
+        .container {
+            height: 100vh;
+            padding: 15px;
+        }
+        .container > div.tab {
+            background: #fff;
+            padding-bottom: 15px;
+        }
+        .tab span:first-of-type {
+            border-left: 1px solid #ddd;
+        }
+        .tab span {
+            width: 60px;
+            line-height: 25px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-left: 0;
+        }
+        .tab span.active {
+            background: deepskyblue;
+            border-color: deepskyblue;
+            color: #fff;
+        }
+        .container > div {
+            background: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<div class="container" flex="dir:top">
+    <div class="tab" flex="main:center">
+        <span class="active">体重</span>
+        <span>BMI</span>
+        <span>腰围</span>
+        <span>腰臀比</span>
+        <span>体温</span>
+    </div>
+    <div flex-box="1">
+        <div id="main" style="width: 100%;height: 80vh;overflow: auto"></div>
+    </div>
+</div>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="echarts.min.js"></script>
+<script>
+    (function () {
+        var Utils = window.Utils;
+        var size=5;
+        if(Utils.queryParams.channel=='admin'){
+            size=30;
+        }
+        var chart = {
+            type: 10,
+            start: 0,
+            size:size,
+            set: [{
+                yName: '体重(kg)',
+                seriesName: '体重',
+                key: 'weight',
+                miny:0,
+            }, {
+                yName: 'BMI',
+                seriesName: 'BMI',
+                key: 'bmi',
+                miny:0,
+            }, {
+                yName: '腰围(cm)',
+                seriesName: '腰围',
+                key: 'waist',
+                miny:0,
+            }, {
+                yName: '腰臀比',
+                seriesName: '腰臀比',
+                key: 'whr',
+                miny:0,
+            },
+                {
+                    yName: '体温',
+                    seriesName: '体温',
+//                    key: 'tem'，
+                    miny:35,
+                }],
+        }
+        getData(0);
+        $('.tab>span').click(function () {
+            if($(this).hasClass('active')) {
+                return false
+            } else {
+                $('.tab>span').removeClass('active');
+                $(this).addClass('active');
+                var i  = $(this).index('.tab>span');
+                getData(i);
+            }
+        })
+        //获取数据
+        function getData(nth) {
+            $('#action').remove();
+            var myChart = echarts.init(document.getElementById('main'));
+            var dates = [], weights = [];
+
+            if(nth<4){
+                var params = {
+                    type: chart.type,
+                    start: chart.start,
+                    size: chart.size,
+                    key: chart.set[nth].key
+                };
+            }else{
+                var params = {
+                    type: 7,
+                    start: chart.start,
+                    size: chart.size
+                };
+            }
+            Utils.ajax.get('/aiding-web/api/doctor/patients/weights/' + Utils.queryParams.patientid,params).then(function (rel) {
+                if (rel.length > 0) {
+                    // 基于准备好的dom，初始化echarts实例
+                    for (var i = 0; i < rel.length; i++) {
+                        var now = new Date(rel[i].updateAt);
+                        if (String(now) == 'Invalid Date') { //ios日期显示 bug
+                            now = new Date(rel[i].updateAt.replace(/-/g, '/'));
+                        }
+                        var date = now.getMonth() + 1 + "月" + now.getDate() + '日';
+                        dates.unshift(date);
+                        weights.unshift(rel[i].detail);
+                    }
+                    // 指定图表的配置项和数据
+                    var option = {
+                        grid: {
+                            show: false
+                        },
+                        xAxis: {
+                            nameTextStyle: {
+                                color: '#fff'
+                            },
+                            data: dates,
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#fff'
+                                }
+                            },
+                            axisTick: {
+                                boundaryGap: true,
+                                inside: true,
+                                length: 4,
+                                lineStyle: {
+                                    color: '#fff'
+                                },
+                                alignWithLabel: true
+                            },
+                            axisLabel: {
+                                rotate: -60,
+                                interval: 0
+                            },
+                        },
+                        yAxis: {
+                            name: chart.set[nth].yName,
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#fff'
+                                }
+                            },
+                            splitLine: {
+                                show: false
+                            },
+                            axisTick: {
+                                boundaryGap: true,
+                                inside: true,
+                                length: 4,
+                                lineStyle: {
+                                    color: '#fff'
+                                }
+                            },
+                            axisLabel: {
+                                rotate: 60
+                            },
+                            min:chart.set[nth].miny
+                        },
+                        series: [{
+                            name: chart.set[nth].seriesName,
+                            type: 'line',
+                            show: false,
+                            symbol: 'circle',
+                            symbolSize: 10,
+                            data: weights,
+                            //smooth: true,
+                            connectNulls: true,
+                            itemStyle: { //折点
+                                normal: {
+                                    label: {
+                                        show: true
+                                    }
+                                },
+//                            emphasis: {
+//                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+//                                    offset: 0, color: 'red' // 0% 处的颜色
+//                                }, {
+//                                    offset: 1, color: 'blue' // 100% 处的颜色
+//                                }], false),
+//                            }
+                            },
+                            lineStyle: { //折线
+                                normal: {
+                                    color: '#fff',
+                                    width: 1,
+                                    shadowColor: 'rgba(250, 250, 250, 0.5)',
+                                    shadowOffsetY: 1,
+                                    opacity: 0.8,
+                                    shadowOffsetX: 15,
+                                    shadowBlur: 2
+                                }
+                            }
+                        }],
+                        textStyle: {
+                            color: '#fff',
+                            fontStyle: 'italic',
+                            fontWeight: 'lighter'
+                        },
+                        tooltip: {
+                            show: false,
+                            triggerOn: false
+                        },
+                        color: ['#fff'],
+                        backgroundColor: "deepskyblue",
+                        fontSize: "12px",
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                } else {
+                    var action = document.createElement('p');
+                    action.id = 'action';
+                    action.innerHTML = '目前还没有当前患者的'+chart.set[nth].seriesName+'数据';
+                    action.style.color = '#fff';
+                    action.style.fontSize = '14px';
+                    action.style.padding = "15px";
+                    $('#main').html(action);
+                }
+            })
+        }
+    })()
+
+
+
+</script>
+</body>
+</html>

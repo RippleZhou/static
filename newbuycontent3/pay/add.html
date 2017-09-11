@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>收货地址</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <link rel="stylesheet" href="LArea-master/css/LArea.css">
+    <link rel="stylesheet" href="/static/newbuycontent/pay/css/main.css">
+</head>
+<body>
+<ul class="addressadd">
+    <!--<li  flex="box：first">-->
+        <!--<span style="margin-right: 10px;">收货人:</span>-->
+        <!--<input type="text" id="nameadd" placeholder="名字">-->
+    <!--</li>-->
+    <!--<li flex="box：first">-->
+        <!--<span style="margin-right: 10px;">联系电话:</span>-->
+        <!--<input type="number" id="phoneadd" placeholder="手机或固定电话">-->
+    <!--</li>-->
+    <li flex="box：first">
+        <span style="margin-right: 10px;width: 90px;">收货地址:</span>
+        <input id="demo1" type="text" readonly placeholder="省/市/区或县"  value="" size="40"/>
+        <input id="value1" type="hidden" value="20,234,504" size="40"/>
+    </li>
+    <li flex="box：first">
+        <span style="margin-right: 10px;width: 90px;">详细地址:</span>
+        <input type="text" id="messageadd" placeholder="街道门牌信息" size="40"/>
+    </li>
+</ul>
+<p class="baocun" onclick="baocun()">保存</p>
+<!--<p class="quxaio" onclick="quxiao()">取消</p>-->
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+
+<script src="LArea-master/js/LAreaData1.js"></script>
+<script src="LArea-master/js/LAreaData2.js"></script>
+<script src="LArea-master/js/LArea.js"></script>
+
+
+<script>
+    var Utils = window.Utils;
+
+    //默认地址参数
+//    var paramsaddress=Utils.storage.get('addressall');
+    //    if(paramsaddress){
+    //
+    //    }
+
+    var area1 = new LArea();
+    area1.init({
+        'trigger': '#demo1', //触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+        'valueTo': '#value1', //选择完毕后id属性输出到该位置
+        'keys': {
+            id: 'id',
+            name: 'name'
+        }, //绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+        'type': 1, //数据源类型
+        'data': LAreaData //数据源
+    });
+
+
+    function baocun(){
+//        var nameadd=document.getElementById("nameadd").value;
+//        var phoneadd=document.getElementById("phoneadd").value;
+        var value1=document.getElementById("value1").value;
+        var messageadd=document.getElementById("messageadd").value;
+
+
+        if(value1==""||messageadd==""){
+            aid.alert.show('提示：请填写完整~');
+        }else{
+            var address=value1+messageadd;
+            var paramsaddress={
+//                nameadd:nameadd,
+//                phoneadd:phoneadd,
+                address:address
+            }
+            Utils.storage.set('addressall', paramsaddress);
+
+            var queryparams = Utils.queryParams;
+
+            if (queryparams.servicenameother) {
+                location.replace( "/static/newbuycontent/pay/order.html?patientid=" + queryparams.patientid + "&servicenameother=" +
+                    queryparams.servicenameother + '&name=' + queryparams.name + "&mobile=" + queryparams.mobile + "&wxphone=" + queryparams.wxphone + '&totalfee=' +
+                    queryparams.totalfee + '&patientid=' + queryparams.patientid  +
+                    '&business=' + queryparams.business + '&returnurl=' + queryparams.returnurl+"&logisticstatus="+queryparams.logisticstatus+"&cartIds="+queryparams.cartIds);
+
+            }else{
+                location.replace("/static/newbuycontent/pay/order.html?serviceid=" + queryparams.serviceid + "&servicename=" +
+                    queryparams.servicename +"&price="+queryparams.price+"&count="+queryparams.count+ '&name=' + queryparams.name + "&mobile=" + queryparams.mobile + "&wxphone=" + queryparams.wxphone + '&totalfee=' +
+                    queryparams.totalfee + '&patientid=' + queryparams.patientid + '&imgsrc=' + queryparams.imgsrc +
+                    '&business=' + queryparams.business + '&returnurl=' + queryparams.returnurl+'&ordercount='+queryparams.ordercount+"&logisticstatus="+queryparams.logisticstatus)
+
+            }
+
+        }
+        }
+
+
+//    function quxiao(){
+//        location.replace('/static/newbuycontent/pay/order.html')
+//    }
+
+</script>
+
+</body>
+</html>

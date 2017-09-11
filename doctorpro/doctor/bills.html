@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!--检测登陆状态,请勿改变位置-->
+    <script src="/static/doctorpro/js/state.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱丁医生</title>
+
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/doctorpro/css/doctor.css">
+
+    <style>
+        .partB {
+            background: #eee;
+        }
+        .partB>div{
+            background: #fff;
+            height: 60px;
+            line-height: 20px;
+            position: relative;
+            padding: 10px 15px 10px 65px;
+        }
+        div[class^='month'] {
+            background: #eee;
+            padding: 0 15px;
+            font-size: 15px;
+            height: 40px;
+            line-height: 40px;
+            display: none;
+        }
+        .partB span[class^='circle']{
+            left: 15px;
+        }
+        .block {
+            display: block!important;
+        }
+    </style>
+</head>
+<body>
+<!--
+<div class="baseContainer">2016年9月</div>
+-->
+<div class="partB" id="bills">
+</div>
+<div class="nobill">流水为空,尚无记录!</div>
+<div class="nomore">我可是有底线的哦~</div>
+<script id="billsList" type="text/html">
+    {{each list as val index}}
+    <div class="month{{val.month}}">{{val.month}}</div>
+    {{if val.stat == '3'}}
+    <div class="listA">
+        <span class="circleA">收入</span>
+        <p class="fl-l">
+            <span>{{val.servicename}}</span><br>
+            <span>{{val.createtime}}</span>
+        </p>
+        <p class="fl-r">
+            <span>{{val.income}}元</span><br>
+            <span>工资结算</span>
+        </p>
+    </div>
+    {{else}}
+    <div class="listA">
+        <span class="circleA">收入</span>
+        <p class="fl-l">
+            <span>{{val.servicename}}</span><br>
+            <span>{{val.createtime}}</span>
+        </p>
+        <p class="fl-r">
+            <span>{{val.income}}元</span><br>
+            {{if val.stat == '1'}}
+            <span>患者未付款</span>
+            {{else if val.stat == '2'}}
+            <span>已付款</span>
+            {{/if}}
+        </p>
+    </div>
+    {{/if}}
+    {{/each}}
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/doctorpro/js/doctor.js"></script>
+<script type="text/javascript">
+    var limit = 10,t = true,offset = 0;
+    var total,service;
+    var servicename = location.search.split('=')[1];
+    if (servicename) {
+        service = '&servicename='+servicename;
+    } else {
+        service = '';
+    }
+    var dataUrl = '/IbabyWebService/DServiceCooper/IncomeList?doctorid='+baseInfor.docid;
+    var dataUrl = dataUrl+'&limit='+limit+'&offset='+offset+service;
+    Utils.ajax.get(dataUrl).then(function (rel) {
+        var data = rel;
+        total = data.total;
+        if (total == 0) {
+            $('.nobill').css('display','block');
+        }
+        for (i=0;i<data.list.length;i++){
+            var month = data.list[i].createtime.substring(0,7);
+            data.list[i].month= month;
+        }
+        if (total > offset + limit){
+            t = true;
+        }else {
+            t = false;
+        }
+        offset = offset + data.list.length;
+        var html = template('billsList',data);
+        $('.partB').append(html);
+        for (j=0;j<data.list.length;j++){
+            var eClass = '.month' + data.list[j].month;
+            $(eClass).eq(0).addClass('block');
+        }
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var main = $("#main");
+        $(window).scroll(function(){
+            if($(document).height() - $(this).scrollTop() - $(this).height()<=0) {
+                if (t == true){
+                    var dataUrl = '/IbabyWebService/DServiceCooper/IncomeList?doctorid='+baseInfor.docid;
+                    dataUrl = dataUrl + "&limit=" + limit + "&offset=" + offset+service;
+                    Utils.ajax.get(dataUrl).then(function (rel) {
+                        var data = rel;
+                        total = data.total;
+                        for (i=0;i<data.list.length;i++){
+                            var month = data.list[i].createtime.substring(0,7);
+                            data.list[i].month= month;
+                        }
+                        if (total > offset + limit){
+                            t = true;
+                        }else {
+                            t = false;
+                        }
+                        offset = offset + data.list.length;
+                        var html = template('billsList',data);
+                        $('.partB').append(html);
+                        for (j=0;j<data.list.length;j++){
+                            var eClass = '.month' + data.list[j].month;
+                            $(eClass).eq(0).addClass('block');
+                        }
+                    })
+                }else{
+                    $('.nomore').css('display','block');
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

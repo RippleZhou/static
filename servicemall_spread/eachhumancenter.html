@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+	<title>爱丁服务</title>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="爱丁网，上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查"/>
+	<meta name="description" content="爱丁网是专业为准妈妈提供上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查等怀孕服务的知识网站，其中还包括相关资讯频道，提供专业、舒适、贴心的全程辅导与帮助，直到您愉悦地实现优质怀孕。" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+	<meta name="x5-fullscreen" content="true"/>
+	<meta name="full-screen" content="yes"/>
+	<meta name="screen-orientation" content="portrait"/>
+	<meta name="x5-orientation" content="portrait"/>
+	<link rel="stylesheet" type="text/css" href="http://www.ibabycenter.com/wwwfront/css/unify.css"/>
+	<style>
+		@font-face {
+			font-family: 'Stuff';
+			src:url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.eot?dj7j9f');
+			src:url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.eot?#iefixdj7j9f') format('embedded-opentype'),
+			url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.woff?dj7j9f') format('woff'),
+			url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.ttf?dj7j9f') format('truetype'),
+			url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.svg?dj7j9f#aiding') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Misc';
+			src:url('http://www.ibabycenter.com/front/font/Misc/fonts/Misc.eot?dj7j9f');
+			src:url('http://www.ibabycenter.com/front/font/Misc/fonts/Misc.eot?#iefixdj7j9f') format('embedded-opentype'),
+			url('http://www.ibabycenter.com/front/font/Misc/fonts/Misc.woff?dj7j9f') format('woff'),
+			url('http://www.ibabycenter.com/front/font/Misc/fonts/Misc.ttf?dj7j9f') format('truetype'),
+			url('http://www.ibabycenter.com/front/font/Misc/fonts/Misc.svg?dj7j9f#aiding') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Instruct';
+			src:url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.eot?dj7j9f');
+			src:url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.eot?#iefixdj7j9f') format('embedded-opentype'),
+			url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.woff?dj7j9f') format('woff'),
+			url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.ttf?dj7j9f') format('truetype'),
+			url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.svg?dj7j9f#aiding') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		body{background:#efeff4}
+		section{background:#fff;margin-top:20px;font-size:16px}
+		section a{display:block}
+		section a:not(:last-child){margin-bottom:-1px}
+		.more{position:relative}
+		section p{height:48px;line-height:48px;margin-left:15px}
+		section .more p{padding-right:30px}
+		section a:not(:last-child) p{border-bottom:1px solid #edecea}
+		section i{position:absolute;top:50%;right:16px;margin-top:-4px;width:6px;height:6px;border-bottom:2px solid #c9c8ce;border-right:2px solid #c9c8ce;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}
+		#logout{background:#fff;color:#f66;height:48px;line-height:48px;text-align:center;font-size:16px;margin-top:10px;display:block}
+		#logout:active{color:rgba(255,102,102,.5)}
+		footer{position:fixed;bottom:0;left:0;right:0;height:49px;border-top:1px solid #d6d7dc;background:#f8f8f8;display:-webkit-box;display:box;display:-webkit-flex;display:flex;text-align:center}
+		footer a{-webkit-box-flex:1;box-flex:1;-webkit-flex:1;flex:1;color:#666;display:block}
+		footer a.now,footer a:active{color:#46c6fe}
+		footer i{height:34px;box-sizing:border-box;padding-top:5px;display:block;font-size:26px}
+		#tab-home i:after{content:'\e900';font-family:Stuff}
+		#tab-home.now i:after,#tab-home:active i:after{content:'\e901'}
+		#tab-data i:after{content:'\e900';font-family:Misc}
+		#tab-data.now i:after,#tab-data:active i:after{content:'\e901'}
+		#tab-center i:after{content:'\e900';font-family:Instruct}
+		#tab-center.now i:after,#tab-center:active i:after{content:'\e901'}
+		footer span{font-size:10px;display:block}
+	</style>
+</head>
+
+<body>
+<div id="center" style="display:none">
+	<section>
+		<a>
+			<p>您好</p>
+		</a>
+		<a class="more" href="#rule">
+			<p>推广规则</p>
+			<i></i>
+		</a>
+	</section>
+	<a href="javascript:localStorage.doctorid='';location.href='login.html';" id="logout">退出</a>
+</div>
+<div id="something" style="display:none;background:#fff;padding:15px;font-size:14px">
+	<span style="font-weight:bold">推广流程：</span><br/>
+	加入爱丁推广计划—分享爱丁旗下服务—用户购买—酬劳支付<br/>
+	<br/>
+	<span style="font-weight:bold">加入爱丁推广计划</span><br/>
+	在爱丁医生app注册后，您必须通过认证才可以推广爱丁服务。 如在推广过程中有违规或违背法律的行为，爱丁有权收回合作资格或调整分成。<br/>
+	<br/>
+	<span style="font-weight:bold">分享爱丁旗下服务</span><br/>
+	加入爱丁推广计划后，您可分享爱丁平台的任意服务至：微信好友、微信朋友圈、微博、QQ空间、QQ及短信，也可以让用户扫描您专属的二维码进入，以供用户浏览直至购买。<br/>
+	<br/>
+	<span style="font-weight:bold">用户购买</span><br/>
+	当您推荐的服务被用户以及用户再次分享的社交好友用户，购买并完成服务后，爱丁平台将自动记录购买数据，体现在“数据统计”里，10%将作为您的酬劳 。<br/>
+	<br/>
+<!-- 	<span style="font-weight:bold">酬劳支付</span><br/>
+	您的薪酬总额将体现在app-我的钱包中，当可钱包金额满100元后，您可随时点击申请提现。 -->
+</div>
+<footer>
+	<a href="services.html" id="tab-home">
+		<i></i>
+		<span>首页</span>
+	</a>
+<!-- 	<a href="mydata.html" id="tab-data">
+		<i></i>
+		<span>我的数据</span>
+	</a> -->
+	<a href="eachhumancenter.html" id="tab-center" class="now">
+		<i></i>
+		<span>个人中心</span>
+	</a>
+</footer>
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/lib/tcc.js"></script>
+<script>
+if(!localStorage.doctorid){
+	location.replace('login.html')
+}
+onhashchange=function(){
+	if(location.hash.replace('#','')=='rule'){
+		$('#something').show()
+		$('#center').hide()
+	}
+	else{
+		$('#center').show()
+		$('#something').hide()
+	}
+}
+onhashchange()
+$('p').eq(0).text('您好，'+localStorage.doctorname+'。')
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?4fd8e29b5cc8d16bce9f8179e70beeb8";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+</html>

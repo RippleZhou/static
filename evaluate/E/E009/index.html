@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta    http-equiv="Page-Enter"    contect="revealTrans(duration=5.0,transtion=    12)">
+    <title>爱丁问卷</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/evaluate/css/main.css">
+</head>
+<body>
+<div id="nofinish">请把所有选项做完，再提交</div>
+<div id="content">
+    <img src="img/test.png" alt="" id="banner">
+    <h1 class="title">
+        21天孕力提升营基础信息调查表
+    </h1>
+    <div id="questions">
+        <!--
+        <p class="phone">
+            留下您的手机号，方便领取医生给出的个体备孕计划书。
+        </p>
+        <input type="number" id="phone">
+        -->
+    </div>
+    <div id="submit">
+        <div onclick="submit()">提交</div>
+    </div>
+</div>
+<script type="text/html" id="qhtml">
+    {{each evaluteQuestions as val index}}
+    <p class="question">
+        {{val.orders}}、{{val.content}}
+    </p>
+    {{if val.singleselection == 0}}
+    <div class="answers">
+        {{each val.options as ans}}
+        <label>
+            <p><span class="radio" optionid="{{ans.id}}" questionid="{{val.id}}"></span>{{ans.content}}</p>
+        </label>
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="answers">
+        {{each val.options as ans}}
+        <label>
+            <p><span class="radio more" optionid="{{ans.id}}" questionid="{{val.id}}"></span>{{ans.content}}</p>
+        </label>
+        {{/each}}
+    </div>
+    {{/if}}
+    {{/each}}
+    <!--
+    <p class="phone">
+        留下您的手机号，方便领取医生给出的个体备孕计划书。
+    </p>
+    <input type="number" id="phone">
+    -->
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.0111"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/evaluate/js/selected.js"></script>
+<script type="text/javascript">
+    //判断是否在微信浏览器中
+    var ua = window.navigator.userAgent.toLowerCase(), queryParams = Utils.queryParams;
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        User.weichatAuth();
+    }
+    Utils.ajax.get('/IbabyWebService/3/Evalute/GetQuestionList?code=E009').then(function (rel) {
+        var mainQuestions = rel;
+        var html = template('qhtml', mainQuestions);
+        document.querySelector('#questions').innerHTML = html;
+    })
+    function submit() {
+        var evaluteAnswers = [];
+        var alength = $('.answers').length;
+        $('.answers').each(function () {
+            if ($(this).find('.selected').length == 0) {
+                $('#nofinish').show();
+                setTimeout("$('#nofinish').fadeOut(1000)", 1000);
+                return false;
+            } else {
+                alength--;
+            }
+            if (alength == 0) {
+                if (!User.getUser()) {
+                    User.innerlogin();
+                    return false;
+                } else {
+                    for (var i = 0; i < $('.selected').length; i++) {
+                        evaluteAnswers.push({
+                            questionid: $('.selected').eq(i).attr('questionid'),
+                            optionid: $('.selected').eq(i).attr('optionid')
+                        });
+                    }
+                    var params = {
+                        evaluteAnswers:JSON.stringify(evaluteAnswers),
+                        patientid:User.getUser().patientid,
+                        code:'E009'
+                    }
+                    Utils.ajax.post('/IbabyWebService/3/Evalute/CommitEvaluteAnswer',params).then(function () {
+                        aid.top.show('提交成功!');
+                    })
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

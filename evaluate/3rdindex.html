@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+	<title>爱丁测评</title>
+	<link rel="stylesheet" type="text/css" href="../common/css/framework.css">
+	<link rel="stylesheet" type="text/css" href="../common/css/iconfont.css">
+	<style>
+		body{background:#efeff4}
+		h5{color:#999;ont-size:14px;padding:15px 0 7px 15px}
+		section div img{width:100%}
+		section div a{position:absolute;font-size:14px}
+		section div a div{color:#ccc;font-size:12px}
+		section div a div:after{ content:'立即评测>>'}
+		section div a.done div:after{content:'查看结果>>';color:#46c6fe}
+		section{background:#fff}
+		section>a{position:relative;padding-left:70px;display:block;margin-bottom:-1px}
+		section a img{position:absolute;top:13px;left:10px;width:60px}
+		section a article{padding:10px;height:90px;position:relative}
+		section a:not(:last-child) article{height:90px}
+		section a:not(:last-child) article:after{content:'';display:block;position:absolute;bottom:0;left:0;right:0;height:1px;background:#efeff4}
+		section a.clickable div{color:#ccc}
+		section h6{font-size:16px;padding-top:15px}
+		section p{color:#ccc;margin:5px 0 10px;line-height:1.3;padding-right:15px}
+		section span{font-size:14px;color:#46c6fe;position:absolute;top:27px;right:8px}
+		section span:after{content:'立即评测>>'}
+		section .done span:after{content:'查看结果>>'}
+	</style>
+</head>
+
+<body>
+<section>
+	<div style="width:100%;margin:0 auto;position:relative">
+		<img src="img/head.png">
+	</div>
+</section>
+<section style="margin-bottom:27px">
+	<a class="clickable">
+		<img src="img/1.png"/>
+		<article>
+			<h6>备孕认知心理测评</h6>
+			<p>多维度出发给予针对性定位</p>
+			<div></div>
+		</article>
+		<span></span>
+	</a>
+	<a class="clickable">
+		<img src="img/2.png"/>
+		<article>
+			<h6>生育力综合评估</h6>
+			<p>帮助您充分客观地了解自身的生育条件</p>
+			<div></div>
+		</article>
+		<span></span>
+	</a>
+	<a class="clickable">
+		<img src="img/3.png"/>
+		<article>
+			<h6>备孕生活评估</h6>
+			<p>全面分析生活中的习惯和生活环境</p>
+			<div></div>
+		</article>
+		<span></span>
+	</a>
+</section>
+<div style="margin-top:15px">
+	<img style="width:80px; height:40px; margin:auto"src="img/logo.png"/>
+</div>
+
+<script src="../common/lib/jquery.min.js"></script>
+<script src="../common/js/utils.service.js"></script>
+<script src="../common/js/user.service.js"></script>
+<script src="../common/js/framework.js"></script>
+<script src="../common/js/wechat.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	(function(){
+		wechat.share({desc:'爱丁备孕MLP（医学、生活、心理）测评，全面专业的测评 ，专业成就好孕',title:document.title})
+		queryObj={}
+		if(location.search){
+			queryObj=JSON.parse('{"'+decodeURI(location.search.substring(1)).replace(/"/g,'\\"').replace(/&/g,'","').replace(/=/g,'":"')+'"}')
+		}
+		if (User.getUser()) {
+			url='/IbabyWebService/3/Evalute/GetEvaluteList?patientid='+User.getUser().patientid
+		}
+		else{
+			url='/IbabyWebService/3/Evalute/GetEvaluteList'
+		}
+		Utils.ajax.get(url).then(function(res){
+			for(i=0;i<res.length;i++){
+				switch (res[i].externalcode){
+					case 'E005':
+						if(res[i].done){
+							$('a').eq(0)[0].href='/static/evaluate/E/E005/'+(queryObj.inapp?'?inapp=1':'')+'#result';
+							$('a').eq(0)[0].classList.toggle('done')
+						}
+						else{
+							$('a').eq(0)[0].href='/static/evaluate/E/E005/'+(queryObj.inapp?'?inapp=1':'');
+						}
+						break;
+					case 'E001':
+						if(res[i].done){
+							$('a').eq(1)[0].href='/static/evaluate/E/E001/'+(queryObj.inapp?'?inapp=1':'')+'#result';
+							$('a').eq(1)[0].classList.toggle('done')
+						}
+						else{
+							$('a').eq(1)[0].href='/static/evaluate/E/E001/'+(queryObj.inapp?'?inapp=1':'');
+						}
+						break;
+					case 'E002':
+						if(res[i].done){
+							$('a').eq(2)[0].href='/static/evaluate/E/E002/'+(queryObj.inapp?'?inapp=1':'')+'#result';
+							$('a').eq(2)[0].classList.toggle('done')
+						}
+						else{
+							$('a').eq(2)[0].href='/static/evaluate/E/E002/'+(queryObj.inapp?'?inapp=1':'');
+						}
+						break;
+
+				}
+			}
+		})
+	})()
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+</html>

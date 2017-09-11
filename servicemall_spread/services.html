@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+
+<head>
+<title>爱丁服务</title>
+<meta charset="UTF-8">
+
+<meta name="keywords" content="爱丁网，上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查" />
+<meta name="description" content="爱丁网是专业为准妈妈提供上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查等怀孕服务的知识网站，其中还包括相关资讯频道，提供专业、舒适、贴心的全程辅导与帮助，直到您愉悦地实现优质怀孕。" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="screen-orientation" content="portrait">
+<meta name="x5-orientation" content="portrait">
+
+<link rel="stylesheet" type="text/css" href="http://www.ibabycenter.com/wwwfront/css/unify.css"/>
+
+<style>
+	h6{color:#46c6fe;font-size:14px;height:29px;padding-left:15px;padding-top:10px}
+	div a{display:-webkit-box;display:box;-webkit-box-pack:center;box-pack:center;-webkit-box-align:center;box-align:center;display:-webkit-flex;display:flex;-webkit-justify-content:center;justify-content:center;-webkit-align-items:center;align-items:center;padding:0 5px;box-sizing:border-box;float:left}
+	@font-face {
+		font-family: 'Misc';
+		src:url('http://www.ibabycenter.com/front/font/Misc/fonts/Misc.eot?dj7j9f');
+		src:url('http://www.ibabycenter.com/front/font/Misc/fonts/Misc.eot?#iefixdj7j9f') format('embedded-opentype'),
+		url('http://www.ibabycenter.com/front/font/Misc/fonts/Misc.woff?dj7j9f') format('woff'),
+		url('http://www.ibabycenter.com/front/font/Misc/fonts/Misc.ttf?dj7j9f') format('truetype'),
+		url('http://www.ibabycenter.com/front/font/Misc/fonts/Misc.svg?dj7j9f#aiding') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	footer{position:fixed;bottom:0;left:0;right:0;height:49px;border-top:1px solid #d6d7dc;background:#f8f8f8;display:-webkit-box;display:box;display:-webkit-flex;display:flex;text-align:center}
+	footer a{-webkit-box-flex:1;box-flex:1;-webkit-flex:1;flex:1;color:#666;display:block}
+	footer a.now,footer a:active{color:#46c6fe}
+	footer i{height:34px;padding-top:5px;display:block;font-size:26px}
+	#tab-home i:after{content:'\e900';font-family:Stuff}
+	#tab-home.now i:after,#tab-home:active i:after{content:'\e901'}
+	#tab-data i:after{content:'\e900';font-family:Misc}
+	#tab-data.now i:after,#tab-data:active i:after{content:'\e901'}
+	#tab-center i:after{content:'\e900';font-family:Instruct}
+	#tab-center.now i:after,#tab-center:active i:after{content:'\e901'}
+	footer span{font-size:10px;display:block}
+	@font-face {
+		font-family: 'Stuff';
+		src:url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.eot?dj7j9f');
+		src:url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.eot?#iefixdj7j9f') format('embedded-opentype'),
+		url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.woff?dj7j9f') format('woff'),
+		url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.ttf?dj7j9f') format('truetype'),
+		url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.svg?dj7j9f#aiding') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'Brand';
+		src:url('http://www.ibabycenter.com/front/font/Brand/fonts/Brand.eot?dj7j9f');
+		src:url('http://www.ibabycenter.com/front/font/Brand/fonts/Brand.eot?#iefixdj7j9f') format('embedded-opentype'),
+		url('http://www.ibabycenter.com/front/font/Brand/fonts/Brand.woff?dj7j9f') format('woff'),
+		url('http://www.ibabycenter.com/front/font/Brand/fonts/Brand.ttf?dj7j9f') format('truetype'),
+		url('http://www.ibabycenter.com/front/font/Brand/fonts/Brand.svg?dj7j9f#aiding') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'Instruct';
+		src:url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.eot?dj7j9f');
+		src:url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.eot?#iefixdj7j9f') format('embedded-opentype'),
+		url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.woff?dj7j9f') format('woff'),
+		url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.ttf?dj7j9f') format('truetype'),
+		url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.svg?dj7j9f#aiding') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	#share{position:fixed;top:0;left:0;bottom:0;right:0;overflow:hidden}
+	#share .dismiss{position:absolute;top:0;bottom:0;left:0;right:0;background:rgba(0,0,0,.2);-webkit-transition:opacity 333ms;transition:opacity 333ms;opacity:0;touch-action:none}
+	#share.see .dismiss{opacity:1}
+	#share article{position:absolute;bottom:0;left:0;right:0;text-align:center;-webkit-transform:translateY(100%);transform:translateY(100%);-webkit-transition:all 333ms;transition:all 333ms}
+	#share.see article{position:absolute;bottom:0;left:0;right:0;text-align:center;-webkit-transform:translateY(0);transform:translateY(0)}
+	#share h6{color:#999;padding-top:10px;background:#fff;padding-bottom:22px}
+	#share p{background:#fff;padding:0 7px;overflow:hidden}
+	#share a{padding-bottom:13px;padding-top:2px;float:left;width:25%;display:block}
+	#share i{height:60px;width:60px;line-height:60px;border-radius:13px;margin:0 auto;color:#fff;display:block;font-size:26px}
+	#share .tc i{opacity:.5}
+	#share span{margin-top:9px;display:block}
+	#share .button{height:48px;color:#000;font-size:16px;line-height:48px;margin-top:1px;background:#fff}
+	#share .button.tc{color:rgba(0,0,0,.5)}
+	canvas{display:block;margin:0 auto}
+</style>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?4fd8e29b5cc8d16bce9f8179e70beeb8";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</head>
+
+<body style="font-size:16px;color:#666;background:#efeff4">
+<a href="javascript:share();" style="text-align:center;height:48px;line-height:48px;color:#fff;border-radius:24px;font-size:18px;margin:15px;background:#46c6fe;display:block">分享所有服务</a>
+<p style="text-align:center;color:#999;font-size:12px;margin-bottom:15px">分享单个服务请点击以下服务页面分享</p>
+<div id="A">
+<h6>助孕起点</h6>
+<div style="overflow:hidden;background:#fff;text-align:center">
+	<a href="categorys/a.html?pcode=A01" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc">个性化备孕指导</a>
+	<a href="categorys/a.html?pcode=A02" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc">试管婴儿咨询</a>
+	<a href="categorys/a.html?pcode=A03" style="width:33.33%;height:86px">二胎备孕咨询</a>
+</div>
+<h6>单项检查</h6>
+<div style="overflow:hidden;background:#fff;text-align:center">
+	<a href="categorys/c.html?pcode=C05" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">二胎备孕体检</a>
+	<a href="categorys/c.html?pcode=C01" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">夫妻孕前体检</a>
+	<a href="categorys/c.html?pcode=C02" style="width:33.33%;height:87px;border-bottom:1px solid #efeff4">超声下子宫输卵管检查</a>
+	<a href="categorys/c.html?pcode=C03" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">B超排卵监测</a>
+	<a href="categorys/c.html?pcode=C04" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">卵巢储备功能评估套餐</a>
+	<a href="categorys/c.html?pcode=C06" style="width:33.33%;height:87px;border-bottom:1px solid #efeff4">夜门诊肌肉注射</a>
+	<a href="categorys/c.html?pcode=C07" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">AMH(抗苗勒氏管激素）</a>
+	<a href="categorys/c.html?pcode=C08" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">性激素六项</a>
+	<a href="categorys/c.html?pcode=C09" style="width:33.33%;height:87px;border-bottom:1px solid #efeff4">外周血染色体核型分析</a>
+	<a href="categorys/c.html?pcode=C10" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">IVF术前体检全套</a>
+	<a href="categorys/c.html?pcode=C11" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">中医孕前调理</a>
+	<a href="categorys/c.html?pcode=C12" style="width:33.33%;height:87px;border-bottom:1px solid #efeff4">不孕不育抗体检测</a>
+	<a href="categorys/c.html?pcode=C13" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">叶酸代谢基因检测</a>
+	<a href="categorys/c.html?pcode=C14" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">男性生育力评估</a>
+	<a href="categorys/c.html?pcode=C15" style="width:33.33%;height:87px;border-bottom:1px solid #efeff4">染色体疾病检测</a>
+	<a href="categorys/c.html?pcode=C16" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">妇科体检套餐</a>
+	<a href="categorys/c.html?pcode=C17" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc">反复性流产免疫检测套餐</a>
+</div>
+
+<h6>专病诊疗</h6>
+<div style="overflow:hidden;background:#fff;text-align:center">
+	<a href="categorys/b.html?pcode=B01" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">多囊卵巢综合征全面诊疗计划</a>
+	<a href="categorys/b.html?pcode=B02" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">试管婴儿怀孕计划</a>
+	<a href="categorys/b.html?pcode=B03" style="width:33.33%;height:87px;border-bottom:1px solid #efeff4">子宫内膜异位症诊疗计划</a>
+	<a href="categorys/b.html?pcode=B04" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc">复发性流产的综合诊疗</a>
+	<a href="categorys/b.html?pcode=B05" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc">卵巢低反应专场</a>
+	<a href="categorys/b.html?pcode=B06" style="width:33.33%;height:86px">反复种植失败的胚胎实验室分析</a>
+</div>
+<h6>中医助孕</h6>
+<div style="overflow:hidden;background:#fff;text-align:center">
+	<a href="categorys/e.html?pcode=E01" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc">中药调理</a>
+	<a href="categorys/e.html?pcode=E02" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc">中医艾灸</a>
+	<a href="categorys/e.html?pcode=E03" style="width:33.33%;height:86px">中医穴位注射</a>
+</div>
+</div>
+<div id="B">
+<h6>高端医疗</h6>
+<div style="overflow:hidden;background:#fff;text-align:center">
+	<a href="categorys/d.html?pcode=D01" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">试管直通车</a>
+	<a href="categorys/d.html?pcode=D02" style="width:33.33%;height:87px;border-right:1px solid #d6d7dc;border-bottom:1px solid #efeff4">美国试管婴儿计划</a>
+	<a href="categorys/d.html?pcode=D03" style="width:33.33%;height:87px;border-bottom:1px solid #efeff4">日本试管婴儿计划</a>
+	<a href="categorys/d.html?pcode=D04" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc">泰国试管婴儿计划</a>
+</div>
+<h6>助孕产品</h6>
+<div style="overflow:hidden;background:#fff;text-align:center;margin-bottom:77px">
+	<a href="categorys/Shawkea.html" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc">Shawkea T-1口服液/胶囊</a>
+	<a href="categorys/songkangquanjiaonang.html" style="width:33.33%;height:86px;border-right:1px solid #d6d7dc">松康泉胶囊</a>
+	<a href="categorys/shaoshiwenjiuqi.html" style="width:33.33%;height:86px">邵氏温灸器/温灸剂</a>
+</div>
+</div>
+<footer>
+	<a href="javascript:;" id="tab-home" class="now">
+		<i></i>
+		<span>首页</span>
+	</a>
+<!-- 	<a href="mydata.html" id="tab-data">
+		<i></i>
+		<span>我的数据</span>
+	</a> -->
+	<a href="eachhumancenter.html" id="tab-center">
+		<i></i>
+		<span>个人中心</span>
+	</a>
+</footer>
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/lib/tcc.js"></script>
+
+<script src="/static/common/js/wechat.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	if(!localStorage.doctorid){
+		location.replace('login.html')
+	}
+	shareLink=function(shareFrom){
+		return (location.href.split('?')[0]+'?tid='+localStorage.doctorid+'&sharefrom='+shareFrom).replace('_spread/services.html','/')
+	}
+	wechat.share({link:shareLink('weixin')})
+
+	if (localStorage.role == 'A') {
+		$('#A').show()
+		$('#B').show()
+	} else if(localStorage.role == 'B'){
+		$('#A').hide()
+		$('#B').show()
+
+	};
+</script>
+<div id="share" style="display:none">
+	<div class="dismiss"></div>
+	<article>
+		<h6>网页由 ibaby-plan.org 提供</h6>
+		<p>
+			<a id="weixin" class="touchFeedback allDes">
+				<i style="background:#30ce39;font-family:Brand">&#xe903;</i>
+				<span>微信</span>
+			</a>
+			<a id="weibo" class="touchFeedback allDes">
+				<i style="background:#f66d1b;font-family:Brand">&#xe904;</i>
+				<span>微博</span>
+			</a>
+			<a id="pengyouquan" class="touchFeedback allDes">
+				<i style="background:#30ce39;font-family:Brand">&#xe900;</i>
+				<span>朋友圈</span>
+			</a>
+			<a id="sms" class="touchFeedback allDes">
+				<i style="background:#fb83c4;font-family:Stuff">&#xe902;</i>
+				<span>短信</span>
+			</a>
+			<a id="qzone" class="touchFeedback allDes">
+				<i style="background:#f5c542;font-family:Brand">&#xe902;</i>
+				<span>QQ空间</span>
+			</a>
+			<a id="qq" class="touchFeedback allDes">
+				<i style="background:#46c6fe;font-family:Brand">&#xe901;</i>
+				<span>QQ</span>
+			</a>
+			<a id="qrcode" class="touchFeedback allDes" href="#erweima">
+				<i style="background:#333;font-family:Instruct">&#xe902;</i>
+				<span>二维码</span>
+			</a>
+		</p>
+		<div class="button">取消</div>
+	</article>
+</div>
+<script>
+	if(!localStorage.doctorid){
+		location.replace('login.html')
+	}
+	function share(){
+		$('#share').show()
+		requestAnimationFrame(function(){
+			$('#share').addClass('see')
+		})
+	}
+	$('#share .button,#share .dismiss').on('click',function(){
+		$('#share').removeClass('see')
+	})
+	$('#share .button').on('touchstart',function(){$(this).addClass('tc')}).on('touchmove touchend',function(){$(this).removeClass('tc')})
+	$('#share article').on('transitionend',function(){
+		if(!$('#share').hasClass('see')){
+			$('#share').hide()
+		}
+	})
+	$('#sms').attr('href','sms:?&body=向您推荐爱丁备孕助孕服务-'+document.title+encodeURIComponent(shareLink('sms')))
+	$('#share a').on('touchstart',function(){$(this).addClass('tc')}).on('touchmove touchend',function(){$(this).removeClass('tc')}).on('click',function(){
+		var _this=this
+		$.post('/static/servicemall/api/serviceShareSurvey.php',{tid:localStorage.doctorid,program:'index',shareurl:shareLink(_this.id),shareto:_this.id},function(res){
+			if(res.status===0){
+				switch(_this.id){
+					case 'weixin':$('#share').removeClass('see');$('#pengyou').show();break;
+					case 'weibo':location.href='http://v.t.sina.com.cn/share/share.php?appkey=真实的appkey&url='+encodeURIComponent(shareLink('weibo'))+'&title='+encodeURIComponent(document.title)+'&source='+encodeURIComponent('爱丁医生')+'&sourceUrl='+encodeURIComponent('http://www.ibabycenter.com/')+'&content='+encodeURIComponent('utf-8')+'&pic='+encodeURIComponent('http://www.ibabycenter.com/front/images/300.png');break;
+					case 'pengyouquan':$('#share').removeClass('see');$('#pengyou').show();break;
+					case 'qzone':location.href='http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+encodeURIComponent(shareLink('qzone'))+'&showcount=1&desc='+encodeURIComponent('爱丁备孕助孕服务为您提供优质、轻奢、舒适的医疗体验')+'&summary='+encodeURIComponent('爱丁备孕助孕服务为您提供优质、轻奢、舒适的医疗体验')+'&title='+encodeURIComponent(document.title)+'&site='+encodeURIComponent('爱丁医生')+'&pics='+encodeURIComponent('http://www.ibabycenter.com/front/images/300.png');break;
+					case 'qq':location.href='http://connect.qq.com/widget/shareqq/index.html?url='+encodeURIComponent(shareLink('qq'))+'&desc='+encodeURIComponent('爱丁备孕助孕服务为您提供优质、轻奢、舒适的医疗体验')+'&title='+encodeURIComponent(document.title)+'&summary='+encodeURIComponent('爱丁备孕助孕服务为您提供优质、轻奢、舒适的医疗体验')+'&pics='+encodeURIComponent('http://www.ibabycenter.com/front/images/300.png')+'&site='+encodeURIComponent('爱丁医生');break;
+				}
+			}
+			else{
+				alert('分享出错')
+			}
+		},'json').fail(function(){
+					alert('分享出错')
+				})
+	})
+</script>
+<div id="qrcode-container" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;padding-top:80px;display:none">
+	<div></div>
+	<p style="color:#0d98e1;font-size:14px;margin-top:19px;text-align:center">请用使用微信“扫一扫”扫描二维码</p>
+</div>
+<script src="http://www.ibabycenter.com/wwwfront/js/third/jquery-qrcode-master/jquery.qrcode.min.js"></script>
+<script>
+	$('#qrcode-container div').qrcode({width:190,height:190,text:shareLink('qrcode')})
+	onhashchange=function(){
+		if(location.hash.replace('#','')=='erweima'){
+			$('#qrcode-container').show()
+		}
+		else{
+			$('#qrcode-container').hide()
+		}
+	}
+	onhashchange()
+</script>
+<div id="pengyou" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);padding-top:80px;display:none">
+	<img src="img/wx.png" style="position:absolute;top:15px;right:18px;width:232px"/>
+</div>
+<script>
+	$('#pengyou').on('click',function(){
+		$(this).hide()
+	})
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?4fd8e29b5cc8d16bce9f8179e70beeb8";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+
+</html>

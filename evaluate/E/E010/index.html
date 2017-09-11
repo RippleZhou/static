@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱丁问卷</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/evaluate/css/main.css">
+    <style>
+        .answers:not(.type1),
+        .question:not(.type1){
+            display: none;
+        }
+        #submit #btn {
+            background: #15b2ee;
+        }
+    </style>
+</head>
+<body>
+<div id="nofinish">请把问卷选完，再操作</div>
+<div id="content">
+    <p id="introduce">
+        备孕亚健康自测问卷总计39个问题，生活篇（14题）、心理篇（8题）、运动篇（7题），大概花费您5-10分钟完成。
+        完成问卷后爱丁特邀亚健康调理专家、营养师、健身教练针对您的问卷回答为您制定个性化备孕计划书（医学建议+营养方案+健身方案）
+    </p>
+    <h1 class="title">
+        备孕亚健康自测表
+    </h1>
+    <div id="questions">
+    </div>
+    <div id="submit">
+        <div onclick="check('下一题')" id="next">下一篇</div>
+        <div onclick="check()" class="hide" id="btn">提交</div>
+    </div>
+</div>
+<script type="text/html" id="qhtml">
+    {{each evaluteQuestions as val index}}
+    <p class="question type{{val.type}}">
+        {{val.orders}}、{{val.content}}
+    </p>
+    {{if val.singleselection == 0}}
+    <div class="answers type{{val.type}}">
+        {{each val.options as ans}}
+        <label>
+            <p><span class="radio" optionid="{{ans.id}}" questionid="{{val.id}}"></span>{{ans.content}}</p>
+        </label>
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="answers type{{val.type}}">
+        {{each val.options as ans}}
+        <label>
+            <p><span class="radio more" optionid="{{ans.id}}" questionid="{{val.id}}"></span>{{ans.content}}</p>
+        </label>
+        {{/each}}
+    </div>
+    {{/if}}
+    {{/each}}
+    <!--
+    <p class="phone">
+        留下您的手机号，方便领取医生给出的个体备孕计划书。
+    </p>
+    <input type="number" id="phone">
+    -->
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.0111"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/evaluate/js/selected.js"></script>
+<script src="/static/evaluate/E/E010/js/index.js"></script>
+</body>
+</html>

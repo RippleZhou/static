@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>爱丁备孕咨询</title>
+    <meta charset="UTF-8">
+
+    <meta name="keywords" content="爱丁网，上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查" />
+    <meta name="description" content="爱丁网是专业为准妈妈提供上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查等怀孕服务的知识网站，其中还包括相关资讯频道，提供专业、舒适、贴心的全程辅导与帮助，直到您愉悦地实现优质怀孕。" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+
+    <style>
+        body {
+            background-color: #efeff4;
+        }
+
+        .tip {
+            color: #999;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 20px 16px;
+            text-indent: 2em;
+        }
+
+        .header {
+            margin-bottom: 20px;
+            background: transparent url('./img/guide.jpg') center no-repeat;
+            background-size: cover;
+            height: 182px;
+        }
+
+        .guide {
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 54px;
+            width: 320px;
+        }
+
+        .guide .step {
+            position: relative;
+            text-align: center;
+            top: 0;
+            width: 100px;
+        }
+
+        .guide .step:not(:first-child):before {
+            border-top: 1px dashed #46c6fe;
+            content: '';
+            display: block;
+            left: -25%;
+            left: calc(-50% + 20px);
+            position: absolute;
+            top: 20px;
+            width: 50%;
+            width: calc(100% - 40px);
+        }
+
+        .guide .step-index {
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+            height: 40px;
+            line-height: 40px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            width: 40px;
+        }
+
+        .guide .step-index:before {
+            border: 3px solid #fff;
+            border-radius: 50%;
+            content: '';
+            display: block;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            width: 100%;
+        }
+
+        .guide .step-index-1:before {
+            border-top-color: #46c6fe;
+        }
+
+        .guide .step-index-2:before {
+            border-left-color: #46c6fe;
+            border-top-color: #46c6fe;
+        }
+
+        .guide .step-index-3:before {
+            border-bottom-color: #46c6fe;
+            border-left-color: #46c6fe;
+            border-top-color: #46c6fe;
+        }
+
+        .guide .step p {
+            color: #f90;
+            font-size: 14px;
+            margin-top: 11px;
+        }
+
+        .header .count{
+            color: #999;
+            padding-top: 25px;
+            text-align: center;
+        }
+
+        .questions {
+            padding-bottom: 140px;
+        }
+
+        .questions .row-closed p {
+            color: #999;
+        }
+
+        .questions p {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .questions .time {
+            color: #ccc;
+            display: block;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .questions .time i {
+            font-size: 20px;
+            margin-right: 3px;
+            vertical-align: -25%;
+        }
+
+        .questions .status {
+            background-color: #d6d7dc;
+            border-radius: 10px;
+            color: #fff;
+            display: inline-block;
+            float: right;
+            font-size: 14px;
+            padding: 2px 5px;
+        }
+
+        .questions .status + .status {
+            margin-right: 5px;
+        }
+
+        .questions .status-on {
+            background-color: #9ee1ff;
+            color: #fff;
+        }
+
+        .questions .status-new {
+            background-color: #f66;
+            color: #fff;
+        }
+
+        .questions .status-wait {
+            background-color: #f90;
+            color: #fff;
+        }
+
+        footer {
+            border: 5px solid rgba(255, 155, 5, .4);
+            border-radius: 50%;
+            bottom: 60px;
+            left: 50%;
+            height: 70px;
+            margin-left: -35px;
+            position: fixed;
+            width: 70px;
+        }
+
+        footer a {
+            background: #f90;
+            border-radius: 50%;
+            color: #fff;
+            display: block;
+            font-size: 14px;
+            height: 100%;
+            text-align: center;
+            width: 100%;
+        }
+        #noQuestion{
+        		font-size: 18px;
+        		line-height: 30px;
+        		color: #999;
+        		margin: 45px auto 0;
+        		text-align: center;
+        		display: none;
+        }
+
+    </style>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="tip" class="tip hide">
+        <p>1、备孕咨询由爱丁专业妇产科和生殖专科医生为您提供，并不替代医生的诊疗意见。</p>
+        <p>2、点击开启新问题，咨询完毕后或超过24小时，问题将被关闭。</p>
+    </div>
+
+    <div id="header" class="header hide">
+        <div class="guide flex">
+            <div class="step step-1 flex-1">
+                <div class="step-index step-index-1">1</div>
+                <p>微信中向<br/>医生询问</p>
+            </div>
+            <div class="step step-2 flex-1">
+                <div class="step-index step-index-2">2</div>
+                <p>短信收到医<br/>生回复提醒</p>
+            </div>
+            <div class="step step-3 flex-1">
+                <div class="step-index step-index-3">3</div>
+                <p>查看医生回<br/>答及评价</p>
+            </div>
+        </div>
+
+        <!--<div class="count">你已咨询了<span id="asked">?</span>个问题</div>-->
+    </div>
+	<div id="noQuestion">还没有问题记录哦<br />快去提问吧~</div>
+    <div id="questions" class="questions"></div>
+
+    <footer>
+        <a id="ask" class="flex flex-center flex-vertical" href="./ask_a_question.html">发起<br/>新问题</a>
+    </footer>
+
+    <ul class="nav-tabs">
+        <li>
+            <a href="/static/evaluate/">
+                <i class="iconfont-nav-test"></i>
+                <p>爱丁测评</p>
+            </a>
+        </li>
+        <li class="active">
+            <a href="/static/ask_doctor/my_questions.html">
+                <i class="iconfont-nav-ask-doctor"></i>
+                <p>问医生</p>
+            </a>
+        </li>
+        <li>
+            <a href="/static/servicemall/">
+                <i class="iconfont-nav-services"></i>
+                <p>服务大厅</p>
+            </a>
+        </li>
+        <li>
+            <a href="/static/user/user-center.html">
+                <i class="iconfont-nav-user"></i>
+                <p>我的爱丁</p>
+            </a>
+        </li>
+    </ul>
+
+    <script id="tpl-questions" type="text/html">
+        {{each data as d}}
+         <a class="row row-link {{d.closed && 'row-closed'}}" href="./chat.html?questionid={{d.id}}">
+            <p>{{d.content}}</p>
+            {{if d.closed}}
+                {{if !d.ratestars}}
+                    <span class="status status-wait">待评价</span>
+                {{else}}
+                    <span class="status status-end">已评价</span>
+                {{/if}}
+                <span class="status status-end">已结束</span>
+            {{else}}
+                {{if d.ratestars}}
+                    <span class="status status-end">已评价</span>
+                {{/if}}
+                <span class="status status-on">进行中</span>
+            {{/if}}
+            {{if d.newmessage}}
+            <span class="status status-new">New</span>
+            {{/if}}
+            <span class="time">
+                <i class="iconfont-question-time"></i>
+                {{d.createtime | dateToNow: 'YYYY-MM-DD HH:mm:ss'}}
+            </span>
+        </a>
+        {{/each}}
+    </script>
+
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="/static/common/lib/moment.min.js"></script>
+    <script src="/static/common/lib/template.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+
+    <script src="./js/services.js"></script>
+
+    <script>
+        $(function () {
+        		
+    		var queryParams = Utils.queryParams;
+            var user = User.getUser();
+            if(user==null){
+                User.redirectToLoginPage(location.href);
+            }
+            
+            var questions = $('#questions').list({
+                template: 'tpl-questions',
+                getPromise: function (params) {
+                    return Services.getQuestions(params);
+                },
+                afterRender: function () {
+                    if ( this.pagination.total == undefined || this.pagination.total < 1) {
+						$("#noQuestion").css("display","block");
+                    }
+                }
+            });
+
+            var questions = $('#questions').list({
+                template: 'tpl-questions',
+                getPromise: function (params) {
+                    return Services.getQuestions(params);
+                },
+                afterRender: function () {
+                    $('#asked').text(this.pagination.total);
+                }
+            });
+            questions.refresh();
+            $('#header').removeClass('hide');
+        });
+
+        template.helper('dateToNow', function (date, modelFormatter) {
+            if (!date || !date.search) {
+                return '';
+            }
+            else if (date.search('[<>]') > -1) {
+                date = date.replace(/(<[^<>]*>)|(<\/[^</>]*>)/g, '');
+            }
+
+            if (date.search('[^0-9- :.]') > -1) {
+                return date.replace(/&nbsp;/g, ' ');
+            }
+
+            date = moment(date, modelFormatter);
+
+            var format;
+
+            var duration = moment.duration({from: date, to: moment().startOf('day')});
+
+            if (duration.asDays() <= -1) {
+                format = date.toNow();
+            }
+            else if (duration.asDays() <= 0) {
+                format = 'HH:mm';
+            }
+            else if (duration.asDays() < 1) {
+                format = '昨天HH:mm';
+            }
+            else if (duration.asYears() < 1) {
+                format = 'M月DD日 HH:mm';
+            }
+            else {
+                format = 'YY年M月DD日 HH:mm';
+            }
+
+            return date.format(format);
+        });
+        
+    </script>
+</body>
+
+</html>

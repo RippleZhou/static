@@ -1,0 +1,145 @@
+*{
+    line-height:1;
+}
+.baseContainer{
+    padding: 0 15px;
+}
+.titleA{
+    border-left:4px solid #46c6fe;
+    margin: 15px 0;
+    padding-left: 12px;
+    font-size: 16px;
+    font-weight:bolder;
+}
+.titleB{
+    font-size: 14px;
+}
+.services{
+    margin-bottom: 15px;
+    position: relative;
+}
+.services img{
+    width: 100px;
+    height: 91px;
+}
+.services ul{
+    position: absolute;
+    top:0;
+    width: 100%;
+    padding-left: 110px;
+}
+.services ul>span{
+    line-height: 20px;
+    height:40px;
+    margin: 8px 0;
+    overflow: hidden;
+    display: block;
+}
+.services ul>p:last-child{
+    font-size: 13px;
+    color: #46c6fe;
+}
+.services ul>p:last-child span{
+    padding: 3px 0;
+    font-size: 15px;
+    display: inline-block;
+}
+.services ul>p:last-child a{
+    float: right;
+    padding: 3px 15px;
+    border: 1px solid #46c6fe;
+    border-radius: 8px;
+}
+#content .title {
+    color: #fff;
+    text-align: center;
+    margin: 20px 0 13px;
+    position: relative;
+    height: 25px;
+}
+#content .title span {
+    background: #46c6fe;
+    display: block;
+    line-height: 25px;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 25px;
+    width: 75px;
+    border-radius: 8px;
+}
+.contact-bar {
+    text-align: center;
+    padding: 20px 15px;
+}
+.tel-logo {
+    margin: 8px 0 32px;
+    height: 35px;
+}
+.tel-logo span {
+    display: inline-block;
+}
+img[alt='tel-logo'] {
+    position: relative;
+    top: 12px;
+    margin-right: 14px;
+    display: inline;
+    width: 35px;
+}
+/*
+#content li:before {
+    content: "●";
+    margin-right: 0.5em;
+    color: #000;
+    line-height: 150%;
+}
+*/
+.border-top {
+    border-top: 15px solid #efefef
+}
+.pos-re {
+    position: relative;
+}
+.bg-font {
+    font-size: 18px;
+    line-height: 40px;
+    color: #fff;
+    padding-left: 15px;
+    margin-top: -40px;
+    z-index: 2;
+}
+.title-bg {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    opacity: 0.6;
+    z-index: 1;
+}
+.partner {
+    line-height: 48px;
+    font-size: 19px;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    background: #46c6fe;
+    bottom: 0;
+    width: 100%;
+    z-index: 101;
+}
+#mainpic {
+    padding: 0;
+}
+img[alt='宣传图片'] {
+    width: 100%;
+}
+.font{
+    font-size: 14px;
+    line-height: 28px;
+}
+#content {
+    padding-bottom: 13px;
+}

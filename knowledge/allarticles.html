@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+    <title>知识库</title>
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <style>
+    * {
+        box-sizing: content-box
+    }    
+    html,
+    body {
+        overflow: auto;
+    }
+    
+    body {
+        background: #ffffff;
+    }
+    
+    .swiper-content {
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+    .categorylist-articles {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .categorylist-articles a {
+        display: inline-block;
+        width: 98%;
+        border-bottom: 1px solid #F3F3F4;
+        padding:15px 2% 11px 0;
+        margin-bottom: -3px;
+        margin-left: 2%;
+    }
+    
+    /*.categorylist-articles a:last-of-type {
+        border: 0px;
+    }*/
+    
+    a:active {
+        opacity: .5
+    }
+    .article-info {
+        width: 75%;
+        float: left;
+    }
+    .article-title {
+        font-size: 16px;
+        color:#46c6fe;
+        margin-bottom: 10px;
+        line-height: 1;
+    }
+    .article-abstract {
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        max-height: 50px;
+        line-height: 1.5;
+    }
+    .article-resource {
+        font-size: 12px;
+        color: #999999;
+        margin-top: 10px;
+    }
+    .article-resource div {
+        margin-right: 20px;
+        height:15px;
+        vertical-align: bottom;
+        float: left;
+    }
+    /*.article-resource span:first-child {
+        float: left;
+    }*/
+    .article-resource div:last-child {
+        padding-top: 1px;
+    }
+    .article-img {
+        width: 60px;
+        height: 60px;
+        float: right;
+        margin-right: 5px;
+        margin-top: 15px;
+    }
+    .article-img img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .click-more {
+        color: #999999;
+        height: 38px;
+        text-align: center;
+        line-height: 38px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="categorylist-articles">
+        
+    </div>
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="http://www.ibabycenter.com/wwwfront/js/third/Tcc.min.js"></script>
+    <script src="http://www.ibabycenter.com/wwwfront/js/third/Swiper-master/dist/idangerous.swiper.min.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+    <script src="/static/common/lib/fastclick.js"></script>
+    <script src="http://sdk.talkingdata.com/app/h5/v1?appid=119BF1969DBACF577B6D2DBA8D489F71&vn=爱丁备孕v4.3&vc=4.3"></script>
+    <script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+    queryObj = {}
+    if (location.search) {
+        try {
+            queryObj = JSON.parse('{"' + decodeURI(location.search.substring(1)).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
+        } catch (e) {
+
+        }
+    }
+
+    var articleslist = function(offset) {
+        Utils.ajax.get('/IbabyWebService/TipsBlog/ArticleList/pager', {'offset': offset,'limit': 10}).then(
+            function(articles) {
+                html = ''
+                for (j = 0; j < articles.list.length; j++) {
+                    html+='<a class="article-link" href="'+articles.list[j].url+'&categoryid='+articles.list[j].categoryid+'&id='+articles.list[j].id+(User.getUser()?('&userid='+User.getUser().patientid):'')+'">'+'<div class="article-info"><div class="article-title">'+articles.list[j].title+'</div><div class="article-abstract">'+articles.list[j].articleabstract+'</div><div class="article-resource"><div>爱丁备孕</div><div>2016-03-14</div></div></div><div class="article-img"><img src="'+articles.list[j].icon+'" ></div>'+'</a>'
+                }
+                if (articles.list.length >= 10) {
+                    html = html + '<div class="click-more">点击加载更多...</div>';
+                }
+                $('.categorylist-articles').append(html)
+        })
+    }
+
+    articleslist(0);
+
+    $('body').on('click','.click-more', function() {
+        $(this).remove();
+        var offset = $('.categorylist-articles>a').length;
+        articleslist(offset);
+    })
+
+    $('body').on('click', '.article-link', function() {
+        var articlename = $(this).find('.article-title').html();
+        TDAPP.onEvent("user_knowledge_article", articlename);
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{
+    "status": 0,
+    "content": {
+        "pcode": "C09",
+        "name": "外周血染色体核型分析",
+        "cover": "../../img/services/C09.jpg",
+        "suppliers": [
+            {
+                "hospital": "上海爱丁妇科门诊部",
+                "address": "上海市静安区华山路2号高和大厦1003",
+                "price": 1000,
+                "discount": 0,
+                "unit": "元/次"
+            }
+        ],
+        "introduction": "外周血染色体检测（G带或R带，550带），10个工作日，可大大缩短您的等待时间。",
+        "contents": "外周血染色体核型分析"
+    }
+}

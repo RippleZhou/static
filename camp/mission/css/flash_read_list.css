@@ -1,0 +1,59 @@
+body {
+    background: #f5f5f6;
+    line-height: 1;
+}
+.task {
+    background: #fff;
+    padding:  0 0.15rem;
+    margin-bottom: 0.15rem;
+}
+.task .top {
+    padding: 0.05rem 0;
+}
+.line {
+    height: 0.01rem;
+    margin: 0 -5px;
+    background: #f5f5f6;
+}
+.top>p:first-of-type,
+.top>p:nth-of-type(3) {
+    line-height: 0.18rem;
+    margin: 0.08rem 0;
+}
+.top>p:nth-of-type(3) {
+    color: #999;
+    font-size: 0.12rem;
+}
+.top>p:nth-of-type(2) {
+    line-height: 0.24rem;
+    color: #999;
+    font-size: 0.14rem;
+}
+.top .title {
+    font-size: 0.14rem;
+    color: #000;
+}
+.top .time {
+    font-size: 0.12rem;
+}
+.top .time font{
+    color: #f00;
+}
+.bottom {
+    height: 1rem;
+}
+.bottom button {
+    cursor: pointer;
+    background: #4FC730;
+    color: #fff;
+    font-size: 0.14rem;
+    width: 0.50rem;
+    height: 0.50rem;
+    border-radius: 0.25rem;
+}
+.text-err {
+    line-height: 0.55rem;
+    font-size: 0.12rem;
+    color: #999;
+    text-align: center;
+}

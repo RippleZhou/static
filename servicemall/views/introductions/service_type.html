@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>服务介绍</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <style type="text/css">
+        html,
+        body {
+            background: #f0eff5;
+            margin: 0;
+        }
+
+        .type {
+            display: none;
+            padding: 20px 15px;
+        }
+
+        .type p {
+            color: #333;
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
+        .type p span{
+            white-space: normal !important;
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+
+    <div id="common" class="type"></div>
+    <div id="phone" class="type">
+        <p>1、预约服务后，爱丁助孕管家会与您联系，为您安排诊前、诊后的事项、并提供全程跟踪指导。</p>
+        <p>2、在您预约的电话咨询时间，您会收到来自专家的电话呼入，号码为021-60825585，请选择安静环境通话。专家咨询后，您可以将咨询意见上传给爱丁助孕管家，会帮助您分析解释，指导落实。</p>
+        <p>3、如医生时间临时变化，爱丁管家会尽早通知您，可以退款或改约。如您取消预约，退费请至少提前三天通知爱丁。</p>
+    </div>
+
+    <div id="youxian" class="type">
+        <p>1、服务价格不含挂号及检查费用。</p>
+        <p>2、预约服务后，爱丁助孕管家会与您联系，为您安排诊前、诊后的事项、并提供全程跟踪指导。</p>
+        <p>3、您预约的是优先门诊，请在医院正常挂号后，在预约时间到达专家诊室享受优先特需就诊。专家诊疗后，建议您将医嘱上传给爱丁助孕管家，会帮助您分析解释，指导落实，并给予饮食运动心理等整合医疗的全面跟进指导。</p>
+        <p>4、如医生时间临时变化，爱丁管家会尽早通知您，可以退款或改约。如您取消预约，退费请至少提前三天通知爱丁。</p>
+    </div>
+
+    <div id="peizhen" class="type">
+        <p>1、服务价格不含挂号及检查费用。</p>
+        <p>2、预约服务后，爱丁助孕管家会与您联系，为您安排诊前、诊后的事项、并提供全程跟踪指导。</p>
+        <p>3、您预约的是专业陪诊服务，将有专业护士在预约就诊日到达医院，代您进行挂号、缴费、取药等工作，并针对医生医嘱，为您进行医嘱执行的专业指导。</p>
+        <p>4、如医生时间临时变化，爱丁管家会尽早通知您，可以退款或改约。如您取消预约，退费请至少提前三天通知爱丁。</p>
+    </div>
+
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="/static/common/js/wechat.js"></script>
+
+    <script>
+        wechat.share();
+        var code = getQueryParams().code;
+        var ways=JSON.parse(localStorage.zbzlWays);
+        for(i in ways){
+            var way=ways[i];
+            if(way.scode==code){
+                if(way.description!=null && way.description != ""){
+                    $("#common").html(way.description);
+                    $("#common").css("display","block");
+                }else{
+                    var ele = document.getElementById(code);
+                    if (ele) {
+                        ele.style.display = 'block';
+                    }
+                }
+            }
+        }
+
+        function getQueryParams() {
+            var params = {};
+            var queryString = window.location.search.replace(/^\?/, '').split('&');
+            var param;
+
+            queryString.forEach(function (d, i) {
+                if (d) {
+                    param = d.split('=');
+                    params[param[0]] = decodeURIComponent(param[1]);
+                }
+            });
+
+            return params;
+        }
+    </script>
+</body>
+
+</html>

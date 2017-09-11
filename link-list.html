@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" class="vw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css?v0.001">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 0.16rem;
+            line-height: 0.45rem;
+        }
+
+        body > ul {
+            display: block;
+        }
+
+        body > ul > li {
+            border-top: 0.03rem solid #f5f6f7;
+        }
+
+        body > ul > li:first-of-type {
+            margin-left: -0.15rem;
+            padding-left: 0.15rem;
+        }
+
+        ul {
+            font-size: 0.14rem;
+            line-height: 0.45rem;
+            padding-left: 2em;
+            color: #444;
+            display: none;
+        }
+
+        li {
+            cursor: pointer;
+            position: relative;
+            list-style: none;
+        }
+
+        li > a {
+            position: absolute;
+            width: 100%;
+            left: -0.15rem;
+            height: 100%;
+        }
+
+        .after {
+            padding-left: 0.15rem;
+            color: #999;
+        }
+
+        h3 {
+            text-align: center;
+            padding-right: 0.15rem;
+        }
+    </style>
+</head>
+<body>
+<ul>
+
+</ul>
+<script type="text/html" id="urllist">
+    <h3>{{title}}</h3>
+    {{each list as val}}
+    <li>
+        {{val.name}}
+        {{if val.url}}
+        <a href="{{val.url}}"></a>
+        {{else}}
+        <span class="after">+</span>
+        {{/if}}
+    </li>
+    {{if val.child}}
+    <ul>
+        {{each val.child as val}}
+        <li>
+            {{val.name}}
+            {{if val.url}}
+            <a href="{{val.url}}"></a>
+            {{else}}
+            <span class="after">+</span>
+            {{/if}}
+        </li>
+        {{if val.child}}
+        <ul>
+            {{each val.child as val}}
+            <li>
+                {{val.name}}
+                {{if val.url}}
+                <a href="{{val.url}}"></a>
+                {{else}}
+                <span class="after">+</span>
+                {{/if}}
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+        {{/each}}
+    </ul>
+    {{/if}}
+    {{/each}}
+</script>
+<script type="text/html" id="list">
+    {{each list as val index}}
+    <li>{{val.desc}}<br>
+        <p id="index{{index}}" onclick="selectText('index{{index}}')">http://ibaby-plan.org/static/{{val.link}}</p></li>
+    {{/each}}
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/js/commen.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script>
+    var wechat = window.wechat;
+    var http = window.HTTP;
+    http.get('/static/json/link-list/link_list.json?'+Math.random(),function (urldata) {
+        var html = template('urllist', urldata);
+        document.title = urldata.title;
+        document.querySelector('ul').innerHTML = html;
+        wechat.share({
+            title: urldata.title,
+            desc: '爱丁医生 ： 链接列表'
+        });
+    })
+
+    var test = {
+        patientid: '227406',
+        uerid: '227406',
+        campid:'1',
+        taskid:'1',
+        role:'1',
+        content:'test'
+    }
+
+    // toggle list
+    $('body').delegate('li', 'click', function () {
+        $(this).toggleClass('open');
+        $(this).next('ul').slideToggle();
+        if ($(this).hasClass('open')) {
+            $(this).find('span.after').html('-')
+        } else {
+            $(this).find('span.after').html('+')
+        }
+    })
+
+</script>
+</body>
+</html>

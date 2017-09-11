@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>医生介绍</title>
+
+    <meta name="keywords" content="爱丁网，上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查" />
+    <meta name="description" content="爱丁网是专业为准妈妈提供上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查等怀孕服务的知识网站，其中还包括相关资讯频道，提供专业、舒适、贴心的全程辅导与帮助，直到您愉悦地实现优质怀孕。" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+
+    <style>
+        body {
+            background: #efeff4
+        }
+
+        header {
+            background: #eee no-repeat center;
+            background-size: cover;
+            height: 200px;
+            position: relative
+        }
+
+        header div {
+            background: rgba(0, 0, 0, .4);
+            height: 50px;
+            color: #fff;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            padding-left: 15px
+        }
+
+        header h6 {
+            font-size: 16px;
+            padding-top: 7px;
+            margin-bottom: 2px
+        }
+
+        header h6 span {
+            font-size: 14px
+        }
+
+        header p {
+            font-size: 14px
+        }
+
+        .table {
+            height: 60px;
+            display: -webkit-box;
+            display: box;
+            -webkit-box-pack: center;
+            box-pack: center;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: #fff
+        }
+
+        .table:before,
+        .table:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 18px;
+            bottom: 18px;
+            width: 1px;
+            background: #d6d7dc
+        }
+
+        .table:before {
+            left: 33%
+        }
+
+        .table:after {
+            right: 33%
+        }
+
+        .table div {
+            -webkit-flex: 1;
+            flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+            padding-top: 11px
+        }
+
+        .table h6 {
+            color: #ccc
+        }
+
+        .table span {
+            color: #f90;
+            display: block;
+            font-size: 14px
+        }
+
+        .table span b {
+            font-weight: bold;
+            font-size: 20px
+        }
+
+        article {
+            padding: 22px 13px 15px;
+            margin-bottom: 99px;
+            background: #fff
+        }
+
+        article h6 {
+            height: 24px;
+            line-height: 24px;
+            color: #fff;
+            width: 90px;
+            text-align: center;
+            border-radius: 3px;
+            background: #ff8585;
+            margin-bottom: 5px;
+            font-size: 16px
+        }
+
+        article p {
+            font-size: 14px;
+            color: #999
+        }
+
+        footer {
+            position: fixed;
+            bottom: 30px;
+            width: 69px;
+            height: 69px;
+            color: #fff;
+            left: 50%;
+            margin-left: -35px;
+            text-align: center;
+            border-radius: 50%;
+            background: #47c5ff;
+            display: -webkit-box;
+            display: box;
+            -webkit-box-pack: center;
+            box-pack: center;
+            -webkit-box-align: center;
+            box-align: center;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-align-items: center;
+            align-items: center;
+            font-size: 16px
+        }
+
+        footer.tc {
+            opacity: .5
+        }
+
+        footer:after {
+            position: absolute;
+            height: 80px;
+            width: 80px;
+            left: 50%;
+            margin-left: -40px;
+            top: 50%;
+            margin-top: -40px;
+            background: #47c5ff;
+            opacity: .6;
+            display: block;
+            content: '';
+            border-radius: 50%;
+            z-index: -1
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="body"></div>
+
+    <script id="tpl-doctor" type="text/html">
+        <header style="background-image: url('{{profile}}')">
+            <div>
+                <h6>{{name}}<span>{{title}}</span></h6>
+                <p>{{hospital}}</p>
+            </div>
+        </header>
+        <div class="table">
+            <div>
+                <h6>医龄</h6>
+                <span><b>{{year}}</b>年</span>
+            </div>
+            <div>
+                <h6>好孕人数</h6>
+                <span><b>{{people}}</b>+</span>
+            </div>
+            <div>
+                <h6>好评</h6>
+                <span><b>100</b>%</span>
+            </div>
+        </div>
+        <article>
+            <h6>临床经验</h6>
+            <p>{{intro}}</p>
+        </article>
+    </script>
+
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="/static/common/lib/template.js"></script>
+    <script src="/static/common/js/wechat.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+
+    <script src="../js/services.js"></script>
+
+    <script>
+        wechat.share();
+
+        Services.getDoctor().then(function (result) {
+            document.title = result.name;
+            $('.body').append(template('tpl-doctor', result));
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者详细数据</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <style>
+        .data {
+            margin: 15px 15px 0;
+            border: 1px solid #999;
+        }
+        .data>div {
+            padding: 10px 15px;
+            line-height: 30px;
+        }
+        .data .header {
+            line-height: 20px;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+        .data span {
+            color: #666;
+            font-size: 12px;
+        }
+        span.warm {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+    <script type="text/html" id="data">
+        {{each content as item}}
+        <div flex="dir:top" class="data">
+            <div class="header" flex="main:justify">
+                <h5>{{item.username}}</h5>
+                <span>{{item.date}}</span>
+            </div>
+            <div flex="dir:top">
+                <p>基础体温：<span class="warm">{{item.tp}}</span></p>
+                <p>体重：<span>{{item.weight}}</span></p>
+                <p>BIM：<span>{{item.BIM}}</span></p>
+                <p>腰围：<span>{{item.waist}}</span></p>
+                <p>腰臀比：<span>{{item.ratio}}</span></p>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <script src="/static/common/lib/template.js"></script>
+    <script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+    <script>
+        (function () {
+            var data = {
+                content: [{
+                    username: '淹死的🐟',
+                    date: '2017-03-06',
+                    tp: '37.5',
+                    weight: '72kg',
+                    BIM: '23',
+                    waist: '70',
+                    ratio: '1.5'
+                }, {
+                    username: '淹死的🐟',
+                    date: '2017-03-06',
+                    tp: '37.5',
+                    weight: '72kg',
+                    BIM: '23',
+                    waist: '70',
+                    ratio: '1.5'
+                }],
+                desc: '数据列表'
+            }
+            document.getElementById('box').innerHTML = template('data',data)
+        })()
+    </script>
+</body>
+</html>

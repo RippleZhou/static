@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>打卡</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/camp/mission/css/main.css?v1.011">
+    <style>
+        .back {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            height: 151px;
+            width: 234px;
+            left: 0;
+            right: 0;
+            background: #fff;
+            text-align: center;
+            display: none;
+            box-shadow: 0 0 100px #999;
+        }
+        .back p:first-of-type {
+            line-height: 40px;
+            border-bottom: 1px solid #eee;
+        }
+        .back p:nth-of-type(2) {
+            line-height: 80px;
+        }
+        .back div {
+            border-top: 1px solid #eee;
+            line-height: 30px;
+            background: #999;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="submit">
+    <textarea name="" id="" cols="30" rows="10" placeholder="发表打卡感言。。。"></textarea>
+    <div id="add-img" class="flex">
+        <a href="javascript:void (0)" class="filebox">
+            <input type="file" class="file-choose">
+        </a>
+    </div>
+    <div class="foot">提交</div>
+</div>
+<div  class="back num1">
+    <p>温馨提示</p>
+    <p>打卡成功，点击确认返回任务页面</p>
+    <div onclick="goback()">确认</div>
+</div>
+<div class="back num2">
+    <p>温馨提示</p>
+    <p style="line-height: 25px;padding: 15px">您在之前已经打过卡了，或者其他原因无法完成打卡，点击确认返回任务页面</p>
+    <div onclick="goback()">确认</div>
+</div>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.011"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/camp/js/clock.js"></script>
+<script src="/static/camp/js/localResizeIMG.js"></script>
+<script src="/static/camp/js/mobileBUGFix.min.js"></script>
+<script src="/static/camp/mission/js/submit.js?v1.011"></script>
+
+</body>
+</html>

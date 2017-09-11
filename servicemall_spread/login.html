@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+	<title>爱丁服务</title>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="爱丁网，上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查" />
+	<meta name="description" content="爱丁网是专业为准妈妈提供上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查等怀孕服务的知识网站，其中还包括相关资讯频道，提供专业、舒适、贴心的全程辅导与帮助，直到您愉悦地实现优质怀孕。" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-orientation" content="portrait">
+	<link rel="stylesheet" type="text/css" href="http://www.ibabycenter.com/wwwfront/css/unify.css">
+	<style>
+		.touchFeedback,.touchFeedback.allDes *,.touchFeedback.allDes *:before,.touchFeedback.allDes *:after,.touchFeedback .traDes,.touchFeedback .traDes.allDes *,.touchFeedback .traDes.allDes *:before,.touchFeedback .traDes.allDes *:after{transition:all 111ms}
+		.touchFeedback.tc,.touchFeedback.tc.allDes *,.touchFeedback.tc.allDes *:before,.touchFeedback.tc.allDes *:after,.touchFeedback.tc .traDes,.touchFeedback.tc .traDes.allDes *,.touchFeedback.tc .traDes.allDes *:before,.touchFeedback.tc .traDes.allDes *:after{transition:none}
+		::-webkit-input-placeholder{font-size:16px;color:#ccc}
+		body{background:#efeff4}
+		form{padding:31px 20px 17px}
+		header{width:320px;height:30px;border-radius:50%;background:#eee url(../img/spread/icon.jpg) no-repeat center;background-size:cover;margin:0 ;font-size: 16px; color: #46c6fe }
+		section{margin-bottom:20px;background:#fff;border-radius:3px}
+		section label{height:48px;padding:0 15px;display:block}
+		section label:not(:last-child){border-bottom:1px solid #d6d7dc}
+		input{font-size:16px;height:100%;width:100%}
+		div{background:#46c6fe;height:48px;line-height:48px;text-align:center;color:#fff;border-radius:3px;font-size:18px}
+		div.tc{opacity:.5}
+		p{text-align:center;color:#ccc;margin-top:10px}
+		span{color:#46c6fe}
+	</style>
+</head>
+
+<body>
+<form>
+	<header>欢迎加入爱丁合作计划</header>
+	<section>
+		<label><input type="text" placeholder="请输入手机号/用户名" id="phone" name="phone"/></label>
+		<label><input type="password" placeholder="请输入密码" id="password" name="password"/></label>
+	</section>
+	<div class="touchFeedback">确定</div>
+	<p>我已阅读并知晓<span>《爱丁医生软件许可及服务协议》</span></p>
+</form>
+
+<p><a href="./introduction.html"><span>首次登录？</span></a></p>
+
+<script src="/static/common/lib/jquery.min.js"></script>
+<script>
+	(function(){
+		if(localStorage.doctorid){
+			location.replace('services.html')
+		}
+		$('div').on('click',function(){
+			if($('#phone').val().length==11&&$('#phone').val().charAt(0)=='1'&&$('#password').val()){
+				$.get('/IbabyWebService/3/Doctor/PartnerLogin',{phone:$('#phone').val(),password:$('#password').val()},function(res){
+					if(res.status===0){
+						localStorage.doctorid=res.content.docid
+						localStorage.doctorname=res.content.realname
+						localStorage.role = res.content.partnerrole
+						location.href='services.html'
+					}
+					else{
+						alert(res.errmsg)
+					}
+				},'json').fail(function(){
+					alert('出错')
+				})
+			}
+			else{
+				alert('请输入正确信息')
+			}
+		}).on('touchstart',function(){$(this).addClass('tc')}).on('touchmove touchend',function(){$(this).removeClass('tc')})
+	})()
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?4fd8e29b5cc8d16bce9f8179e70beeb8";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+</html>

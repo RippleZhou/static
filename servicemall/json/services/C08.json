@@ -1,0 +1,19 @@
+{
+    "status": 0,
+    "content": {
+        "pcode": "C08",
+        "name": "性激素六项",
+        "cover": "../../img/services/C08.jpg",
+        "suppliers": [
+            {
+                "hospital": "上海爱丁妇科门诊部",
+                "address": "上海市静安区华山路2号高和大厦1003",
+                "price": 550,
+                "discount": 0,
+                "unit": "元/次"
+            }
+        ],
+        "introduction": "月经来潮后的2-3天检查女性基础内分泌较为准确，也可选择单 项检查，工作日上午抽血，当天可出报告。",
+        "contents": "化学发光法检测卵泡生成激素（FSH）、黄体生成激素（LH）、雌二醇（E2）、孕酮（P）、睾酮（T）、催乳激素（PRL）"
+    }
+}

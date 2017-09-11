@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?237a75133cc2b33c9168d33ea40730a2";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<head>
+	<meta charset='utf-8' />
+	<meta name="viewport" content="target-densitydpi=device-dpi, width=640px, user-scalable=no" />  
+	<title>卵巢储备功能</title>
+	<style>
+		*{box-sizing:content-box}
+		body{background:#fff; margin: 0px; padding: 0px; font-family: "宋体";}
+		ul,li,h6{ list-style: none; margin: 0px; padding: 0px;}
+		.loading{ z-index: 100; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; background:url(img/bg-1.jpg) no-repeat #2a3935 center bottom;}
+		.loading img{ }
+		.loading p{ position: absolute; text-align: center; font-size: 24px; color: #fff; width: 100%; left: 0px; top: 746px;}
+		.load1{position: absolute; top: 113px; left: 50%; margin-left: -211px; animation: load1 0.5s ease-in; -webkit-animation: load1 0.5s ease-in;}
+		@keyframes load1{
+			from{
+				transform: scale(0.2,0.2);
+			}
+			to{
+				transform: scale(1,1);
+			}
+		}
+		@-webkit-keyframes load1{
+			from{
+				transform: scale(0.2,0.2);
+			}
+			to{
+				transform: scale(1,1);
+			}
+		}
+		.load2{ opacity:0; position: absolute; top: 137px; left: 50%; margin-left: -200px; animation: load2 0.8s infinite ease-in; -webkit-animation: load2 0.8s infinite ease-in;animation-delay:1s; -webkit-animation-delay:1s;}
+		@keyframes load2{
+			from{
+				opacity: 0;
+			}
+			to{
+				opacity: 1;
+			}
+		}
+		@-webkit-keyframes load2{
+			from{
+				opacity: 0;
+			}
+			to{
+				opacity: 1;
+			}
+		}
+		
+		#index{ position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;  background:url(img/bg-1.jpg) no-repeat #2a3935 center bottom;}
+		.index-1{display:block;width:100%; position: absolute; top: 0px; left: 0px;}
+		.index-2{ position: absolute; left:36px ; top: 294px;animation: indexB 0.5s infinite ease-in; -webkit-animation: indexB 0.5s infinite ease-in alternate;}
+		.index-3{ position: absolute; left: 50%; bottom: 164px; margin-left: -155px;}
+		
+		
+		#index a{animation: indexC 0.8s infinite ease-in; -webkit-animation: indexC 0.8s infinite ease-in alternate; position: absolute; width: 255px; height: 110px; left: 50%; margin-left: -127px; bottom: 223px; display: block;}
+		#index a img{ position: absolute; left: 0px; top: 0px;}
+		#index a div{ background: #84ccc9; position: absolute; width: 200px; height: 200px; top: -4px; left: -4px; border-radius: 50%;}
+		
+		@keyframes indexC{
+			from{
+				transform: scale(0.9,0.9);
+			}
+			to{
+				transform: scale(1,1);
+			}
+		}
+		@-webkit-keyframes indexC{
+			from{
+				transform: scale(0.9,0.9);
+			}
+			to{
+				transform: scale(1,1);
+			}
+		}
+		@keyframes indexB{
+			from{
+				left:36px;
+				top: 294px;
+			}
+			to{
+				left:40px;
+				top: 300px;
+			}
+		}
+		@-webkit-keyframes indexB{
+			from{
+				left:36px;
+				top: 294px;
+			}
+			to{
+				left:40px;
+				top: 300px;
+			}
+		}
+		#questionnaire,#result{ position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px; background: url(img/bg-sj.jpg) no-repeat left top;}
+		.question-wrap,.result-content{ position: absolute; left: 50%; top: 50%; background: url(img/question-bg.png) no-repeat; width: 600px; height: 949px; margin-left: -300px; margin-top: -474px;}
+		.question-wrap h3{ margin: 114px 0px 0px 0px; text-align: center; font-size: 24px; color: #313030; font-weight: normal;}
+		.question-wrap h4{ margin: 87px 0px 0px 108px; font-size: 28px; color: #000000; font-weight: normal;}
+		
+		#questionnaire h6{ width: 428px; margin: 15px 40px 22px 108px; position: relative; font-size: 28px; color: #000; font-weight: normal;}
+		
+		
+		#questionnaire ul{position:relative;padding-bottom:77px}
+		#questionnaire li{margin:0 53px 20px 121px;color:#000;font-size:28px;position:relative; width: 410px; height: auto; line-height: 48px; text-indent: 10px;}
+		#questionnaire li.on{background:url(img/question-1.png) no-repeat}
+		#questionnaire li span{ font-size: 24px; color: #999;}
+		.pager{ position: absolute; right: 50px; top: 148px; font-size: 28px; color: #000;}
+		#questionnaire footer{position:absolute;bottom:95px;left:44px;right:17px;height:117px;}
+		#questionnaire footer span:first-child{font-size:16px;line-height:50px;position:absolute;left:0px;top:0;bottom:0;text-align:center;width:117px}
+		#questionnaire footer span:last-child{position:absolute;right:243px;top:0;bottom:0;text-align:center;width:100px; font-size:40px; font-weight: bold; color: #e60012;}
+		#result{  position: absolute; left: 0px; top: 0px; width: 100%;}
+		.prev{ animation: prev 1s infinite linear alternate;-webkit-animation: prev 1s infinite linear alternate; position: absolute; left: 0px; top: 36px;}
+		.question-prev{ background: url(img/question-3.png) no-repeat center top; padding-top: 40px;}
+		.next-btn{ animation: next 1s infinite linear alternate;-webkit-animation: next 1s infinite linear alternate; position: absolute; right: 0px; top: 33px;}
+		.end-btn{ position: absolute; right: 10px; top: 0px;}
+		@keyframes prev{
+			from{
+				opacity: 1;
+				left: 0px;
+			}
+			to{
+				opacity: 0.5;
+				left:20px
+			}
+		}
+		
+		@keyframes next{
+			from{
+				opacity: 1;
+				right: 40px;
+			}
+			to{
+				opacity: 0.5;
+				right:60px
+			}
+		}
+		
+		@-webkit-keyframes prev{
+			from{
+				opacity: 1;
+				left: 0px;
+			}
+			to{
+				opacity: 0.5;
+				left:20px
+			}
+		}
+		
+		@-webkit-keyframes next{
+			from{
+				opacity: 1;
+				right: 40px;
+			}
+			to{
+				opacity: 0.5;
+				right:60px
+			}
+		}
+		
+		#bottom{height:50px;position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);color:#fff;padding-left:75px}
+		#bottom i{position:absolute;left:20px;top:-10px;height:45px;width:45px;border-radius:3px;background:#46c6fe url(http://www.ibabycenter.com/front/images/300.png) no-repeat center;background-size:cover}
+		#bottom h6{padding-top:10px;padding-bottom:5px}
+		#bottom p{font-size:10px}
+		#bottom div{position:absolute;top:15px;right:20px;height:20px;line-height:20px;width:75px;text-align:center;border-radius:9px;background:#46c6fe;font-size:10px;padding-right:9px}
+		#bottom span{position:absolute;top:5px;right:5px;width:10px;height:10px;border-radius:50%;border:1px solid #fff;font-size:8px;line-height:10px;text-align:center}
+		.end-btn{ display: none;}
+		.end .next-btn{ display: none;}
+		.end .end-btn{ display: block;}
+		.framework-tip{ position: fixed; width: 100%; height: 100%; left: 0px; top: 0px; bottom: 0px; right: 0px; background: url(img/bg-tip.png) repeat;}
+		.framework-toast{ position: absolute; left: 50%; font-size: 30px; color: #fff; margin-left: -50px; top: 50%; margin-top: -10px;}
+		#register{ display: none; position: fixed; width: 100%; height: 100%; left: 0px; top: 0px; bottom: 0px; right: 0px; background: url(img/bg-tip.png) repeat; }
+		.register-inner{ background: url(img/pop.png) no-repeat; position: absolute; left: 50%; top: 50%; margin-top: -386px; margin-left: -228px; width: 535px; height: 773px;}
+		.register-inner input{ position: absolute; left: 81px; width: 280px; height: 48px; border: none; font-size: 30px; line-height: 50px; color: #000; background: none;}
+		#username{ top: 302px;}
+		#phone{ top: 377px;}
+		#address{ top: 454px;}
+		#wchar{ top: 526px;}
+		
+		.register-inner a{ display: block; position: absolute; left: 0px; top: 671px; width:467px ; height: 67px;}
+		.result-title{ margin: 118px 0px 0px 25%;}
+		.result-1{font-size: 130px; line-height: 99px; color: #e60012; text-align: center; position: relative; width: 371px; height: 155px; background: url(img/result-1.jpg) no-repeat; margin: 120px 103px 18px; padding-top: 80px;}
+		.result-2{ background: url(img/result-2.jpg) no-repeat; margin: 0px 66px 5px; padding: 50px 0px 0px; width: 467px; height: 184px; font-size: 25px; line-height: 29px;}
+		.result-3{ margin: 0px 4% 0px;  padding: 0px 53px 0px 53px; width: 403px; font-size: 26px; position: relative; text-align: center;}
+		.result-4{ width: 100%;}
+		.badbtn{ position: absolute; right: 11px; top: -51px;animation: badbtn 0.5s infinite linear alternate;-webkit-animation: badbtn 0.5s infinite linear alternate;}
+		@-webkit-keyframes badbtn{
+			from{top: -243px; right: 11px;}
+			to{top:-248px; right: 15px;}
+		}
+		
+		@-webkit-keyframes badbtn{
+			from{top: -243px; right: 11px;}
+			to{top:-248px; right: 15px;}
+		}
+		.goodResult{ margin-top: 39px;}
+		.goodbtn{ position: absolute; right:79px ; top:60px ; animation: goodbtn 0.6s infinite linear;-webkit-animation: goodbtn 0.6s infinite linear;}
+		@-webkit-keyframes goodbtn{
+			from{right: 79px;}
+			to{right:100px}
+		}
+		
+		@-webkit-keyframes goodbtn{
+			from{right: 79px;}
+			to{right:100px}
+		}
+	</style>
+</head>
+
+<body>
+<div class="loading" id="loading">
+	<img src="img/load.png" class="load1" />
+	<img src="img/load1.png" class="load2" />
+	<p><span></span>%</p>
+</div>
+<div id="index" style="display:none">
+	<img src="img/p1-1.jpg" class="index-1"/>
+	<img src="img/p1-2.png" class="index-2" />
+	<img src="img/p1-4.png" class="index-3" />
+	<a id="start_exam" class="clickable"><img src="img/p1-3.png" /></a>
+</div>
+<div id="questionnaire" style="display:none">
+	<div class="question-wrap">
+		<h3>（问答题 共100分）</h3>
+		<h4>阅读题目进行答题</h4>
+		<h6></h6>
+		<ul></ul>
+		<footer><span style="display:none" class="question-prev"><img class="prev" src="img/question-2.png" /></span>
+			<span><p class="next-wrap"><img class="next-btn" src="img/question-5.png" /></p><!--<img class="end-btn" src="img/end.png" />--></span><span></span></footer>
+			
+		<div class="pager"><span class="curr-page"></span>/<span class="allpage"></span></div>
+	</div>
+</div>
+<div id="result" style="display:none">
+	<div class="result-content">
+		<header>
+			<div class="result-1"><span id="score">?</span></div>
+		</header>
+		<div class="result-2" id="result-2"></div>
+		<img src="img/sh-qrcode-1-2.png" class="sh-qrcode" style="display: none;" />
+		<img src="img/other-qrcode-1-2.png" class="other-qrcode" style="display: none;" />
+		<div class="result-3 badResult">
+			
+		</div>
+		<div class="result-3 goodResult" id="goodResult" style="display: none;">
+			<img src="img/result-4.png" />
+			<img src="img/result-5.png" class="goodbtn" />
+		</div>
+	</div>
+</div>
+<div class="overlay"></div>
+<div class="register">
+	<input type="text" class="input-text username" id="username1" placeholder="可选填" />
+	<input type="text" class="input-text phone-num" id="phone1" placeholder="可选填" />
+	<div class="info">
+		<div>
+			<select id="s_province" name="s_province"></select>
+		    <select id="s_city" name="s_city" ></select>
+		    <select id="s_county" name="s_county" style="display: none;"></select>
+		    <script class="resources library" src="/static/common/js/area.js" type="text/javascript"></script>
+		</div>
+    <div id="show"></div>
+    <a href="javascript:;" class="subBtn" id="commit_exam"></a>
+</div>
+
+
+</div>
+
+<style>
+	.next-wrap{ background: url(img/question-4.png) no-repeat; padding-top: 22px; width: 162px; height: 100px; position: absolute; right: 1px; top: -4px;}
+	
+	.overlay{ display: none; position: fixed; width: 100%; height: 100%; z-index: 1000; background: #000;opacity:0.5;filter:alpha(opacity=50);}
+	.register{display: none; position: fixed; background: url(img/register.png) no-repeat; width: 514px; height: 622px; left: 50%; top: 50%; margin-left: -257px; margin-top: -311px; z-index: 1000;}
+	.register input{ width: 266px; height: 46px; position: absolute; left: 187px; border: none; font-size: 24px; background: none;}
+	.register select{ width: 114px; height: 44px; position: absolute; font-size: 24px;}
+	.subBtn{ position: absolute; width: 157px; height: 67px; top: 485px; left: 174px;}
+	#s_province{ left: 182px; top: 355px;}
+	#s_city{ left: 322px; top: 355px;}
+	.username{ top: 186px;}
+	.phone-num{ top: 270px;}
+	.sh-qrcode,.other-qrcode{ margin: -535px 0px 0px 12px; width: 546px;}
+	.goodInformation{ width: 640px; background: url(img/result-bg.jpg) no-repeat; position: relative; display: none;}
+	.information-content{ padding: 48px 27px 120px;}
+	.information-content .result-1{ margin: 47px 103px 18px;}
+	.information-content h4{ text-align: center; font-size: 24px; color: #000; line-height: 30px; margin: 40px 0px;}
+	.information-content h4 span{ border-bottom: 1px solid #000000;}
+	.information-1{ margin:0px 44px ; border: 1px solid #000; padding: 20px;}
+	.information-1 h5{ font-size: 26px; color: #000000; font-family: "微软雅黑"; margin: 0px; font-weight: normal;}
+	.information-1 p{ line-height: 33px; color: #333333; font-size: 24px; margin: 10px 0px; font-family: "微软雅黑";}
+	.line{ height: 1px; border-bottom: 1px solid #000; margin-left: -20px; width: 498px;}
+	.qrcode{ position: relative; text-align: center;}
+	.qr-ren{ position: absolute; left: 50%; top: 117px; margin-left: 76px;}
+	.qr-succ-img{ margin-top: -258px; margin-left: -100px;}
+</style>
+<div class="goodInformation" id="goodInformation">
+	<div class="information-content">
+		<header>
+			<div class="result-1"><span id="score1">?</span></div>
+		</header>
+		<h4>姓名：<span id="Uname"></span></h4>
+		<div class="information-1">
+			<h5>专业评估</h5>
+			<p id="strategy">
+				
+			</p>
+			<div class="line"></div>
+			<h5 style="margin: 25px 0px;">祝贺您完成卵巢储备功能考试~关注爱丁医生订阅号可以获得更多相关知识！</h5>
+			<p class="qrcode">
+				<img src="img/result-10.png" class="qr-succ-img" />
+				<img src="img/result-8.png" class="qr-ren" />
+			</p>
+		</div>
+		
+	</div>
+</div>
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="http://www.ibabycenter.com/wwwfront/js/third/Tcc.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/static/common/js/area.js"></script>
+<script type="text/javascript">_init_area();</script>
+
+<script>
+	var openid = localStorage.wx_user_info_openid;
+	var	nickname=localStorage.wx_user_info_nickname;
+	var	province=localStorage.wx_user_info_province;
+	var	city=localStorage.wx_user_info_city;
+	if(!openid){
+		location.href = 'init_evalute_ovary.html';
+	}
+	
+/*var openid = '1';
+var	nickname= '1';
+var	province='1';
+var	city='1';*/
+
+var param = /^((13|15)|18|14|12|17)\d{9}$/;
+var username,phone,sProvince,sCity,tag1
+	(function(){
+		var ld = 0;
+			var v1;
+		var sI1 = setInterval(function(){ld++; load(ld);},50);
+			function load(l){
+				if(l<=100){
+					v1 = (l+'').split('');
+						 $(".loading p span").html(l); 
+				}else{
+					$('.loading').hide();
+					$('#index').show();
+					clearInterval(sI1);
+				}
+			}
+
+		wechat.share({desc:'爱丁备孕MLP（医学、生活、心理）测评，全面专业的测评 ，专业成就好孕',title:document.title})
+		queryObj={}
+
+		
+		
+		if(location.search){
+			queryObj=JSON.parse('{"'+decodeURI(location.search.substring(1)).replace(/"/g,'\\"').replace(/&/g,'","').replace(/=/g,'":"')+'"}')
+		}
+		if(queryObj.accountrequired=='false'){
+			patientid='0'
+		}
+		if (User.getUser()) {
+			patientid=User.getUser().patientid
+		}
+		if(queryObj.inapp){
+			$('#result footer').on('click',function(){
+				location.href=location.href.split('#')[0]
+				location.reload()
+			})
+		}
+		else{
+			$('#bottom').show()
+			$('#result footer').hide()
+		}
+		function showResult(res){
+			$('.loading,#index,#questionnaire').hide();
+			$('#score,#score1').text(res.score)
+			$('#strategy').html(res.strategy);
+			$('#result-2').html(res.rankComment);
+			if(username){
+				$('#Uname').html(username);
+			}else{
+				$('#Uname').html(nickname);
+			}
+
+			if(parseFloat(res.score)>91){
+				$('.result-3,.sh-qrcode,.other-qrcode').hide();
+				$('.goodResult').show();
+			}else{
+				$('.result-3').hide();
+				if(sCity == '上海市'){
+				$('.sh-qrcode').show();
+				}else{
+					$('.other-qrcode').show();
+				}
+				$('.badResult').show();
+			}
+			$('#result').show()
+		}
+		
+		
+		
+		/*if(location.hash.replace('#','')){
+			Utils.ajax.get('/IbabyWebService/3/Evalute/GetOvaryEvaluteResult',{openid:openid}).then(function(res){
+				//console.log(res);
+				showResult(res);
+			})
+			return
+		}else{
+			//console.log(2);
+			document.getElementById('loading').style.display = 'block';
+			//$('#loading').fadeIn();
+		}*/
+		
+		
+		//$('#loading').show();
+		$.get('/IbabyWebService/3/Evalute/GetOvaryEvaluteShareWord',function(res){
+			//console.log(res);
+			if(res.status!==0){
+				return
+			}
+			wx.config({
+				appId: res.content.appId,
+				timestamp: res.content.timestamp,
+				nonceStr: res.content.nonceStr,
+				signature: res.content.signature,
+				jsApiList: [
+					'onMenuShareTimeline',
+					'onMenuShareAppMessage'
+				]
+			})
+			wx.ready(function () {
+				wx.onMenuShareTimeline({
+					title: res.title,
+					desc:res.description,
+					link: '',
+					imgUrl: res.picurl
+				})
+				wx.onMenuShareAppMessage({
+					title: res.title,
+					desc:res.description,
+					link: '',
+					imgUrl: res.picurl
+				})
+			})
+		},'json')
+		var $index_a=$('#start_exam'),
+			$questionnaire=$('#questionnaire'),
+			$questionnaire_h6=$('#questionnaire h6'),
+			$questionnaire_ul=$('#questionnaire ul'),
+			$footer_span_prev=$('footer span').eq(0),
+			$footer_span_next=$('footer span').eq(1),
+			$footer_span_end=$('footer span').eq(2),
+			$result=$('#result'),
+			$goodResult = $('#goodResult'),
+			timeSet;
+		$index_a[0].onclick=function(){
+			aid.tip.show('问卷加载中')
+			//_hmt.push(['_trackEvent', 'evaluate', 'click', 'ovary','start_exam'])
+		}
+		
+		Utils.ajax.get('/IbabyWebService/3/Evalute/GetOvaryQuestionList?code=E008').then(function(questions){
+			mainQuestions=questions.evaluteQuestions
+			//branchQuestions=questions.evaluteBranchQuestions
+			questionnaireLine=[]
+			$('.allpage').html(mainQuestions.length);
+			for(i=0;i<mainQuestions.length;i++){
+				questionnaireLine.push({
+					type:mainQuestions,
+					key:i
+				})
+			}
+			$index_a[0].onclick=null
+			$index_a.on('click',function(){
+				$('#index').hide()
+				$questionnaire.show()
+				needle=0
+				displayQuestion()
+			})
+			
+			
+			
+			function submitF(){
+				Utils.ajax.post('/IbabyWebService/3/Evalute/CommitOvaryEvaluteAnswer',{evaluteAnswers:JSON.stringify(mySelects),openid:openid,channel:queryObj.channel?queryObj.channel:'',name:username,phonenum:phone,province:sProvince,city:sCity}).then(function(res){
+						$questionnaire.hide()
+						$('.overlay,.register').css('display','none');
+						//location.hash='result'
+						//location.reload()
+						//console.log(res);
+						Utils.ajax.get('/IbabyWebService/3/Evalute/GetOvaryEvaluteResult',{openid:openid}).then(function(res){
+							//console.log(res);
+							showResult(res);
+						})
+					})
+			}
+			
+			
+			$('#commit_exam').on('click',function(){
+				username = $('#username1').val();
+				phone = $('#phone1').val();
+				sProvince = $('#s_province').val();
+				sCity = $('#s_city').val();
+/*				if(!username){
+					alert('请填写姓名！');
+					return false;
+				}
+				if(!phone) {
+					alert('请填写手机号码！');
+					return false;
+				} else */
+				if(phone && !param.test(phone)) {
+					alert('请填写正确的手机号码！');
+					return false;
+				}
+				if(sProvince == '省份'){
+					alert('请选择省份！');
+					return false;
+				}
+				if(sCity == '地级市'){
+					alert('请选择城市！');
+					return false;
+				}
+				//_hmt.push(['_trackEvent', 'evaluate', 'click', 'ovary','commit_exam'])
+				submitF();
+			})
+			
+			
+			function displayQuestion(){
+				//console.log(questionnaireLine[needle].key);
+				$questionnaire_h6.text((questionnaireLine[needle].key+1)+'.'+questionnaireLine[needle].type[questionnaireLine[needle].key].content)
+				html='',selicon='A.';
+				$('.curr-page').html(questionnaireLine[needle].key+1);
+				for(i=0;i<questionnaireLine[needle].type[questionnaireLine[needle].key].options.length;i++){
+					if(i == 0){selicon = 'A.'}else if(i == 1){selicon = 'B.'}else if(i == 2){selicon = 'C.'}else if(i == 3){selicon = 'D.'}
+					html+='<li class="clickable">'+selicon+questionnaireLine[needle].type[questionnaireLine[needle].key].options[i].content+'</li>'
+				}
+				$questionnaire_ul.html(html)
+				$questionnaire_li=$('#questionnaire li')
+				for(i=0;i<questionnaireLine[needle].type[questionnaireLine[needle].key].options.length;i++){
+					if(questionnaireLine[needle].type[questionnaireLine[needle].key].options[i].selected){
+						$questionnaire_li.eq(i).addClass('on')
+					}
+				}
+				if(questionnaireLine[needle].type[questionnaireLine[needle].key].singleselection===0){
+					$questionnaire_li.each(each_radio_li_handler)
+				}
+				else{
+					$questionnaire_li.each(each_checkbox_li_handler)
+				}
+			}
+			function each_radio_li_handler(i){
+				$(this).on('tap',function(){
+					clearTimeout(timeSet);
+					$questionnaire_li.removeClass('on')
+					$(this).addClass('on')
+					for(j=0;j<questionnaireLine[needle].type[questionnaireLine[needle].key].options.length;j++){
+						questionnaireLine[needle].type[questionnaireLine[needle].key].options[j].selected=false
+					}
+					questionnaireLine[needle].type[questionnaireLine[needle].key].options[i].selected=true
+					if($footer_span_end.text()!=='完成'){
+						timeSet = setTimeout(function(){forward()},500)
+						
+					}
+				})
+			}
+			function each_checkbox_li_handler(i){
+				$(this).on('tap',function(){
+					if(questionnaireLine[needle].type[questionnaireLine[needle].key].options[i].isreject===0){
+						for(j=0;j<questionnaireLine[needle].type[questionnaireLine[needle].key].options.length;j++){
+							if(j!==i){
+								$questionnaire_li.eq(j).removeClass('on')
+								questionnaireLine[needle].type[questionnaireLine[needle].key].options[j].selected=false
+							}
+						}
+						$(this).toggleClass('on')
+						questionnaireLine[needle].type[questionnaireLine[needle].key].options[i].selected=!questionnaireLine[needle].type[questionnaireLine[needle].key].options[i].selected
+					}
+					else{
+						$(this).toggleClass('on')
+						questionnaireLine[needle].type[questionnaireLine[needle].key].options[i].selected=!questionnaireLine[needle].type[questionnaireLine[needle].key].options[i].selected
+						for(j=0;j<questionnaireLine[needle].type[questionnaireLine[needle].key].options.length;j++){
+							if(questionnaireLine[needle].type[questionnaireLine[needle].key].options[j].isreject===0){
+								$questionnaire_li.eq(j).removeClass('on')
+								questionnaireLine[needle].type[questionnaireLine[needle].key].options[j].selected=false
+							}
+						}
+					}
+				})
+			}
+			$footer_span_prev.on('click',function(){
+				needle--
+				while(questionnaireLine[needle+1].parent&&questionnaireLine[needle+1].parent==questionnaireLine[needle].type[questionnaireLine[needle].key].id){
+					questionnaireLine.splice(needle+1,1)
+				}
+				$footer_span_next.show();
+				displayQuestion()
+				if(needle==0){
+					$footer_span_prev.hide()
+				}
+			})
+			
+			
+			
+			
+			$footer_span_next.on('click',function(){
+				pass=false
+				for(i=0;i<questionnaireLine[needle].type[questionnaireLine[needle].key].options.length;i++){
+					if(questionnaireLine[needle].type[questionnaireLine[needle].key].options[i].selected){
+						pass=true
+						break
+					}
+				}
+				if(!pass){
+					aid.tip.show('请选择')
+					return
+				}
+				needle++
+				if(needle==16){
+					$footer_span_next.hide()
+				}
+				displayQuestion()
+				
+			})
+			
+			$footer_span_end.on('click',function(){
+				pass=false
+				for(i=0;i<questionnaireLine[needle].type[questionnaireLine[needle].key].options.length;i++){
+					if(questionnaireLine[needle].type[questionnaireLine[needle].key].options[i].selected){
+						pass=true
+						break
+					}
+				}
+				if(!pass){
+					aid.tip.show('请选择')
+					return
+				}
+				forward();
+				//submitAll();
+					$('.overlay,.register').css('display','block');
+			})
+			function forward(){
+				if($footer_span_end.text()=='交卷'){
+					mySelects=[]
+					for(i=0;i<questionnaireLine.length;i++){
+						for(j=0;j<questionnaireLine[i].type[questionnaireLine[i].key].options.length;j++){
+							if(questionnaireLine[i].type[questionnaireLine[i].key].options[j].selected){
+								mySelects.push({
+									questionid:questionnaireLine[i].type[questionnaireLine[i].key].id,
+									optionid:questionnaireLine[i].type[questionnaireLine[i].key].options[j].id,
+									sequence:questionnaireLine[i].type[questionnaireLine[i].key].options[j].sequence
+								})
+							}
+						}
+					}
+					
+					
+				}
+				else{
+					
+					needle++
+					displayQuestion()
+					$footer_span_prev.show()
+					if(needle==questionnaireLine.length-1){
+						$footer_span_next.css('display','none');
+						$footer_span_end.text('交卷')
+					}
+				}
+			}
+		})
+	})()
+</script>
+<script>
+	$(function(){
+		$('.goodResult').on('click',function(){
+			document.getElementById('goodInformation').style.display = 'block';
+		})
+	})
+</script>
+</body>
+</html>

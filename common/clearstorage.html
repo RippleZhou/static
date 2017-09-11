@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱丁丨用户注销</title>
+    <style>
+        input{
+            border: 1px solid #eee;
+            padding: 10px 30px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top:50px;
+            margin: auto;
+            width: 85px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="button" onclick="window.localStorage.clear();" value="注销" />
+    <script>
+        document.querySelector("input").onclick = function () {
+            window.localStorage.clear();
+            document.write('注销成功');
+        }
+    </script>
+</body>
+</html>

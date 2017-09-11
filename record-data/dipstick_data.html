@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8">
+<title>试纸数据</title>
+<link rel="stylesheet" href="css/bootstrap.min.css"/>
+<style type="text/css">
+html,body{
+  height:100%;
+  background: #F7F7F7;
+}
+.content_list{
+  border-bottom: 1px solid #F7F7F7;
+}
+.content{
+
+}
+.dipstick{
+  background: #ffffff;
+  padding:0 0 0 1rem;
+}
+.dipstick_detail{
+  background: #ffffff;
+  border-bottom: 1px solid #F7F7F7;
+  padding:1rem 0;
+}
+img{
+  display: inline-block;
+}
+.dipstick_type{
+  width:0.7rem;
+  height:1.4rem;
+  margin:0 0.5rem 0 0;
+  float: left;
+}
+.dipstick_attr{
+  float: left;
+}
+.dipstick_time{
+  float: left;
+  padding-left: 1rem;
+  color:#cccccc;
+}
+.dipstick_photo{
+  float: right;
+  margin:0 0.5rem 0 0;
+  border:0;
+  height:1.4rem;
+}
+.dipstick_date{
+  font-size: 0.9rem;
+  color: #999999;
+  padding:0.5rem 0 0.5rem 1rem;
+}
+.bdl{
+  padding:0.1rem 0.2rem;
+  background: #ff6666;
+  border-radius: 1rem;
+  float: left;
+  color: #ffffff;
+  font-size: 0.8rem;
+}
+.bdl_data{
+  padding: 0 0 0 0.5rem;
+  float: left;
+  font-size: 1rem;
+}
+</style>
+</head>
+<script type="text/html" id="test">
+<%for(i=0;i<content.length;i++){%>
+  <div class="content">
+    <div class="dipstick_date"><%=date_ymd(content[i].key)%></div>
+    <%for(k=0;k<content[i].value.length;k++){%>
+      <div class="dipstick">
+        <%if(k!=content[i].value.length-1){%>
+          <div class="dipstick_detail">
+        <%}else{%>
+          <div class="dipstick_detail" style="border:0;">
+        <%}%>
+        <%if(content[i].value[k].recordvalue){%>
+          <%if(content[i].value[k].recordvalue == "强阳"){%>
+          <img class="dipstick_type" src="images/qy.png" />
+          <span class="dipstick_attr" style="font-size: 0.9rem;">强阳</span>
+          <%}else if(content[i].value[k].recordvalue == "阳性"){%>
+            <img class="dipstick_type" src="images/yangx.png" />
+            <span class="dipstick_attr" style="font-size: 0.9rem;">阳性</span>
+          <%}else if(content[i].value[k].recordvalue == "弱阳"){%>
+            <img class="dipstick_type" src="images/ry.png" />
+            <span class="dipstick_attr" style="font-size: 0.9rem;">弱阳</span>
+          <%}else if(content[i].value[k].recordvalue == "弱弱阳"){%>
+            <img class="dipstick_type" src="images/rry.png" />
+            <span class="dipstick_attr" style="font-size: 0.9rem;">弱弱阳</span>
+          <%}else if(content[i].value[k].recordvalue == "阴性"){%>
+            <img class="dipstick_type" src="images/yinx.png" />
+            <span class="dipstick_attr" style="font-size: 0.9rem;">阴性</span>
+          <%}%>
+        <%}else{%>
+            <div class="bdl">半定量</div>
+            <div class="bdl_data"><%=bdlsz(content[i].value[k].recordvaluetwo)%></div>
+        <%}%>
+          <div class="dipstick_time"><%=date_hm(content[i].value[k].recordtime)%></div>
+          <%if(content[i].value[k].photo){%>
+            <img class="dipstick_photo" src="<%=content[i].value[k].photo%>" />
+          <%}%>
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+    <%}%>
+  </div>
+<%}%>
+</script>
+<script type="text/html" id="zwsj">
+<div style="width:10rem;margin:6rem auto 0;">
+  <img style="width:10rem;" src="images/zwsj1.png" />
+</div>
+</script>
+<body data-role='none' style="margin:0;">
+  <div class="content_list">
+    <!-- <div class="content">
+      <div class="dipstick_date">2015/05/05</div>
+      <div class="dipstick">
+        <div class="dipstick_detail">
+          <img class="dipstick_type" src="images/ry.png" />
+          <span style="font-size: 0.9rem;">阴性</span>
+          <img class="dipstick_photo" src="" />
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+      <div class="dipstick">
+        <div class="dipstick_detail">
+          <img class="dipstick_type" src="images/ry.png" />
+          <span style="font-size: 0.9rem;">阴性</span>
+          <img class="dipstick_photo" src="" />
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+      <div class="dipstick">
+        <div class="dipstick_detail">
+          <img class="dipstick_type" src="images/ry.png" />
+          <span style="font-size: 0.9rem;">阴性</span>
+          <img class="dipstick_photo" src="" />
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+      <div class="dipstick">
+        <div class="dipstick_detail">
+          <img class="dipstick_type" src="images/ry.png" />
+          <span style="font-size: 0.9rem;">阴性</span>
+          <img class="dipstick_photo" src="" />
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="dipstick_date">2015/05/05</div>
+      <div class="dipstick">
+        <div class="dipstick_detail">
+          <img class="dipstick_type" src="images/ry.png" />
+          <span style="font-size: 0.9rem;">阴性</span>
+          <img class="dipstick_photo" src="" />
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+      <div class="dipstick">
+        <div class="dipstick_detail">
+          <img class="dipstick_type" src="images/ry.png" />
+          <span style="font-size: 0.9rem;">阴性</span>
+          <img class="dipstick_photo" src="" />
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+      <div class="dipstick">
+        <div class="dipstick_detail">
+          <img class="dipstick_type" src="images/ry.png" />
+          <span style="font-size: 0.9rem;">阴性</span>
+          <img class="dipstick_photo" src="" />
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+      <div class="dipstick">
+        <div class="dipstick_detail">
+          <img class="dipstick_type" src="images/ry.png" />
+          <span style="font-size: 0.9rem;">阴性</span>
+          <img class="dipstick_photo" src="" />
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</body>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/template-native.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+<script src="js/template-helper.js" type="text/javascript"></script>
+<script type="text/javascript">
+var bdlsz_data = {
+    '0': '<10',
+    '1': '10~25',
+    '2': '26~45',
+    '3': '46~65',
+    '4': '>65'
+}
+
+function unique(data) {
+    data = data || [];
+    var a = {};
+    len = data.length;
+    for (var i = 0; i < len; i++) {
+        var v = data[i];
+        if (typeof(a[v]) == 'undefined') {
+            a[v] = 1;
+        }
+    };
+    data.length = 0;
+    for (var i in a) {
+        data[data.length] = i;
+    }
+    return data;
+}
+$(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: ajax_url + "/Patient/Data/ovulatory",
+        contentType: "application/x-www-form-urlencoded",
+        data: {
+            "userid": $.getUrlParam('userid'),
+        },
+        dataType: "json",
+        success: function(data) {
+            var list = data.content.list;
+            data.content = list;
+            var array = [];
+            var newcontent = [];
+            var key;
+            var value;
+            var index;
+            for (i = 0; i < data.content.length; i++) {
+                array.push(data.content[i].recorddate);
+            }
+            var newarray = unique(array);
+            for (i = 0; i < newarray.length; i++) {
+                newcontent[i] = {
+                    "key": newarray[i],
+                    "value": []
+                };
+            }
+            for (i = 0; i < newcontent.length; i++) {
+                key = newcontent[i].key;
+                index = i;
+                for (k = 0; k < data.content.length; k++) {
+                    if (data.content[k].recorddate == key) {
+                        newcontent[index].value.push(data.content[k]);
+                    }
+                }
+                newcontent[index].value;
+            }
+            data.content = newcontent;
+            template.helper('bdlsz', function(bdldata) {
+                return bdlsz_data[bdldata];
+            });
+            if (data.content.length > 0) {
+                var html = template('test', data);
+                $('.content_list').html(html);
+            } else {
+                var html = template('zwsj', data);
+                $('body').html(html);
+            }
+
+        },
+    })
+})
+</script>
+</html>

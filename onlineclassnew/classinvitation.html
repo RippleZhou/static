@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>邀请卡</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <style>
+        body{
+            background-color: #eee;
+            margin-top: 40px;
+        }
+        .box1,.box2{
+            width:95%;
+            margin:0px 10px;
+            background-color: #fff;
+        }
+        .box2{
+            border-top:1px dashed #ccc;
+        }
+        .customerimg{
+            width:50px;
+            height: 50px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        .invitation{
+            height:40px;
+            width:70%;
+            background-color: #eee;
+            text-align: center;
+            line-height:40px;
+            margin:20px 0px;
+        }
+        .user{
+            width:50%;
+            height:30px;
+            background-color: #eee;
+            text-align: center;
+            line-height:30px;
+            margin-bottom: 20px;
+        }
+        .usertime{
+            width:95%;
+            margin:0px 10px;
+            background-color: #fff;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div flex="dir:top cross:center" class="box1">
+        <img src="img/aidingCustomer.jpg" alt="" class="customerimg">
+        <span style="margin-bottom: 10px;">爱丁客服01</span>
+        <p>赠送您一张课程礼品卡 <span>(价值88元)</span></p>
+        <input class="invitation" value="251526145145841515458" readonly="readonly">
+        <div class="user">立即使用</div>
+    </div>
+    <div class="usertime">有效期至：2017-09-10 21:00</div>
+    <div flex="dir:top cross:center" class="box2">
+        <img src="img/aidingCustomer.jpg" alt="" style="width:100px;height:100px;margin-top: 20px;">
+        <p style="padding:10px 0px 50px 0px;color: #666;font-size: 12px;">(关注公众号，学习更多健康课程)</p>
+    </div>
+</body>
+</html>

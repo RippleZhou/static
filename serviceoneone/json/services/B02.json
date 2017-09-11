@@ -1,0 +1,58 @@
+{
+    "pcode": "B02",
+    "name": "试管婴儿怀孕计划",
+    "cover": "../img/services/B02.jpg",
+    "ways": [
+        {
+            "scode": "phone",
+            "title": "电话咨询",
+            "price": 150,
+            "discount": 0,
+            "unit": "元/10分钟"
+        },
+        {
+            "scode": "youxian",
+            "title": "优先门诊",
+            "price": 300,
+            "discount": 0,
+            "unit": "元/次"
+        },
+        {
+            "scode": "peizhen",
+            "title": "专业陪诊",
+            "price": 1000,
+            "discount": 0,
+            "unit": "元/次"
+        }
+    ],
+    "flows": [
+        {
+            "step": "诊前",
+            "description": "爱丁提供电话预评估，助您了解自己，与医生沟通更顺畅。"
+        },
+        {
+            "step": "诊中",
+            "description": "三甲高级职称以上资深医生为您制订诊疗方案。"
+        },
+        {
+            "step": "诊后",
+            "description": "爱丁为您分析医嘱，讲解报告单，落实治疗流程。"
+        },
+        {
+            "step": "跟踪",
+            "description": "爱丁全程提供饮食、运动、心理等全方位指导，为好孕加速。"
+        }
+    ],
+    "doctors": [
+        {
+            "id": "chenzhiqin",
+            "avatar": "../img/doctors/chenzhiqing-avatar.jpg",
+            "name": "陈智勤",
+            "title": "副主任医师",
+            "hospital": "上海市第一妇幼保健院",
+            "address": "上海市静安区长乐路536号上海第一妇婴保健院（西院）六楼生殖医学中心",
+            "type": "合作专家"
+        }
+    ],
+    "introduction": "爱丁邀请了在IVF领域有丰富诊疗经验的优秀医生为患者制订诊疗计划，同时助孕管家对患者进行全方位的跟踪，对医生用药方案进行跟踪解答。凡通过爱丁预约的患者，就医均可享受快速优质的医疗服务，享受门诊绿色通道就诊，专家诊疗时间不低于15分钟。"
+}

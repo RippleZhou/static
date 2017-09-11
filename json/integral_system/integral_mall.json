@@ -1,0 +1,27 @@
+{
+	"goods": [{
+		"name": "现金50元",
+		"price": "1000",
+		"img": "/static/camp/mission/img/banner.jpg",
+		"des": {
+			"img": "/static/camp/mission/img/banner.jpg",
+			"text": "产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
+		}
+	},{
+		"name": "现金100元",
+		"price": "2000",
+		"img": "/static/camp/mission/img/banner.jpg",
+		"des": {
+			"img": "/static/camp/mission/img/banner.jpg",
+			"text": "产品介绍2"
+		}
+	},{
+		"name": "现金150元",
+		"price": "3000",
+		"img": "/static/camp/mission/img/banner.jpg",
+		"des": {
+			"img": "/static/camp/mission/img/banner.jpg",
+			"text": "产品介绍3"
+		}
+	}]
+}

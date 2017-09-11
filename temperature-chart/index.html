@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>体温趋势图</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        button[disabled] {
+            opacity: .4;
+        }
+
+        svg > text:last-child {
+            display: none;
+        }
+
+        .ctrls {
+            display: none;
+            left: 0;
+            padding: 5px 10px;
+            position: absolute;
+            width: 100%;
+            z-index: 5;
+        }
+
+        .ctrls button {
+            background: transparent;
+            border: none;
+            color: #666;
+            font-size: 30px;
+            font-weight: 100;
+            outline: 0;
+            position: relative;
+        }
+
+        .ctrls button:after {
+            bottom: -6px;
+            left: -6px;
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -6px;
+        }
+
+        .ctrls button:last-child {
+            float: right;
+        }
+
+        #container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .backdrop {
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 10;
+        }
+
+        .error {
+            background-color: #fff;
+            display: none;
+        }
+
+        .error p {
+            color: #666;
+            left: 0;
+            position: absolute;
+            text-align: center;
+            top: 40%;
+            width: 100%;
+        }
+
+        .loading {
+            background-color: rgba(0, 0, 0, .3);
+            display: none;
+        }
+
+        .loading img {
+            height: 64px;
+            left: 50%;
+            margin-left: -32px;
+            margin-top: -32px;
+            position: absolute;
+            top: 50%;
+            width: 64px;
+        }
+
+        .no-data {
+            background: #fff url('./img/no-data.png') 50% 50% / 130px 135px no-repeat;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ctrls">
+        <button class="ctrl-prev">&lt;</button>
+        <button class="ctrl-next">&gt;</button>
+    </div>
+
+    <div id="container"></div>
+
+    <div class="error backdrop">
+        <p></p>
+    </div>
+
+    <div class="loading backdrop">
+        <img src="./img/loading-spinning-bubbles.svg" alt="">
+    </div>
+
+    <div class="no-data backdrop">
+        <!-- <img src="./img/no-data.png" height="261" width="270" alt=""> -->
+    </div>
+
+    <script src="lib/jquery.js"></script>
+    <script src="lib/highcharts.js"></script>
+    <script>
+        var IS_ONLINE = location.href.search('127.0.0.1') === -1 && location.href.search('localhost') === -1;;
+        var SERVER_URL = IS_ONLINE ? location.origin : 'http://ibaby-plan.org:8180';
+
+        var uid = getQueryParams().userid;
+        var periodsObj = {};
+
+        if (uid) {
+            activate();
+        }
+        else {
+            showError('参数错误');
+        }
+
+        function activate() {
+            var index = 0;
+
+            // calcCtrlsByIndex(index);
+            drawChartByPeriodIndex(index);
+
+            $('.ctrl-prev').on('click', function () {
+                drawChartByPeriodIndex(--index);
+            });
+
+            $('.ctrl-next').on('click', function () {
+                drawChartByPeriodIndex(++index);
+            });
+        }
+
+        function drawChartByPeriodIndex(index) {
+            if (periodsObj[index]) {
+                drawChartByPeriodAndTemperatures(periodsObj[index], index);
+                return;
+            }
+
+            disableCtrls();
+
+            getPeriod(uid, index).then(function (result) {
+                if (!result.phyLabel) {
+                    showNoData();
+                    return;
+                }
+
+                $('.ctrls').show();
+
+                var period = result.phyLabel;
+                period.isFirst = !result.hasPrePhyLabel;
+
+                var startDate = toDate(period.yjstarttime).format('YYYY-MM-DD');
+                var endDate = new Date(period.yjnexttime).format('YYYY-MM-DD');
+
+                getTemperatures(uid, startDate, endDate).then(fnDone);
+
+                function fnDone(temperatures) {
+                    periodsObj[index] = {period: period, temperatures: temperatures};
+                    drawChartByPeriodAndTemperatures(periodsObj[index], index);
+                }
+            });
+        }
+
+        function drawChartByPeriodAndTemperatures(obj, index) {
+            var period = obj.period;
+            var temperatures = obj.temperatures;
+
+            var startDate = toDate(period.yjstarttime).format('YYYY-MM-DD');
+            var endDate = new Date(period.yjnexttime).format('YYYY-MM-DD');
+
+            var startTimestamp = toTimestamp(startDate);
+            var endTimestamp = toTimestamp(endDate);
+
+            var subtitle = fnFormatSubtitle(startDate) + '-' + fnFormatSubtitle(endDate);
+            var fullData = fnGetAllDayData(temperatures, startTimestamp, endTimestamp);
+
+            enableCtrlsByIndex(index, period.isFirst);
+
+            drawChart({
+                title: index ? '历史生理周期' : '当前生理周期',
+                subtitle: subtitle,
+                data: fullData,
+                period: {
+                    mensesStart: startTimestamp,
+                    mensesEnd: endTimestamp,
+                    ovulatoryFrom: toTimestamp(period.plstarttime),
+                    ovulatoryTo: toTimestamp(period.plendtime),
+                },
+            });
+
+            function fnFormatSubtitle(str) {
+                return str.slice(-5).replace(/-/g, '.');
+            }
+
+            function fnGetAllDayData(result, startTimestamp, endTimestamp) {
+                var data = [];
+
+                var ONE_DAY = 24 * 3600 * 1000;
+                var resultObj = {};
+                var timestamp = startTimestamp;
+
+                $.each(result, function (i, d) {
+                    resultObj[toTimestamp(d.recorddate)] = d.value;
+                });
+
+                while (timestamp <= endTimestamp) {
+                    data.push(resultObj[timestamp] || null);
+                    timestamp += ONE_DAY;
+                }
+
+                return data;
+            }
+        }
+
+        function drawChart(options) {
+            Highcharts.setOptions({
+                global: {
+                    timezoneOffset: new Date().getTimezoneOffset()
+                },
+                lang: {
+                    resetZoom: '重置',
+                    resetZoomTitle: '重置图表'
+                }
+            });
+
+            Highcharts.dateFormats = {
+                W: function (timestamp) {
+                    var date = new Date(timestamp),
+                        day = date.getUTCDay() === 0 ? 7 : date.getUTCDay(),
+                        dayNumber;
+                    date.setDate(date.getUTCDate() + 4 - day);
+                    dayNumber = Math.floor((date.getTime() - new Date(date.getUTCFullYear(), 0, 1, -6)) / 86400000);
+                    return 1 + Math.floor(dayNumber / 7);
+
+                }
+            };
+
+            $('#container').highcharts({
+                chart: {
+                    type: 'line',
+                    zoomType: 'x'
+                },
+                title: {
+                    text: options.title
+                },
+                subtitle: {
+                    text: options.subtitle
+                },
+                exporting: {
+                    enabled: false
+                },
+                xAxis: [{
+                    type: 'datetime',
+                    labels: {
+                        format: '{value: %m.%d}'
+                    },
+                    plotBands: [{
+                        from: options.period.ovulatoryFrom,
+                        to: options.period.ovulatoryTo,
+                        color: 'rgba(68, 170, 213, .2)'
+                    }]
+                }],
+                yAxis: {
+                    title: {
+                        text: ''
+                    },
+                    labels: {
+                        format: '{value}°C'
+                    },
+                    min: 35,
+                    max: 42
+                },
+                plotOptions: {
+                    line: {
+                        color: '#46c6fe',
+                        dataLabels: {
+                            enabled: true,
+                            // color: '#46c6fe',
+                            format: '{y}°C',
+                        },
+                        enableMouseTracking: true
+                    }
+                },
+                series: [{
+                    name: '体温',
+                    data: options.data,
+                    pointStart: options.period.mensesStart,
+                    pointInterval: 24 * 3600 * 1000
+                }],
+                tooltip: {
+                    valueSuffix: '°C',
+                    xDateFormat: '%Y-%m-%d'
+                }
+            });
+        }
+
+        /* components start */
+
+        function disableCtrls() {
+            $('.ctrl-prev').attr('disabled', true);
+            $('.ctrl-next').attr('disabled', true);
+        }
+
+        function enableCtrlsByIndex(index, isFirst, isLast) {
+            if (index == 0 || isLast) {
+                $('.ctrl-prev').attr('disabled', false);
+                $('.ctrl-next').attr('disabled', true);
+            }
+            else if (index <= -999 || isFirst) { // 可查看前999周期数据
+                $('.ctrl-prev').attr('disabled', true);
+                $('.ctrl-next').attr('disabled', false);
+            }
+            else {
+                $('.ctrl-prev').attr('disabled', false);
+                $('.ctrl-next').attr('disabled', false);
+            }
+        }
+
+        function showError(msg) {
+            $('.error p').text(msg);
+            $('.error').show();
+        }
+
+        function hideError() {
+            $('.error').hide();
+        }
+
+        function showLoading() {
+            $('.loading').show();
+        }
+
+        function hideLoading() {
+            $('.loading').hide();
+        }
+
+        function showNoData() {
+            $('.no-data').show();
+        }
+
+        function hideNoData() {
+            $('.no-data').hide();
+        }
+
+        /* components end */
+
+        /* services start */
+
+        function getJSON(url, params) {
+            if (typeof params === 'object') {
+                params = $.param(params);
+            }
+
+            if (params) {
+                url += (url.indexOf('?') > -1 ? '&' : '?') + params;
+            }
+
+            hideError();
+            hideNoData();
+            showLoading();
+
+            console.log(SERVER_URL + url);
+            return $.getJSON(SERVER_URL + url).then(fnDone, fnFail);
+
+            function fnDone(result) {
+                hideLoading();
+
+                if (result.status === 0) {
+                    return result.content;
+                }
+                else {
+                    showError(result.errmsg || '获取服务器数据失败！');
+                    return $.Deferred().reject(result.errmsg);
+                }
+            }
+
+            function fnFail(error) {
+                hideLoading();
+                showError('服务器异常，请稍后再试！');
+            }
+        }
+
+        function getLastPeriod(uid) {
+            return getJSON('/IbabyWebService/3/Patient/GetLastPhysicalPeriod?userid=' + uid);
+        }
+
+        function getPeriod(uid, index) {
+            index = +index ? -index : 0;
+            return getJSON('/IbabyWebService/3/Patient/GetPhysicalPeriodByIndex?patientid=' + uid + '&index=' + index);
+        }
+
+        function getTemperatures(uid, startDate, endDate) {
+            var params = {
+                patientid: uid,
+                datestart: startDate,
+                dateend: endDate,
+            };
+
+            return getJSON('/IbabyWebService/3/Patient/GetPeriodTemperature', params);
+        }
+
+        /* services end */
+
+        /* utils start */
+
+        function getQueryParams() {
+            var params = {};
+            var queryString = window.location.search.replace(/^\?/, '').split('&');
+            var param;
+
+            queryString.forEach(function (d, i) {
+                if (d) {
+                    param = d.split('=');
+                    params[param[0]] = window.decodeURIComponent(param[1]);
+                }
+            });
+
+            return params;
+        }
+
+        function toDate(str) {
+            return new Date(toTimestamp(str));
+        }
+
+        function toTimestamp(str) {
+            return Date.parse(str.replace(/-/g, '/'));
+        }
+
+        Date.prototype.format = function (format) {
+            format = format || 'YYYY-MM-DD HH:mm:ss';
+
+            var date = this;
+
+            var o = {
+                'M+': date.getMonth() + 1,
+                'D+': date.getDate(),
+                'H+': date.getHours(),
+                'h+': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12,
+                'm+': date.getMinutes(),
+                's+': date.getSeconds(),
+                'q+': Math.floor((date.getMonth() + 3) / 3),
+                'S': date.getMilliseconds()
+            };
+
+            if (/(Y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+            }
+
+            if (/(dd+)/.test(format)) {
+                format = format.replace(RegExp.$1, '日一二三四五六七'.split('')[date.getDay()]);
+            }
+
+            for (var k in o) {
+                if (new RegExp('(' + k + ')').test(format)) {
+                    format = format.replace(RegExp.$1,
+                        RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length));
+                }
+            }
+
+            return format;
+        };
+
+        /* utils end */
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8">
+    <title>医嘱记录</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/photoswipe.css">
+    <style type="text/css">
+    html,
+    body {
+        background: #F7F7F7;
+    }
+    
+    ul,
+    li {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .yz_list {}
+    
+    .yz_date {
+        color: #999;
+        font-size: 1rem;
+        padding: 0.5rem 0 0.5rem 0.5rem;
+    }
+    
+    .yz_detail {
+        background: #ffffff;
+        padding: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .yz_text {}
+    
+    .yz_img {
+        margin: 0.5rem 0 0 0;
+    }
+    
+    .yz_img img {
+        width: 3rem;
+        height: 3rem;
+        margin-right: 0.5rem;
+    }
+    
+    .gallery li {
+        display: inline;
+        list-style: none;
+    }
+    /*.ps-carousel{
+        position: absolute;
+        top:-210px!important;
+    }*/
+    </style>
+</head>
+<script type="text/html" id="yz_data">
+    <%for(i=0; i<content.list.length; i++){%>
+        <div class="yz_content">
+            <div class="yz_date">
+                <%=date_ymd(content.list[i].recorddate)%>
+            </div>
+            <div class="yz_detail">
+                <div class="yz_text">
+                    <%=content.list[i].content%>
+                </div>
+                <%if(content.list[i].photos){%>
+                    <div class="yz_img">
+                        <ul class="gallery">
+                            <%for(l=0; l<content.list[i].photos.length; l++){%>
+                                <li><a href="<%=content.list[i].photos[l]%>" rel="external"><img src="<%=content.list[i].photos[l]%>" onerror="javascript:this.src='images/img-error.png';"/></a></li>
+                                <%}%>
+                        </ul>
+                    </div>
+                    <%}%>
+            </div>
+        </div>
+        <%}%>
+</script>
+<script type="text/html" id="zwsj">
+<div style="width:10rem;margin:6rem auto 0;">
+  <img style="width:10rem;" src="images/zwsj1.png" />
+</div>
+</script>
+<body data-role='none' style="margin:0;">
+    <div class="yz_list">
+        <!-- <div class="yz_content">
+            <div class="yz_date">2015/11/05</div>
+            <div class="yz_detail">
+                <div class="yz_text"><%=content[i].content%></div>
+                <div class="yz_img"><a href="images/help_askdoctor2.png" rel="external"><img src="images/help_askdoctor2.png" onerror="javascript:this.src='images/img-error.png';"/></a></div>
+            </div>
+        </div> -->
+    </div>
+</body>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/template-native.js" type="text/javascript"></script>
+<script src="js/klass.min.js" type="text/javascript"></script>
+<script src="js/code.photoswipe.jquery-3.0.5.min.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+<script src="js/template-helper.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    // if ($.getUrlParam('_height')) {
+    //     var height = parseInt($.getUrlParam('_height'));
+    //     $('html').css('height', height + 'px');
+    //     $('body').css('height', height + 'px');
+    //     $('.yz_list').css('height', height + 'px');
+    // }
+
+    $.ajax({
+        type: "GET",
+        url: ajax_url + "/Patient/Data/doctoradvice",
+        contentType: "application/json",
+        data: {
+            "userid": $.getUrlParam('userid'),
+        },
+        dataType: "json",
+        success: function(data) {
+            for (var i = 0; i < data.content.list.length; i++) {
+                if (data.content.list[i].photos) {
+                    data.content.list[i].photos = data.content.list[i].photos.split(',');
+                }
+            };
+            if (data.content.list.length > 0) {
+                var html = template('yz_data', data);
+                $('.yz_list').html(html);
+                (function(window, $, PhotoSwipe) {
+                    $(".gallery a").photoSwipe({
+                        preventSlideshow: true,
+                        captionAndToolbarHide: true,
+                        allowUserZoom: false,
+                        loop: false,
+                    });
+                }(window, window.jQuery, window.Code.PhotoSwipe));
+            } else {
+                var html = template('zwsj', data);
+                $('body').html(html);
+            };
+
+        },
+    });
+});
+</script>
+
+
+</html>

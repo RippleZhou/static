@@ -1,0 +1,785 @@
+body {
+    background: #F5F5F6;
+    line-height: 1;
+}
+
+img {
+    overflow: hidden;
+}
+
+#content > * {
+    background: #fff;
+}
+
+.shadow {
+    margin-bottom: 5px;
+}
+
+#banner {
+    position: relative;
+}
+
+#banner .text {
+    position: absolute;
+    padding: 10px 15px 0;
+    bottom: 0;
+    background: #333;
+    width: 100%;
+    opacity: 0.6;
+}
+
+#banner .title {
+    font-size: 16px;
+    font-weight: bolder;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+#banner .time {
+    font-size: 14px;
+    font-weight: bolder;
+    color: #fff;
+    margin-bottom: 5px;
+    padding-right: 75px;
+    line-height: 16px;
+}
+
+#banner img {
+    width: 100%;
+    min-height: 150px;
+    background: #999;
+}
+
+#banner #booked {
+    position: absolute;
+    line-height: 17px;
+    padding: 13px 0;
+    font-size: 14px;
+    font-weight: bolder;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #55B9F0;
+    color: #fff;
+    right: 30px;
+    bottom: -25px;
+    border: 2px solid #fff;
+}
+
+#infor {
+    background: #fff;
+    padding: 10px 15px;
+    line-height: 18px;
+    color: #444;
+    text-align: center;
+}
+
+#infor > p {
+    text-align: left;
+}
+
+#infor button {
+    background: #F5F6F7;
+    padding: 5px 15px;
+    color: #999;
+    border-radius: 13px;
+    margin: 10px 0 2px;
+}
+
+.only_box_1 #infor #text {
+    height: 50px;
+    overflow: hidden;
+}
+
+#per-infor.banner {
+    background: url("/static/camp/mission/img/toutu.jpg") center;
+    background-size: cover;
+}
+
+#camplist>span:first-child:after{
+    content: 'V';
+    margin-left: 8px;
+}
+
+.only_box_1 #infor #text.auto {
+    height: auto;
+}
+
+#infor #text {
+    color: #999;
+    line-height: 25px;
+}
+
+#infor b {
+    font-weight: bolder;
+    font-size: 14px;
+    color: #444;
+}
+
+#infor #hoster {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+#users {
+    font-size: 14px;
+    padding: 0 15px;
+}
+
+#users #total {
+    line-height: 30px;
+    padding-top: 10px;
+    padding-left: 10px;
+    position: relative;
+}
+
+#users #total:before {
+    content: '';
+    display: block;
+    width: 5px;
+    left: 0;
+    bottom: 8px;
+    height: 20px;
+    margin-right: 8px;
+    position: absolute;
+    background: #55B9F1;
+}
+
+#users > div {
+    border-top: 1px solid #f2f2f2;
+    padding: 15px 0 0;
+    margin-right: -15px;
+}
+
+#users .imgbox p {
+    margin: 0 15px 15px 0;
+    text-align: center;
+    width: 50px;
+    height: 25px;
+    font-size: 12px;
+    color: #666;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+#users > div img {
+    margin: 0 15px 5px 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+ul#tab {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+
+}
+
+ul#tab li {
+    border: 1px solid #333;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}
+
+#per-infor {
+    padding: 20px 0;
+    background: #999;
+    color: #fff;
+}
+
+#per-infor #headimg {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    border-radius: 50%;
+    margin: 15px 0;
+    background: #eee;
+    border: 1px solid #fff;
+}
+
+#per-infor .name {
+    margin-bottom: 18px;
+    font-size: 15px;
+}
+
+#per-infor p span {
+    border: 1px solid #fff;
+    padding: 2px 8px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+#per-infor p span b {
+    font-weight: bolder;
+}
+
+.missions {
+    line-height: 18px;
+    position: relative;
+    background: transparent !important;
+}
+
+.missions > * {
+    background: #fff;
+}
+
+.missions>.overread {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: #fff;
+}
+
+.missions>.overread span {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+}
+
+.missions>.overread:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.3;
+    position: absolute;
+}
+
+.missions .title {
+    font-size: 14px;
+    padding: 15px 15px 15px 45px;
+    position: relative;
+}
+
+.missions .title > span:last-of-type {
+    color: #f3767c;
+}
+
+.missions .title > span:first-of-type {
+    position: absolute;
+    left: 0;
+    background: #55B9F0;
+    color: #fff;
+    font-size: 12px !important;
+    padding: 0 10px 0 5px;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+
+.missions .user {
+    color: #999;
+    line-height: 30px;
+    font-size: 13px;
+}
+
+.missions .user span:last-of-type {
+    color: #999;
+}
+
+.missions .imgs {
+    padding: 0 10px;
+}
+
+.missions .title span:last-of-type {
+    font-size: 12px;
+}
+
+.missions .food {
+    height: 60px;
+    margin: 5px;
+}
+
+.missions > p {
+    width: 100%;
+    padding: 0 15px;
+}
+
+.missions > p.text {
+    font-size: 13px;
+    color: #666;
+    line-height: 23px;
+    padding-bottom: 5px;
+}
+
+.missions .done {
+    width: 100%;
+    padding: 0 15px;
+    border-top: 1px solid #f5f6f7;
+    color: #999;
+    text-align: center;
+    position: relative;
+}
+
+.missions .done > p:first-of-type {
+    line-height: 30px;
+    margin-right: -15px;
+    padding: 5px 15px 0 8px;
+    font-size: 13px;
+}
+
+.before:before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 15px;
+    background: #55B9F0;
+    top: 10px;
+    left: 15px;
+}
+
+.missions .done .times .time,
+.missions .done .times img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.missions .done .times {
+    margin-right: -15px;
+    padding-right: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.missions .done .times > span {
+    padding: 5px;
+    margin-left: -5px;
+}
+
+.missions .done .times .time {
+    text-align: center;
+    height: auto;
+    display: block;
+    border-radius: 0;
+}
+
+.missions button.disable {
+    background: #8F9091;
+    border-color: #DFE0E1;
+}
+
+.missions button.new_color {
+    background: #FBC4CE;
+    border: none;
+}
+
+.missions button {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 13px;
+    color: #fff;
+    font-weight: bolder;
+    margin: 10px 0;
+    border: 4px solid #CBE7F3;
+    background: #55B9F0;
+    position: relative;
+}
+
+#fixedselectbox {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    font-size: 13px;
+}
+
+#fixedselectbox.none {
+    height: 0;
+    overflow: hidden;
+}
+
+
+#fixedselectbox > div {
+    background: #fff;
+    max-width: 90%;
+    min-width: 260px;
+    box-shadow: 0 0 100px #999;
+    text-align: center;
+}
+
+#fixedselect p {
+    line-height: 40px;
+    border-bottom: 1px solid #eee;
+}
+
+#fixedselect  p.active {
+    color: #55B9F1;
+}
+
+#fixedselect  p.active:after{
+    content: '√';
+    margin-left: 10px;
+}
+
+/*
+#fixedselect:before {
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    opacity: 0.6;
+    top: 0;
+    left: 0;
+}
+*/
+
+.missions button .pulllink {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.detail #per-infor #timeout {
+    color: #f00;
+    margin: 0;
+    padding: 0;
+}
+
+.detail #per-infor {
+    padding: 15px;
+    width: 100%;
+    position: relative;
+    font-size: 13px;
+    background: #fff;
+    color: #666;
+}
+
+.detail #per-infor #back_list {
+    position: absolute;
+    right: 15px;
+    height: 20px;
+    line-height: 20px;
+    color: #fff;
+    padding: 0 9px;
+    border-radius: 3px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #55B9F0;
+}
+
+.detail #per-infor p:nth-of-type(2) {
+    line-height: 32px;
+}
+
+.detail .missions .title {
+    padding-bottom: 30px;
+}
+
+.detail .missions .time {
+    color: #aaa;
+    line-height: 25px;
+    padding-bottom: 5px;
+}
+
+.detail .line {
+    width: 100%;
+    position: relative;
+}
+
+.detail .line:before {
+    display: block;
+    content: '';
+    margin: auto;
+    right: 0;
+    left: 15px;
+    background: #eee;
+    height: 1px;
+    position: absolute;
+}
+
+.detail #per-infor #headimg {
+    margin: 0 20px 0 0;
+}
+
+.detail #per-infor .name {
+    margin-bottom: 0;
+    font-size: 15px;
+    line-height: 20px;
+    color: #000;
+    font-weight: bolder;
+}
+
+.detail #per-infor .name span:first-of-type {
+    color: #9BCDFD;
+    font-weight: bolder;
+    margin-right: 20px;
+}
+
+.detail .user .head {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.w-padding {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.l-padding {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.detail .user {
+    line-height: 40px;
+}
+
+.detail .user .commener {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.detail .user .heard {
+    height: 20px;
+    color: #999;
+}
+
+.detail .comment {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #F5F6F7;
+    font-size: 13px;
+    line-height: 23px;
+}
+
+.detail .food {
+    height: 60px;
+    margin: 10px 5px;
+}
+
+.detail .imgs {
+    margin: 0 -5px;
+}
+
+.detail .padding-l {
+    padding-left: 10px;
+}
+
+.detail .comment-title:before {
+    content: url("../img/top.png");
+    position: absolute;
+    top: -9px;
+    left: 10px;
+}
+
+.detail .comment-title .bont {
+    color: #333;
+}
+
+.detail .comment-title {
+    background: #F5F6F7;
+    position: relative;
+    padding: 15px;
+    line-height: 22px;
+    color: #666;
+    font-size: 12px;
+}
+
+.detail img[alt=write] {
+    margin-right: 5px;
+}
+
+.detail img[alt=头像] {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.gray {
+    color: #999;
+}
+
+.detail .lineh {
+    line-height: 30px;
+}
+
+#submit .foot {
+    line-height: 40px;
+    position: fixed;
+    color: #fff;
+    font-size: 14px;
+    background: #9BCDFD !important;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+
+.detail .foot {
+    line-height: 40px;
+    position: fixed;
+    color: #fff;
+    font-size: 14px;
+    background: #9BCDFD !important;
+    width: 100%;
+    bottom: 0;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+}
+
+.detail .foot img {
+    margin-right: 10px;
+}
+
+.detail {
+    padding-bottom: 40px;
+}
+
+.detail #headimg {
+    float: left;
+}
+
+.bottom-anwer {
+    padding: 8px 15px;
+    position: fixed;
+    background: #f5f6f7 !important;
+    bottom: 0;
+    line-height: 21px;
+    height: 40px;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    z-index: -1;
+}
+
+.bottom-anwer input {
+    background: transparent;
+    border-bottom: 1px solid #55B9F0;
+}
+
+.bottom-anwer span {
+    cursor: pointer;
+    margin-left: 15px;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    border-radius: 3px;
+}
+
+#submit #add-img .file-choose {
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+#submit #add-img {
+    padding: 8px;
+}
+
+#submit #add-img .filebox {
+    height: 50px;
+    width: 50px;
+    margin: 8px;
+    position: relative;
+    border: 1px solid #1C7EFB;
+    background: url(../img/plus.svg) no-repeat center;
+    background-size: 35px 35px;
+}
+
+#submit #add-img .preimg {
+    height: 50px;
+    margin: 8px;
+    border: 1px solid #ddd;
+}
+
+#submit textarea {
+    border: 0;
+    resize: none;
+    width: 100%;
+    font-size: 13px;
+    padding: 16px;
+}
+
+body.white {
+    background: #fff;
+}
+
+#chart > p .name {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}
+
+#chart > p {
+    line-height: 40px;
+    padding: 8px 15px 8px 0;
+    border-bottom: 1px solid #eee;
+    margin-right: -15px;
+    color: #666;
+}
+
+#chart > p > img {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    border-radius: 20px;
+}
+
+#chart > p:nth-of-type(2) > span:not(.name) {
+    color: #EA7659;
+}
+
+#chart > p:nth-of-type(3) > span:not(.name) {
+    color: #F7B661;
+}
+
+#chart > p:first-of-type > span:not(.name) {
+    color: #CA0014;
+}
+
+#chart .width {
+    width: 80px;
+    text-align: right;
+}
+
+#chart #share {
+    background: #249CD3;
+    color: #fff;
+    padding: 0 20px;
+    line-height: 22px;
+    position: absolute;
+    right: 0;
+    border-radius: 11px;
+}
+
+
+#chart {
+    padding: 0 15px;
+    font-size: 13px;
+}
+
+#chart img {
+    background: #c0c0c0;
+}
+
+.action-text {
+    line-height: 40px;
+    text-align: center;
+    color: #999;
+}
+
+.pointer {
+    cursor: pointer;
+}

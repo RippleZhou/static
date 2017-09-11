@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+    <title>中医体质测评</title>
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="./css/layer.css">
+    <style>
+    * {
+        box-sizing: content-box
+    }
+    
+    body {
+        background: #efeff4
+    }
+    
+    #index img {
+        display: block;
+        width: 100%
+    }
+    
+    #index img+h6 {
+        font-size: 16px;
+        color: #46c6fe;
+        padding: 15px 15px 10px;
+        background: #fff
+    }
+    
+    #index img+h6 i {
+        display: inline-block;
+        vertical-align: -2px;
+        height: 15px;
+        width: 15px;
+        background: #46c6fe;
+        margin-right: 5px
+    }
+    
+    #index p {
+        font-size: 14px;
+        color: #666;
+        background: #fff;
+        padding: 0 15px 10px;
+        line-height: 1.3;
+        margin-bottom: 10px
+    }
+    
+    #index p+h6 {
+        font-size: 16px;
+        color: #46c6fe;
+        padding: 15px 15px 0;
+        background: #fff;
+        color: #f90
+    }
+    
+    #index p+h6 i {
+        display: inline-block;
+        vertical-align: -2px;
+        height: 15px;
+        width: 15px;
+        background: #f90;
+        margin-right: 5px
+    }
+    
+    #index section {
+        background: #fff;
+        text-align: center;
+        padding: 0 10px;
+        display: -webkit-box;
+        display: box;
+        display: -webkit-flex;
+        display: flex;
+        height: 85px;
+        padding-top: 43px;
+        box-sizing: border-box;
+        line-height: 1.4;
+        position: relative;
+        margin-bottom: 77px
+    }
+    
+    #index section:before,
+    #index section:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: #fff;
+        width: 15px;
+        z-index: 99
+    }
+    
+    #index section:before {
+        left: 0
+    }
+    
+    #index section:after {
+        right: 0
+    }
+    
+    #index div {
+        -webkit-box-flex: 1;
+        box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        position: relative
+    }
+    
+    #index div:before,
+    #index div:after {
+        content: '';
+        display: block;
+        position: absolute;
+        background: #d6d7dc;
+        height: 1px;
+        top: -19px
+    }
+    
+    #index div:before {
+        left: 0;
+        right: 50%;
+        margin-right: 15px
+    }
+    
+    #index div:after {
+        right: 0;
+        left: 50%;
+        margin-left: 15px
+    }
+    
+    #index section i {
+        position: absolute;
+        height: 16px;
+        width: 16px;
+        top: -28px;
+        border-radius: 50%;
+        left: 50%;
+        margin-left: -8px;
+        border-width: 1px;
+        border-style: solid
+    }
+    
+    #index div:nth-child(1) i {
+        border-color: #ffc600
+    }
+    
+    #index div:nth-child(2) i {
+        border-color: #3cf
+    }
+    
+    #index div:nth-child(3) i {
+        border-color: #f60
+    }
+    
+    #index div:nth-child(4) i {
+        border-color: #f00
+    }
+    
+    #index section i:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        height: 14px;
+        width: 14px;
+        margin-left: -7px;
+        margin-top: -7px
+    }
+    
+    #index div:nth-child(1) i:after {
+        background: #ffc600
+    }
+    
+    #index div:nth-child(2) i:after {
+        background: #3cf
+    }
+    
+    #index div:nth-child(3) i:after {
+        background: #f60
+    }
+    
+    #index div:nth-child(4) i:after {
+        background: #f00
+    }
+    
+    #index span {
+        display: block
+    }
+    
+    footer {
+        font-size: 16px;
+        color: #fff;
+        background: #46c6fe;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 999
+    }
+    
+    #questionnaire ul {
+        padding: 0 15px 77px;
+        background: #fff
+    }
+    
+    #questionnaire li {
+        padding-bottom: 15px;
+        padding-top: 5px
+    }
+    
+    #questionnaire li:not(:last-child) {
+        border-bottom: 1px solid #efeff4
+    }
+    
+    #questionnaire h6 {
+        padding: 10px 0 10px 20px;
+        position: relative;
+        font-size: 16px
+    }
+    
+    #questionnaire h6:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 13px;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #f90
+    }
+    
+    #questionnaire div {
+        -webkit-box-pack: justify;
+        box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        text-align: center;
+        height: 30px;
+        line-height: 28px;
+        font-size: 14px;
+        color: #46c6fe;
+        display: none
+    }
+    
+    #questionnaire .open div {
+        display: -webkit-box;
+        display: box;
+        display: -webkit-flex;
+        display: flex
+    }
+    
+    #questionnaire span {
+        width: 48px;
+        border: 1px solid #46c6fe;
+        border-radius: 3px;
+        display: block
+    }
+    
+    #questionnaire span.on {
+        background: #46c6fe;
+        color: #fff
+    }
+    
+    #result header {
+        color: #fff;
+        height: 120px;
+        background: #46c6fe;
+        font-size: 14px;
+        box-sizing: border-box;
+        padding: 15px 15px 5px;
+        position: relative
+    }
+    
+    #result header div {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 32px
+    }
+    
+    #result header:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5"><circle fill="#efeff4" cx="5" cy="5" r="5"/></svg>') repeat-x;
+        background-size: contain
+    }
+    
+    #result section {
+        margin: 10px 14px 77px
+    }
+    
+    #result article {
+        background: #fff;
+        font-size: 14px;
+        padding-bottom: 5px;
+        margin-top: 8px;
+        padding-top: 15px;
+        position: relative
+    }
+    
+    #result article h6 {
+        height: 34px;
+        line-height: 34px
+    }
+    
+    #result article h6 span {
+        background: #f90;
+        color: #fff;
+        padding: 0 10px;
+        text-align: center;
+        border-top-right-radius: 17px;
+        border-bottom-right-radius: 17px;
+        float: left
+    }
+    
+    #result article div {
+        padding: 14px 14px 17px;
+        line-height: 1.3
+    }
+    
+    #result article i {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #999;
+        vertical-align: 0.1em;
+        margin-right: 5px
+    }
+    
+    #result article:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5"><circle fill="#efeff4" cx="5" cy="5" r="5"/></svg>') repeat-x;
+        background-size: contain
+    }
+    
+    #result h5 {
+        font-size: 16px
+    }
+    
+    #result div h6 {
+        font-size: 14px;
+        color: #6cf;
+        margin-top: 8px
+    }
+    
+    #result figure {
+        width: 246px;
+        padding-right: 18px;
+        margin: 0 auto
+    }
+    
+    #result img {
+        width: 100%
+    }
+    
+    #result div p {
+        text-align: center;
+        font-size: 14px;
+        color: #434343;
+        margin-top: 4px
+    }
+    
+    #result footer {
+        font-size: 16px;
+        color: #fff;
+        background: #46c6fe;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0
+    }
+    
+    #bottom {
+        height: 50px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, .5);
+        color: #fff;
+        padding-left: 75px
+    }
+    
+    #bottom i {
+        position: absolute;
+        left: 20px;
+        top: -10px;
+        height: 45px;
+        width: 45px;
+        border-radius: 3px;
+        background: #46c6fe url(http://www.ibabycenter.com/front/images/300.png) no-repeat center;
+        background-size: cover
+    }
+    
+    #bottom h6 {
+        padding-top: 10px;
+        padding-bottom: 5px
+    }
+    
+    #bottom p {
+        font-size: 10px
+    }
+    
+    #bottom div {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        height: 20px;
+        line-height: 20px;
+        width: 75px;
+        text-align: center;
+        border-radius: 9px;
+        background: #46c6fe;
+        font-size: 10px;
+        padding-right: 9px
+    }
+    
+    #bottom span {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        font-size: 8px;
+        line-height: 10px;
+        text-align: center
+    }
+    
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+    .login-page {
+        width: 360px;
+        padding: 8% 0 0;
+        margin: auto;
+    }
+    
+    .form {
+        position: relative;
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 360px;
+        margin: 0 auto 100px;
+        padding: 45px;
+        text-align: center;
+    }
+    
+    .form input {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+    
+    .form button {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #4CAF50;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+    }
+    
+    .form button:hover,
+    .form button:active,
+    .form button:focus {
+        background: #43A047;
+    }
+    
+    .form .message {
+        margin: 15px 0 0;
+        color: #b3b3b3;
+        font-size: 12px;
+    }
+    
+    .form .message a {
+        color: #4CAF50;
+        text-decoration: none;
+    }
+    
+    .form .register-form {
+        display: none;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 1;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .container:before,
+    .container:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    .container .info {
+        margin: 50px auto;
+        text-align: center;
+    }
+    
+    .container .info h1 {
+        margin: 0 0 15px;
+        padding: 0;
+        font-size: 36px;
+        font-weight: 300;
+        color: #1a1a1a;
+    }
+    
+    .container .info span {
+        color: #4d4d4d;
+        font-size: 12px;
+    }
+    
+    .container .info span a {
+        color: #000000;
+        text-decoration: none;
+    }
+    
+    .container .info span .fa {
+        color: #EF3B3A;
+    }
+    
+    .layui-layer {
+        width: 80%!important;
+    }
+    
+    .layui-layer-close {
+        width: 30px;
+        height: 30px;
+        z-index: 999;
+        background: url(default/icon.png) no-repeat;
+        background-position: -149px -31px;
+        position: absolute;
+        top: -15px;
+        right: -15px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="index" style="display:none">
+        <img src="img/header.jpg" />
+        <h6><i></i>活动介绍</h6>
+        <p>女性为什么要进行中医体质测评?
+        <br/>通过对中医体质的辩证分析，提出改善体质的建议，提高受孕率。
+        <br/><br/>中医艾灸对备孕有什么帮助？
+       <br/>温宫暖肾，调整激素水平，改善卵巢功能，提高卵子质量。
+        <br/> <br/>爱丁医生是谁?
+       <br/>专注备孕助孕的互联网连锁门诊，旨在帮助更多的备孕女性拥有自己的宝宝。
+        <br/><br/>即日起完成中医体质测评，提交报名信息的用户，均可至爱丁门诊免费体验一次中医艾灸。机不可失，火速点击“开始测评”参与活动吧！
+        <br/><br/>活动范围：限上海地区。</p>
+        <h6><i></i>活动流程</h6>
+        <section>
+            <div>
+                <i></i>
+                <span>完成测评</span>
+            </div>
+            <div>
+                <i></i>
+                <span>评估结果</span>
+            </div>
+            <div>
+                <i></i>
+                <span>提交信息</span>
+            </div>
+            <div>
+                <i></i>
+                <span>等待联系</span>
+            </div>
+        </section>
+        <footer class="clickable">开始测评</footer>
+    </div>
+    <div id="questionnaire" style="display:none">
+        <ul></ul>
+        <footer class="clickable">完成</footer>
+    </div>
+    <div id="result" style="display:none">
+        <header>
+            <h6>您的主体质是：</h6>
+            <div></div>
+        </header>
+        <section>
+            <article>
+                <h6><span></span></h6>
+                <div></div>
+            </article>
+            <article>
+                <h6><span>对月经及备孕的影响</span></h6>
+                <div></div>
+            </article>
+            <article>
+                <h6><span>改善体质我该怎么做？</span></h6>
+                <div></div>
+            </article>
+        </section>
+        <section style="margin-top: -50px">
+            <article style="height:360px">
+                <div>感谢您参与中医体质测评，点击“我要报名”，完成报名信息的提交即可到爱丁门诊免费体验一次价值200元的中医艾灸服务！爱丁客服会在您提交报名后的3个工作日内，电话跟您预约到店体验时间，尽请期待。
+                     <br/>
+                    <br/>活动范围：限上海地区。
+                    <br/>
+                    <br/>活动时间：截止2016年4月30日。
+                </div>
+                <div class="login-page" style="width:260px">
+                    <div class="form">
+                        <button id="baoming" style="width:180px">我要报名</button>
+                    </div>
+                </div>
+                <div class="form" id="Content" style="display:none">
+                	<a class="layui-layer-close" href="javascript:;"></a>
+                    <form class="login-form">
+                        <input id="name" type="text" placeholder="您的姓名">
+                        <input id="phone" type="text" placeholder="您的手机号">
+                        <button id="submitinfo" style="width:180px">提交报名信息</button>
+                    </form>
+                </div>
+            </article>
+        </section>
+        <!-- <footer class="clickable">提交报名信息</footer> -->
+        <!-- <a href="http://www.ibabycenter.com/t/download_product.php?c=app&n=AidingPatient" id="bottom" style="display:none">
+		<i></i>
+		<h6>爱丁备孕</h6>
+		<p>优质|快速|好孕</p>
+		<div>立即下载<span>&#8595;</span></div>
+	</a> -->
+    </div>
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+    <script src="/static/common/js/wechat.js"></script>
+    <script src="/static/common/lib/fastclick.js"></script>
+    <script src="./js/layer.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="http://sdk.talkingdata.com/app/h5/v1?appid=119BF1969DBACF577B6D2DBA8D489F71&vn=爱丁备孕v4.3&vc=4.3"></script>
+    <script>
+    (function() {
+
+        $('#baoming').on('click', function() {
+            layer.open({
+                type: 1,
+                closeBtn: 0, //不显示关闭按钮
+                shift: 2,
+                shadeClose: true, //开启遮罩关闭
+                content: $('#Content'),
+                offset: '15px',
+                title: false,
+            });
+
+        });
+        $('body').on('click', '.layui-layer-close', function() {
+            layer.closeAll();
+        });
+        wechat.share({
+            desc: '爱丁备孕MLP（医学、生活、心理）测评，全面专业的测评 ，专业成就好孕',
+            title: document.title
+        })
+        queryObj = {}
+        if (location.search) {
+            queryObj = JSON.parse('{"' + decodeURI(location.search.substring(1)).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
+        }
+        if (queryObj.accountrequired == 'false') {
+            patientid = '0'
+        }
+        //埋点数据，统计基于渠道的浏览量
+        TDAPP.onEvent('浏览中医测评',queryObj.td_channelid)
+
+        $('#submitinfo').on('click', function() {
+            if ($('#phone').val().length == 11 && $('#phone').val().charAt(0) == '1' && $('#name').val().length != 0) {
+
+                //埋点数据，统计基于渠道的报名数量
+                TDAPP.onEvent('提交报名信息',queryObj.td_channelid)
+
+                Utils.ajax.post('/askinfo/submitenrollment.php', {
+                    patientid: User.getUser().patientid,
+                    name: $('#name').val(),
+                    channel:queryObj.td_channelid,
+                    phone: $('#phone').val()
+                })
+                alert('报名成功，感谢您的参与');
+            }
+        })
+
+        if (User.getUser()) {
+            patientid = User.getUser().patientid
+        }
+        if (queryObj.inapp) {
+            $('#result footer').on('click', function() {
+                location.href = location.href.split('#')[0]
+                location.reload()
+            })
+        } else {
+            $('#bottom').show()
+            $('#result footer').hide()
+        }
+
+        function showResult(res) {
+            $('#result header div').eq(0).text(res.physique)
+            $('#result section article h6 span').eq(0).text('什么是' + res.physique)
+            $('#result section article div').eq(0).text(res.define)
+            $('#result section article div').eq(1).text(res.femaleeffect)
+            $('#result section article div').eq(2).text(res.improve)
+            $('#result').show()
+        }
+        if (sessionStorage.evaluate_result_zhongyi) {
+            Utils.ajax.post('/IbabyWebService/3/Evalute/CommitEvaluteAnswer', {
+                evaluteAnswers: sessionStorage.evaluate_result_zhongyi,
+                code: 'E004',
+                patientid: patientid,
+                channel: queryObj.channel ? queryObj.channel : ''
+            }).then(function(res) {
+                showResult(res)
+            })
+            sessionStorage.evaluate_result_zhongyi = ''
+            return
+        }
+        if (location.hash.replace('#', '')) {
+            Utils.ajax.get('/IbabyWebService/3/Evalute/GetEvaluteResult/' + patientid + '/E004').then(function(res) {
+                showResult(res)
+                $('#result footer').on('click', function() {
+                    location.href = location.href.split('#')[0]
+                })
+            })
+            return
+        }
+        Utils.ajax.get('/IbabyWebService/3/Evalute/GetQuestionList?code=E004').then(function(res) {
+            $('#index').show()
+            $('#index footer').on('click', function() {
+                $('#index').hide()
+                $('#questionnaire').show()
+            })
+            html = ''
+            for (i = 0; i < res.questions.length; i++) {
+                html += '\
+					<li>\
+						<h6>' + res.questions[i].content + '</h6>\
+						<div><span>没有</span><span>很少</span><span>有时</span><span>经常</span><span>总是</span></div>\
+					</li>\
+				'
+            }
+            $('ul').html(html)
+            $('li').each(function(i) {
+                $('span', this).each(function(j) {
+                    $(this).on('click', function() {
+                        $(this).siblings().removeClass('on')
+                        $(this).addClass('on')
+                        res.questions[i].answer = j + 1
+                        $(this).parent().parent().next().addClass('open')
+                        $('#questionnaire').parent().animate({
+                            scrollTop: $(this).parent().parent()[0].getBoundingClientRect().top > 0 ? '+=' + $(this).parent().parent()[0].getBoundingClientRect().top : '-=' + Math.abs($(this).parent().parent()[0].getBoundingClientRect().top)
+                        }, 400)
+                    })
+                })
+            }).eq(0).addClass('open')
+            $('#questionnaire footer').on('click', function() {
+                for (i = 0; i < res.questions.length; i++) {
+                    if (!res.questions[i].answer) {
+                        aid.tip.show('没选')
+                        return
+                    }
+                }
+                mySelects = []
+                for (i = 0; i < res.questions.length; i++) {
+                    mySelects.push({
+                        answer: res.questions[i].answer,
+                        orders: res.questions[i].order,
+                        physique: res.questions[i].physique,
+                        reverse: res.questions[i].reverse
+                    })
+                }
+                if (!User.getUser() && queryObj.accountrequired !== 'false') {
+                    sessionStorage.evaluate_result_zhongyi = JSON.stringify(mySelects)
+                    User.redirectToLoginPage(location.href);
+                    return
+                }
+
+                //埋点数据，统计基于渠道的完成中医测评的数量
+                TDAPP.onEvent('完成中医测评',queryObj.td_channelid)
+
+                Utils.ajax.post('/IbabyWebService/3/Evalute/CommitEvaluteAnswer', {
+                    evaluteAnswers: JSON.stringify(mySelects),
+                    code: 'E004',
+                    patientid: patientid,
+                    channel: queryObj.channel ? queryObj.channel : ''
+                }).then(function(res) {
+                    $('#questionnaire').hide()
+                    location.hash = 'result'
+                    location.reload()
+                })
+            })
+        })
+    })()
+    </script>
+</body>
+
+</html>

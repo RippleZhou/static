@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--检测登陆状态,请勿改变位置-->
+    <script src="/static/doctorpro/js/state.js"></script>
+
+    <meta charset="UTF-8">
+    <title>爱丁医生</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/doctorpro/css/doctor.css">
+    <style>
+        #accounts {
+            padding: 0 15px;
+            color: #666;
+            font-size: 15px;
+            line-height: 30px;
+        }
+
+        #header {
+            margin-top: 40px;
+        }
+
+        .title {
+            width: 75px;
+            display: block;
+            float: left;
+        }
+
+        #header div {
+            color: #15b2ee;
+            border: 1px solid #15b2ee;
+            float: left;
+            padding: 0 15px;
+        }
+
+        #header div:first-of-type {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        #header div:last-of-type {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        #header div.active {
+            color: #fff;
+            background: #15b2ee;
+        }
+
+        #form input {
+            height: 30px;
+            width: 65%;
+        }
+
+        #form > span,
+        #form > input {
+            margin-top: 20px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        #form > input {
+            font-size: 13px;
+            padding: 0 5px;
+        }
+
+        #form .submit {
+            margin-top: 40px;
+            width: 100%;
+            text-align: center;
+            display: block;
+            background: #15b2ee;
+            color: #fff;
+            line-height: 40px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<div id="accounts">
+    <div id="header" class="cl-both">
+        <span class="title">账号类型:</span>
+        <div class="active">支付宝</div>
+        <div>银行卡</div>
+    </div>
+    <div id="form">
+
+    </div>
+</div>
+
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/doctorpro/js/doctor.js"></script>
+<script type="text/javascript">
+    $('#form').load('form-ali.html');
+    $('#header>div').click(function () {
+        if (!$(this).hasClass('active')) {
+            $(this).addClass('active').siblings('#header>div').removeClass('active');
+            var nth = $('#header>div').index(this);
+            if (nth == '0') {
+                $('#form').load('form-ali.html');
+            } else {
+                $('#form').load('form-bank.html');
+            }
+        }
+    })
+
+</script>
+<script type="text/javascript">
+    var baseInfor = Utils.storage.get('baseInfor');
+    $('#form').delegate('.submit', 'click', function () {
+        var doctorid = baseInfor.docid;
+        var realname = $('#realname').val();
+        var account = $('#account').val();
+        if ($(this).hasClass('ali')) {
+            var bank = '支付宝';
+        } else {
+            var bank = $('#bank').val();
+        }
+        if (!realname) {
+            diyalert('请输入您的真实姓名!',1000);
+            return false;
+        }
+        if (!account) {
+            diyalert('请输入您的账户号码!',1000);
+            return false;
+        }
+        if (account.length > 23) {
+            diyalert('长度过长了!',1000);
+            return false;
+        }
+        if (!bank) {
+            diyalert('请输入您的开户银行!',1000);
+            return false;
+        }
+        var params = {
+            doctorid: doctorid,
+            realname: realname,
+            account: account,
+            bank: bank
+        }
+        var postUrl = '/IbabyWebService/3/Doctor/AddWithdrawAccount';
+        Utils.ajax.postJSON(postUrl, params).then(function () {
+            diyalert('添加账户成功');
+            location.href = 'account.html';
+        })
+    })
+</script>
+
+</body>
+</html>

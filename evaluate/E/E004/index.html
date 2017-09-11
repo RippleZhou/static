@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+	<title>中医体质测评</title>
+	<link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+	<style>
+		*{box-sizing:content-box}
+		body{background:#efeff4}
+		#index img{display:block;width:100%}
+		#index img+h6{font-size:16px;color:#46c6fe;padding:15px 15px 10px;background:#fff}
+		#index img+h6 i{display:inline-block;vertical-align:-2px;height:15px;width:15px;background:#46c6fe;margin-right:5px}
+		#index p{font-size:14px;color:#666;background:#fff;padding:0 15px 10px;line-height:1.3;margin-bottom:10px}
+		#index p+h6{font-size:16px;color:#46c6fe;padding:15px 15px 0;background:#fff;color:#f90}
+		#index p+h6 i{display:inline-block;vertical-align:-2px;height:15px;width:15px;background:#f90;margin-right:5px}
+		#index section{background:#fff;text-align:center;padding:0 10px;display: -webkit-box;display: box;display: -webkit-flex;display: flex;height:85px;padding-top:43px;box-sizing:border-box;line-height:1.4;position:relative;margin-bottom:77px}
+		#index section:before,#index section:after{content:'';display:block;position:absolute;top:0;bottom:0;background:#fff;width:15px;z-index:99}
+		#index section:before{left:0}
+		#index section:after{right:0}
+		#index div{-webkit-box-flex:1;box-flex:1;-webkit-flex:1;flex:1;position:relative}
+		#index div:before,#index div:after{content:'';display:block;position:absolute;background:#d6d7dc;height:1px;top:-19px}
+		#index div:before{left:0;right:50%;margin-right:15px}
+		#index div:after{right:0;left:50%;margin-left:15px}
+		#index section i{position:absolute;height:16px;width:16px;top:-28px;border-radius:50%;left:50%;margin-left:-8px;border-width:1px;border-style:solid}
+		#index div:nth-child(1) i{border-color:#ffc600}
+		#index div:nth-child(2) i{border-color:#3cf}
+		#index div:nth-child(3) i{border-color:#f60}
+		#index section i:after{content:'';display:block;position:absolute;top:50%;left:50%;border-radius:50%;height:14px;width:14px;margin-left:-7px;margin-top:-7px}
+		#index div:nth-child(1) i:after{background:#ffc600}
+		#index div:nth-child(2) i:after{background:#3cf}
+		#index div:nth-child(3) i:after{background:#f60}
+		#index span{display:block}
+		footer{font-size:16px;color:#fff;background:#46c6fe;height:48px;line-height:48px;text-align:center;position:fixed;bottom:0;left:0;right:0;z-index:999}
+		#questionnaire ul{padding:0 15px 77px;background:#fff}
+		#questionnaire li{padding-bottom:15px;padding-top:5px}
+		#questionnaire li:not(:last-child){border-bottom:1px solid #efeff4}
+		#questionnaire h6{padding:10px 0 10px 20px;position:relative;font-size:16px}
+		#questionnaire h6:after{content:'';display:block;position:absolute;top:13px;left:0;width:15px;height:15px;border-radius:50%;background:#f90}
+		#questionnaire div{-webkit-box-pack:justify;box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;text-align:center;height:30px;line-height:28px;font-size:14px;color:#46c6fe;display:none}
+		#questionnaire .open div{display:-webkit-box;display:box;display:-webkit-flex;display:flex}
+		#questionnaire span{width:48px;border:1px solid #46c6fe;border-radius:3px;display:block}
+		#questionnaire span.on{background:#46c6fe;color:#fff}
+		#result header{color:#fff;height:120px;background:#46c6fe;font-size:14px;box-sizing:border-box;padding:15px 15px 5px;position:relative}
+		#result header div{text-align:center;margin-top:15px;font-size:32px}
+		#result header:after{content:'';display:block;position:absolute;bottom:0;left:0;right:0;height:5px;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5"><circle fill="#efeff4" cx="5" cy="5" r="5"/></svg>') repeat-x;background-size:contain}
+		#result section{margin:10px 14px 77px}
+		#result article{background:#fff;font-size:14px;padding-bottom:5px;margin-top:8px;padding-top:15px;position:relative}
+		#result article h6{height:34px;line-height:34px}
+		#result article h6 span{background:#f90;color:#fff;padding:0 10px;text-align:center;border-top-right-radius:17px;border-bottom-right-radius:17px;float:left}
+		#result article div{padding:14px 14px 17px;line-height:1.3}
+		#result article i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#999;vertical-align:0.1em;margin-right:5px}
+		#result article:after{content:'';display:block;position:absolute;bottom:0;left:0;right:0;height:5px;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5"><circle fill="#efeff4" cx="5" cy="5" r="5"/></svg>') repeat-x;background-size:contain}
+		#result h5{font-size:16px}
+		#result div h6{font-size:14px;color:#6cf;margin-top:8px}
+		#result figure{width:246px;padding-right:18px;margin:0 auto}
+		#result img{width:100%}
+		#result div p{text-align:center;font-size:14px;color:#434343;margin-top:4px}
+		#result footer{font-size:16px;color:#fff;background:#46c6fe;height:48px;line-height:48px;text-align:center;position:fixed;bottom:0;left:0;right:0}
+		#bottom{height:50px;position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);color:#fff;padding-left:75px}
+		#bottom i{position:absolute;left:20px;top:-10px;height:45px;width:45px;border-radius:3px;background:#46c6fe url(http://www.ibabycenter.com/front/images/300.png) no-repeat center;background-size:cover}
+		#bottom h6{padding-top:10px;padding-bottom:5px}
+		#bottom p{font-size:10px}
+		#bottom div{position:absolute;top:15px;right:20px;height:20px;line-height:20px;width:75px;text-align:center;border-radius:9px;background:#46c6fe;font-size:10px;padding-right:9px}
+		#bottom span{position:absolute;top:5px;right:5px;width:10px;height:10px;border-radius:50%;border:1px solid #fff;font-size:8px;line-height:10px;text-align:center}
+	</style>
+</head>
+
+<body>
+<div id="index" style="display:none">
+	<img src="img/header.jpg"/>
+	<h6><i></i>评估有什么用？</h6>
+	<p>体质评估是一套专业的针对个人体质的评估体系，大约要4分钟完成，有点长，不过TA将对备孕妈妈的体质从中医角度做出系统全面的评估。</p>
+	<h6><i></i>评估后得到什么？</h6>
+	<section>
+		<div>
+			<i></i>
+			<span>您的体<br/>质类型</span>
+		</div>
+		<div>
+			<i></i>
+			<span>个人体质对<br/>备孕的影响</span>
+		</div>
+		<div>
+			<i></i>
+			<span>改善体质的<br/>调理指导</span>
+		</div>
+	</section>
+	<footer class="clickable">开始测评</footer>
+</div>
+<div id="questionnaire" style="display:none">
+	<ul></ul>
+	<footer class="clickable">完成</footer>
+</div>
+<div id="result" style="display:none">
+	<header>
+		<h6>您的主体质是：</h6>
+		<div></div>
+	</header>
+	<section>
+		<article>
+			<h6><span></span></h6>
+			<div></div>
+		</article>
+		<article>
+			<h6><span>对月经及备孕的影响</span></h6>
+			<div></div>
+		</article>
+		<article>
+			<h6><span>改善体质我该怎么做？</span></h6>
+			<div></div>
+		</article>
+	</section>
+	<footer class="clickable">重新测评</footer>
+	<a href="http://www.ibabycenter.com/t/download_product.php?c=app&n=AidingPatient" id="bottom" style="display:none">
+		<i></i>
+		<h6>爱丁备孕</h6>
+		<p>优质|快速|好孕</p>
+		<div>立即下载<span>&#8595;</span></div>
+	</a>
+</div>
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	(function(){
+		wechat.share({desc:'爱丁备孕MLP（医学、生活、心理）测评，全面专业的测评 ，专业成就好孕',title:document.title})
+		queryObj={}
+		if(location.search){
+			queryObj=JSON.parse('{"'+decodeURI(location.search.substring(1)).replace(/"/g,'\\"').replace(/&/g,'","').replace(/=/g,'":"')+'"}')
+		}
+		if(queryObj.accountrequired=='false'){
+			patientid='0'
+		}
+		if (User.getUser()) {
+			patientid=User.getUser().patientid
+		}
+		if(queryObj.inapp){
+			$('#result footer').on('click',function(){
+				location.href=location.href.split('#')[0]
+				location.reload()
+			})
+		}
+		else{
+			$('#bottom').show()
+			$('#result footer').hide()
+		}
+		function showResult(res){
+			$('#result header div').eq(0).text(res.physique)
+			$('#result section article h6 span').eq(0).text('什么是'+res.physique)
+			$('#result section article div').eq(0).text(res.define)
+			$('#result section article div').eq(1).text(res.femaleeffect)
+			$('#result section article div').eq(2).text(res.improve)
+			$('#result').show()
+		}
+		if(sessionStorage.evaluate_result_zhongyi){
+			Utils.ajax.post('/IbabyWebService/3/Evalute/CommitEvaluteAnswer',{evaluteAnswers:sessionStorage.evaluate_result_zhongyi,code:'E004',patientid:patientid,channel:queryObj.channel?queryObj.channel:''}).then(function(res){
+				showResult(res)
+			})
+			sessionStorage.evaluate_result_zhongyi=''
+			return
+		}
+		if(location.hash.replace('#','')){
+			Utils.ajax.get('/IbabyWebService/3/Evalute/GetEvaluteResult/'+patientid+'/E004').then(function(res){
+				showResult(res)
+				$('#result footer').on('click',function(){
+					location.href=location.href.split('#')[0]
+				})
+			})
+			return
+		}
+		Utils.ajax.get('/IbabyWebService/3/Evalute/GetQuestionList?code=E004').then(function(res){
+			$('#index').show()
+			$('#index footer').on('click',function(){
+				$('#index').hide()
+				$('#questionnaire').show()
+			})
+			html=''
+			for(i=0;i<res.questions.length;i++){
+				html+='\
+					<li>\
+						<h6>'+res.questions[i].content+'</h6>\
+						<div><span>没有</span><span>很少</span><span>有时</span><span>经常</span><span>总是</span></div>\
+					</li>\
+				'
+			}
+			$('ul').html(html)
+			$('li').each(function(i){
+				$('span',this).each(function(j){
+					$(this).on('click',function(){
+						$(this).siblings().removeClass('on')
+						$(this).addClass('on')
+						res.questions[i].answer=j+1
+						$(this).parent().parent().next().addClass('open')
+						$('#questionnaire').parent().animate({scrollTop:$(this).parent().parent()[0].getBoundingClientRect().top>0?'+='+$(this).parent().parent()[0].getBoundingClientRect().top:'-='+Math.abs($(this).parent().parent()[0].getBoundingClientRect().top)},400)
+					})
+				})
+			}).eq(0).addClass('open')
+			$('#questionnaire footer').on('click',function(){
+				for(i=0;i<res.questions.length;i++){
+					if(!res.questions[i].answer){
+						aid.tip.show('没选')
+						return
+					}
+				}
+				mySelects=[]
+				for(i=0;i<res.questions.length;i++){
+					mySelects.push({answer:res.questions[i].answer,orders:res.questions[i].order,physique:res.questions[i].physique,reverse:res.questions[i].reverse})
+				}
+				if (!User.getUser()&&queryObj.accountrequired!=='false') {
+					sessionStorage.evaluate_result_zhongyi=JSON.stringify(mySelects)
+					User.redirectToLoginPage(location.href);
+					return
+				}
+				Utils.ajax.post('/IbabyWebService/3/Evalute/CommitEvaluteAnswer',{evaluteAnswers:JSON.stringify(mySelects),code:'E004',patientid:patientid,channel:queryObj.channel?queryObj.channel:''}).then(function(res){
+					$('#questionnaire').hide()
+					location.hash='result'
+					location.reload()
+				})
+			})
+		})
+	})()
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>任务</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/camp/mission/css/main.css?v1.013">
+</head>
+<body>
+<div id="content" class="detail">
+    <div class="missions shadow flex flex-vertical flex-center">
+    </div>
+    <div class="comments"></div>
+    <div class="foot flex flex-center"></div>
+</div>
+<script type="text/html" id="temp1">
+    <div id="per-infor" class="shadow">
+        <a href="/static/camp/mission/mission.html"><div id="back_list">进入任务列表</div></a>
+        <div>
+            <p>任务名称：{{name}}</p>
+            <p>发布者：{{publishername}}</p>
+            <p>结束时间：<span id="timeout">
+                <font>{{time_day||0}}天</font>
+                <font>{{time_hour||0}}小时</font>
+                <font>{{time_min||0}}分钟</font>
+                <font>{{time_s||0}}秒</font>
+            </span></p>
+        </div>
+    </div>
+    <div class="line"></div>
+    <p class="title flex flex-space-between"><span>活动简介：</span></p>
+    <p class="text">{{introduce}}</p>
+    <p class="flex flex-wrap imgs">
+        {{each imglist.split(';') as img}}
+        {{if img}}
+        <img src="{{img}}" alt="" class="food ">
+        {{/if}}
+        {{/each}}
+    </p>
+    <p class="time">{{starttime}}</p>
+</script>
+<script type="text/html" id="temp2">
+    {{each list as val}}
+    <div class="comment flex flex-vertical" commentid="{{val.parentcommentid}}"
+         maindata="{{val.userid}}|{{val.role}}|{{val.id}}">
+        <div class="user flex w-padding l-padding">
+            <img src="{{val.headimgurl}}" alt="" class="head">
+            <div class="commener">
+                <p>{{val.username}}</p>
+            </div>
+            <div class="flex heard">
+                <p class="userscore">学分：<font>{{val.score}}</font></p>
+            </div>
+        </div>
+        <div class="flex flex-vertical w-padding">
+            <p>{{val.content}}</p>
+            {{if val.imglist}}
+            <p class="flex flex-wrap imgs">
+                {{each val.imglist.split(';') as img}}
+                {{if img}}
+                <img src="{{img}}" alt="" class="food ">
+                {{/if}}
+                {{/each}}
+            </p>
+            {{/if}}
+            <p class="flex flex-space-between gray lineh">
+                <span class="flex-1">{{val.createtime}}</span>
+                <span class="flex write pointer"><img src="img/write.svg" alt="write">评论</span>
+                <span class="flex padding-l good once"><img src="img/good.svg"  alt="write"
+                                                  cid="{{val.id}}"><font>{{val.favouramount}}</font></span>
+            </p>
+            {{if val.childComments}}
+            <div class="flex flex-vertical comment-title">
+                {{each val.childComments as val}}
+                <p>
+                    <span class="bont">{{val.username}}:</span>
+                    <span>{{val.content}}</span>
+                </p>
+                {{/each}}
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.0113"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/camp/js/clock.js"></script>
+<script src="/static/camp/mission/js/missiondetail.js?v1.024"></script>
+
+</body>
+</html>

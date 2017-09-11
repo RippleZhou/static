@@ -1,0 +1,119 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>专业备孕课程</title>
+
+    <meta name="keywords" content="爱丁网，上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查" />
+    <meta name="description" content="爱丁网是专业为准妈妈提供上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查等怀孕服务的知识网站，其中还包括相关资讯频道，提供专业、舒适、贴心的全程辅导与帮助，直到您愉悦地实现优质怀孕。" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="./css/amazeui.min.css" />
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+    <style type="text/css">
+        body {
+            background: #f0eff5;
+        }
+
+        .online-class-list {
+            padding-top: 10px;
+        }
+
+        .online-class-link {
+            display: block;
+            width: 95%;
+            margin: 0 auto 10px;
+            background: #ffffff;
+            border-radius: 4px;
+            position: relative;
+        }
+        .online-class-link img {
+            width: 100%;
+        }
+        .class-lock {
+            width: 20px;
+            height: 25px;
+            background: url(./img/lock.png);
+            background-size: 100% 100%;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .am-modal-bd p{
+            width:90%;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .doc-modal-1 {
+            margin-top: 0!important;
+            top: 10%!important;
+        }
+</style>
+
+</head>
+
+<body>
+    <div class="am-cf">
+        <!-- content start -->
+        <div class="online-class-list">
+            <a class="online-class-link" id="class5" href="">
+                <img src="img/class-list-5.png">
+            </a>
+            <a class="online-class-link" id="class6" href="">
+                <img src="img/class-list-6.png">
+            </a>
+            <a class="online-class-link" id="class7" href="">
+                <img src="img/class-list-7.png">
+            </a>
+        </div>
+        <!-- content end -->
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/amazeui.js"></script>
+    <script src="/static/common/js/wechat.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/template-native.js"></script>
+    <script src="./js/template-helper.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+    <script src="http://sdk.talkingdata.com/app/h5/v1?appid=119BF1969DBACF577B6D2DBA8D489F71&vn=爱丁备孕v4.3&vc=4.3"></script>
+    <script type="text/javascript">
+        wechat.share({desc:'爱丁i-MLP备孕健身课程，为备孕期女性提供个性化健身方案，效提高受孕能力，为孕期的健康和安全做好充分的准备。',title:document.title, imgUrl: '/static/onlineclass/img/class-list-fitness.jpg', link: 'http://ibaby-plan.org:8180/static/onlineclass/onlineclass_list_entry.html'});
+        $(function () {
+            var params = getQueryParams();
+
+            $('#class5').attr('href', '/static/onlineclass/class3.html?classid=100003' + '&' + $.param(params));
+
+            $('#class6').attr('href', '/static/onlineclass/class6.html?classid=100006' + '&' + $.param(params));
+
+            $('#class7').attr('href', '/static/onlineclass/class7.html?classid=100007' + '&' + $.param(params));
+        });
+
+        function getQueryParams() {
+            var params = {};
+            var queryString = window.location.search.replace(/^\?/, '').split('&');
+            var param;
+
+            queryString.forEach(function (d, i) {
+                if (d) {
+                    param = d.split('=');
+
+                    try {
+                        params[param[0]] = decodeURIComponent(param[1]);
+                    }
+                    catch (ex) {
+                        params[param[0]] = param[1];
+                    }
+                }
+            });
+
+            return params;
+        }
+    </script>
+</body>
+
+</html>

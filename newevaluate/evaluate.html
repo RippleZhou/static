@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱丁评估</title>
+    <link rel="stylesheet" href="../common/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="padding-15 bg-linear-blue">
+<div class="container container flex flex-vertical box-shadow" id="container">
+</div>
+
+<script type="text/html" id="tempdetail">
+    <h3 class="padding-0-15  text-center font-size-lg color-black no-weight">{{title}}</h3>
+    {{each content as q i}}
+    <div class="questions">
+        <p class="title font-size-md margin-top-10">{{q.content}}</p>
+        {{if q.type == 'single'}}
+        <div class="radio">
+            {{each q.options as a j}}
+            <label class="{{if a.correct == 1}}y-label{{/if}}" onmouseup="$(this).parents('.radio').find('label').removeClass('selected');$(this).addClass('selected')">
+                <span class="radio-span"></span>
+                <input type="radio" data-correct="{{a.correct}}" class="{{if a.correct == 1}}y{{/if}}"  name="{{i+1}}question" value="{{j+1}}option">
+                {{a.content}}
+            </label><br>
+            {{/each}}
+        </div>
+        {{else if q.type == 'multi'}}
+        <div class="checkbox">
+            {{each q.options as a j}}
+            <div>
+            <label class="{{if a.correct == 1}}y-label{{/if}}" onmouseup="$(this).toggleClass('selected')">
+                <span class="checkbox-span"><img src="img/right.png" alt=""></span>
+                <input type="checkbox" data-correct="{{a.correct}}"  class="{{if a.correct == 1}}y{{/if}} y-background"   name="{{i+1}}question" value="{{j+1}}option">
+                {{a.content}}
+            </label><br>
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
+    <div class="line"></div>
+    {{/each}}
+    <p class="action"></p>
+    <div class="flex-1"></div>
+    <input type="button" class="submit" onclick="a.submit()" class="first" value="提 交 答 案">
+</script>
+<script type="text/html" id="tempresult">
+    <div class="mask">
+    </div>
+    <div class="mask evaluate flex flex-vertical flex-center">
+        <div class="score background-white text-center">
+            <p class="color-black font-size-md">成 绩 单</p>
+            <p class="flex flex-space-between border-top-1 padding-top-15"><span class="flex-1">分数：<font id="score" class="color-red">{{score}}</font></span></p>
+            {{if beat}}
+            <p class="padding-bottom-5">击败了<font class="color-red" id="rank">{{beat}}</font>的学员</p>
+            {{/if}}
+            <input type="button" onclick="a.checkResult()" value="查 看 答 案">
+        </div>
+    </div>
+</script>
+<script src="/static/common/lib/jquery-3.1.1.min.js"></script>
+<script src="/static/common/bootstrap/bootstrap.min.js"></script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.0112"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="js/evaluate.js?0.01"></script>
+<script>
+    var a = new Evalate();
+    $(function () {
+        a.getdetail();
+    })
+</script>
+</body>
+</html>

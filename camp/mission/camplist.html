@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>训练营丨列表</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/camp/mission/css/camplist.css">
+</head>
+<body>
+<ul class="ul-tab" id="camping">
+    <li class="flex"><span></span>正在报名</li>
+    <ul>
+
+    </ul>
+</ul>
+<ul class="ul-tab" id="camped">
+    <li class="flex"><span></span>已截止</li>
+    <ul>
+
+    </ul>
+</ul>
+<script type="text/html" id="list">
+    {{if ended}}
+    <a href="/static/camp/mission/camp.html?campid={{campid}}">
+    {{/if}}
+        <li class="flex flex-center">
+            <img src="{{cover}}" alt="" class="main">
+            <div class="flex flex-vertical flex-space-between flex-1">
+                <p class="intro">{{name}}&nbsp;&nbsp;&nbsp;{{title}}</p>
+                <p class="time flex flex-space-between">
+                    <span class="flex-1">{{starttime.split(' ')[0]}} ~ {{endtime.split(' ')[0]}}</span>
+                    {{if ended}}
+                    <span class="warn">最后{{ended}}天</span>
+                    {{else}}
+                    <span class="ended">截止</span>
+                    {{/if}}
+                </p>
+            </div>
+        </li>
+    {{if ended}}
+    </a>
+    {{/if}}
+    <p class="line"></p>
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.0111"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/camp/mission/js/camplist.js"></script>
+</body>
+</html>

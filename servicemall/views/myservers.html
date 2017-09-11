@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8">
+    <title>我的服务</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../css/unify.css">
+
+    <style type="text/css">
+        :root {
+            font-size: 16px;
+        }
+
+        @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) {
+            :root {
+                font-size: 18.75px;
+            }
+        }
+
+        @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) {
+            :root {
+                font-size: 20.7px;
+            }
+        }
+
+        @media screen and (min-width: 414px) {
+            :root {
+                font-size: 20.7px;
+            }
+        }
+
+        html,
+        body {
+            background: #f0eff5;
+            font-family: -apple-system-font;
+            margin: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #server_history {
+            padding: 0.5rem 0 0 0;
+        }
+
+        .myservers {
+            width: 100%;
+            border-bottom: 1px solid #d6d7dc;
+            padding: 0.4rem 0 1.2rem 0;
+        }
+
+        .servers_logo {
+            width: 2.5rem;
+            height: 2.5rem;
+            float: left;
+            margin: 0.8rem 0 0 0.2rem;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 3.3rem;
+        }
+
+        .servers_logo i {
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+
+        .servers_logo img {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+        }
+
+        .servers_content {
+            float: right;
+            padding: 0 0.4rem 0 0;
+            width: 82%;
+        }
+
+        .servers_title {
+            font-size: 1rem;
+            color: #333333;
+        }
+
+        .servers_time {
+            font-size: 0.8rem;
+            color: #cccccc;
+            margin-top: 0.2rem;
+        }
+
+        .servers_state {
+            width: 100%;
+            margin-right: 0.2rem;
+            color: #cccccc;
+            float: right;
+        }
+
+        .servers_state div {
+            width: 3rem;
+            height: 1.2rem;
+            float: right;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            text-align: center;
+            line-height: 1.2rem;
+        }
+
+        .servers_information {
+            color: #71CDF9;
+            font-size: 0.9rem;
+        }
+
+        .servers_information p {
+            margin: 0.2rem 0 0 0;
+        }
+
+        .yyy {
+            border: 1px solid #ff9900;
+            color: #ff9900;
+        }
+
+        .dfk {
+            border: 1px solid #ff6666;
+            color: #ff6666;
+        }
+
+        .ywc {
+            border: 1px solid #46c6fe;
+            color: #46c6fe;
+        }
+
+        .yqx {
+            border: 1px solid #d3d3d3;
+            color: #d3d3d3;
+        }
+
+        .go_index {
+            background: #ff9900;
+            font-size: 1.3rem;
+            border-radius: 4px;
+            color:#ffffff;
+            width:12rem;
+            height:3rem;
+            text-align: center;
+            margin: 1rem auto;
+            line-height: 3rem;
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+    <div class="tab-content">
+        <div id="server_history"></div>
+    </div>
+
+    <script type="text/html" id="fwls_data">
+        <%list.forEach(function (d, i) {%>
+            <div class="myservers click-pay<%=d.status%>" orderid="<%=d.orderid%>" >
+                <div class="servers_logo <%=d.sprogram%>">
+                    <!--<%if(d.categorytype != 'D'){%>
+                    <i class="iconfont-program-<%=d.sprogram%>"></i>
+                    <%}else{%>
+                    <img src="../img/services/<%=d.sprogram%>.png" />
+                    <%}%>-->
+                    <img src="<%=d.icon%>" />
+                </div>
+                <div class="servers_content">
+                    <div class="servers_state">
+                        <%if(d.status == 3){%>
+                        <div class="yqx">已取消</div>
+                        <%}else if(d.status == 4){%>
+                        <div class="yyy">已预约</div>
+                        <%}else if(d.status == 2){%>
+                        <div class="dfk">待付款</div>
+                        <%}else if(d.status == 1){%>
+                        <div class="ywc">已完成</div>
+                        <%}%>
+                    </div>
+                    <div class="servers_title">
+                        <%=d.sname%>
+                    </div>
+                    <%if(d.category != 'D'){%>
+                        <div class="servers_time">预约时间：
+                            <%=d.appointmenttime%>
+                        </div>
+                    <%}%>
+                    <div class="servers_information">
+                        <p>
+                            <%=d.doctor%>
+                        </p>
+                        <p>
+                            <%=d.saddress%>
+                        </p>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <%})%>
+    </script>
+
+    <script type="text/html" id="zwfw">
+        <div style="width:10rem;margin:6rem auto 0;">
+            <img style="width:10rem;" src="../img/zwfw.png" />
+        </div>
+        <p style="text-align: center;font-size: 1.2rem; color:#cccccc; margin:0.5rem 0 0 0;">你还没有预约爱丁服务</p>
+        <div class="go_index">
+            去服务大厅看看
+        </div>
+    </script>
+
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="/static/common/lib/template-native.js"></script>
+    <script src="/static/common/js/wechat.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+
+    <script src="../js/services.js"></script>
+
+    <script type="text/javascript">
+        wechat.share();
+
+        $(document).ready(function() {
+            Services.getOrders().then(function (result) {
+                var html;
+
+                if(result.list.length == 0){
+                    html = template('zwfw', result);
+                    $('#server_history').html(html);
+
+                    $('.go_index').click(function(){
+                        window.location.href = "../";
+                    });
+                }
+                else {
+                    html = template('fwls_data', result);
+                    $('#server_history').html(html);
+
+                    $('.click-pay2').on('click', function () {
+                        var uid = User.getUser().id;
+                        var orderid = $(this).attr('orderid');
+
+                        window.location.href = "../views/select_pay.php?userid=" + uid + "&orderid=" + orderid;
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

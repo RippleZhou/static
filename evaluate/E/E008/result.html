@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<meta name="viewport" content="target-densitydpi=device-dpi, width=640px, user-scalable=no" />  
+	<title>卵巢储备功能</title>
+	<style>
+		*{box-sizing:content-box}
+		body{background:#fff; margin: 0px; padding: 0px; font-family: "宋体";}
+		ul,li,h6{ list-style: none; margin: 0px; padding: 0px;}
+		
+		
+		
+		.register-inner a{ display: block; position: absolute; left: 0px; top: 671px; width:467px ; height: 67px;}
+		.result-title{ margin: 118px 0px 0px 25%;}
+		.result-1{font-size: 130px; line-height: 99px; color: #e60012; text-align: center; position: relative; width: 371px; height: 155px; background: url(img/result-1.jpg) no-repeat; margin: 132px 103px 18px; padding-top: 80px;}
+		.result-2{ background: url(img/result-2.jpg) no-repeat; margin: 0px 66px 5px; padding: 50px 0px 0px; width: 467px; height: 184px; font-size: 26px;}
+		.result-3{ margin: 0px 4% 0px;  padding: 0px 53px 0px 53px; width: 435px; font-size: 26px; position: relative; text-align: center;}
+		.result-4{ width: 100%;}
+		.badbtn{ position: absolute; right: 34px; top: 93px;animation: badbtn 0.5s infinite linear alternate;-webkit-animation: badbtn 0.5s infinite linear alternate;}
+		@-webkit-keyframes badbtn{
+			from{top: 93px; right: 34px;}
+			to{top:100px; right: 40px;}
+		}
+		
+		@-webkit-keyframes badbtn{
+			from{top: 93px; right: 34px;}
+			to{top:100px; right: 40px;}
+		}
+		.goodResult{ margin-top: 39px;}
+		.goodbtn{ position: absolute; right:79px ; top:60px ; animation: goodbtn 0.6s infinite linear;-webkit-animation: goodbtn 0.6s infinite linear;}
+		@-webkit-keyframes goodbtn{
+			from{right: 79px;}
+			to{right:100px}
+		}
+		
+		@-webkit-keyframes goodbtn{
+			from{right: 79px;}
+			to{right:100px}
+		}
+	</style>
+</head>
+
+<body>
+<style>
+	.goodInformation{ width: 640px; background: url(img/result-bg1.jpg) no-repeat; position: relative;}
+	.information-content{ padding: 48px 27px 120px;}
+	.information-content .result-1{ margin: 47px 103px 18px;}
+	.information-content h4{ text-align: center; font-size: 24px; color: #000000; line-height: 30px; margin: 40px 0px;}
+	.information-content h4 span{ border-bottom: 1px solid #000000;}
+	.information-1{ margin:0px 44px ; border: 1px solid #000; padding: 20px;}
+	.information-1 h5{ font-size: 26px; color: #000000; font-family: "微软雅黑"; margin: 0px; font-weight: normal;}
+	.information-1 h5 span{ color: #e60012;}
+	.information-1 p{ line-height: 29px; color: #333333; font-size: 24px; margin: 10px 0px;font-family: "微软雅黑";}
+	.line{ height: 1px; border-bottom: 1px solid #000000; margin-left: -20px; width: 498px;}
+	.qrcode{ position: relative; text-align: center;}
+	.qr-ren{ position: absolute; left: 50%; top: 117px; margin-left: 76px;}
+</style>
+<div class="goodInformation">
+	<div class="information-content">
+		<header>
+			<div class="result-1"><span id="score">?</span></div>
+		</header>
+		<h4>姓名：<span id="Uname"></span></h4>
+		<div class="information-1">
+			<h5>专业评估</h5>
+			<p id="strategy"></p>
+			<div class="line"></div>
+			<h5 style="margin: 25px 0px;">恭喜您获得日本英医院的Shawkea系列产品试用的抽奖资格！<br/><span>每周五爱丁将从群内抽出10位幸运星~</span></h5>
+			<p class="qrcode" style="margin-top: -296px; margin-left: -105px;">
+				<img src="img/result-rqcode.png" />
+			</p>
+		</div>
+		
+	</div>
+	
+			<!--<img style="margin-left: -19px;" src="img/result-9.png" />-->
+</div>
+
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="http://www.ibabycenter.com/wwwfront/js/third/Tcc.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	var openid = localStorage.wx_user_info_openid;
+	var	nickname=localStorage.wx_user_info_nickname;
+	if(!openid){
+		location.href = 'init_evalute_ovary.html';
+	}
+	/*var openid = '1',
+	nickname = '1';*/
+	(function(){
+		$("#Uname").html('&nbsp;'+nickname+'&nbsp;');
+		wechat.share({desc:'爱丁备孕MLP（医学、生活、心理）测评，全面专业的测评 ，专业成就好孕',title:document.title})
+		queryObj={}
+		if(location.search){
+			queryObj=JSON.parse('{"'+decodeURI(location.search.substring(1)).replace(/"/g,'\\"').replace(/&/g,'","').replace(/=/g,'":"')+'"}')
+		}
+		
+		$.get('/IbabyWebService/3/Evalute/GetOvaryEvaluteShareWord',function(res){
+			//console.log(res);
+			if(res.status!==0){
+				return
+			}
+			wx.config({
+				appId: res.content.appId,
+				timestamp: res.content.timestamp,
+				nonceStr: res.content.nonceStr,
+				signature: res.content.signature,
+				jsApiList: [
+					'onMenuShareTimeline',
+					'onMenuShareAppMessage'
+				]
+			})
+			wx.ready(function () {
+				wx.onMenuShareTimeline({
+					title: res.title,
+					desc:res.description,
+					link: '',
+					imgUrl: res.picurl
+				})
+				wx.onMenuShareAppMessage({
+					title: res.title,
+					desc:res.description,
+					link: '',
+					imgUrl: res.picurl
+				})
+			})
+		},'json')
+		
+		$.get('/IbabyWebService/3/Evalute/GetOvaryEvaluteResult',{openid:openid}).then(function(res){
+			console.log(res);
+			if(res.content && res.content.score!= ''){
+				$('#score').html(res.content.score);
+				$('#strategy').html(res.content.strategy);
+			}else {
+				window.location.href = 'index.html';
+			}
+			
+		})
+		
+	})()
+</script>
+</body>
+</html>

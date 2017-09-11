@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8">
+<title>备孕计划书</title>
+<link rel="stylesheet" href="css/main.css"/>
+<link rel="stylesheet" href="css/font.css">
+</head>
+<style type="text/css">
+html,body{
+  height:100%;
+  overflow: hidden;
+  background: url(img/planbook-background.png);
+  background-size: 100% 100%;
+  margin: 0px;
+}
+ul,li{
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+.top {
+  width: 80%;
+  margin: 0 auto;
+  height: 8rem;
+}
+
+.top i {
+  font-size: 15rem;
+  color: #2d77b2;
+  position: relative;
+  top: -2rem;
+}
+
+.middle {
+  width: 80%;
+  margin: 0.7rem auto 0;
+  height: 50%;
+  overflow: auto;
+}
+
+.middle img {
+  height: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.middle p {
+  margin: 0px 0px 1rem 0px;
+  color: #5db2f5;
+  font-size: 1rem;
+}
+
+.bottom {
+  background: url(img/planbook-bottom-background.png);
+  width: 100%;
+  height: 30%;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 0px;
+}
+.next {
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 1.25rem;
+  border: solid 1px #ffffff;
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 2.5rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  margin-left: -5rem;
+}
+</style>
+</head>
+<script type="text/html" id="planbook">
+
+</script>
+<body data-role='none' style="margin:0;">
+    <div class="top">
+      <i class="icon-my-planbook"></i>
+    </div>
+    <div class="middle">
+      <img src="img/byxz.png">
+      <p id="situation"></p>
+      <img src="img/byjh.png">
+      <p id="stratyge"></p>
+    </div>
+    <div class="bottom">
+      <div class="next" id="next">下一步</div>
+    </div>
+</body>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/template-native.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: ajax_url + "/Patient/GetPregnantPlan?patientid=" + $.getUrlParam('patientid'),
+        contentType: "application/x-www-form-urlencoded",
+        data: {},
+        dataType: "json",
+        success: function(data) {
+            $('#situation').html(data.content.situation);
+            $('#stratyge').html(data.content.stratyge);
+        },
+    });
+    $('#next').click(function() {
+        location.href="declaration-page2.html?patientid=" + $.getUrlParam('patientid');
+    })
+})
+</script>
+
+</html>

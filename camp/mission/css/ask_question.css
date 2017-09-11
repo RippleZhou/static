@@ -1,0 +1,157 @@
+body {
+    background-color: #efeff4;
+}
+
+.tab-switchs-position {
+    background-color: #3cd3db;
+}
+
+.tab-switchs-header > li.active button {
+    color: #3cd3db;
+}
+
+.btn-primary,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+    background: #3cd3db;
+}
+
+.tab-switchs-header li {
+    width: 50%;
+}
+
+.has-new-message {
+    position: relative;
+}
+
+.has-new-message:after {
+    border-radius: 50%;
+    background-color: #f66;
+    content: '';
+    height: 8px;
+    position: absolute;
+    top: 0;
+    width: 8px;
+}
+
+.about-us {
+    color: #666;
+    float: right;
+    font-size: 12px;
+}
+
+.about-us img {
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 3px;
+    vertical-align: -35%;
+    width: 20px;
+}
+
+.form .row p {
+    font-size: 16px;
+}
+
+.form .row p span {
+    font-size: 14px;
+}
+
+.form .row textarea {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.form .row-select {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.form .row-select .select {
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+.form .select .label {
+    font-size: 14px;
+    color: #333;
+}
+
+.form .select .value {
+    font-size: 16px;
+    color: #3cd3db;
+}
+
+.form .row-select select {
+    background-color: transparent;
+    display: block;
+    height: 48px;
+    left: 0;
+    opacity: 0;
+    margin-top: -24px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    z-index: 1;
+}
+
+.questions {
+    padding-bottom: 10px;
+}
+
+.questions-no-data {
+    color: #999;
+    font-size: 16px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.questions .row-closed p {
+    color: #999;
+}
+
+.questions .row p {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.questions .row .time {
+    color: #ccc;
+    display: block;
+    font-size: 14px;
+}
+
+.questions .row .time i {
+    font-size: 20px;
+    margin-right: 3px;
+    vertical-align: -25%;
+}
+
+.questions .row .status {
+    background-color: #ccc;
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    float: right;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 5px;
+}
+
+.questions .row .status + .status {
+    margin-right: 5px;
+}
+
+.questions .row .status-on {
+    background-color: #9ee1ff;
+}
+
+.questions .row .status-new {
+    background-color: #f66;
+}
+
+.questions .row .status-wait {
+    background-color: #f90;
+}

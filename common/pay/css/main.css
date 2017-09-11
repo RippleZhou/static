@@ -1,0 +1,133 @@
+body{
+    background: #eee;
+}
+#order p {
+    margin-bottom: 20px;
+}
+
+ul > li.fixedbottom span{
+    line-height: 40px;
+    float: right;
+    margin-left: 15px;
+}
+
+#submit {
+    background: #15b2ee;
+    color: #fff;
+    width: 120px;
+    text-align: center;
+}
+
+span {
+    font-size: 14px;
+    display: block;
+    line-height: 30px;
+}
+
+ul {
+    color: #333;
+}
+
+li {
+    padding: 15px;
+    background: #fff;
+    margin-bottom: 1px;
+}
+div:after,
+li:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.payicon {
+    margin: 5px 10px 5px 0;
+    width: 20px;
+    height: 20px;
+}
+li > span:nth-of-type(1) {
+}
+li > *:nth-child(2) {
+}
+
+ul > li.fixedbottom {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+}
+.title{
+    font-size: 16px;
+    line-height: 16px;
+    margin: 8px 0;
+    border-left: 3px solid #15b2ee;
+    padding-left: 12px;
+}
+ul div{
+    position: relative;
+    padding: 15px;
+    min-height: 80px;
+}
+div img{
+    float: left;
+    height: 80px;
+}
+div a {
+    position: absolute;
+    color: #999;
+    height: 20px;
+    width: 60px;
+    line-height: 20px;
+    margin: auto;
+    top: 0;
+    text-align: center;
+    border: 1px solid #999;
+    border-radius: 5px;
+    bottom: 0;
+    right: 15px;
+}
+ul>p:last-of-type{
+    line-height: 40px;
+    padding: 0 15px;
+    color: #999;
+}
+.payview .totalfee {
+    padding: 15px;
+    height: auto;
+}
+ul.paytype {
+    margin-top: 20px;
+}
+ul.paytype li {
+    cursor: pointer;
+}
+ul.paytype span.select {
+    width: 24px;
+    height: 24px;
+    margin: 3px 0;
+    border-radius: 20px;
+    border: 2px solid #999;
+    display: none;
+}
+ul.paytype li.active span.select {
+    border: 2px solid #1296DB;
+    display: block;
+}
+ul.paytype img.selected {
+    width: 16px;
+    height: 16px;
+    margin: 2px;
+    display: none;
+}
+ul.paytype li.active img.selected {
+    display: block;
+}
+.payview li.fixedbottom span {
+    margin: 0;
+}
+.payview .link {
+    font-size: 16px;
+    color: #4ca1fa;
+    text-decoration: underline;
+}

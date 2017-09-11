@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱丁服务</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/doctorpro/css/user.css">
+    <style>
+        #nolist{
+            color: #999;
+            text-align: center;
+            line-height: 40px;
+            font-size: 13px;
+            display: none;
+        }
+        a.full{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="main" class="baseContainer">
+</div>
+<di id="nolist">目前还没有项目,敬请期待!</di>
+<script id="servicesList" type="text/html">
+    <p class="titleA">爱丁服务</p>
+    {{each list as val index}}
+    <ul class="services">
+        <a href="services.html?id={{val.id}}" class="full"></a>
+        <img src="{{val.coverpic}}" alt="serviceP">
+        <ul>
+            <p class="titleB">{{val.name}}</p>
+            <span>{{val.spdesc}}</span>
+            <p>
+                <span>￥{{val.price}}</span>
+                <a href="services.html?id={{val.id}}">预约</a>
+            </p>
+        </ul>
+    </ul>
+    {{/each}}
+</script>
+
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?0.001"></script>
+<script src="/static/common/js/framework.js"></script>
+
+<script type="text/javascript">
+    var queryParams = Utils.queryParams;
+    if (!queryParams.openid) {
+        window.User.weichatAuth();
+    } else {
+        Utils.storage.set("openid", queryParams.openid);
+        var dataUrl = '/IbabyWebService/DServiceCooper/ServiceList';
+        Utils.ajax.get(dataUrl).then(function (rel) {
+            var servicesData = rel;
+            total = servicesData.total;
+            if (total == 0) {
+                $('#nolist').css('display','block');
+            }
+            var html = template('servicesList', servicesData);
+            document.getElementById('main').innerHTML = html;
+        })
+    }
+</script>
+</body>
+</html>

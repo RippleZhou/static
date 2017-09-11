@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>发起问题 | 爱丁备孕咨询</title>
+    <meta charset="UTF-8">
+
+    <meta name="keywords" content="爱丁网，上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查" />
+    <meta name="description" content="爱丁网是专业为准妈妈提供上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查等怀孕服务的知识网站，其中还包括相关资讯频道，提供专业、舒适、贴心的全程辅导与帮助，直到您愉悦地实现优质怀孕。" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+
+    <style>
+        body {
+            background-color: #efeff4;
+        }
+
+        .form .row textarea {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+    </style>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <form id="form" class="form">
+        <div class="row row-input">
+            <textarea id="content" rows="9" placeholder="请描述您的备孕计划及遇到的问题，爱丁医生会给您专业的解答"></textarea>
+        </div>
+
+        <div class="row row-photos">
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="提交给医生">
+    </form>
+
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+
+    <script src="./js/services.js"></script>
+
+    <script>
+        $(function () {
+            var user = User.getUser();
+            if(user==null){
+                User.redirectToLoginPage(location.href);
+            }
+            $('#form').on('submit', function () {
+                var content = $('#content').val();
+
+                if (!content) {
+                    aid.tip.show('请输入问题描述！');
+                    return false;
+                }
+
+                var params = {
+                    content: content,
+                    photo: ''
+                };
+
+                Services.create(params).then(function (result) {
+                    aid.tip.show('提交成功！', function () {
+                        location.href = './chat.html?questionid=' + result.questionid;
+                    });
+                });
+
+                return false;
+            });
+
+            $('#content').inputWithCounter({
+                maxLength: 200,
+                local: true,
+            });
+        });
+    </script>
+</body>
+
+</html>

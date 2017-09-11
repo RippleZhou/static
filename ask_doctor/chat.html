@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>问医生 | 爱丁备孕咨询</title>
+    <meta charset="UTF-8">
+
+    <meta name="keywords" content="爱丁网，上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查" />
+    <meta name="description" content="爱丁网是专业为准妈妈提供上海备孕，首次怀孕，孕前知识，孕前准备，孕前检查等怀孕服务的知识网站，其中还包括相关资讯频道，提供专业、舒适、贴心的全程辅导与帮助，直到您愉悦地实现优质怀孕。" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+
+    <style>
+        body {
+            background: #efeff4;
+        }
+
+        .download-link {
+            background-color: #f90;
+            color: #fff;
+            font-size: 14px;
+            height: 40px;
+            left: 0;
+            line-height: 40px;
+            opacity: 0;
+            position: fixed;
+            text-align: center;
+            top: 0;
+            width: 100%;
+            z-index: 199;
+        }
+
+        .question {
+            background-color: #fff;
+            opacity: 0;
+            padding: 8px 15px;
+        }
+
+        .question p {
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        .question p + p {
+            margin-top: 5px;
+        }
+
+        .question p span {
+            color: #333;
+        }
+
+        .question p span + span {
+            margin-left: 30px;
+        }
+
+        .question p i {
+            font-size: 1.4em;
+            margin-left: -.1em;
+            vertical-align: -25%;
+        }
+
+        .question .time {
+            color: #ccc;
+        }
+
+        .question .status {
+            color: #f90;
+            float: right;
+            margin-left: 0;
+            white-space: nowrap;
+        }
+
+        .spread {
+            background-color: #fff;
+            font-size: 14px;
+            opacity: 0;
+            margin-top: 10px;
+        }
+
+        .spread-hd {
+            border-bottom: 1px solid #d6d7dc;
+            color: #999;
+            line-height: 30px;
+            padding-left: 15px;
+        }
+
+        .spread-hd img {
+            border-radius: 5px;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+            width: 20px;
+        }
+
+        .spread-hd i {
+            font-size: 30px;
+            float: right;
+            vertical-align: -33%;
+            position: relative;
+        }
+
+        .spread-bd {
+            padding: 10px 15px;
+        }
+
+        .spread-bd img {
+            border-radius: 50%;
+            height: 30px;
+            margin-right: 10px;
+            width: 30px;
+        }
+
+        .spread-bd h3 {
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .spread-bd p {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .spread-bd span {
+            color: #f90;
+            display: block;
+            text-align: right;
+        }
+
+        .chat {
+            opacity: 0;
+            padding-bottom: 115px;
+            padding-top: 10px;
+        }
+
+        .chat-time {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .chat-time span {
+            background-color: #ccc;
+            border-radius: 3px;
+            color: #fff;
+            display: inline-block;
+            font-size: 12px;
+            line-height: 1;
+            padding: 3px 6px;
+            white-space: nowrap;
+        }
+
+        .chat-row {
+            margin-bottom: 15px;
+            overflow: hidden;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .chat-row-left .chat-avatar {
+            float: left;
+        }
+
+        .chat-row-left .chat-message {
+            margin-left: 45px;
+        }
+
+        .chat-row-left .chat-message-type-0,
+        .chat-row-left .chat-message-type-1,
+        .chat-row-left .chat-message-type-4 {
+            text-align: left;
+        }
+
+        .chat-row-left .chat-message-text,
+        .chat-row-left .chat-message-photo,
+        .chat-row-left .chat-message-link {
+            background-color: #fff;
+            color: #333;
+        }
+
+        .chat-row-left .chat-message-text:before,
+        .chat-row-left .chat-message-photo:before,
+        .chat-row-left .chat-message-link:before {
+            border-right: 8px solid #fff;
+            content: '';
+            right: 100%;
+        }
+
+        .chat-row-right .chat-avatar {
+            display: none;
+            float: right;
+        }
+
+        /*.chat-row-right .chat-message {
+            margin-right: 45px;
+        }*/
+
+        .chat-row-right .chat-message-type-0,
+        .chat-row-right .chat-message-type-1,
+        .chat-row-right .chat-message-type-4 {
+            text-align: right;
+        }
+
+        .chat-row-right .chat-message-text,
+        .chat-row-right .chat-message-photo,
+        .chat-row-right .chat-message-link {
+            background-color: #46c6fe;
+            color: #fff;
+        }
+
+        .chat-row-right .chat-message-text:after,
+        .chat-row-right .chat-message-photo:after,
+        .chat-row-right .chat-message-link:after {
+            border-left: 8px solid #46c6fe;
+            content: '';
+            left: 100%;
+        }
+
+        .chat-avatar {
+            border-radius: 50%;
+            height: 30px;
+            margin-top: 5px;
+            width: 30px;
+        }
+
+        .chat-message {
+            line-height: 0;
+        }
+
+        .chat-message-text,
+        .chat-message-photo,
+        .chat-message-link {
+            border-radius: 5px;
+            display: inline-block;
+            min-height: 40px;
+            min-width: 30px;
+            position: relative;
+        }
+
+        .chat-message-text:before,
+        .chat-message-text:after,
+        .chat-message-photo:before,
+        .chat-message-photo:after,
+        .chat-message-link:before,
+        .chat-message-link:after {
+            border-bottom: 5px solid transparent;
+            border-top: 5px solid transparent;
+            position: absolute;
+            margin-top: -5px;
+            top: 20px;
+        }
+
+        .chat-message-text,
+        .chat-message-link {
+            font-size: 14px;
+            line-height: 20px;
+            padding: 10px;
+            max-width: 100%;
+            text-align: left;
+            word-break: break-all;
+        }
+
+        .chat-message-photo {
+            max-width: 50%;
+            padding: 3px;
+        }
+
+        .chat-message-photo .img-adaptive.img-loading {
+            width: 100px;
+        }
+
+        .chat-message-photo .img-adaptive.img-error {
+            height: 100px;
+            width: 100px;
+        }
+
+        .chat-message-photo .img-container {
+            border-radius: 5px;
+        }
+
+        .chat-message-photo img {
+            border-radius: 5px;
+            max-width: 100%;
+        }
+
+        .chat-message-link span {
+            color: #f90;
+        }
+
+        .chat-message-link.activated {
+            background-color: #d9d9d9;
+        }
+
+        .chat-message-record,
+        .chat-message-knowledge,
+        .chat-message-media {
+            background-color: #fff;
+            border-radius: 2px;
+            margin: 0 auto 15px;
+            max-width: 256px;
+            overflow: hidden;
+            padding: 15px 20px;
+            width: 88%;
+        }
+
+        .chat-message-record.activated,
+        .chat-message-knowledge.activated,
+        .chat-message-media.activated {
+            background-color: #d9d9d9;
+        }
+
+        .chat-message-record i,
+        .chat-message-knowledge i,
+        .chat-message-media .img-container {
+            margin-right: 15px;
+        }
+
+        .chat-message-record i:before,
+        .chat-message-knowledge i:before {
+            border-style: solid;
+            border-radius: 100%;
+            border-width: 1px;
+            display: inline-block;
+            font-size: calc(50px / 2);
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            width: 50px;
+        }
+
+        .chat-message-knowledge i:before {
+            background-color: #46c6fe;
+            border-radius: 3px;
+            color: #fff;
+        }
+
+        .chat-message-record p,
+        .chat-message-knowledge p {
+            color: #333;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .chat-message-record span,
+        .chat-message-knowledge span {
+            color: #f90;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 1;
+            margin-top: 6px;
+        }
+
+        .chat-message-knowledge-tip {
+            background-color: #f9f9fb;
+            border-radius: 2px;
+            margin: 0 auto 15px;
+            max-width: 256px;
+            overflow: hidden;
+            padding: 15px 20px;
+            width: 88%;
+        }
+
+        .chat-message-knowledge-tip img {
+            border-radius: 50%;
+            height: 30px;
+            margin-right: 10px;
+            width: 30px;
+        }
+
+        .chat-message-knowledge-tip p {
+            color: #999;
+            font-size: 12px;
+            line-height: 15px;
+        }
+
+        .chat-message-knowledge-tip span {
+            color: #f90;
+        }
+
+        .chat-message-media .img-container {
+            height: 50px;
+            width: 50px;
+        }
+
+        .chat-message-media .img-container.img-loaded .img {
+            background-color: transparent;
+        }
+
+        .chat-message-media h5 {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .chat-message-media 9 {
+            color: #999;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        #evaluate {
+            border-radius: 50%;
+            background: #f90;
+            bottom: 65px;
+            color: #fff;
+            font-size: 14px;
+            height: 50px;
+            padding: 9px;
+            opacity: 0;
+            position: fixed;
+            right: 15px;
+            text-align: center;
+            width: 50px;
+            z-index: 199;
+        }
+
+        .chat-inputer {
+            background-color: #f7f7f7;
+            border-top: 1px solid #d6d7dc;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            position: fixed;
+            right: 0;
+        }
+
+        .chat-inputer form {
+            padding: 8px 5px;
+        }
+
+        .chat-inputer .uploader {
+            border: 1px solid #aaa;
+            border-radius: 50%;
+            color: #aaa;
+            display: block;
+            font-size: 30px;
+            height: 30px;
+            line-height: 28px;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            width: 30px;
+        }
+
+        .chat-inputer .uploader input {
+            bottom: 0;
+            height: 100%;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+        }
+
+        .chat-inputer textarea {
+            border: 1px solid #d6d7dc;
+            border-radius: 3px;
+            display: block;
+            font-size: 14px;
+            height: 34px;
+            line-height: 17px;
+            margin-left: 5px;
+            margin-right: 5px;
+            overflow: hidden;
+            padding: 8px 10px;
+            width: 100%;
+        }
+
+        .chat-inputer input[type="submit"] {
+            background: #46c6fe;
+            border-radius: 3px;
+            color: #fff;
+            font-size: 14px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            width: 70px;
+        }
+
+        .img-expression {
+            vertical-align: middle;
+            width: 24px;
+        }
+    </style>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <a class="download-link" href="http://www.ibabycenter.com/product_show/patient_app.html">
+        免费全方位备孕指导，请下载爱丁备孕APP>>
+    </a>
+
+    <div id="question" class="question"></div>
+
+    <!-- <div id="spread" class="spread">
+        <p class="spread-hd">
+            <img src="./img/logo.png">爱丁推荐
+            <a class="close"><i class="iconfont-close-empty"></i></a>
+        </p>
+        <a class="spread-bd clickable flex" href="/static/open/remote_consulting/remote-consulting.html">
+            <img src="./img/question-knowledge-tip.png" alt="">
+            <div class="flex-1">
+                <h3>爱丁医生个体化备孕指导</h3>
+                <p>医生将与您电话沟通15分钟，聆听你的备孕经历，分析个体情况，从医学、行为习惯、饮食运动、心理等多角度为你制定下一步的备孕规划指导。</p>
+                <span>立刻预约&gt;&gt;</span>
+            </div>
+        </a>
+    </div> -->
+
+    <div id="chat" class="chat"></div>
+
+    <a id="evaluate" class="flex flex-center" href="./evaluate.html?questionid={{qid}}">评价医生</a>
+
+    <footer class="chat-inputer">
+        <form class="flex flex-center">
+            <div class="uploader">
+                +<input type="file" name="file" />
+            </div>
+            <textarea class="flex-1"></textarea>
+            <input type="submit" value="发 送">
+        </form>
+    </footer>
+
+    <script id="tpl-question" type="text/html">
+        <p><span>年龄：{{user.age}}岁</span><span>备孕时长：{{user.pregnancyDuration}}个月</span></p>
+        <p>
+            <span class="time">
+                <i class="iconfont-question-time"></i>
+                {{question.createtime | date: 'YYYY-MM-DD HH:mm' }}
+            </span>
+            <span class="status">
+                {{if question.closed}}
+                已关闭
+                {{else}}
+                {{question.endtime | dateToNow}}自动关闭
+                {{/if}}
+            </span>
+
+        </p>
+    </script>
+
+    <script id="tpl-chat" type="text/html">
+        {{each data as d i}}
+        <div class="clearfix chat-row-container chat-row-container-{{d.type}}">
+            {{if d.type == 2}}
+            <a class="chat-message-record flex flex-center clickable" href="{{d.$record.url | resource}}">
+                <i class="icon iconfont-record-{{d.$record.key}} active"></i>
+                <div class="flex-1">
+                    <p>{{extra.user.patientname}}的{{d.$record.label}}</p>
+                    <span>查看详情&gt;&gt;</span>
+                </div>
+            </a>
+            {{else if d.type == 3}}
+            <div class="chat-message-knowledge-container">
+                <div class="chat-message-knowledge-tip flex flex-center">
+                    <img src="./img/question-knowledge-tip.png" alt="">
+                    <p class="flex-1">
+                        {{if d.$knowledge.matchcontent}}
+                        温馨提示：医生很快就会回答哦，先学习下和<span class="chat-message-link-tip-highlight">{{d.$knowledge.matchcontent}}</span>相关的小知识吧。
+                        {{else}}
+                        温馨提示：医生很快就会回答哦，先学习下备孕相关的小知识吧。
+                        {{/if}}
+                    </p>
+                </div>
+
+                <a class="chat-message-knowledge flex flex-center clickable" href="{{d.$knowledge.url | resource}}">
+                    <i class="icon iconfont-question-knowledge active"></i>
+                    <div class="flex-1">
+                        <p>{{d.$knowledge.title || '爱丁备孕知识库'}}</p>
+                        <span>点击阅读&gt;&gt;</span>
+                    </div>
+                </a>
+            </div>
+            {{else if d.type == 5}}
+            <a class="chat-message-media flex flex-center clickable" href="{{d.$media.url | resource}}">
+                <div class="img-loader" img-src="{{d.$media.icon}}"></div>
+                <div class="flex-1">
+                    <h5>{{d.$media.title}}</h5>
+                    <p>{{d.$media.desc}}</p>
+                </div>
+            </a>
+            {{else}}
+            {{if i == 0 || !$helpers.isNearTo(d.createtime, data[i - 1].createtime)}}
+            <p class="chat-time">
+                <span>{{d.createtime | dateToNow: 'YYYY-MM-DD HH:mm:ss'}}</span>
+            </p>
+            {{/if}}
+
+            <div class="chat-row chat-row-{{d.role == 1 ? 'right' : 'left'}}">
+                <div class="chat-avatar img-loader img-zoomable" img-src="{{d.role == 1 ? extra.user.patienticon : extra.user.doctoricon}}" avatar></div>
+
+                <div class="chat-message chat-message-type-{{d.type}}">
+                    {{if d.type == 0}}
+                    <p class="chat-message-text">{{d.content}}</p>
+                    {{else if d.type == 1}}
+                    <div class="chat-message-photo">
+                        <div class="img-loader img-zoomable" img-src="{{d.content}}" adaptive></div>
+                    </div>
+                    {{else if d.type == 4}}
+                    <a class="chat-message-link clickable" href="{{d.$link.url | resource}}">{{=d.$link.title}}</a>
+                    {{else}}
+                    <p class="chat-message-text">当前版本不支持此消息，请升级到最新版本查看</p>
+                    {{/if}}
+                </div>
+            </div>
+            {{/if}}
+
+        </div>
+        {{/each}}
+    </script>
+
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="/static/common/lib/pinchzoom.min.js"></script>
+    <script src="/static/common/lib/moment.min.js"></script>
+    <script src="/static/common/lib/template.js"></script>
+    <script src="/static/common/js/wechat.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+
+    <script src="./js/services.js"></script>
+
+    <script>
+        $(function() {
+            var user = User.getUser();
+            if(user==null){
+                User.redirectToLoginPage(location.href);
+            }else{
+                activated();
+            }
+
+            function activated() {
+                $.fn.imgLoader.defaults.SERVER_URL = Utils.SERVER_URL;
+
+                initAppDownlinkByUser(user);
+
+                Services.read();
+
+                var chat = $('#chat').list({
+                    opposite: true,
+                    template: 'tpl-chat',
+                    getPromise: function (params) {
+                        return Services.get(params);
+                    },
+                    getRealtimePromise: function () {
+                        return Services.getRealtime();
+                    },
+                    afterRender: function () {
+                        var self = this;
+
+                        self.$.find('.chat-message-text').each(function () {
+                            var expression = {
+                                from: /\{:([a-z]+):\}/g,
+                                to: '<img class="img-expression" src="./img/expression/$1.png" />'
+                            };
+
+                            $(this).html($(this).text().replace(expression.from, expression.to));
+                        });
+
+                        self.$.find('.img-loader:not(.img-loaded)').imgLoader({
+                            afterAdaptive: function (newSize, oldSize) {
+                                self.scroll(newSize.h - oldSize.h);
+                            }
+                        });
+                    }
+                });
+
+                $('.uploader input').on('change', function () {
+                    var $this = $(this);
+                    var file = $this.val();
+
+                    if (!file) {
+                        return;
+                    }
+
+                    Services.replyPhoto(this.files[0]).then(function (result) {
+                        chat.addItem(result);
+                        $this.val('');
+                    });
+                });
+
+                $('.chat-inputer form').on('submit', function () {
+                    var $message = $(this).find('textarea');
+                    var message = $message.val();
+
+                    if (!message) {
+                        aid.tip.show('请输入内容！');
+                        return false;
+                    }
+
+                    Services.replyMessage(message).then(function (result) {
+                        chat.addItem(result);
+                        $message.val('');
+                    });
+
+                    return false;
+                });
+
+                chat.loadFromServer().then(function (result) {
+                    initByQuestion(result.questionInfo);
+
+                    chat.loadFromServerRealtime();
+                });
+            }
+
+            function initAppDownlinkByUser(user) {
+                var $chat = $('#chat');
+                var $link = $('.download-link');
+                var $question = $('#question');
+                var $spread = $('#spread');
+
+                if (user.channel) {
+                    $link.remove();
+
+                    $question.remove();
+
+                    $spread.animate({opacity: 1});
+                    $spread.find('.close').on('click', function () {
+                        $spread.animate({opacity: 0}, function () {
+                            spread.remove();
+                        });
+                    });
+                }
+                else {
+                    $chat.css('paddingTop', parseInt($chat.css('paddingTop')) + $link.height());
+
+                    $link.animate({opacity: 1});
+
+                    $question.remove();
+
+                    $spread.remove();
+                }
+            }
+
+            function initByQuestion(question) {
+                question.endtime = moment(question.createtime).add(1, 'days').format('YYYY-MM-DD HH:mm:ss');
+
+                var $question = $('#question');
+                var $chat = $('#chat');
+                var $evaluate = $('#evaluate');
+                var $chatInputer = $('.chat-inputer');
+
+                if (user.channel) {
+                    var data = {question: question, user: user};
+                    $question.append(template('tpl-question', data)).animate({opacity: 1});
+                }
+
+                if (question.closed) {
+                    var height = $chatInputer.height();
+                    $chat.css('paddingBottom', parseInt($chat.css('paddingBottom')) - height);
+                    $evaluate.css('bottom', parseInt($evaluate.css('bottom')) - height);
+                    $chatInputer.remove();
+                }
+                else {
+                    $('.chat-inputer').animate({opacity: 1});
+                }
+
+                var evaluateLink = $evaluate.attr('href').replace('{{qid}}', question.id);
+
+                $evaluate.attr('href', evaluateLink).animate({opacity: 1});
+                $chat.animate({opacity: 1});
+            }
+
+        });
+
+        template.helper('isNearTo', function (date1, date2) {
+            return Math.abs(moment.duration({from: date1, to: date2}).asSeconds()) <= 60;
+        });
+
+        template.helper('date', function (date, format) {
+            return moment(date).format(format);
+        });
+
+        template.helper('dateToNow', function (date, modelFormatter) {
+            if (!date || !date.search) {
+                return '';
+            }
+            else if (date.search('[<>]') > -1) {
+                date = date.replace(/(<[^<>]*>)|(<\/[^</>]*>)/g, '');
+            }
+
+            if (date.search('[^0-9- :.]') > -1) {
+                return date.replace(/&nbsp;/g, ' ');
+            }
+
+            date = moment(date, modelFormatter);
+
+            var format;
+
+            var duration = moment.duration({from: date, to: moment().startOf('day')});
+
+            if (duration.asDays() <= -2) {
+                format = 'YY年M月DD日 HH:mm';
+            }
+            else if (duration.asDays() <= -1) {
+                format = '明天HH:mm';
+            }
+            else if (duration.asDays() <= 0) {
+                format = 'HH:mm';
+            }
+            else if (duration.asDays() < 1) {
+                format = '昨天HH:mm';
+            }
+            else if (duration.asYears() < 1) {
+                format = 'M月DD日 HH:mm';
+            }
+            else {
+                format = 'YY年M月DD日 HH:mm';
+            }
+
+            return date.format(format);
+        });
+
+        template.helper('resource', function (src) {
+            if (typeof src === 'string' && src[0] == '/') {
+                return Utils.SERVER_URL + src;
+            }
+            return src;
+        });
+    </script>
+</body>
+</html>

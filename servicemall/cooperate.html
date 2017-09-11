@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>爱丁医生</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?3960f1016d40786cfb49af64974b386f";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+		<style type="text/css">
+			body,
+			p {margin: 0;color: #666;}
+			* {
+				margin: 0;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			img[alt='宣传图片'] {
+				width: 100%;
+			}
+			
+			.t-right { text-align: right;}
+			
+			.pos-re { position: relative;}
+			
+			.bg-font {
+				font-size: 16px;
+				line-height: 40px;
+				color: #fff;
+				margin-top: -40px;
+				z-index: 1;
+				padding-right: 18px;
+			}
+			
+			.bg-font:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: #000;
+				opacity: 0.4;
+				z-index: -1;
+			}
+			
+			.main-introduce {
+				padding: 0 15px;
+				font-size: 14px;
+				line-height: 25px;
+			}
+			
+			.main-introduce:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			
+			.main-introduce p {
+				font-size: 16px;
+			    padding: 18px 0;
+			}
+			
+			.main-introduce span {
+				float: right;
+				font-size: 16px;
+				line-height: 22px;
+				margin: 10px 0;
+			}
+			
+			.main-introduce span:last-of-type {
+				color: #46c6fe;
+				line-height: 20px;
+				margin-right: 5px;
+				border: 1px solid #46c6fe;
+				border-radius: 15px;
+				padding: 0 10px;
+			}
+			
+			#project-list {
+				background: #f2f2f2;
+				width: 100%;
+				padding: 0 15px;
+				min-height: 50px;
+				position: relative;
+			}
+			
+			#project-list .main-title {
+				background: #86d6fa;
+			    padding: 0 10px;
+			    float: left;
+			    color: #295795;
+			    font-size: 16px;
+			    line-height: 23px;
+			    border-radius: 12px;
+			    margin: 15px 0;
+			}
+			.partner{    
+				line-height: 58px;
+			    font-size: 19px;
+			    color: #fff;
+			    text-align: center;
+			    position: fixed;
+			    background: #46c6fe;
+			    bottom: 0;
+			    width: 100%;
+			    z-index: 1000;
+			}
+			.cl-both:after,
+			#project-list ul:after{
+				content: '';
+				display: block;
+				clear: both;
+			}
+			.even-l{padding-right: 8px;}
+			.odd-l{padding-left: 8px;}
+			#project-list ul{ width: 50%;float: left;}
+			#project-list ul li{ width: 100%;margin-bottom: 16px;font-size: 14px;float: left;}
+			#project-list ul h5{font-size: 16px;line-height: 23px;padding: 2px 10px!important;}
+			#project-list ul img{ width: 100%;}
+			#project-list ul p,#project-list ul h5{ padding: 0 10px;width: 100%;color: #666;background: #fff;}
+			#project-list ul h5{ border-bottom: 1px solid #f2f2f2;text-align: center;}
+			#project-list ul p{ padding: 10px;}
+		</style>
+	</head>
+
+	<body>
+		<img src="img/banner-1.jpg" alt="宣传图片" />
+		<a href="/static/common/about-us.html"><p class="t-right bg-font pos-re">更多关于爱丁介绍＞</p></a>
+		<div class="main-introduce">
+			<p>爱丁是专注于生殖领域的新型互联网连锁门诊，是为生殖医生打造的线上线下结合的服务型平台，以特色的互补性医疗服务，专科工具、最新的专业资讯及患者数据，成为生殖医学界医生的最重要的院外学习和第二工作平台。</p>
+		</div>
+		<div class="cl-both" id="project-list">
+		</div>
+		<script src="/static/common/lib/jquery.min.js"></script>
+		<script src="/static/common/lib/template.js"></script>
+		<script src="/static/common/js/wechat.js"></script>
+	    <script src="/static/common/js/utils.service.js"></script>
+	    <script src="/static/common/js/user.service.js"></script>
+	    <script src="/static/common/js/framework.js"></script>
+	    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+	    	<script id="project" type="text/html">
+
+			<p class="cl-both"><span class="main-title ">合作项目</span></p>
+			<ul class="even-l">
+			{{each test as val index}}
+				{{if index%2==0}}
+					<li>
+						<a href="views/project-details.html?id={{val.id}}">
+						<img src="{{val.coverpic}}" alt="合作项目图"/>
+						<h5 style="color:rgb(206,182,203);color: {{val.color}}">{{val.name}}</h5>
+						<p>{{val.spdesc}}</p>
+						</a>
+					</li>
+				{{/if}}
+					
+			{{/each}}
+			</ul>
+			<ul class="odd-l">	
+			{{each test as val index}}
+				{{if index%2==1}}
+					<li>
+						<a href="views/project-details.html?id={{val.id}}">
+						<img src="{{val.coverpic}}" alt="合作项目图"/>
+						<h5 style="color:rgb(206,182,203);color: {{val.color}}">{{val.name}}</h5>
+						<p>{{val.spdesc}}</p>
+						</a>
+					</li>
+				{{/if}}
+					
+			{{/each}}
+			</ul>
+			
+			
+		</script>
+	    <script type="text/javascript">
+	    	var last_url = "/IbabyWebService/ServiceCooper/ServiceList";
+	    	Utils.ajax.get(last_url).then(function(res){
+				test = res;
+				var dataObject = new Object();
+				dataObject.test = res;
+			 	var html = template('project', dataObject);
+				document.getElementById('project-list').innerHTML = html;
+			})
+	    </script>
+	    <script type="text/javascript">
+	    	$("#project-list").delegate("a","click",function(){
+	    		var imgsrc = $(this).parents('li').find("img").attr('src');
+	    		Utils.session.set("img",imgsrc);
+	    	})
+	    	
+	    </script>
+	    <script type="text/javascript">
+	    	wechat.share({title:"测试",desc:"您最专业的第二工作平台及咨询平台",imgUrl:"/static/servicemall/img/banner-1.jpg"});	
+	    </script>
+	</body>
+
+</html>

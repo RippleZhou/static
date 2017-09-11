@@ -1,0 +1,470 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>爱丁备孕健身课程--初级</title>
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="./css/amazeui.min.css" />
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+    <style type="text/css">
+    ul,li,p {
+        margin:0;
+        padding:0;
+    }
+    .top-img {
+        width: 100%;
+        position: relative;
+    }
+    
+    .top-img img {
+        width: 100%;
+    }
+    
+    .admin-content {
+        margin-bottom: 4.5rem;
+    }
+    
+    .aiding-audio {
+        width: 100%;
+        margin: 0 auto;
+        display: block;
+        position: absolute;
+        bottom: 1rem;
+    }
+    
+    .aiding-registration {
+        width: 80%;
+        margin: 0 auto;
+        display: block;
+        border: 0px;
+    }
+    
+    .class-information {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .class-information-left {
+        float: left;
+        padding:0.8rem;
+        color: #ffffff;
+        font-size: 3rem;
+        background: #5dc3f4;
+        border-radius: 4px;
+        line-height: 1;
+        text-align: center;
+        margin-right: 5px;
+        margin-top: 20px;
+    }
+
+    .class-information-left p {
+        padding: 0;
+        margin: 0;
+    }
+
+    .class-information-right {
+        float: right;
+        width:80%;
+    }
+
+    .class-information-right-tag {
+        line-height: 0;
+        text-align: right;
+        padding-right: 0.5rem;
+        position: absolute;
+        top:0;
+        right: 0;
+    }
+
+    .class-information-right-tag p{
+        display: inline;
+        font-size: 0.8rem;
+        line-height: 1;
+    }
+
+    .class-information-right-title {
+        color:#333333;
+        font-size: 1.8rem;
+        line-height: 1.2;
+        padding-left: 0.5rem;
+    }
+
+    .class-information-right-content {
+        color:#666666;
+        font-size: 1rem;
+        padding: 0 0.5rem;
+        line-height: 1.2;
+    }
+
+    .registration-list-title {
+        float: left;
+        width: 25%;
+        margin-left: 1rem; 
+        font-size: 1.2rem;
+        line-height: 2.5rem;
+    }
+
+    .registration-list-content {
+        float: left; 
+        width: 70%
+    }
+
+    .registration-list-content img {
+        margin-right: 0.2rem;
+        margin-top: 0.2rem;
+    }
+
+    .bottom {
+        width: 100%;
+        background: #c0bfc4;
+        position: fixed;
+        bottom: 0px;
+        height: 4.5rem;
+        padding: 0.3rem 0.5rem;
+        z-index: 99;
+    }
+
+    .class-comment {
+        outline: 0px;
+    }
+
+    .user-comment {
+        float: right;
+        width: 85%;
+    }
+
+    .am-comment-avatar {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .user-name {
+        font-size: 1.5rem;
+        color: #333333;
+        line-height: 1;
+        margin: 0.5rem 0;
+    }
+
+    .user-comment-content {
+        font-size: 1.3rem;
+        color: #8c8c8c;
+        line-height: 1.2;
+        margin-top: 0.2rem;
+    }
+
+    .class-comment-title {
+        font-size: 1.4rem;
+        color: #aaaaaa;
+        margin: 0.5rem 0;
+    }
+    
+    .submit-comment {
+        border: 0;
+        outline:none;
+    }
+    
+    .loading {
+        width: 100%;
+        height: 2rem;
+        line-height: 2rem;
+        text-align: center;
+        font-size: 1.3rem;
+        color:#999999;
+        margin-top: 0.5rem;
+    }
+
+    .tips {
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+        padding: 0 0.5rem;
+        position: relative;
+    }
+
+    .aidingtips,.actionpoint,.actionstrength {
+        width: 100%;
+        font-size: 1.4rem;
+    }
+
+    .aidingtips ul,.actionpoint ul,.actionstrength ul {
+        width: 100%;
+    }
+
+    .aidingtips ul li,.actionpoint ul li,.actionstrength ul li {
+        float:left;
+        list-style: none;
+    }
+
+    .aidingtips ul li:first-child,.actionpoint ul li:first-child,.actionstrength ul li:first-child {
+        width:20%;
+    }
+
+    .aidingtips ul li:last-child,.actionpoint ul li:last-child,.actionstrength ul li:last-child {
+        width:80%;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="am-cf admin-main" style="background:#ffffff;">
+        <!-- content start -->
+        <div class="admin-content">
+            <div class="top-img">
+                <video  id="myVideo" style="width:100%;" controls autoplay="autoplay" webkit-playsinline poster="./img/class3-poster.jpg">
+                    <source src="http://7xqenb.com1.z0.glb.clouddn.com/CLS15.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="tips">
+                <div class="class-information-right-tag"><p>视频由</p><p style="color:#93d3f6;">爱丁备孕</p><p>独家播出</p></div>
+                <div class="class-information-left"><p>课程</p><p>介绍</p></div>
+                <font style="font-size:1.8rem;">基础</font></br><font style="font-size: 1.4rem;">备孕健身能够有效提高受孕能力，增加受孕几率，提升关键部位的肌肉力量，为孕期的健康和安全做好充分的准备。爱丁备孕初级健身课程，帮助改善身体相应部位的灵活性，为养成良好运动习惯打下基础，迎接中级和高级课程</font><font style="font-size: 1.2rem; color:#cccccc;">(爱丁备孕健身课程由爱丁医生与美国体能协会运动体能专家共同开发)</font>。
+                <!-- <div class="class-information-right">
+                    <div class="class-information-right-tag"><p>视频由</p><p style="color:#93d3f6;">爱丁备孕</p><p>独家播出</p></div>
+                    <div class="class-information-right-title">基础</div>
+                    <div class="class-information-right-content">备孕健身能够有效提高受孕能力，增加受孕几率，提升关键部位的肌肉力量，为孕期的健康和安全做好充分的准备。爱丁备孕初级健身课程，帮助改善身体相应部位的灵活性，为养成良好运动习惯打下基础，迎接中级和高级课程。</br>
+                    爱丁备孕健身课程由爱丁医生与美国体能协会运动体能专家共同开发。
+                    </div>
+                </div> -->
+                <div style="clear:both;"></div>
+            </div>
+            <div class="am-panel-bd am-collapse am-in am-cf" style="padding-top: 0px; padding-right: 0; padding-bottom: 0;">
+                <p class="class-comment-title">评论(<span id="conmentsnumber"></span>)</p>
+                <ul class="am-comments-list admin-content-comment class-comment-list">
+                    <!-- <li class="am-comment" style="margin:0; border-bottom: 1px solid #cccccc; padding: 0.8rem 0;">
+                        <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96" alt="" class="am-comment-avatar">
+                        <div class="user-comment">
+                            <div class="user-name">测试测试</div>
+                            <div class="user-comment-content">测试测试测试测试测试测试测试测试测试测试测试测试</div>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+            <img id="class-weixinimg" style="width:95%;margin: 5px auto; display:none;" src="img/class-weixin.jpg">
+        </div>
+        <div class="bottom">
+            <div class="am-input-group am-input-group-sm">
+                <textarea type="text" class="am-form-field" id="aiding-comment-input" style="margin-top: 0.3rem;border-radius: 4px;width:95%;resize:none;" placeholder="此处输入评论" ></textarea>
+                <span class="am-input-group-btn">
+                    <button class="am-btn am-btn-default am-btn-xs" id="aiding-comment-submit" style="margin-top: 0.3rem;background:#33fded;color:#343233;border-radius: 4px;" type="button">发送</button>
+                </span>
+            </div>
+        </div>
+        <!-- content end -->
+    </div>
+    <script type="text/html" id="comment-li">
+        <%for(i=0;i<list.length;i++) {%>
+            <li class="am-comment" style="margin:0; border-bottom: 1px solid #eaeaea; padding: 0.8rem 0;">
+                <img src="<%=list[i].headimgurl%>" alt="" class="am-comment-avatar">
+                <div class="user-comment">
+                    <div class="user-name"><%=list[i].nickname%></div>
+                    <div class="user-comment-content"><%=list[i].content%></div>
+                </div>
+            </li>
+        <%}%>
+        <%if(list.length >= 5) {%>
+            <div class="loading">查看更多评论</div>
+        <%}%>
+    </script>
+    <script type="text/html" id="aidingvideotips">
+        <div class="aidingtips">
+            <ul>
+                <li>爱丁Tips:</li>
+                <li><%=aidingtips%></li>
+            </ul>
+        </div>
+        <div class="actionpoint">
+            <ul>
+                <li>动作要点:</li>
+                <li>
+                    <%for(i=0;i<actionpoint.length;i++) {%>
+                        <p><%=actionpoint[i]%></p>
+                    <%}%>
+                </li>
+            </ul>
+        </div>
+        <div class="actionstrength">
+            <ul>
+                <li>动作强度:</li>
+                <li>
+                    <p><%=actionstrength%></p>
+                </li>
+            </ul>
+        </div>
+        <div style="clear:both;"></div>
+    </script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="/static/common/js/wechat.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/template-native.js"></script>
+    <script src="./js/template-helper.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+    <script src="http://sdk.talkingdata.com/app/h5/v1?appid=119BF1969DBACF577B6D2DBA8D489F71&vn=爱丁备孕v4.3&vc=4.3"></script>
+    <script type="text/javascript">
+    var lastupdatetime;
+    var videoTip = [
+        {
+            'aidingtips': '改善姿势，缓解背部紧张（孕期沉重的腹部，会引起代偿性背部肌肉的紧张），同时为后面的运动热身。',
+            'actionpoint': ['1.保持膝盖微曲','2.上半身往下、往后发力'],
+            'actionstrength': '背部站姿拉伸 15-30s'
+        },
+        {
+            'aidingtips': '改善胸椎灵活性，扩大胸腔活动范围，为提高心肺功能做准备。',
+            'actionpoint': ['1.保持下半身紧贴地面不动，上半身旋转到双肩贴地','2.呼气并保持2秒，回到起始姿势'],
+            'actionstrength': '背部交叉90/90伸展(单边6次)'
+        },
+        {
+            'aidingtips': '改善髋和骨盆灵活性，促进盆腔的血液循环，提高受孕能力。',
+            'actionpoint': ['1.保持上半身紧贴地面不动，双膝双脚并拢','2.双腿向两侧旋转到贴地'],
+            'actionstrength': '髋部交叉(单边6次)'
+        },
+        {
+            'aidingtips': '增加下肢力量和协调性。大腿肌群是人体中最大的肌肉，能够给孕晚期以及正常分娩时提供足够的支撑力。',
+            'actionpoint': ['1.向后呈弓步，蹲至双腿成90度，膝盖不要超过脚尖','2.手臂向上伸展，躯干转向一侧'],
+            'actionstrength': '弓步(向后)(单边6次)'
+        },
+        {
+            'aidingtips': '增加下肢和臀部的肌肉力量，提升骨盆韧带的柔韧性，为顺利分娩做准备。',
+            'actionpoint': ['1.双脚找到合适距离，蹲至一侧，大小腿呈90度','2.背部不要弓起，膝盖不要超过脚尖'],
+            'actionstrength': '侧弓步(单边6次)'
+        },
+        {
+            'aidingtips': '增加腹背及盆底核心肌群的力量，为孕期身体提供力量支撑，使产后复健更容易。',
+            'actionpoint': ['1.耳肩髋膝成一条直线，不要塌腰、撅屁股','2.保持呼吸顺畅，不要憋气'],
+            'actionstrength': '腹桥(膝支撑)45s-60s(6次)'
+        },
+        {
+            'aidingtips': '激活臀部肌肉。臀部力量，能够使女性更加顺利地生产。',
+            'actionpoint': ['1.臀部发力向上推至膝髋肩在一条直线上','2.脚尖、膝盖不要向内或向外'],
+            'actionstrength': '臀后桥(6次)'
+        },
+        {
+            'aidingtips': '增强核心力量能够尽量减小骨盆因怀孕、生产而产生的变形。使产后身材能够依然纤纤如旧。',
+            'actionpoint': ['1.不要弓背、撅屁股','2.侧腹部发力，保持呼吸，不要憋气'],
+            'actionstrength': '脊柱侧桥(膝支撑) 45s-60s(单边6次)'
+        },
+        {
+            'aidingtips': '激活颈背部肌肉，预防颈肩劳损。可以有效预防孕期肩膀、背部疼痛。',
+            'actionpoint': ['1.运动过程中不要耸肩，头部保持中立','2.吸气手臂向下；呼气向上抬起'],
+            'actionstrength': '地面Ys和Ts(6次)'
+        }
+    ];
+
+    var aidingtiptemplate = function (index) {
+        var html = template('aidingvideotips', videoTip[index]);
+        $('.tips').html(html);
+    }
+
+    $(function() {
+        TDAPP.onEvent("aiding-online-class", '视频-初级');
+        wechat.share({desc:'爱丁i-MLP优孕俱乐部会员专享健身课程.让我们从放松自己开始，迎接一段全程好孕。',title:document.title, imgUrl: '/static/onlineclass/img/class3-share.jpg', link: 'http://ibaby-plan.org:8180/static/onlineclass/class3entry.html'})
+
+        var myVideo = document.getElementById('myVideo');
+
+        myVideo.addEventListener("timeupdate", function(){
+            var currentTime = myVideo.currentTime;//获取当前播放时间
+            if (currentTime > 5 && currentTime < 16){
+                aidingtiptemplate(0);
+            } else if (currentTime > 20 && currentTime < 38){
+                aidingtiptemplate(1);
+            } else if (currentTime > 41 && currentTime < 60){
+                aidingtiptemplate(2);
+            } else if (currentTime > 64 && currentTime < 84){
+                aidingtiptemplate(3);
+            } else if (currentTime > 88 && currentTime < 106){
+                aidingtiptemplate(4);
+            } else if (currentTime > 108 && currentTime < 124){
+                aidingtiptemplate(5);
+            } else if (currentTime > 128 && currentTime < 142){
+                aidingtiptemplate(6);
+            } else if (currentTime > 146 && currentTime < 162){
+                aidingtiptemplate(7);
+            } else if (currentTime > 167 && currentTime < 191){
+                aidingtiptemplate(8);
+            }
+        });
+
+        Utils.ajax.get('/IbabyWebService/VIP/Class/ClassComment/' + $.getUrlParam('classid'), {'offset': 0,'limit': 5}).then(
+            function(data) {
+                lastupdatetime = data.lastupdatetime;
+                var html = template('comment-li', data);
+                $('.class-comment-list').html(html);
+                $('#conmentsnumber').html(data.total);
+                $('.loading').on('click', function() {
+                    $(this).remove();
+                    getData();
+                })
+                $('#class-weixinimg').css('display','block');
+        })
+
+        $('#aiding-comment-submit').click(function() {
+            if($.trim($('#aiding-comment-input').val())) {
+                $.ajax({
+                    type: "POST",
+                    url: "/IbabyWebService/VIP/Class/CommitClassComment",
+                    contentType: "application/x-www-form-urlencoded",
+                    data: {
+                        "openid": $.getUrlParam('openid'),
+                        "classid": $.getUrlParam('classid'),
+                        "content": $('#aiding-comment-input').val(),
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        if(data.status == 0) {
+                            var comment = {"list": 
+                                                    [{"content": $('#aiding-comment-input').val(), 
+                                                      "createtime": new Date().Format("yyyy-MM-dd hh:mm"), 
+                                                      "headimgurl": $.getUrlParam('headimgurl'), 
+                                                      "nickname": $.getUrlParam('nickname'),
+                                                    }]
+                                                }
+                            if($('.class-comment-list > li').length == 0) {
+                                var html = template('comment-li', comment);
+                                $('.class-comment-list').html(html);
+                            }else{
+                                var html = template('comment-li', comment);
+                                $('.class-comment-list').prepend(html);
+                            }
+                            $('#aiding-comment-input').val('');
+                        } else {
+                            aid.tip.show('评论提交失败，请重试')
+                        }
+                    },
+                    error: function(data) {
+                        aid.tip.show('评论提交失败，请重试')
+                    },
+                });
+            } else {
+                aid.tip.show('评论不能为空');
+            }
+        })
+
+    })
+
+    function getData() {
+        var length = $('.class-comment-list> li').length;
+        Utils.ajax.get('/IbabyWebService/VIP/Class/ClassComment/' + $.getUrlParam('classid'), {'offset': length,'limit': 5, 'lastupdatetime': lastupdatetime}).then(
+            function(data) {
+                lastupdatetime = data.lastupdatetime;
+                var html = template('comment-li', data)
+                $('.class-comment-list').append(html);
+                $('.loading').on('click', function() {
+                    $(this).remove();
+                    getData();
+                })
+        })
+    }
+
+    </script>
+</body>
+
+</html>

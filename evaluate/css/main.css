@@ -1,0 +1,129 @@
+body {
+    background: #a3e7fe;
+    padding: 15px;
+}
+
+#content {
+    background: #fff;
+}
+
+#banner {
+    position: relative;
+    width: 100%;
+}
+
+h1 {
+    padding: 20px 15px 10px 15px;
+    font-size: 18px;
+    border-bottom: 1px solid #ddd;
+}
+
+h1, p.question, p.phone {
+    font-weight: bolder;
+    color: #444;
+}
+
+#questions {
+    padding: 15px;
+    padding-top: 0;
+}
+
+p.question, p.phone {
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 25px 0 5px;
+}
+
+.answers {
+    font-size: 14px;
+    line-height: 22px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.answers .radio {
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    background: #fff;
+    border: 1px solid #ddd;
+    display: block;
+    float: left;
+    margin: 2px 5px 2px 0;
+}
+
+.answers .radio.selected {
+    background: #a3e7fe;
+    height: 18px;
+    width: 18px;
+    border: 0;
+}
+
+.answers .radio.selected:before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    margin: 5px;
+    height: 8px;
+    background: #fff;
+    border: 0;
+    border-radius: 50%;
+}
+
+.answers label {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    padding: 10px 15px;
+}
+
+.answers label:last-of-type {
+    border-bottom: 0;
+}
+
+input#phone {
+    border: 1px solid #ddd;
+    height: 35px;
+    border-radius: 5px;
+    padding: 0 15px;
+    width: 100%;
+}
+
+#submit {
+    border-top: 1px solid #ddd;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+#submit div {
+    text-align: center;
+    margin: 20px 15px 0 15px;
+    background: #999;
+    line-height: 35px;
+    color: #fff;
+}
+
+#nofinish {
+    position: fixed;
+    background: #333;
+    margin: auto;
+    left: 0;
+    right: 0;
+    color: #fff;
+    opacity: 0.8;
+    width: 200px;
+    padding: 10px 15px;
+    z-index: 10;
+    top: 50px;
+    text-align: center;
+    display: none;
+}
+#introduce {
+    line-height: 30px;
+    font-size: 14px;
+    padding: 15px;
+    color: #333;
+}
+.hide {
+    display: none;
+}

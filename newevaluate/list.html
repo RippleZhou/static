@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱丁测评</title>
+    <link rel="stylesheet" href="../common/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="container padding-0-15" id="container">
+</div>
+<script type="text/html" id="templist">
+    <p class="page-header font-size-lg">测评列表</p>
+    <ul class="list-unstyled">
+        {{each list as l}}
+        <a href="evaluate.html?evaid={{l.id}}">
+            <li class="padding-10-0 border-bottom-1">{{l.title}}</li>
+        </a>
+        {{/each}}
+    </ul>
+</script>
+<script src="/static/common/lib/jquery-3.1.1.min.js"></script>
+<script src="/static/common/bootstrap/bootstrap.min.js"></script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.0111"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="js/evaluate.js"></script>
+<script>
+    var a = new Evalate();
+    a.getlist();
+</script>
+</body>
+</html>

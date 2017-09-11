@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+	<title>备孕生活测评</title>
+	<link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+	<style>
+		*{box-sizing:content-box}
+		body{background:#efeff4}
+		#index img{display:block;width:100%}
+		#index img+h6{font-size:16px;color:#46c6fe;padding:15px 15px 10px;background:#fff}
+		#index img+h6 i{display:inline-block;vertical-align:-2px;height:15px;width:15px;background:#46c6fe;margin-right:5px}
+		#index p{font-size:14px;color:#666;background:#fff;padding:0 15px 10px;line-height:1.3;margin-bottom:10px}
+		#index p+h6{font-size:16px;color:#46c6fe;padding:15px 15px 0;background:#fff;color:#f90}
+		#index p+h6 i{display:inline-block;vertical-align:-2px;height:15px;width:15px;background:#f90;margin-right:5px}
+		#index section{background:#fff;text-align:center;padding:0 10px;display: -webkit-box;display: box;display: -webkit-flex;display: flex;height:85px;padding-top:43px;box-sizing:border-box;line-height:1.4;position:relative;margin-bottom:77px}
+		#index section:before,#index section:after{content:'';display:block;position:absolute;top:0;bottom:0;background:#fff;width:15px;z-index:99}
+		#index section:before{left:0}
+		#index section:after{right:0}
+		#index div{-webkit-box-flex:1;box-flex:1;-webkit-flex:1;flex:1;position:relative}
+		#index div:before,#index div:after{content:'';display:block;position:absolute;background:#d6d7dc;height:1px;top:-19px}
+		#index div:before{left:0;right:50%;margin-right:15px}
+		#index div:after{right:0;left:50%;margin-left:15px}
+		#index section i{position:absolute;height:16px;width:16px;top:-28px;border-radius:50%;left:50%;margin-left:-8px;border-width:1px;border-style:solid}
+		#index div:nth-child(1) i{border-color:#ffc600}
+		#index div:nth-child(2) i{border-color:#3cf}
+		#index div:nth-child(3) i{border-color:#f60}
+		#index section i:after{content:'';display:block;position:absolute;top:50%;left:50%;border-radius:50%;height:14px;width:14px;margin-left:-7px;margin-top:-7px}
+		#index div:nth-child(1) i:after{background:#ffc600}
+		#index div:nth-child(2) i:after{background:#3cf}
+		#index div:nth-child(3) i:after{background:#f60}
+		#index span{display:block}
+		#index a{font-size:16px;color:#fff;background:#46c6fe;height:48px;line-height:48px;text-align:center;position:fixed;bottom:0;left:0;right:0;z-index:999}
+		footer{font-size:16px;color:#fff;background:#46c6fe;height:48px;line-height:48px;text-align:center;position:fixed;bottom:0;left:0;right:0}
+		#questionnaire>div{position:fixed;top:0;left:0;right:0;bottom:0;background:url(../E001/img/bg.jpg) no-repeat center;background-size:cover}
+		#questionnaire header{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.5)}
+		#questionnaire header div{height:4px;background:#46c6fe}
+		#questionnaire h6{text-align:center;position:relative;font-size:18px;margin:36px 0 15px;color:#f90;padding:0 20px}
+		#questionnaire ul{text-align:center;position:relative;padding-bottom:77px;overflow:hidden}
+		#questionnaire li{background:#fff;margin:0 60px 10px;color:#f90;font-size:16px;padding:15px 25px;position:relative}
+		#questionnaire li.tc,#questionnaire li.on{background:#f90;color:#fff}
+		#questionnaire li.on:before{content:'';display:block;position:absolute;top:50%;margin-top:-8px;left:10px;height:14px;width:14px;border:1px solid #fff;border-radius:50%}
+		#questionnaire li.on:after{content:'';display:block;position:absolute;top:50%;margin-top:-3px;left:15px;height:6px;width:6px;background:#fff;border-radius:50%}
+		#questionnaire footer{position:fixed;bottom:0;left:0;right:0;height:50px;background:#46c6fe;color:#fff}
+		#questionnaire footer span:first-child{font-size:16px;line-height:50px;position:absolute;left:33px;top:0;bottom:0;text-align:center;width:70px}
+		#questionnaire footer span:last-child{font-size:16px;line-height:50px;position:absolute;right:33px;top:0;bottom:0;text-align:center;width:70px}
+		#result header{color:#fff;height:200px;background:#46c6fe;font-size:14px;box-sizing:border-box;padding:15px 15px 5px;position:relative}
+		#result header div{text-align:center;margin-top:15px}
+		#result header span{font-size:60px;font-weight:bold}
+		#result header p{text-align:center;margin-top:5px}
+		#result header:after{content:'';display:block;position:absolute;bottom:0;left:0;right:0;height:5px;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5"><circle fill="#efeff4" cx="5" cy="5" r="5"/></svg>') repeat-x;background-size:contain}
+		#result section{margin:10px 14px 77px}
+		#result article{background:#fff;font-size:14px;padding-bottom:5px;margin-top:8px;padding-top:15px;position:relative}
+		#result article h6{background:#f90;color:#fff;height:34px;line-height:34px;width:108px;text-align:center;border-top-right-radius:17px;border-bottom-right-radius:17px}
+		#result article div{padding:14px 14px 17px;line-height:1.3}
+		#result article i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#999;vertical-align:0.1em;margin-right:5px}
+		#result article:after{content:'';display:block;position:absolute;bottom:0;left:0;right:0;height:5px;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5"><circle fill="#efeff4" cx="5" cy="5" r="5"/></svg>') repeat-x;background-size:contain}
+		#result h5{font-size:16px}
+		#result div h6{font-size:14px;color:#6cf;margin-top:8px}
+		#result figure{width:246px;padding-right:18px;margin:0 auto}
+		#result img{width:100%}
+		#result div p{text-align:center;font-size:14px;color:#434343;margin-top:4px}
+		#result footer{font-size:16px;color:#fff;background:#46c6fe;height:48px;line-height:48px;text-align:center;position:fixed;bottom:0;left:0;right:0}
+		#bottom{height:50px;position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);color:#fff;padding-left:75px}
+		#bottom i{position:absolute;left:20px;top:-10px;height:45px;width:45px;border-radius:3px;background:#46c6fe url(http://www.ibabycenter.com/front/images/300.png) no-repeat center;background-size:cover}
+		#bottom h6{padding-top:10px;padding-bottom:5px}
+		#bottom p{font-size:10px}
+		#bottom div{position:absolute;top:15px;right:20px;height:20px;line-height:20px;width:75px;text-align:center;border-radius:9px;background:#46c6fe;font-size:10px;padding-right:9px}
+		#bottom span{position:absolute;top:5px;right:5px;width:10px;height:10px;border-radius:50%;border:1px solid #fff;font-size:8px;line-height:10px;text-align:center}
+	</style>
+</head>
+
+<body>
+<div id="index" style="display:none">
+	<img src="img/header.jpg"/>
+	<h6><i></i>评估有什么用？</h6>
+	<p>这个测评将从饮食、运动、行为习惯、家居环境、工作状态等多方面，全面地分析检查与备孕优生有关的生活状态，它会帮助你发现不利于怀孕的个人习惯和环境致畸因素，全面提高宝宝质量。</p>
+	<h6><i></i>评估后得到什么？</h6>
+	<section>
+		<div>
+			<i></i>
+			<span>备孕生活<br/>健康度评分</span>
+		</div>
+		<div>
+			<i></i>
+			<span>个体生活习惯<br/>改善指导</span>
+		</div>
+		<div>
+			<i></i>
+			<span>爱丁特色<br/>医疗服务</span>
+		</div>
+	</section>
+	<a class="clickable">开始测评</a>
+</div>
+<div id="questionnaire" style="display:none">
+	<div></div>
+	<header><div style="width:0%"></div></header>
+	<h6></h6>
+	<ul></ul>
+	<footer><span style="display:none">上一题</span><span>下一题</span></footer>
+</div>
+<div id="result" style="display:none">
+	<header>
+		<h6>备孕生活健康评分</h6>
+		<div><span id="score">?</span>分</div>
+		<p id="rankComment">打败全国?%的备孕姐妹</p>
+	</header>
+	<section>
+		<article>
+			<h6>爱丁指导评语</h6>
+			<div id="comment"></div>
+		</article>
+		<article>
+			<h6>爱丁好孕策略</h6>
+			<div id="strategy"></div>
+		</article>
+		<div style="text-align:center;background:#fff;margin-top:10px;padding-top:15px;padding-bottom:24px">
+			<h5>爱丁备孕交流群</h5>
+			<h6>专业医生和更多姐妹携手备孕。</h6>
+			<figure><img src="../E001/img/qrcode.jpeg"/></figure>
+			<p>(或截屏后微信扫一扫>>点击“相册”识别)</p>
+		</div>
+		<footer class="clickable">重新测评</footer>
+	</section>
+	<a href="http://www.ibabycenter.com/t/download_product.php?c=app&n=AidingPatient" id="bottom" style="display:none">
+		<i></i>
+		<h6>爱丁备孕</h6>
+		<p>优质|快速|好孕</p>
+		<div>立即下载<span>&#8595;</span></div>
+	</a>
+</div>
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	(function(){
+		wechat.share({desc:'爱丁备孕MLP（医学、生活、心理）测评，全面专业的测评 ，专业成就好孕',title:document.title})
+		$('body')[0].style.width=$('body').width()+'px'
+		queryObj={}
+		if(location.search){
+			queryObj=JSON.parse('{"'+decodeURI(location.search.substring(1)).replace(/"/g,'\\"').replace(/&/g,'","').replace(/=/g,'":"')+'"}')
+		}
+		if(queryObj.accountrequired=='false'){
+			patientid='0'
+		}
+		if (User.getUser()) {
+			patientid=User.getUser().patientid
+		}
+		if(queryObj.inapp){
+			$('#result footer').on('click',function(){
+				location.href=location.href.split('#')[0]
+				location.reload()
+			})
+		}
+		else{
+			$('#bottom').show()
+			$('#result footer').hide()
+		}
+		function showResult(res){
+			$('#score').text(res.score)
+			$('#rankComment').text(res.rankComment)
+			html=''
+			for(i=0;i<res.comment.length;i++){
+				html+='<br/><i></i>'+res.comment[i]
+			}
+			html=html.replace('<br/>','')
+			$('#comment').html(html)
+			res.strategy=JSON.parse(res.strategy)
+			html=''
+			for(i=0;i<res.strategy.length;i++){
+				html+='<br/><br/><i></i>'+res.strategy[i]
+			}
+			html=html.replace('<br/><br/>','')
+			$('#strategy').html(html)
+			$('#result').show()
+		}
+		if(sessionStorage.evaluate_result_shenghuo){
+			Utils.ajax.post('/IbabyWebService/3/Evalute/CommitEvaluteAnswer',{evaluteAnswers:sessionStorage.evaluate_result_shenghuo,code:'E002',patientid:patientid,channel:queryObj.channel?queryObj.channel:''}).then(function(res){
+				showResult(res)
+			})
+			sessionStorage.evaluate_result_shenghuo=''
+			return
+		}
+		if(location.hash.replace('#','')){
+			Utils.ajax.get('/IbabyWebService/3/Evalute/GetEvaluteResult/'+patientid+'/E002').then(function(res){
+				showResult(res)
+				$('#result footer').on('click',function(){
+					location.href=location.href.split('#')[0]
+				})
+			})
+			return
+		}
+		Utils.ajax.get('/IbabyWebService/3/Evalute/GetQuestionList?code=E002').then(function(res){
+			$('#index').show()
+			questionIndex=-1
+			$('#index a').on('click',function(){
+				$('#index').hide()
+				$('#questionnaire').show()
+				nextquestion()
+			})
+			function nextquestion(){
+				if(questionIndex>=0){
+					if(!$('#questionnaire li.on').length){
+						aid.tip.show('请选择')
+						return
+					}
+				}
+				if(questionIndex!==res.evaluteQuestions.length-1){
+					questionIndex++
+					showquestion()
+				}
+				else{
+					tijiao()
+				}
+			}
+			function prevquestion(){
+				questionIndex--
+				showquestion()
+			}
+			function showquestion(){
+				$('#questionnaire header div')[0].style.width=questionIndex*100/res.evaluteQuestions.length+'%'
+				$('#questionnaire h6').text(res.evaluteQuestions[questionIndex].content)
+				html=''
+				for(i=0;i<res.evaluteQuestions[questionIndex].options.length;i++){
+					html+='<li class="clickable">'+res.evaluteQuestions[questionIndex].options[i].content+'</li>'
+				}
+				$('#questionnaire ul').html(html)
+				for(i=0;i<res.evaluteQuestions[questionIndex].options.length;i++){
+					if(res.evaluteQuestions[questionIndex].options[i].selected){
+						$('#questionnaire li').eq(i).addClass('on')
+					}
+				}
+				if(questionIndex===0){
+					$('#questionnaire footer span').eq(0).hide()
+				}
+				else{
+					$('#questionnaire footer span').eq(0).show()
+				}
+				if(res.evaluteQuestions[questionIndex].singleselection===0){
+					$('#questionnaire li').each(function(i){
+						$(this).on('click',function(){
+							$('#questionnaire li.on').removeClass('on')
+							for(j=0;j<res.evaluteQuestions[questionIndex].options.length;j++){
+								res.evaluteQuestions[questionIndex].options[j].selected=false
+							}
+							$(this).addClass('on')
+							res.evaluteQuestions[questionIndex].options[i].selected=true
+							if(questionIndex!==res.evaluteQuestions.length-1){
+								nextquestion()
+							}
+						})
+					})
+				}
+				else{
+					$('#questionnaire li').each(function(i){
+						$(this).on('click',function(){
+							if(res.evaluteQuestions[questionIndex].options[i].isreject===0){
+								for(j=0;j<res.evaluteQuestions[questionIndex].options.length;j++){
+									if(j!==i){
+										$('#questionnaire li').eq(j).removeClass('on')
+										res.evaluteQuestions[questionIndex].options[j].selected=false
+									}
+								}
+								$(this).toggleClass('on')
+								res.evaluteQuestions[questionIndex].options[i].selected=!res.evaluteQuestions[questionIndex].options[i].selected
+							}
+							else{
+								$(this).toggleClass('on')
+								res.evaluteQuestions[questionIndex].options[i].selected=!res.evaluteQuestions[questionIndex].options[i].selected
+								for(j=0;j<res.evaluteQuestions[questionIndex].options.length;j++){
+									if(res.evaluteQuestions[questionIndex].options[j].isreject===0){
+										$('#questionnaire li').eq(j).removeClass('on')
+										res.evaluteQuestions[questionIndex].options[j].selected=false
+									}
+								}
+							}
+						})
+					})
+				}
+				if(questionIndex===res.evaluteQuestions.length-1){
+					$('#questionnaire footer span').eq(1).text('提交')
+				}
+				else{
+					$('#questionnaire footer span').eq(1).text('下一题')
+				}
+			}
+			function tijiao(){
+				if(questionIndex>=0){
+					if(!$('#questionnaire li.on').length){
+						aid.tip.show('请选择')
+						return
+					}
+				}
+				mySelects=[]
+				for(i=0;i<res.evaluteQuestions.length;i++){
+					for(j=0;j<res.evaluteQuestions[i].options.length;j++){
+						if(res.evaluteQuestions[i].options[j].selected){
+							mySelects.push({
+								questionid:res.evaluteQuestions[i].id,
+								optionid:res.evaluteQuestions[i].options[j].id
+							})
+						}
+					}
+				}
+				if (!User.getUser()&&queryObj.accountrequired!=='false') {
+					sessionStorage.evaluate_result_shenghuo=JSON.stringify(mySelects)
+					User.redirectToLoginPage(location.href);
+					return
+				}
+				Utils.ajax.post('/IbabyWebService/3/Evalute/CommitEvaluteAnswer',{evaluteAnswers:JSON.stringify(mySelects),code:'E002',patientid:patientid,channel:queryObj.channel?queryObj.channel:''}).then(function(res){
+					$('#questionnaire').hide()
+					location.hash='result'
+					location.reload()
+				})
+			}
+			$('#questionnaire footer span').eq(0).on('click',prevquestion)
+			$('#questionnaire footer span').eq(1).on('click',nextquestion)
+		})
+	})()
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+</html>

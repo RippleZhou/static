@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>支付成功</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <style>
+        body.commen {
+            background: #fff;
+            padding: 0;
+            min-height: 80vh;
+            background: url("img/success.png") no-repeat center;
+        }
+        h5  {
+            font-size: 24px;
+        }
+        .serviceid10 {
+            min-height: 100vh;
+            border: 15px solid #f3f4f6;
+            width: 100%;
+            background: #fff;
+        }
+        .hidden {
+            display: none;
+        }
+        h4 {
+            font-size: 16px;
+            padding: 20px 0 10px;
+        }
+        p {
+            padding: 2px 0;
+            font-size: 14px;
+        }
+        .header {
+            position: relative;
+        }
+        .header .bg {
+            width: 100%;
+        }
+        .header .success-text {
+            width: 200px;
+            height: 120px;
+            z-index: 1;
+            margin: auto;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            position: absolute;
+            text-align: center;
+            color: #fff;
+            background: url("./img/success-bg2.png")no-repeat;
+            background-size: 100% auto;
+        }
+        .success-text h3 {
+            font-size: 19px;
+            font-weight: bold;
+            padding: 20px 0 10px;
+        }
+        .teacher {
+            text-align: center;
+            color: #1AA0E7;
+        }
+        .teacher p {
+            padding-top: 15px;
+            color: #999;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+        .teacher-img {
+            border: 1px solid #1AA0E7;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .teacher-img img {
+            width: 120px;
+            height: 120px;
+            background: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="flex flex-vertical flex-center commen">
+    <h5>支 付 成 功</h5>
+    <div class="flex flex-vertical hidden serviceid10">
+        <div class="header" flex="main:center dir:top cross:center">
+            <img src="./img/success-bg.jpg" class="bg" alt="">
+            <div class="success-text">
+                <h3>报名成功</h3>
+                <p>请及时添加微信号</p>
+                <p><span>wangjingzuiniu99</span>加入训练营</p>
+            </div>
+        </div>
+        <div class="teacher flex flex-vertical flex-center">
+            <h4>督教</h4>
+            <div class="teacher-img">
+                <img src="/static/newbuy/img/teacher.jpg?0.02" alt="">
+            </div>
+            <p> 长按二维码加好友</p>
+        </div>
+    </div>
+    <script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script>
+        //多囊线上管理营支付成功提示
+        (function () {
+            var serviceid = Utils.queryParams.serviceid;
+            if (serviceid == 10) { //多囊营的页面，单独渲染
+                document.body.className = '';
+                $('h5').remove();
+                $('.hidden').removeClass('hidden');
+            }
+        })()
+    </script>
+</body>
+</html>

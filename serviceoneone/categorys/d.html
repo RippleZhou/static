@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no"/>
+
+	<link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+
+    <style>
+        body {
+            background: #efeff4;
+            padding-bottom: 78px;
+        }
+
+        header {
+            background: #eee no-repeat center;
+            background-size: cover;
+            padding-top: 62.5%;
+            position: relative;
+        }
+
+        .service-container{
+            margin: 0px 0 20px 0px;
+            background-color: #ffffff;
+        }
+        .service-title {
+            display: inline-table;
+            margin:10px;
+            padding:5px;
+            border-radius: 3px;
+            font-size: 16px;
+            background-color: #ff6666;
+            color: #ffffff;
+        }
+
+        .service-desc{
+            margin:0 10px 10px 10px;
+            padding-bottom: 10px;
+        }
+
+        p {
+            color: #666666;
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        footer {
+            height: 58px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        footer a {
+            height: 48px;
+            line-height: 48px;
+            text-align: center;
+            color: #fff;
+            margin: 0 15px;
+            background: #46c6fe;
+            border-radius: 24px;
+            font-size: 18px;
+            display: block;
+        }
+
+        footer a.tc {
+            background: #389ec9;
+        }
+		@font-face {
+			font-family: 'Stuff';
+			src:url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.eot?dj7j9f');
+			src:url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.eot?#iefixdj7j9f') format('embedded-opentype'),
+			url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.woff?dj7j9f') format('woff'),
+			url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.ttf?dj7j9f') format('truetype'),
+			url('http://www.ibabycenter.com/front/font/Stuff/fonts/Stuff.svg?dj7j9f#aiding') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Brand';
+			src:url('http://www.ibabycenter.com/front/font/Brand/fonts/Brand.eot?dj7j9f');
+			src:url('http://www.ibabycenter.com/front/font/Brand/fonts/Brand.eot?#iefixdj7j9f') format('embedded-opentype'),
+			url('http://www.ibabycenter.com/front/font/Brand/fonts/Brand.woff?dj7j9f') format('woff'),
+			url('http://www.ibabycenter.com/front/font/Brand/fonts/Brand.ttf?dj7j9f') format('truetype'),
+			url('http://www.ibabycenter.com/front/font/Brand/fonts/Brand.svg?dj7j9f#aiding') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Instruct';
+			src:url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.eot?dj7j9f');
+			src:url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.eot?#iefixdj7j9f') format('embedded-opentype'),
+			url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.woff?dj7j9f') format('woff'),
+			url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.ttf?dj7j9f') format('truetype'),
+			url('http://www.ibabycenter.com/front/font/Instruct/fonts/Instruct.svg?dj7j9f#aiding') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		#share{position:fixed;top:0;left:0;bottom:0;right:0;overflow:hidden}
+		#share .dismiss{position:absolute;top:0;bottom:0;left:0;right:0;background:rgba(0,0,0,.2);-webkit-transition:opacity 333ms;transition:opacity 333ms;opacity:0;touch-action:none}
+		#share.see .dismiss{opacity:1}
+		#share article{position:absolute;bottom:0;left:0;right:0;text-align:center;-webkit-transform:translateY(100%);transform:translateY(100%);-webkit-transition:all 333ms;transition:all 333ms}
+		#share.see article{position:absolute;bottom:0;left:0;right:0;text-align:center;-webkit-transform:translateY(0);transform:translateY(0)}
+		#share h6{color:#999;padding-top:10px;background:#fff;padding-bottom:22px}
+		#share p{background:#fff;padding:0 7px;overflow:hidden}
+		#share a{padding-bottom:13px;padding-top:2px;float:left;width:25%;display:block}
+		#share i{height:60px;width:60px;line-height:60px;border-radius:13px;margin:0 auto;color:#fff;display:block;font-size:26px}
+		#share .tc i{opacity:.5}
+		#share span{margin-top:9px;display:block}
+		#share .button{height:48px;color:#000;font-size:16px;line-height:48px;margin-top:1px;background:#fff}
+		#share .button.tc{color:rgba(0,0,0,.5)}
+		canvas{display:block;margin:0 auto}
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?4fd8e29b5cc8d16bce9f8179e70beeb8";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+
+    <script src="/static/common/lib/jquery.min.js"></script>
+	<script src="/static/common/lib/tcc.js"></script>
+    <script src="/static/common/lib/template.js"></script>
+
+	<script src="/static/common/js/wechat.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+    <script src="../js/services.js"></script>
+
+    <script id="tpl-category" type="text/html">
+        <header style="background-image: url('{{cover}}')"></header>
+        {{each services as s t}}
+        <div class="service-container">
+            <div class="service-title">{{t}}</div>
+            <div class="service-desc">
+                {{each s as p}}
+                <p>{{p}}</p>
+                {{/each}}
+            </div>
+        </div>
+        {{/each}}
+
+    </script>
+
+    <script>
+//		wechat.share({shareLink:(location.href+'&tid='+localStorage.doctorid+'&sharefrom=weixin').replace('spread','views')});
+		shareLink=function(shareFrom){
+			return (location.href+'&tid='+localStorage.doctorid+'&sharefrom='+shareFrom).replace('_spread','/views')
+		}
+        Services.getService().then(function (result) {
+            document.title = result.name;
+			wechat.share({link:shareLink('weixin'),title:document.title});
+            $('body').prepend(template('tpl-category', result));
+        });
+    </script>
+	<div id="share" style="display:none">
+		<div class="dismiss"></div>
+		<article>
+			<h6>网页由 ibaby-plan.org 提供</h6>
+			<p>
+				<a id="weixin" class="touchFeedback allDes">
+					<i style="background:#30ce39;font-family:Brand">&#xe903;</i>
+					<span>微信</span>
+				</a>
+				<a id="weibo" class="touchFeedback allDes">
+					<i style="background:#f66d1b;font-family:Brand">&#xe904;</i>
+					<span>微博</span>
+				</a>
+				<a id="pengyouquan" class="touchFeedback allDes">
+					<i style="background:#30ce39;font-family:Brand">&#xe900;</i>
+					<span>朋友圈</span>
+				</a>
+				<a id="sms" class="touchFeedback allDes">
+					<i style="background:#fb83c4;font-family:Stuff">&#xe902;</i>
+					<span>短信</span>
+				</a>
+				<a id="qzone" class="touchFeedback allDes">
+					<i style="background:#f5c542;font-family:Brand">&#xe902;</i>
+					<span>QQ空间</span>
+				</a>
+				<a id="qq" class="touchFeedback allDes">
+					<i style="background:#46c6fe;font-family:Brand">&#xe901;</i>
+					<span>QQ</span>
+				</a>
+				<a id="qrcode" class="touchFeedback allDes" href="#erweima">
+					<i style="background:#333;font-family:Instruct">&#xe902;</i>
+					<span>二维码</span>
+				</a>
+			</p>
+			<div class="button">取消</div>
+		</article>
+	</div>
+	<script>
+
+		function share(){
+			$('#share').show()
+			requestAnimationFrame(function(){
+				$('#share').addClass('see')
+			})
+		}
+		$('#share .button,#share .dismiss').on('click',function(){
+			$('#share').removeClass('see')
+		})
+		$('#share .button').on('touchstart',function(){$(this).addClass('tc')}).on('touchmove touchend',function(){$(this).removeClass('tc')})
+		$('#share article').on('transitionend',function(){
+			if(!$('#share').hasClass('see')){
+				$('#share').hide()
+			}
+		})
+		$('#sms').attr('href','sms:?&body=向您推荐爱丁备孕助孕服务-'+document.title+encodeURIComponent(shareLink('sms')))
+		$('#share a').on('touchstart',function(){$(this).addClass('tc')}).on('touchmove touchend',function(){$(this).removeClass('tc')}).on('click',function(){
+			var _this=this
+			$.post('/static/servicemall/api/serviceShareSurvey.php',{tid:localStorage.doctorid,program:JSON.parse('{"'+decodeURI(location.search.substring(1)).replace(/"/g,'\\"').replace(/&/g,'","').replace(/=/g,'":"')+'"}').pcode,shareurl:shareLink(_this.id),shareto:_this.id},function(res){
+				if(res.status===0){
+					switch(_this.id){
+						case 'weixin':$('#share').removeClass('see');$('#pengyou').show();break;
+						case 'weibo':location.href='http://v.t.sina.com.cn/share/share.php?appkey=真实的appkey&url='+encodeURIComponent(shareLink('weibo'))+'&title='+encodeURIComponent(document.title)+'&source='+encodeURIComponent('爱丁医生')+'&sourceUrl='+encodeURIComponent('http://www.ibabycenter.com/')+'&content='+encodeURIComponent('utf-8')+'&pic='+encodeURIComponent('http://www.ibabycenter.com/front/images/300.png');break;
+						case 'pengyouquan':$('#share').removeClass('see');$('#pengyou').show();break;
+						case 'qzone':location.href='http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+encodeURIComponent(shareLink('qzone'))+'&showcount=1&desc='+encodeURIComponent('爱丁备孕助孕服务为您提供优质、轻奢、舒适的医疗体验')+'&summary='+encodeURIComponent('爱丁备孕助孕服务为您提供优质、轻奢、舒适的医疗体验')+'&title='+encodeURIComponent(document.title)+'&site='+encodeURIComponent('爱丁医生')+'&pics='+encodeURIComponent('http://www.ibabycenter.com/front/images/300.png');break;
+						case 'qq':location.href='http://connect.qq.com/widget/shareqq/index.html?url='+encodeURIComponent(shareLink('qq'))+'&desc='+encodeURIComponent('爱丁备孕助孕服务为您提供优质、轻奢、舒适的医疗体验')+'&title='+encodeURIComponent(document.title)+'&summary='+encodeURIComponent('爱丁备孕助孕服务为您提供优质、轻奢、舒适的医疗体验')+'&pics='+encodeURIComponent('http://www.ibabycenter.com/front/images/300.png')+'&site='+encodeURIComponent('爱丁医生');break;
+					}
+				}
+				else{
+					alert('分享出错')
+				}
+			},'json').fail(function(){
+						alert('分享出错')
+					})
+		})
+	</script>
+	<div id="qrcode-container" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;padding-top:80px;display:none">
+		<div></div>
+		<p style="color:#0d98e1;font-size:14px;margin-top:19px;text-align:center">请用使用微信“扫一扫”扫描二维码</p>
+	</div>
+	<script src="http://www.ibabycenter.com/wwwfront/js/third/jquery-qrcode-master/jquery.qrcode.min.js"></script>
+	<script>
+		$('#qrcode-container div').qrcode({width:190,height:190,text:shareLink('qrcode')})
+		onhashchange=function(){
+			if(location.hash.replace('#','')=='erweima'){
+				$('#qrcode-container').show()
+			}
+			else{
+				$('#qrcode-container').hide()
+			}
+		}
+		onhashchange()
+	</script>
+	<div id="pengyou" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);padding-top:80px;display:none">
+		<img src="../img/wx.png" style="position:absolute;top:15px;right:18px;width:232px"/>
+	</div>
+	<script>
+		$('#pengyou').on('click',function(){
+			$(this).hide()
+		})
+	</script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?4fd8e29b5cc8d16bce9f8179e70beeb8";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+</body>
+
+</html>

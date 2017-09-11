@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8">
+    <title>爱丁宣言</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/font.css">
+</head>
+<style type="text/css">
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    background: #f38189;
+    margin: 0px;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.top {
+    width: 80%;
+    margin: 0 auto;
+    height: 8rem;
+}
+
+.top i {
+    font-size: 15rem;
+    color: #941c38;
+    position: relative;
+    top: -2rem;
+}
+
+.middle {
+    width: 80%;
+    margin: 3rem auto 2rem;
+    overflow: auto;
+}
+
+.middle p {
+    margin: 0px 0px 0.5rem 0px;
+    color: #ffffff;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.bottom {
+    width: 100%;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 0px;
+}
+
+.want-try {
+    display: block;
+    width: 80%;
+    height: 3rem;
+    background: #fdd9a2;
+    color: #f38189;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 3rem;
+    border-radius: 4px;
+    margin: 0 auto 1rem;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+.want-try:active {
+    opacity: 0.5;
+}
+
+.think-more {
+    width: 80%;
+    height: 3rem;
+    background: #f9bfc3;
+    color: #666666;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 3rem;
+    border-radius: 4px;
+    margin: 0 auto 1rem;
+}
+
+.company-info {
+    width: 100%;
+    text-align: center;
+    margin: 0px 0px 0.5rem 0px;
+    color: #ffffff;
+}
+</style>
+</head>
+
+<body data-role='none' style="margin:0;">
+    <div class="top">
+        <i class="icon-my-declaration"></i>
+    </div>
+    <div class="middle">
+        <p>我们愿意在爱丁的指导下</p>
+        <p>付出实际行动</p>
+        <p>改善生活习惯</p>
+        <p>迎接最健康的宝宝</p>
+    </div>
+    <div class="bottom">
+        <a class="want-try" id="want-try" href="">我们愿意</a>
+        <div class="think-more">让我们再想想</div>
+        <p class="company-info">www.ibaby-plan.com</p>
+    </div>
+</body>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/main.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#want-try').attr('href', 'declaration-page3.html?patientid=' + $.getUrlParam('patientid'))
+
+    // $('#want-try').click(function() {
+    //     location.href = "declaration-page3.html?patientid=" + $.getUrlParam('patientid');
+    // })
+})
+</script>
+
+</html>

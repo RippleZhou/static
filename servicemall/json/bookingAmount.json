@@ -1,0 +1,17 @@
+{
+    "status": 0,
+    "errmsg": "成功",
+    "content": [{
+        "pcode": "A01",
+        "number": "111"
+    }, {
+        "pcode": "A02",
+        "number": "222"
+    }, {
+        "pcode": "B",
+        "number": "333"
+    }, {
+        "pcode": "C",
+        "number": "444"
+    }]
+}

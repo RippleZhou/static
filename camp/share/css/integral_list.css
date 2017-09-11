@@ -1,0 +1,115 @@
+body.white {
+    background: #fff;
+}
+
+#chart > p .name {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}
+
+#chart > p {
+    line-height: 0.40rem;
+    padding: 0.08rem 0.15rem 0.08rem 0;
+    border-bottom: 0.01rem solid #eee;
+    margin-right: -0.15rem;
+    color: #666;
+}
+
+#chart > p > img {
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-right: 0.08rem;
+    border-radius: 0.2rem;
+    background: transparent;
+}
+
+#chart > p:nth-of-type(2) > span:not(.name) {
+    color: #EA7659;
+}
+
+#chart > p:nth-of-type(3) > span:not(.name) {
+    color: #F7B661;
+}
+
+#chart > p:first-of-type > span:not(.name) {
+    color: #CA0014;
+}
+
+#chart .width {
+    width: 0.8rem;
+    text-align: right;
+}
+
+#chart #share {
+    background: #249CD3;
+    color: #fff;
+    padding: 0 0.2rem;
+    line-height: 0.22rem;
+    position: absolute;
+    right: 0;
+    border-radius: 0.12rem;
+}
+
+
+#chart {
+    padding: 0 0.15rem;
+    font-size: 0.14rem;
+}
+
+img {
+    overflow: hidden;
+}
+
+.action-text {
+    line-height: 0.4rem;
+    text-align: center;
+    color: #999;
+}
+
+.pointer {
+    cursor: pointer;
+}
+.title {
+    font-style: italic;
+    font-size: 0.16rem;
+    text-align: center;
+    margin: 0.30rem 0;
+}
+.myinfo {
+    padding: 0 0.15rem 0.20rem;
+    border-bottom: 0.01rem solid #eee;
+}
+.myinfo a {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.myinfo font {
+    color: #f00;
+}
+.myinfo img {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 0.3rem;
+    margin-right: 0.2rem;
+}
+.myinfo>div {
+    position: relative;
+}
+.myinfo>div button {
+    cursor: pointer;
+    background: #169BD5;
+    color: #fff;
+    font-size: 0.12rem;
+    line-height: 0.20rem;
+    padding: 0 0.12rem;
+    border-radius: 0.03rem;
+}
+.myinfo>div>p:first-of-type {
+    line-height: 0.4rem;
+    font-size: 0.16rem;
+}
+.myinfo>div>p:nth-of-type(2) {
+    line-height: 0.2rem;
+    font-size: 0.14rem;
+}

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>订单列表</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <style>
+        body{
+            background-color: #f4f4f4;
+        }
+        .myorder{
+            line-height: 50px;
+            padding-left:20px;
+            border-bottom:1px solid #f4f4f4;
+            background-color: #fff;
+            font-size:16px;
+        }
+        .cardbox{
+            border-top:1px solid #f4f4f4;
+            /*border-bottom:1px solid #f4f4f4;*/
+            /*margin-top:5px;*/
+            background-color: #fff;
+        }
+        .ordercard{
+            margin-top:20px;
+            margin-left:20px;
+            background-color: #fff;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f4f4f4;
+        }
+        .imgbox img{
+            width:120px;
+            height:80px;
+            border:1px solid #f4f4f4;
+        }
+        .ordercard .linetop{
+            padding-left:20px;
+            font-size: 14px;
+        }
+        .Price{
+            text-align: center;
+        }
+        .Price p:nth-child(1){
+            padding: 10px;
+        }
+        .Total{
+            line-height: 30px;
+            float: right;
+            padding: 10px 20px 0px 0px;
+        }
+        .Total span{
+            color:red;
+            font-size: 18px;
+        }
+        .orderture{
+            height:60px;
+            /*border-bottom: 1px solid #f4f4f4;*/
+            background-color: #fff;
+        }
+        .floatright{
+            float: right;
+            padding-top:10px;
+        }
+        .floatright  span{
+            display: inline-block;
+            width: 80px;
+            height: 30px;
+            color: red;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 12px;
+        }
+        #form {
+            position: fixed;
+            background: #fff;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            display: none;
+            z-index: 1;
+            box-shadow: 0 -1px 20px 10px #eee;
+        }
+
+        #close {
+            width: 25px;
+            float: right;
+        }
+
+        textarea {
+            width: 100%;
+            margin-top: 15px;
+            resize: none;
+            padding: 10px 15px;
+            border-color: #999;
+            color: #666;
+            line-height: 20px;
+            font-size: 14px;
+        }
+
+        textarea:focus {
+            border-color: #15b2ee;
+        }
+
+        #submit {
+            text-align: center;
+            background: #11b5ee;
+            color: #fff;
+            line-height: 35px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .nototle {
+            color: #999;
+            font-size: 13px;
+            text-align: center;
+            display:none;
+            line-height: 40px;
+        }
+        .logistics{
+            display: block;
+            font-size:12px;
+            background-color: #fff;
+            color: #999;
+            padding:0px 10px;
+            height:40px;
+            line-height: 40px;
+        }
+        .timesclass{
+            background: #fff;
+            height: 45px;
+            line-height: 50px;
+            padding-left: 24px;
+            margin-top: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-101665192-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+        <p class="nototle">当前没有订单~</p>
+        <div id="form">
+            <img src="/static/pcos/img/close.svg" id="close" onclick="form()"><br>
+            <textarea name="" id="text" cols="30" rows="8" placeholder="写下在您在爱丁的感受来给其他小伙伴作参考吧~"></textarea>
+            <p id="submit">提交评论</p>
+        </div>
+
+
+        <script type="text/html" id="orderdata">
+            <div class="myorder">我的订单</div>
+            {{each list as val index}}
+            <p class="timesclass">{{val.createtime}}</p>
+            {{if val.stat == '1'}}
+            <div class="cardbox">
+                {{each val.goods as item}}
+                <div class="ordercard" flex="box:mean cross:center">
+                    <div class="imgbox"><img src="{{item.coverpic}}" alt=""></div>
+                    <div class="linetop">{{item.name}}</div>
+                    <div class="Price">
+                        <p>￥{{item.price}}</p>
+                        <p>x&nbsp;{{item.count}}</p>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="clearfix">
+                    <div class="Total" >
+                        应付总额：<span>¥ {{val.ordersum}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="orderture clearfix">
+                <div class="floatright">
+                    <span class="r" style="background-image:url('/static/newbuycontent/img/redborder.png');background-repeat:no-repeat;background-size: 80px 30px;" onclick="pay('{{val.servicename}}','{{val.ordersum}}','{{val.orderid}}','{{val.coverpic}}','{{val.serviceid}}')">支付</span>
+                    <a href="javascript:void (0)">
+                        <span style="color: #999;padding: 0;margin-left: 0;background-image:url('/static/newbuycontent/img/grayborder.png');background-repeat:no-repeat;background-size: 80px 30px;">未付款</span>
+                    </a>
+                </div>
+            </div>
+            {{else if val.stat == '4'|| val.stat == '5'}}
+            <div class="cardbox">
+                {{each val.goods as item }}
+                <div class="ordercard" flex="box:mean cross:center">
+                    <div class="imgbox"><img src="{{item.coverpic}}" alt=""></div>
+                    <div class="linetop">{{item.name}}</div>
+                    <div class="Price">
+                        <p>￥{{item.price}}</p>
+                        <p>x;&nbsp;{{item.count}}</p>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="clearfix">
+                    <div class="Total" >
+                        总额：<span>¥ {{val.ordersum}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="orderture clearfix">
+                <div class="floatright">
+                    <span style="background-image:url('/static/newbuycontent/img/redborder.png');background-repeat:no-repeat;background-size: 80px 30px;" class="evaluate">评价</span>
+                    <a href="/static/newbuycontent/customer.html"><span style="color: #999;background-image:url('/static/newbuycontent/img/grayborder.png');background-repeat:no-repeat;background-size: 80px 30px;">咨询</span></a>
+                </div>
+            </div>
+            <div class="logistics" onclick="logisticsall('{{val.logisticbusiness}}','{{val.logisticno}}')">
+                <div flex="main:justify">
+                    <span>{{val.logisticbusiness}}:{{val.logisticno}}</span><span flex="main:justify cross:center"><i>查看物流信息</i><i><img src="/static/newbuycontent/img/rightres.png" style="width:25px;height:25px;" alt=""></i></span>
+                </div>
+            </div>
+            {{else}}
+            <div class="cardbox">
+                {{each val.goods as item}}
+                <div class="ordercard" flex="box:mean cross:center">
+                    <div class="imgbox"><img src="{{item.coverpic}}" alt=""></div>
+                    <div class="linetop">{{item.name}}</div>
+                    <div class="Price">
+                        <p>￥{{item.price}}</p>
+                        <p>x&nbsp;{{item.count}}</p>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="clearfix">
+                    <div class="Total" >
+                        应付总额：<span>¥ {{val.ordersum}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="orderture clearfix">
+                <div class="floatright">
+                    <span style="background-image:url('/static/newbuycontent/img/redborder.png');background-repeat:no-repeat;background-size: 80px 30px;">评价</span>
+                    <a href="/static/newbuycontent/customer.html"><span style="color: #999;background-image:url('/static/newbuycontent/img/grayborder.png');background-repeat:no-repeat;background-size: 80px 30px;">咨询</span></a>
+                </div>
+            </div>
+            {{/if}}
+            {{/each}}
+        </script>
+
+         <script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+         <script src="/static/common/lib/template.js"></script>
+        <script src="/static/common/js/utils.service.js"></script>
+        <script src="/static/common/js/user.service.js"></script>
+        <script src="/static/common/js/framework.js"></script>
+        <script src="/static/common/js/popup.check.js"></script>
+        <script src="/static/common/js/newwechat.js"></script>
+        <script src="/static/newbuycontent/js/myorder.js"></script>
+</body>
+</html>

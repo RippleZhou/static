@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>任务</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/camp/mission/css/main.css?v1.012">
+</head>
+<body>
+<div id="inthetop">
+
+</div>
+<div id="content">
+    <div id="per-infor" class="flex flex-vertical flex-center banner">
+
+    </div>
+</div>
+<script type="text/html" id="temp1">
+    <img src="{{headimgurl}}" alt="" type="{{type}}" id="headimg">
+    <p class="name">{{wechatname}}</p>
+</script>
+<script type="text/html" id="temp2">
+    <p id="camplist"><span id="{{rel2[camp_selected].campid}}" onclick="javascript:$('#fixedselectbox').removeClass('none')">{{rel2[camp_selected].name}}</span>
+    </p>
+</script>
+<script type="text/html" id="tempf">
+    <div id="fixedselectbox"  class="flex flex-vertical flex-center none">
+        <div id="fixedselect" >
+            {{each rel2 as val index}}
+            {{if index ==  camp_selected }}
+            <p class="active" sid="{{val.campid}}">{{val.name}}</p>
+            {{else}}
+            <p sid="{{val.campid}}">{{val.name}}</p>
+            {{/if}}
+            {{/each}}
+        </div>
+    </div>
+</script>
+<script type="text/html" id="temp3">
+    <span> 学分：<b>{{score}}</b>分</span>
+</script>
+<script type="text/html" id="temp4">
+    {{each list as val}}
+    <div class="missions flex flex-vertical flex-center" id="{{val.taskid}}">
+        {{if val.ended && val.type == 2}}
+        <div class="overread flex flex-center flex-vertical"><span>超时即焚</span></div>
+        {{/if}}
+        {{if val.type == 2}}
+        <p class="title flex flex-space-between btnA disable" href="{{val.link}}">
+        {{else if val.type ==1}}
+        <p class="title flex flex-space-between btnB">
+        {{/if}}
+            <span>{{if val.type ==1}}打卡{{else if val.type ==2}}阅读{{/if}}</span>
+            {{if val.ended}}
+            <span class="taskname">{{val.name}}</span><span>任务已结束</span>
+            {{else}}
+            <span class="taskname">{{val.name}}</span><span>结束时间丨<font class="endtime">{{val.endtime}}</font></span>
+            {{/if}}
+        </p>
+        {{if val.type == 2}}
+        <p class="text btnA disable" href="{{val.link}}">{{val.description}}</p>
+        {{else if val.type ==1}}
+        <p class="text btnB">{{val.description}}</p>
+        {{/if}}
+        {{if val.type == 2}}
+        <p class="flex flex-wrap imgs btnA disable" href="{{val.link}}">
+        {{else if val.type == 1}}
+        <p class="flex flex-wrap imgs btnB">
+        {{/if}}
+            {{each val.imglist.split(';') as img index}}
+            {{if img && index<3}}
+            <img src="{{img}}" alt="" class="food ">
+            {{/if}}
+            {{/each}}
+        </p>
+        {{if val.type == 2}}
+        <p class="user flex flex-space-between shadow btnA disable" href="{{val.link}}">
+        {{else if val.type == 1}}
+        <p class="user flex flex-space-between  btnB">
+        {{/if}}
+            <span class="starttime">{{val.starttime}}</span>
+            <span class="starter">发布者：{{val.publishername}}</span>
+        </p>
+        <div class="done shadow">
+            <p class="flex flex-space-between before">
+                <span>完成同学：{{val.finishedamount}}人</span>
+            </p>
+            {{if list.role == 0}}
+            {{if val.ended}}
+                {{if val.type == 2}}
+                <button class="disable btnA" href="{{val.link}}">
+                {{else if val.type == 1}}
+                <button class="disable btnB">
+                {{/if}}
+                {{if val.finished==0}}
+                <p>已完成</p>
+                <p>+{{val.score}}</p>
+                {{else}}
+                <p>未完成</p>
+                <p>-{{val.score}}</p>
+                {{/if}}
+            {{else}}
+                {{if val.type == 2}}
+                    {{if val.finished==0}}
+                    <button class="btnA new_color" href="{{val.link}}">
+                    {{else}}
+                    <button class="btnA" href="{{val.link}}">
+                    {{/if}}
+                {{else val.type == 1}}
+                    {{if val.finished==0}}
+                    <button class="btnB new_color">
+                    {{else}}
+                    <button class="btnB">
+                    {{/if}}
+                {{/if}}
+                {{if val.finished==0}}
+                <p>已完成</p>
+                <p>+{{val.score}}</p>
+                {{else}}
+                <p class="btn candoit">打卡</p>
+                <p>+{{val.score}}</p>
+                {{/if}}
+                {{/if}}
+                </button>
+            {{else}}
+                {{if val.ended}}
+                 <button class="disable">
+                <p>任务</p>
+                <p>结束</p>
+                {{else}}
+                 {{if val.link}}
+                <button onclick="btnA('{{val.name}}','{{val.starttime}}','{{val.endtime}}','{{val.type}}','{{val.taskid}}', '{{val.link}}')">
+                {{else}}
+                <button onclick="btnA('{{val.name}}','{{val.starttime}}','{{val.endtime}}','{{val.type}}','{{val.taskid}}')" >
+                {{/if}}
+                    <p>发布</p>
+                    <p>任务</p>
+                    {{/if}}
+                </button>
+            {{/if}}
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.0113"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/camp/js/clock.js"></script>
+<script src="/static/camp/mission/js/mission.js?v1.023"></script>
+
+</body>
+</html>

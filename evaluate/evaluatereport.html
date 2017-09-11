@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+	<title>评测报告</title>
+	<link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+	<link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+	<style>
+		body{background:#efeff4}
+		#content a span{position:absolute;top:50%;right:33px;color:#fff;background:#ccc;border-radius:3px;height:20px;line-height:20px;margin-top:-10px;padding:0 4px;font-size:12px}
+		#content a span:after{content:'未评估'}
+		#content a.done span{background:#f66}
+		#content a.done span:after{content:'报告已生成'}
+	</style>
+</head>
+
+<body>
+<div id="content" style="display:none"></div>
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script>
+(function(){
+	queryObj={}
+	if(location.search){
+		queryObj=JSON.parse('{"'+decodeURI(location.search.substring(1)).replace(/"/g,'\\"').replace(/&/g,'","').replace(/=/g,'":"')+'"}')
+	}
+	if (!User.getUser()) {
+		User.redirectToLoginPage(location.href);
+	}
+	else{
+		patientid=User.getUser().patientid
+	}
+	html=''
+	Utils.ajax.get('/IbabyWebService/3/Evalute/GetEvaluteList?patientid='+patientid).then(function(res){
+		for(i=0;i<res.length;i++){
+			switch (res[i].externalcode){
+				case 'E001':
+					html+='\
+						<a href="/static/evaluate/E/E001/'+(queryObj.inapp?'?inapp=1':'')+(res[i].done?'#result':'')+'" class="row row-link clickable'+(res[i].done?' done':'')+'">\
+							'+res[i].title+'\
+							<span></span>\
+							<i class="iconfont-arrow-next"></i>\
+						</a>\
+					'
+					break;
+				case 'E002':
+					html+='\
+						<a href="/static/evaluate/E/E002/'+(queryObj.inapp?'?inapp=1':'')+(res[i].done?'#result':'')+'" class="row row-link clickable'+(res[i].done?' done':'')+'">\
+							'+res[i].title+'\
+							<span></span>\
+							<i class="iconfont-arrow-next"></i>\
+						</a>\
+					'
+					break;
+				case 'E003':
+					html+='\
+						<a href="/static/evaluate/E/E003/'+(queryObj.inapp?'?inapp=1':'')+(res[i].done?'#result':'')+'" class="row row-link clickable'+(res[i].done?' done':'')+'">\
+							'+res[i].title+'\
+							<span></span>\
+							<i class="iconfont-arrow-next"></i>\
+						</a>\
+					'
+					break;
+				case 'E004':
+					html+='\
+						<a href="/static/evaluate/E/E004/'+(queryObj.inapp?'?inapp=1':'')+(res[i].done?'#result':'')+'" class="row row-link clickable'+(res[i].done?' done':'')+'">\
+							'+res[i].title+'\
+							<span></span>\
+							<i class="iconfont-arrow-next"></i>\
+						</a>\
+					'
+					break;
+				case 'E005':
+					html+='\
+						<a href="/static/evaluate/E/E005/'+(queryObj.inapp?'?inapp=1':'')+(res[i].done?'#result':'')+'" class="row row-link clickable'+(res[i].done?' done':'')+'">\
+							'+res[i].title+'\
+							<span></span>\
+							<i class="iconfont-arrow-next"></i>\
+						</a>\
+					'
+					break;
+			}
+		}
+		$('#content').html(html).show()
+	})
+})()
+</script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+</html>

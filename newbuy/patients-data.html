@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者数据查看</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <style>
+        body {
+            background: #f4f4f4;
+        }
+
+        .no-patient .title {
+            font-size: 16px;
+            padding: 60px 0 40px;
+        }
+
+        .no-patient img {
+            background: #f4f4f4;
+            width: 150px;
+            height: 150px;
+        }
+
+        .no-patient .action {
+            font-size: 14px;
+            color: #999;
+            padding-top: 30px;
+        }
+
+        .no-patient .link-action {
+            text-align: center;
+            line-height: 20px;
+            padding: 20px 0 5px;
+        }
+
+        .no-patient a {
+            color: blue;
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        .patient {
+            background: #f4f4f4;
+        }
+
+        .patient .header {
+            line-height: 40px;
+            font-size: 16px;
+            background: #fff;
+            padding: 0 15px;
+            margin-bottom: 10px;
+        }
+
+        .patient .header .link {
+            font-size: 14px;
+        }
+
+        .patients .item {
+            background: #fff;
+            padding: 10px 0;
+            margin-bottom: 10px;
+        }
+
+        .patients .item .header {
+            margin: 0 0 0 15px;
+            line-height: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 0 0 10px;
+            border-bottom: 1px solid #f6f6f6;
+        }
+
+        .patients .item img.headerimg {
+            width: 30px;
+            height: 30px;
+            background: #eee;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .patients .warm {
+            color: #f00 !important;
+            font-size: 12px;
+        }
+
+        .patients .target {
+            padding: 10px 20px;
+            border: 1px solid #999;
+            font-size: 15px;
+            margin: 10px 0 30px;
+        }
+
+        .patients .ender {
+            font-size: 12px;
+            padding: 0 15px;
+        }
+
+        .patients .ender p {
+            color: #666;
+            margin-left: 5px;
+        }
+
+        .patients .data {
+            padding: 10px 15px 10px 60px;
+            line-height: 22px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .patients .data span {
+            color: #333;
+        }
+
+        .tochart {
+            font-size: 12px;
+            padding-right: 15px;
+            color: #666;
+        }
+
+        .tochart img {
+            height: 25px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script id="patient" type="text/html">
+    <div class="patient">
+        <div flex="main:justify" class="header">
+            <div>我的患者（{{patient.length}}）</div>
+            <div class="link">招募患者 ></div>
+        </div>
+        <div flex="dir:top" class="patients">
+            {{if patient.length > 0}}
+            {{each patient as p}}
+            <div flex="dir:top" class="item">
+                <div flex="main:justify" class="header">
+                    <div flex>
+                        <img src="{{p.img}}" class="headerimg" alt="">
+                        <span>姓名：{{p.wechatname}}</span>
+                    </div>
+                    {{if p.dies.length>0}}
+                    <a flex class="tochart" href="./chart.html?patientid={{p.patientid}}"><img src="./img/chart.png" alt=""><span>图表查看</span></a>
+                    {{/if}}
+                </div>
+                <div class="data">
+                    {{if p.dies.length>0}}
+                    {{ each p.dies as item}}
+                    <!--<p>特别提示：<span class="warm">{{item.temperaTure}}</span></p>-->
+                    <p>体重：<span>{{item.detail.weight}}kg</span></p>
+                    <p>BMI：<span>{{item.detail.bmi}}</span></p>
+                    <p>腰围：<span>{{item.detail.waist}}cm</span></p>
+                    <p>腰臀比：<span>{{item.detail.whr}}</span></p>
+                    {{/each}}
+                    {{else}}
+                    <p>暂无数据</p>
+                    {{/if}}
+                </div>
+                <div flex="main:justify cross:center" class="ender">
+                    {{if p.dies.length>0}}
+                    <div flex="cross:center">
+                        <h5>生活干预{{p.lifeDays}}天</h5>
+                    </div>
+                    <p>数据更新：{{p.dies[0].updateAt.split(' ')[0]}}</p>
+                    {{/if}}
+                </div>
+            </div>
+            {{/each}}
+            {{else}}
+            <p style="padding-left: 15px">您现在还没有关联患者</p>
+            {{/if}}
+        </div>
+    </div>
+</script>
+<script id="no-patient" type="text/html">
+    <div class="no-patient" flex="dir:top cross:center">
+        <p class="title">您还没有患者加入爱丁多囊训练营哦</p>
+        <img src="/static/newbuy/img/service-10.png" alt="">
+        <p class="action">让患者扫码加入</p>
+        <p class="link-action"> 或则打开下方蓝色报名链接 <br> 分享给患者 </p>
+        <a href="/static/market/views/services.html?serviceid=10">报名链接</a>
+    </div>
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script>
+    (function () {
+        var set = {
+            patinetUrl: '/aiding-web/api/doctor/patients',
+            data: {}
+        };
+        var Utils = window.Utils;
+        try {
+            var doctorid = Utils.storage.get('doctor_infor').objId;
+        } catch (err) {
+            console.log(err);
+            location.href = './index.html';
+        }
+        Utils.ajax.get(set.patinetUrl + '/' + doctorid).then(function (rel) {
+            set.data.patient = rel;
+            var data = set.data.patient;
+            console.log(data);
+
+            for (var i = 0; i < data.length; i++) {
+                for(var j = 0; j < data[i].dies.length;j++) {
+                    set.data.patient[i].dies[j].detail = JSON.parse( data[i].dies[j].detail)
+                }
+            }
+            $('#box').html(template('patient', set.data));
+            /**
+             * 判断医生是否拥有患者，没有患者显示另外一套 UI
+             *
+             if (set.data.patient.length > 0) {
+            $('#box').html(template('patient',set.data));
+        } else {
+            $('#box').html(template('no-patient',set.data));
+        }
+             */
+            $('#box').delegate('.link', 'click', function () {
+                /*
+                 * 带有 doctorid 的报名链接
+                 * 现在还没患者和医生绑定逻辑，所以随便写的
+                 */
+                var doctorid = 'a0001';
+                location.href = './patient.html?doctorid=' + doctorid;
+            })
+        })
+    })()
+
+</script>
+</body>
+</html>

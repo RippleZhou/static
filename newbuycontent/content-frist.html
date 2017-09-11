@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱丁线上商城</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <style>
+        body{
+            font-family: Microsoft YaHei;
+        }
+
+        .topnav{
+            position: relative;
+            height: 100%;
+            width:100%;
+        }
+        .card1{
+            padding:20px;
+            border-bottom: 1px solid #f4f4f4;
+            background-color: #fff;
+            /*margin:20px 0px  10px 0px;*/
+            /*margin: 0px 10px;*/
+        }
+        .bannerimg{
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+        .wordsbox p{
+            line-height: 40px;
+            border-bottom: 2px solid red;
+            background-color: #fff;
+            padding-left:20px;
+            font-size: 16px;
+        }
+        .imgleft img{
+            width:130px;
+            height:90px;
+        }
+        .rightcontent{
+            padding-left:25px;
+        }
+        .price span{
+            color: red;
+            font-size: 14px;
+        }
+        .price span img{
+            width:30px;
+            height:30px;
+        }
+        .rightcontent p{
+            padding-bottom: 12px;
+            /*padding-top:10px;*/
+            font-size: 15px;
+        }
+        .selledamount{
+            padding-bottom: 25px;
+            font-size: 12px;
+            color:#666;
+        }
+        .bottomnav{
+            width:100%;
+            height:60px;
+            position:fixed;
+            bottom: 0;
+        }
+        .bottomnav .iclass{
+            width: 16px;
+            height: 16px;
+            border-radius: 10px;
+            background-color: red;
+            color: #fff;
+            text-align: center;
+            display: block;
+            position: absolute;
+            left: 51%;
+            top: 6px;
+            z-index: 1;
+            /*border: 1px solid #fff;*/
+        }
+        .bottomflex{
+            width:100%;
+            height:60px;
+            position:fixed;
+            bottom: 0;
+            background-color: #fff;
+            border-top: 1px solid #eee;
+        }
+        .bottomflex i img{
+            display: inline-block;
+            width:23px;
+            /*height:23px;*/
+        }
+        .active{
+            color: #1296db;
+        }
+        .blank{
+            width:100%;
+            height:220px;
+        }
+        .baoyou{
+            background-color:#ccc;
+            color: #666;
+            border-radius: 5px;
+            font-size:10px;
+            padding:0px 2px 0px 2px;
+            display: inline-block;
+            line-height: 16px;
+        }
+        .twodazhe{
+            background-color: red;
+            color: #fff;
+            border-radius: 5px;
+            padding:0px 2px 0px 2px;
+            display: inline-block;
+            font-size: 10px;
+            line-height: 16px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-101665192-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+<!--<div class="wordsbox">-->
+    <!--<p>商品列表</p>-->
+<!--</div>-->
+<div class="topnav">
+    <!--<img src="img/imgbanner.png" class="bannerimg" alt="">-->
+</div>
+
+<div id="cardform">
+
+</div>
+<div class="blank"></div>
+<div class="bottomnav">
+    <i class="iclass"></i>
+    <div flex="main:left box:mean" class="bottomflex">
+        <div flex="dir:top main:center cross:center" class="pages">
+            <i><img src="img/homepagecolor.png" alt=""></i>
+            <span style="padding-top: 5px;" class="active">首页</span>
+        </div>
+        <a href="buycar.html" class="myself" flex="dir:top main:center cross:center">
+            <i><img src="img/carnav.png" alt=""></i>
+            <span style="padding-top: 5px;padding-left:5px;">购物车</span>
+        </a>
+        <a href="mypage.html" class="myself" flex="dir:top main:center cross:center">
+            <i><img src="img/my.png" alt=""></i>
+            <span style="padding-top: 5px;">我的</span>
+        </a>
+    </div>
+</div>
+
+<script type="text/html" id="banner">
+    {{if status==1}}
+    <a href="{{hrefUrl}}">
+        <img src="{{imgUrl}}" style="width:100%;" alt="">
+        <img src="img/imgbanner.png" class="bannerimg" alt="">
+    </a>
+    {{else}}
+    <img src="{{imgUrl}}" style="width:100%;" alt="">
+    <img src="img/imgbanner.png" class="bannerimg" alt="">
+    {{/if}}
+</script>
+
+<script type="text/html" id="cards">
+    {{each list as item}}
+        <div class="card1">
+            <div flex="main:left box:last">
+                <a href="content-details.html?serviceid={{item.id}}" flex="box:first">
+                    <div class="imgleft">
+                        <img src="{{item.coverpic}}" alt="">
+                    </div>
+                    <div class="rightcontent" flex="dir:top">
+                        <p>
+                            <span>{{item.name}}</span>
+                            <i class="baoyou">包邮</i>
+                        </p>
+                        <div class="selledamount">
+                            <span>月售{{item.selledamount}}件</span>
+                            <!--{{if item.discount<1}}-->
+                            <!--<i class="twodazhe">满两件{{item.discount*10}}折</i>-->
+                            <!--{{/if}}-->
+                        </div>
+                        <div class="price" flex=" box:mean box:last">
+                            <span>¥ <i style="font-size: 20px;color:red;">{{item.price}}</i></span>
+                        </div>
+                    </div>
+                </a>
+                <div class="gocar" >
+                    <!--<img src="img/car.png" class="carimg" data-serviceid="{{item.id}}"  style="width:25px;height:25px;margin-top: 32px" alt="">-->
+                </div>
+
+            </div>
+        </div>
+
+    {{/each}}
+</script>
+
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/newwechat.js"></script>
+<script src="/static/common/js/popup.check.js"></script>
+<script src="/static/newbuycontent/js/common.js"></script>
+<script>
+    $(function(){
+
+        var Utils = window.Utils;
+        var count=Utils.storage.get('count'); ///计算商品数量
+
+        if(count){
+            var coun=count;
+            document.querySelector('.iclass').innerHTML=coun;
+        }else{
+            var coun=0;
+            document.querySelector('.iclass').innerHTML=coun;
+        }
+
+        Utils.ajax.get('/IbabyWebService/3/Activity/banners?address=linemall').then(function (res) {
+            console.log(res)
+            var html=template('banner',res);
+            $('.topnav').append(html);
+
+            //        var goodsNo = Utils.getQueryParams().goodsNo;
+            Utils.ajax.get('/IbabyWebService/DServiceCooper/ServiceList?goodsNo=4026bc7d29fbe5204a25ae87afbd661d').then(function (data) {
+//            for(var i=0;i<data.list.length;i++){
+//                data.list[i].goodsNo=goodsNo
+//            } //这是把每个data中的list里面添加goodsNo，好在模板里面渲染出来
+                var html=template('cards',data);
+                $('#cardform').append(html);
+
+                //加入购物车
+//                var paramsall = Utils.storage.get('paramsinit');
+                //        $("#gocar").each(function(){
+//            var gocar=document.querySelectorAll(".gocar");
+
+//                var carimg=document.querySelectorAll(".carimg");
+
+//                for(var i=0;i<carimg.length;i++){
+//                    carimg[i].addEventListener('click', function(){
+//                        coun++;
+//                        var patientid=paramsall.patientid;
+//                        var serviceid = this.dataset.serviceid;
+//                        var urla="/IbabyWebService/DServiceCooper/addServiceByCrat?patientid="+patientid+"&serviceid="+serviceid+"&count="+1
+//                        Utils.ajax.get(urla).then(function (rel) {
+//                            document.querySelector('.iclass').innerHTML=coun;
+//                            Utils.storage.set('count', coun); ///计算商品数量
+//                        })
+//                    })
+
+//                    carimg[i].addEventListener('touchstart', function(){
+//                        this.src='img/carcolor.png'
+//                    })
+
+//                    carimg[i].addEventListener('touchend', function(){
+//                        this.src='img/car.png';
+//                    })
+
+//                }
+
+            })
+
+
+        })
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" class="vw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>限时任务列表</title>
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css?v0.001">
+    <link rel="stylesheet" href="/static/camp/mission/css/flash_read_list.css">
+</head>
+<body>
+
+<script id="tasklist" type="text/html">
+    {{if list}}
+    {{each list as val}}
+    <div class="flex flex-vertical task" shareimg="{{val.thumbnail}}">
+        <a href="/static/camp/mission/flash_read_detail.html?taskid={{val.id}}" class="taskurl">
+        <div class="flex flex-vertical top">
+            <p class="flex flex-space-between">
+                <span class="title">{{if val.type ==1 }}【图文】{{else if val.type ==2}}【视频】{{/if}}{{val.title}}</span>
+                <span class="time">结束：
+                    <font>
+                        {{if val.timeover == 0}}
+                        已经结束
+                        {{else if val.time_day > 0 }}
+                        {{val.time_day}}天{{val.time_hour}}小时后
+                        {{else if val.time_hour>0}}
+                        {{val.time_hour}}小时{{val.time_min}}分后
+                        {{else if val.time_min>0}}
+                        {{val.time_min}}分{{val.time_s}}秒后
+                        {{else if val.time_s>0}}
+                        {{val.time_s}}秒后
+                        {{/if}}
+                    </font>
+                </span>
+            </p>
+            <p class="desc">{{val.description}}</p>
+            <p class="flex flex-space-between"> <span>{{val.starttime.split(' ')[0]}}</span> <span></span></p>
+        </div>
+        </a>
+        <div class="line"></div>
+        <div class="flex flex-vertical flex-center bottom">
+            <button onclick="share(this)">发布</button>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <p class="text-err">当前没有任务</p>
+    {{/if}}
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.0111"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/camp/mission/js/flash_read_list.js?v1.001"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>个人信息</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+
+    <style>
+        body {
+            background: #efeff4;
+        }
+
+        .row span {
+            font-size: 16px;
+        }
+
+        .row-input input {
+            color: #ccc;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .avatar-container {
+            position: relative;
+        }
+        .avatar-container input {
+            height: 60px;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 60px;
+        }
+
+    </style>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <form id="form" class="form">
+        <div class="row row-input flex flex-center flex-space-between">
+            <span>头像</span>
+            <div class="avatar-container">
+                <img id="avatar" class="avatar" alt="">
+                <input id="avatar-uploader" name="file" type="file" />
+            </div>
+        </div>
+
+        <div class="row row-input flex flex-center flex-space-between">
+            <span>昵称</span>
+            <input id="username" type="text" maxlength="16" class="flex-1">
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="保存">
+
+    </form>
+
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="/static/common/js/wechat.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+
+    <script src="./js/services.js"></script>
+
+    <script>
+        wechat.share();
+
+        (function() {
+            var user = User.getUser();
+
+            if (!user) {
+                User.redirectToLoginPage('/static/user/user-center.html');
+                return;
+            }
+
+            setUserAvatar(user.icon);
+            $('#username').val(user.realname);
+
+            $('#username').on('focus', function () {
+                var self = this;
+
+                setTimeout(function () {
+                    var len = self.value ? self.value.length : 0;
+                    self.setSelectionRange(len, len);
+                }, 0);
+            });
+
+            $('#avatar-uploader').on('change', function () {
+                if (!$(this).val()) {
+                    return;
+                }
+
+                var file = this.files[0];
+
+                var formData = new FormData();
+                formData.append('file', file, file.name);
+
+                Services.upload(formData).then(setUserAvatar);
+            });
+
+            $('#form').on('submit', function (evt) {
+                evt.preventDefault();
+
+                var icon = $('#avatar').data('src');
+                var realname = $('#username').val();
+
+                if (!icon) {
+                    aid.tip.show('请选择头像！');
+                    return;
+                }
+
+                if (!realname) {
+                    aid.tip.show('请输入昵称！');
+                    return;
+                }
+
+                user.icon = icon;
+                user.realname = realname;
+
+                Services.update(user).then(function () {
+                    User.setUser(user);
+                    aid.tip.show('保存成功！');
+                });
+            });
+
+            function setUserAvatar(src) {
+                $('#avatar').data('src', src).attr('src', Utils.ajax.getFullUrl(src));
+            }
+        })();
+    </script>
+</body>
+
+</html>

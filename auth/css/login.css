@@ -1,0 +1,80 @@
+body {
+    background: #efeff4;
+}
+
+input[type=submit] {
+    border-radius: 2px;
+    font-size: 18px;
+    line-height: 48px;
+    width: 100%;
+}
+
+#loginbtn {
+    display: none;
+}
+
+#send-box {
+    display: none;
+}
+.btn-send-sms-code {
+    border-radius: 30px;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: -15px;
+    padding: 0 8px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+}
+
+.btn-send-sms-code[disabled] {
+    width: 100px;
+}
+
+.form-link {
+    color: #ccc;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.form-link a {
+    color: #46c6fe;
+}
+
+#banner{
+    position: relative;
+    height: 160px;
+    width: 100%;
+}
+
+#imgcode {
+    display: block;
+}
+
+#banner img {
+    height: 50px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+#imgcode img {
+    width: 100px;
+    cursor: pointer;
+}
+#imgcode button {
+    border-radius: 30px;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 8px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: #f90;
+    color: #fff;
+}

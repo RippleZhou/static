@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<span class="title">姓名:</span>
+<input type="text" id="realname" name="realname" placeholder="姓名必须与账户开户名相同">
+<br>
+<span class="title">账号:</span>
+<input type="text" id="account" name="account" placeholder="请输入您的银行账号">
+<br>
+<span class="title">开户行:</span>
+<input type="text" id="bank" name="bank" placeholder="请输入您的开户银行">
+<br>
+<span class="submit bank">提交</span>
+<script type="text/javascript">
+    document.getElementById("account").onkeyup =function() {
+        this.value =this.value.replace(/\s/g,'').replace(/(\d{4})(?=\d)/g,"$1 ");;
+    };
+</script>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+    <script src="/static/common/js/framework.js"></script>
+</head>
+
+<body>
+    <script>
+        var user = User.getUser();
+        if(user==null){
+                User.redirectToLoginPage(location.href);
+        }else{
+            channel='addyh';
+            appkey='123fd18a-c4de-11e5-90f8-5254994f07e0';
+            location.href='/static/open/ask_doctor/index-cooper.html?'+
+            '&channel='+channel+
+            '&appkey='+appkey+
+            '&timestamp='+(new Date()).valueOf();
+        }
+       
+    </script>
+</body>
+
+</html>

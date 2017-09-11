@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" class="vw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>任务</title>
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css?v0.001">
+    <link rel="stylesheet" href="/static/camp/mission/css/flash_read_detail.css?v1.06">
+</head>
+<body>
+<script id="main" type="text/html">
+    <div class="action flex">
+        <div class="title flex flex-vertical flex-center">
+            <p>提</p>
+            <p>示</p>
+        </div>
+        <div class="flex flex-vertical flex-center text flex-1">
+            <p>
+                {{if time_day > 0 }}
+                <font>{{time_day}}</font>天<font>{{time_hour}}</font>小时
+                {{else if time_hour>0}}
+                <font>{{time_hour}}</font>小时<font>{{time_min}}</font>分
+                {{else if time_min>0}}
+                <font>{{time_min}}</font>分<font>{{time_s}}</font>秒
+                {{else if time_s>0}}
+                <font>{{time_s}}</font>秒
+                {{/if}}
+                后内容自动销毁
+            </p>
+            <p>您还有<font>{{leftamount}}</font>次阅读机会</p>
+            <button onclick="removeaction(this)"><img src="/static/camp/mission/img/close.png" alt=""></button>
+        </div>
+    </div>
+    <div id="no-down">
+    </div>
+    <img src="{{url}}" class="full-w">
+</script>
+<script id="mainv" type="text/html">
+    <video id="videos"   controls="controls"   webkit-playsinline width="100%" poster="">
+        <source src="{{url}}" type="video/mp4">
+        您的浏览器可能不支持播放该视频
+    </video>
+    <div class="action flex" style="position: relative;background: #f5f5f5">
+        <div class="title flex flex-vertical flex-center">
+            <p>提</p>
+            <p>示</p>
+        </div>
+        <div class="flex flex-vertical flex-center text flex-1">
+            <p>
+                {{if time_day > 0 }}
+                <font>{{time_day}}</font>天<font>{{time_hour}}</font>小时
+                {{else if time_hour>0}}
+                <font>{{time_hour}}</font>小时<font>{{time_min}}</font>分
+                {{else if time_min>0}}
+                <font>{{time_min}}</font>分<font>{{time_s}}</font>秒
+                {{else if time_s>0}}
+                <font>{{time_s}}</font>秒
+                {{/if}}
+                后内容自动销毁
+            </p>
+            <p>您还有<font>{{leftamount}}</font>次阅读机会</p>
+            <button onclick="removeaction(this)"><img src="/static/camp/mission/img/close.png" alt=""></button>
+        </div>
+    </div>
+</script>
+<script id="errtemp" type="text/html">
+    <div class="flex flex-vertical flex-center full-content">
+        <div class="flex flex-vertical">
+            <img src="/static/camp/mission/img/404.png" alt="">
+            <p>{{err}}</p>
+        </div>
+    </div>
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js?v1.0111"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/camp/mission/js/flash_read_detail.js?v1.04"></script>
+</body>
+</html>

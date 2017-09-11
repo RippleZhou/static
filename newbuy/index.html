@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>医生入口</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <style>
+        body {
+            background: #fff !important;
+        }
+
+        .progress {
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0 30px;
+        }
+
+        .steps {
+            padding: 10px 40px 20px;
+        }
+
+        .steps-desc > div {
+            width: 90px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .steps .circle {
+            width: 10px;
+            height: 10px;
+            line-height: 36px;
+            text-align: center;
+            border-radius: 50%;
+            background: #c9c9c9;
+        }
+
+        .steps .circle.active {
+            border-color: deepskyblue;
+            background: deepskyblue;
+        }
+
+        .steps .line {
+            height: 1px;
+            background: #c9c9c9;
+        }
+
+        .steps .line.active {
+            background: deepskyblue;
+        }
+
+        .for-2 {
+            line-height: 1.5;
+            font-size: 14px;
+            padding: 15px;
+            color: #666;
+        }
+
+        .for-2 a {
+            color: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<script type="text/html" id="container">
+    <div id="main-show">
+        <div class="progress">
+            <div class="steps" flex="main:center cross:center">
+                <div class="circle step-1"></div>
+                <div class="line" flex-box="1"></div>
+                <div class="circle step-2"></div>
+                <div class="line" flex-box="1"></div>
+                <div class="circle step-3"></div>
+            </div>
+            <div class="steps-desc" flex="main:justify">
+                <div>填写资料</div>
+                <div>审核中</div>
+                <div>查看数据</div>
+            </div>
+        </div>
+        <div id="signup">
+        </div>
+    </div>
+</script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/common/js/newwechat.js"></script>
+<script>
+    (function () {
+        var Utils = window.Utils;
+        var newWechat = window.NewWechat;
+        var base_url = '/aiding-web/api';
+        newWechat.author();
+        var openid = Utils.queryParams.openid || '';
+        if (openid) {
+            Utils.ajax.get(base_url + '/doctor/' + openid).then(function (rel) { //获取医生状态status, 2 => 正式医生, 1 => 注册，尚在审核的医生
+                var status = rel.status;
+                if (status == 2) {
+                    //Utils.storage.set('doctorInfo',rel); 缓存医生信息
+                    Utils.storage.set('doctor_infor',rel);
+                    location.href = './patients-data.html';
+                } else if (status == 1) {
+                    $('body').append(template('container', status));
+                    $('.progress .circle').eq(1).addClass('active');
+                    $('.progress .circle').eq(0).addClass('active');
+                    $('.steps .line').eq(0).addClass('active');
+                    $('#main-show').append('<p class="for-2">您的资料正在审核中，预计时间1-2个工作日，如有疑问请致电 <a href="tel:400-871-6011">400-871-6011</a></p>');
+                } else {
+                    $('body').append(template('container', status));
+                    $('.progress .circle').eq(0).addClass('active');
+                    $('#signup').load('./signup.html');
+                }
+            },function (err) {
+                console.log(err);
+                $('body').append(template('container', 1));
+                $('.progress .circle').eq(0).addClass('active');
+                $('#signup').load('./signup.html');
+            })
+        }
+    })()
+</script>
+</body>
+</html>

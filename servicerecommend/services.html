@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+	<head>
+		<title>爱丁服务</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+
+		<meta name="x5-fullscreen" content="true">
+		<meta name="full-screen" content="yes">
+		<meta name="screen-orientation" content="portrait">
+		<meta name="x5-orientation" content="portrait">
+
+		<link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+		<link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../servicemall/css/unify.css">
+        <link rel="stylesheet" type="text/css" href="css/services.css">
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "//hm.baidu.com/hm.js?4fd8e29b5cc8d16bce9f8179e70beeb8";
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+
+	</head>
+
+	<body onscroll="setScrollTop()">
+		<a class="banner" href="/static/servicemall/views/introductions/services.html"></a>
+
+		<div id="categorys"></div>
+
+		<ul class="nav-tabs">
+			<li>
+				<a href="/static/evaluate/">
+					<i class="iconfont-nav-test"></i>
+					<p>爱丁测评</p>
+				</a>
+			</li>
+			<li>
+				<a href="/static/ask_doctor/my_questions.html">
+					<i class="iconfont-nav-ask-doctor"></i>
+					<p>问医生</p>
+				</a>
+			</li>
+			<li class="active">
+				<a href="/static/servicemall/">
+					<i class="iconfont-nav-services-active"></i>
+					<p>服务大厅</p>
+				</a>
+			</li>
+			<li>
+				<a href="/static/user/user-center.html">
+					<i class="iconfont-nav-user"></i>
+					<p>我的爱丁</p>
+				</a>
+			</li>
+		</ul>
+
+		<script id="tpl-category-a" type="text/html">
+			<div class="category-wrapper category-a">
+				<div class="category-hd">
+					<h5 class="category-title">{{cat}}</h5>
+					<p class="category-description">{{desc}}</p>
+				</div>
+				<div class="category-bd">
+					{{each services as s}}
+					<a class="category-service row row-icon row-link flex flex-center clickable" href="/static/servicemall/views/categorys/a.html?categorytype={{type}}&id={{s.id}}{{channel ? '&channel=' + channel : ''}}">
+						<!--<i class="icon icon-60 iconfont-program-{{s.pcode}} {{s.pcode}}"></i>-->
+						<img src="{{s.icon}}" />
+						<div class="flex-1">
+							<h6 class="category-service-name">
+                            {{s.name}}
+                            <span class="category-service-appointments">{{s.bookingAmount || 0}}人已约</span>
+                        </h6>
+							<p class="category-service-description">{{s.desc}}</p>
+						</div>
+					</a>
+					{{/each}}
+				</div>
+			</div>
+		</script>
+
+		<script id="tpl-category-b" type="text/html">
+			<div class="category-wrapper category-b">
+				<div class="category-hd">
+					<h5 class="category-title">
+                    {{cat}}
+                    <span class="category-service-appointments">共{{bookingAmount || 0}}人已约</span>
+                </h5>
+					<p class="category-description">{{desc}}</p>
+				</div>
+				<div class="category-bd flex flex-wrap">
+					{{each services as s}}
+					<a class="category-service flex-1-33 {{s.multiple && 'flex-1-66'}} clickable" href="/static/servicemall/views/categorys/b.html?categorytype={{type}}&id={{s.id}}{{channel ? '&channel=' + channel : ''}}">
+						<!--<i class="iconfont-program-{{s.pcode}} {{s.pcode}}"></i>-->
+						<img src="{{s.icon}}" />
+						<h6 class="category-service-name">{{s.name}}</h6>
+					</a>
+					{{/each}}
+				</div>
+			</div>
+		</script>
+
+		<script id="tpl-category-c" type="text/html">
+			<div class="category-wrapper category-c">
+				<div class="category-hd">
+					<h5 class="category-title">
+	                    {{cat}}
+	                    <span class="category-service-appointments">共{{bookingAmount || 0}}人已约</span>
+	                </h5>
+					<p class="category-description">{{desc}}</p>
+				</div>
+				<div class="category-bd flex flex-wrap">
+					{{each services as s}}
+					<a class="category-service flex-1-25 clickable" href="/static/servicemall/views/categorys/c.html?categorytype={{type}}&id={{s.id}}{{channel ? '&channel=' + channel : ''}}">
+						<!--<i class="iconfont-program-{{s.pcode}} {{s.pcode}}"></i>-->
+						<img src="{{s.icon}}" />
+						<h6 class="category-service-name">{{s.name}}</h6>
+					</a>
+					{{/each}}
+				</div>
+			</div>
+		</script>
+
+		<script id="tpl-category-d" type="text/html">
+			<div class="category-wrapper category-d">
+				<div class="category-hd">
+					<h5 class="category-title">{{cat}}</h5>
+					<p class="category-description">{{desc}}</p>
+				</div>
+				<div class="category-bd">
+					{{each services as s}}
+					<a class="category-service row row-icon row-link flex flex-center clickable" href="/static/servicemall/views/categorys/d.html?categorytype={{type}}&id={{s.id}}{{channel ? '&channel=' + channel : ''}}">
+						<div class="icon category-service-cover" style="background-image: url('{{s.icon}}')">
+							{{if s.overseas}}
+							<p>海外专场</p>{{/if}}
+						</div>
+						<div class="flex-1">
+							<h6 class="category-service-name">{{s.name}}</h6>
+							<p class="category-service-description">{{s.desc}}</p>
+						</div>
+					</a>
+					{{/each}}
+				</div>
+			</div>
+		</script>
+
+		<script id="tpl-category-e" type="text/html">
+			<div class="category-wrapper category-e">
+				<div class="category-hd">
+					<h5 class="category-title">
+	                    {{cat}}
+	                    <span class="category-service-appointments">共{{bookingAmount || 0}}人已约</span>
+	                </h5>
+					<p class="category-description">{{desc}}</p>
+				</div>
+				<div class="category-bd flex flex-wrap">
+					{{each services as s}}
+					<a class="category-service flex-1-33 {{s.multiple && 'flex-1-66'}} clickable" href="/static/servicemall/views/categorys/e.html?categorytype={{type}}&id={{s.id}}{{channel ? '&channel=' + channel : ''}}">
+						<!--<i class="iconfont-program-{{s.pcode}} {{s.pcode}}"></i>-->
+						<img src="{{s.icon}}" />
+						<h6 class="category-service-name">{{s.name}}</h6>
+					</a>
+					{{/each}}
+				</div>
+			</div>
+		</script>
+		<script src="/static/common/lib/jquery.min.js"></script>
+		<script src="/static/common/lib/template.js"></script>
+		<script src="/static/common/js/utils.service.js?v=1"></script>
+		<script src="/static/common/js/user.service.js?v=1"></script>
+		<script src="/static/common/js/framework.js"></script>
+		<script src="../servicemall/js/services.js"></script>
+		<script src="/static/common/lib/tcc.js"></script>
+
+		<script>
+
+			$.when(
+				Services.getCategorys(),
+				Services.getCategorysBookingAmounts()
+			).then(function(categorys, bookingAmounts) {
+				$.each(categorys, function(index, category) {
+					$.each(bookingAmounts, function(i, amount) {
+						if(amount.type == "category" && amount.serviceid == category.id) {
+							category.bookingAmount = amount.number;
+						} else {
+							$.each(category.services, function(j, service) {
+								if(amount.serviceid == service.id) {
+									service.bookingAmount = amount.number;
+								}
+							});
+						}
+
+					});
+				});
+
+				var html = '';
+				for(var index in categorys) {
+					var category = categorys[index];
+					if(category.services.length <= 0) {
+						continue;
+					}
+					if(category.type == "A") {
+						html += template('tpl-category-a', category);
+					} else if(category.type == "B") {
+						html += template('tpl-category-b', category);
+					} else if(category.type == "C") {
+						html += template('tpl-category-c', category);
+					} else if(category.type == "D") {
+						html += template('tpl-category-d', category);
+					} else if(category.type == "E") {
+						html += template('tpl-category-e', category);
+					}
+				}
+				$('#categorys').prepend(html);
+				document.body.scrollTop = window.localStorage["scrollTop:" + window.location.href];
+
+			});
+
+			function setScrollTop() {
+				window.localStorage["scrollTop:" + window.location.href] = document.body.scrollTop;
+			}
+			Utils.storage.set('identity','doctor');
+		</script>
+	</body>
+
+</html>

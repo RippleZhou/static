@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>专病诊疗</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="/static/common/css/framework.css">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/iconfont.css">
+
+    <style>
+        body {
+            background: #efeff4;
+        }
+
+        .content {
+            padding-bottom: 78px;
+        }
+
+        .homepage {
+            background-color: #fff;
+            border: 1px solid #46c6fe;
+            border-radius: 50%;
+            left: 10px;
+            padding: 5px;
+            position: absolute;
+            top: 10px;
+            z-index: 2;
+        }
+
+        .homepage i {
+            color: #46c6fe;
+            font-size: 30px;
+        }
+
+        header {
+            background: #eee no-repeat center;
+            background-size: cover;
+            padding-top: 62.5%;
+            position: relative;
+        }
+
+        .table {
+            height: 111px;
+            background: #fff;
+            display: -webkit-box;
+            display: box;
+            -webkit-box-pack: center;
+            box-pack: center;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .table > a {
+            display: block;
+            -webkit-flex: 1;
+            flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+            padding-top: 16px;
+            position: relative;
+        }
+
+        .table > a + a:before {
+            background-color: #d6d7dc;
+            bottom: 30px;
+            content: '';
+            display: block;
+            left: 0;
+            position: absolute;
+            top: 30px;
+            width: 1px;
+        }
+
+        .table i {
+            height: 28px;
+            width: 28px;
+            line-height: 28px;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 50%;
+            margin: 0 auto 11px;
+            display: block;
+            font-size: 20px
+        }
+
+        .table > a:nth-child(1) i {
+            color: #f90;
+        }
+
+        .table > a:nth-child(2) i {
+            color: #46c6fe;
+        }
+
+        .table > a:nth-child(3) i {
+            color: #f66;
+        }
+
+        .table h6 {
+            font-size: 16px;
+            margin-bottom: 5px
+        }
+
+        .table span {
+            color: #f90;
+            display: block
+        }
+
+        #intro {
+            background: #fff;
+            font-size: 14px;
+            padding: 15px;
+            margin-bottom: 1px
+        }
+
+        #intro h6 {
+            height: 24px;
+            line-height: 24px;
+            color: #fff;
+            width: 90px;
+            text-align: center;
+            border-radius: 3px;
+            background: #ff8585;
+            margin-bottom: 3px
+        }
+
+        .item {
+            padding: 16px 0 16px 35px;
+            position: relative
+        }
+
+        .item:first-child {
+            padding-top: 11px
+        }
+
+        .item:last-child {
+            padding-bottom: 0
+        }
+
+        .item i {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            background: #90ddfe;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            margin-top: -15px;
+            text-align: center;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 12px
+        }
+
+        .item:not(:first-child):before {
+            content: '';
+            display: block;
+            width: 1px;
+            background: #90ddfe;
+            position: absolute;
+            left: 14px;
+            bottom: 50%;
+            margin-bottom: 17px;
+            top: 0
+        }
+
+        .item:not(:last-child):after {
+            content: '';
+            display: block;
+            width: 1px;
+            background: #90ddfe;
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            margin-top: 17px;
+            bottom: 0
+        }
+
+        .card {
+            background: #fff;
+            padding-left: 75px;
+            height: 90px;
+            position: relative;
+            box-sizing: border-box;
+            padding-top: 25px;
+            overflow: hidden;
+            display: block;
+            margin-bottom: 20px
+        }
+
+        .card.tc {
+            background: #ccc
+        }
+
+        .card i {
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: #eee no-repeat center;
+            background-size: cover
+        }
+
+        .card h6 {
+            font-size: 16px;
+            margin-bottom: 3px
+        }
+
+        .card h6 span {
+            font-size: 14px;
+            color: #999
+        }
+
+        .card div {
+            color: #999;
+            font-size: 14px
+        }
+
+        .card>span {
+            color: #fff;
+            position: absolute;
+            top: 27px;
+            right: 53px;
+            background: #f90;
+            height: 16px;
+            line-height: 16px;
+            border-radius: 8px;
+            padding: 0 6px
+        }
+
+        #intro p {
+            color: #666;
+            line-height: 1.2
+        }
+
+        #note {
+            background: #fff;
+            margin-bottom: 20px;
+            font-size: 14px;
+            padding: 15px;
+        }
+
+        #note h6 {
+            height: 24px;
+            line-height: 24px;
+            color: #fff;
+            width: 90px;
+            text-align: center;
+            border-radius: 3px;
+            background: #ff8585;
+            margin-bottom: 8px
+        }
+
+        #note p {
+            margin: 5px 0;
+            color: #666;
+            line-height: 1.33;
+        }
+
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f59ce10244d4a141115cdc36dbfe3763";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+<div class="body"></div>
+
+<script id="tpl-category" type="text/html">
+    <div class="content">
+        {{if isRecommended}}
+        <a class="homepage" href="../../">
+            <i class="iconfont-nav-homepage"></i>
+        </a>
+        {{/if}}
+        <header style="background-image: url('{{cover}}')"></header>
+        <div class="table">
+            {{each ways as w}}
+            <a class="clickable" href="../../views/introductions/service_type.html?code={{w.scode}}">
+                <i class="iconfont-service-type-{{w.scode}}"></i>
+                <h6>{{w.title}}</h6>
+                <span>{{((w.price ? w.discount ? '原价：' + w.price : w.price : '') + (w.discount ? '    限时优惠：' + w.discount : '')).replace(/ /g, '&nbsp;')}}</span>
+            </a>
+            {{/each}}
+        </div>
+        <div id="intro">
+            <h6>服务流程</h6>
+            <div>
+                {{each flows as f}}
+                <div class="item"><i>{{f.step}}</i>{{f.description}}</div>
+                {{/each}}
+            </div>
+        </div>
+        <a class="card clickable" href="../../views/doctor.html?doctor={{doctors.id}}&service={{pcode}}">
+            <i style="background-image: url('{{doctors.headicon}}')"></i>
+            <h6>{{doctors.name}} <span>{{doctors.title}}</span></h6>
+            <div>{{doctors.hospital}}</div>
+            <span>{{doctors.role}}</span>
+        </a>
+        <div id="note">
+            <h6>专病介绍</h6>
+            <div>
+                <p>{{introduction}}</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <a id="book" class="btn btn-primary clickable" href="../../views/book.html?categorytype={{categorytype}}&id={{id}}{{channel ? '&channel=' + channel : ''}}">预约</a>
+    </footer>
+</script>
+
+<script src="/static/common/lib/jquery.min.js"></script>
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/js/wechat.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="/static/common/js/framework.js"></script>
+<script src="/static/servicemall/js/services.js"></script>
+<script>
+    Services.getService().then(function (result) {
+        document.title = result.servicename;
+        result.isRecommended = Services.isRecommended();
+        //result.doctors = JSON.parse(result.doctors);
+        result.flows = JSON.parse(result.flows);
+        result.ways = JSON.parse(result.ways);
+        $('.body').append(template('tpl-category', result));
+        share();
+        localStorage.zbzlWays=JSON.stringify(result.ways);
+        var footerDis = Utils.storage.get('identity');
+        if (  footerDis == 'doctor' ) {
+            $("footer.footer").remove();
+        };
+    });
+    function  share() {
+        var sdesc;
+        try {
+            sdesc = document.querySelector('#note>div>p').innerText;
+        } catch (err) {
+        }
+        var shareparams = {
+            title:document.title||null,
+            desc: sdesc
+        }
+        wechat.share(shareparams);
+    }
+</script>
+</body>
+
+</html>

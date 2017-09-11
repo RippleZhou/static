@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,width=device-width,user-scalable=no" />
+    <script src="/static/common/lib/jquery.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/static/common/js/utils.service.js"></script>
+    <script src="/static/common/js/user.service.js"></script>
+</head>
+
+<body>
+    <script>
+        var params = getQueryParams();
+
+        if (params.openid) {
+            $.post('/IbabyWebService/VIP/Class/UpdateUserInfo', params).then(function (result) {
+                if (result.status === 0) {
+                    localStorage.wx_user_info_openid = params.openid;
+                    localStorage.wx_user_info_nickname = params.nickname;
+                    localStorage.wx_user_info_headimgurl = params.headimgurl;
+
+                    location.href = '/static/onlineclass/class6.html?classid=100006' + '&' + $.param(params);
+                }
+            });
+            // isVipUser(params.nickname).then(function () {
+            //     $.post('/IbabyWebService/VIP/Class/UpdateUserInfo', params).then(function (result) {
+            //         if (result.status === 0) {
+            //             localStorage.wx_user_info_openid = params.openid;
+            //             localStorage.wx_user_info_nickname = params.nickname;
+            //             localStorage.wx_user_info_headimgurl = params.headimgurl;
+
+            //             location.href = '/static/onlineclass/class3.html?classid=100003' + '&' + $.param(params);
+            //         }
+            //     });
+            // }, function () {
+            //     location.href = '/static/onlineclass/404.html';
+            // });
+        }
+        // else if (localStorage.wx_user_info_openid) {
+        //     isVipUser(localStorage.wx_user_info_nickname).then(function () {
+        //         location.replace('/static/onlineclass/onlineclass.html?classid=100001' + '&openid=' + localStorage.wx_user_info_openid + '&nickname=' + localStorage.wx_user_info_nickname + '&headimgurl=' + localStorage.wx_user_info_headimgurl);
+        //     }, function () {
+        //         localStorage.removeItem('wx_user_info_openid');
+        //         localStorage.removeItem('wx_user_info_nickname');
+        //         localStorage.removeItem('wx_user_info_headimgurl');
+        //         location.href = '/static/onlineclass/404.html';
+        //     });
+        // }
+        else {
+            window.User.weichatAuth();
+        }
+
+        function getQueryParams() {
+            var params = {};
+            var queryString = window.location.search.replace(/^\?/, '').split('&');
+            var param;
+
+            queryString.forEach(function (d, i) {
+                if (d) {
+                    param = d.split('=');
+
+                    try {
+                        params[param[0]] = decodeURIComponent(param[1]);
+                    }
+                    catch (ex) {
+                        params[param[0]] = param[1];
+                    }
+                }
+            });
+
+            return params;
+        }
+
+        function isVipUser(nickname) {
+            return $.get('/IbabyWebService/VIP/Class/GetVIPWhiteList').then(function (result) {
+                if (result.content) {
+                    for (var i = 0; i < result.content.length; i++) {
+                        if (nickname.indexOf(result.content[i].nickname) !== -1) {
+                            return;
+                        }
+                    }
+                }
+                return $.Deferred().reject();
+            });
+        }
+    </script>
+</body>
+
+</html>

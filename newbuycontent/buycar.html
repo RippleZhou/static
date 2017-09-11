@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>购物车</title>
+    <link rel="stylesheet" href="/static/common/css/framework.css">
+    <link rel="stylesheet" href="/static/common/css/flex.css">
+    <link rel="stylesheet" href="css/contentdetails.css">
+    <link rel="stylesheet" href="css/car.css">
+</head>
+<body>
+<!--<div class="wordsbox" flex="main:left cross:center">-->
+    <!--<div class="checkbox-wrap aiding-icons checkAll" >-->
+        <!--<input type="checkbox">-->
+    <!--</div>-->
+    <!--<p>全选</p>-->
+<!--</div>-->
+<div class="carguanguang">
+    <div flex="dir:top cross:center">
+        <img src="img/guanguangcar.png" style="width:80px;" alt="">
+        <p class="empty">购物车还是空的</p>
+        <a href="content-frist.html"><div class="infoclass">去逛逛</div></a>
+    </div>
+</div>
+
+
+<div class="cart-m-b">
+
+</div>
+
+<div class="footer-box">
+    <div class="footer-last" flex="box:mean cross:center">
+        <div flex="main:left cross:center" style="padding-left: 10px;">
+            <div class="checkbox-wrap aiding-icons" id="Allcheck">
+                <input type="checkbox">
+            </div>
+            <p>全选</p>
+        </div>
+
+        <div flex="dir:top">
+            <span style="padding-left:5px;padding-top: 5px;">合计:<i style="color:red;padding-left:5px;">¥</i><i id="price" style="color: red;padding-left: 2px;font-size: 18px;">0</i></span>
+            <!--<span style="color:#ccc;padding-left: 5px;padding-top:5px;">免运费</span>-->
+        </div>
+        <div class="tool Toggle">结算</div>
+    </div>
+</div>
+
+<div class="bottomnav">
+    <i class="iclass"></i>
+<div flex="main:left box:mean" class="bottomflex">
+    <a href="content-frist.html" flex="dir:top main:center cross:center" class="pages">
+        <i><img src="img/homepage.png" alt=""></i>
+        <span style="padding-top: 5px;">首页</span>
+    </a>
+    <div class="myself" flex="dir:top main:center cross:center">
+        <i><img src="img/carnavcolor.png" alt=""></i>
+        <span  style="padding-top: 5px;padding-left:5px;" class="active">购物车</span>
+    </div>
+    <a href="mypage.html" class="myself" flex="dir:top main:center cross:center">
+        <i><img src="img/my.png" alt=""></i>
+        <span style="padding-top: 5px;">我的</span>
+    </a>
+</div>
+</div>
+
+<ul id="form">
+    <li class="clearfix" id="forminfo">
+
+    </li>
+
+    <li>
+        <span>姓名</span>
+        <input type="text" id="name" placeholder="请输入姓名" autofocus="autofocus">
+    </li>
+    <li>
+        <span>手机号</span>
+        <input type="number" id="phone" placeholder="请输入手机号" maxlength="11">
+    </li>
+    <li>
+        <span>微信号</span>
+        <input type="text" id="wxphone" placeholder="请输入微信号">
+    </li>
+    <li>
+        <span id="submit" class="toorder">付款</span>
+    </li>
+</ul>
+
+<script type="text/html" id="arrform">
+    {{each list as value}}
+    <img src="{{value.pic}}" id="icon" data-cartid="{{value.cartId}}" >
+    <p><i id="ordername">{{value.name}}</i><br> <i id="orderprice" style="color: #f00;">￥ <i class="totalprice" style="color: #f00;">{{value.price}}</i></i><i id="countsum" style="padding-left:100px;color:#999;">x{{value.count}}</i></p>
+    {{/each}}
+    <img src="/static/pcos/img/close.svg" id="close" class="Toggleclose">
+</script>
+
+<script type="text/html" id="cards">
+    {{each list as value index}}
+    <div class="line-wrapper">
+        <div class="line-scroll-wrapper">
+             <div class="line-normal-wrapper">
+                 <div class="carcard" flex=" cross:center box:first">
+                     <div class="checkbox-wrap aiding-icons" style="width: 30px;margin-right: 10px;" >
+                         <input type="checkbox"  data-index="{{index}}" data-serviceid="{{value.serviceId}}" data-cartid="{{value.cartId}}" data-discounts="{{value.discount}}">
+                     </div>
+                     <div flex="main:left box:first">
+                         <img src="{{value.coverpic}}" style="width: 130px;height: 90px;" alt="">
+                         <div class="rightcontent" flex="dir:top">
+                             <p style="padding-bottom: 30px;">{{value.name}}</p>
+                             <div class="price" flex=" box:mean box:last">
+                                 <span style="color: red;">¥ <i id="total_price{{index}}" style="font-size:18px;">{{value.price}}</i></span>
+                                 <span class='buynumber' style="padding-right:10px;" >
+                        <i class="reduce" data-cartid="{{value.cartId}}">-</i>
+                       <i class="picre" id="sum_price{{index}}">{{value.count}}</i>
+                      <i class="add" data-cartid="{{value.cartId}}">+</i>
+                    </span>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+            <div class="line-btn-delete" data-cartid="{{value.cartId}}" onclick='deletebutton("{{value.cartId}}")'><button>删除</button></div>
+        </div>
+
+    </div>
+
+    {{/each}}
+
+</script>
+
+
+
+
+
+
+<script src="/static/common/lib/template.js"></script>
+<script src="/static/common/lib/jquery-1.8.3.min.js"></script>
+<script src="/static/common/js/utils.service.js"></script>
+<script src="/static/common/js/user.service.js"></script>
+<script src="js/popup.check.js"></script>
+<script src="js/car.js"></script>
+</body>
+</html>
